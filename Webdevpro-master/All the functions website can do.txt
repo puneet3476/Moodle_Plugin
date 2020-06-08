@@ -1,0 +1,56 @@
+1.Once you open the demo page, after scrolling down to video section you will see chatbox layout beside the video outlay.
+
+2.Comments from different account holders will be already preloaded in the chat section.You can view comments without 
+logging into your account.
+  
+3.There will be a dropdown menu on the top left side of chatbox outlay. It will contain four options :-
+	a)Chat-(default)
+	b)Notes
+	c)LogIn
+	d)SignUp
+	e)Profile(After login)
+4.You can create a user account by clicking on the SignUp optaion in the dropdown menu and submitting it after filling the 
+necessary information indicated in the layout form.
+
+5.You can also log into your pre-existing account by clicking on the Login option in the dropdown menu and filling the 
+necessary details henceforth.
+
+6.Chat section holds comments from different user and notes section is personal to every user hence can only be seen by the
+ user.
+
+7.You can access chat(or notes) section(s) by two ways:
+	a)Dropdown menu
+	b)Side buttons at right side of chatbox
+8.In the chat section, each comment will have 5 types of information indicated:
+	a)Username(top left corner)
+	b)Timestamp(top right corner) ie. the point of time in the video the comment was made.
+	c)Comment string
+	d)Comment Insight(bottom right corner) ie. nature of comment by the image 
+	e)Replies to the particular comment which can accessed by clicking on the reply button below comment insight image.
+
+9.You cannot comment or reply to any comment without logging into your account.
+
+10.Entire comment tree can be viewed by two ways:
+	a)Timestamp: comments loaded according the current time of the video.
+	b)Newest: comments loaded according to the order in which they were made.
+	 
+11.Notes section is almost similar to chat section with one key differnce that since it is personal to every user so notes
+ section will be unique to every user. You can also download your notes by clicking on the download button at the end of your notes section.
+
+12.In the video section there will be a bar graph shown in the bottom side the video. This is obtained by dividing the 
+entire video thread to 20 sub divisions and measuring the no of comments in each sub division.The colour of bars is dicided
+by most dominant type of commnet insight in that sub division.
+
+13.While video is playing, if timestamp option is selected, then the comments(or notes) will be shown according to current
+ time of the video by auto scrolling.
+
+14.You can view the comments of particular subdivion of the video thread by clicking on the corresponding bar in the graph.
+ They will autoscrolled into view and highlighted.
+
+15.You can drag the chatbox by clicking and dragging at "DragArea" section at the top the chatbox.
+
+16.You can view your profile after logging into your account.The profile contains your username, your real name(only 
+visible to you), your account id and your role.
+
+17.Survey while signing up is the prevideo survey and the survey while logging out is the post video survey. Both the 
+surveys is the key for data collection for analysis.  

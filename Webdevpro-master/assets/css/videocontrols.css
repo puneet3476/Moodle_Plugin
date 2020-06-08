@@ -1,0 +1,31 @@
+.controls{
+  list-style: none;
+  width: 100%;
+  height: fit-content;
+  padding: 0 11vw;
+  position: absolute;
+  left: 0;
+  top: calc(15vh + 357px);
+}
+.controls li{
+  display: inline;
+  padding: 0;
+  height: fit-content;
+  box-shadow: none;
+}
+
+.controls button{
+  padding: 0;
+  height: fit-content;
+  box-shadow: none;
+  background-color: inherit;
+  border: none;
+}
+.progress{cursor: grab;
+  display: block!important;
+}
+.positioner{
+  width: 20%;
+  padding: 0 156px!important;
+  
+}
