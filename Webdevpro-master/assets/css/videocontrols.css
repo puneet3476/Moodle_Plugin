@@ -20,6 +20,7 @@
   box-shadow: none;
   background-color: inherit;
   border: none;
+  
 }
 .progress{cursor: grab;
   display: block!important;

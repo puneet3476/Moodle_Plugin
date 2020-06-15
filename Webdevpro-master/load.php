@@ -398,8 +398,8 @@ require 'connect.php';
 
 				}
 			</script>
-			<li><button id="volinc" type="button"><img src="images/volinc.png" height="25" width="25"></button></li>
-			<li><button id="voldec" type="button"><img src="images/voldec.png" height="25" width="25"></button></li>
+			<li style="margin-left:4.5em;"><button id="volinc" type="button" ><img src="images/volinc.png" height="25" width="25" ></button></li>
+			<li ><button id="voldec" type="button" ><img src="images/voldec.png" height="25" width="25"></button></li>
 
 		</ul>
 		
@@ -1008,7 +1008,7 @@ require 'connect.php';
 					<div class="pnotes_btn" id="note_b">NOTES</div>
 				</div>
 				<div class="chatbox_downbar" id="log">
-					<button class='login3' style="display: none;color:black;" onclick='logClick()'>LOGIN</button>
+					<button class='login3' style="display: none;" onclick='logClick()'>LOGIN</button>
 					<ul class="insight_list" id="il">
 						<li class="reaction"><img src="images/1.png" class="react"></li>
 						<li class="reaction"><img src="images/2.png" class="react"></li>

@@ -413,7 +413,7 @@ input[type="password"]:focus{
 .submit {
   cursor: pointer;
   border-radius: 0.1em;
-  color: #fff;
+  color: black;
   background: linear-gradient(to right, #9C27B0, #E040FB);
   border: 0;
   width: 30%;
@@ -436,8 +436,8 @@ input[type="password"]:focus{
 } */
 
 .login3 {
-  box-shadow: inset 0 0 0 4px #58afd1;
-  color: #58afd1;
+  box-shadow: inset 0 0 0 4px  	 	  	#808080;
+  color:  	 	 	 	#808080;
   -webkit-transition: color 0.25s 0.0833333333s;
   transition: color 0.25s 0.0833333333s;
   position: relative;
@@ -482,7 +482,7 @@ input[type="password"]:focus{
 
 .login3 {
   
-  background: none;
+  background: 	#ffe593;
   border: none;
   cursor: pointer;
   line-height: 1;
@@ -490,7 +490,7 @@ input[type="password"]:focus{
   padding: 0.5em 2em;
   left:8.6vw;
   letter-spacing: 0.05rem;
-  color:black;
+
   
 }
 .login3:focus {
@@ -498,8 +498,75 @@ input[type="password"]:focus{
  
 }
 
+.submit1 {
+  box-shadow: inset 0 0 0 4px  	 	  	#808080;
+  color:  	 	 	 	#808080;
+  -webkit-transition: color 0.25s 0.0833333333s;
+  transition: color 0.25s 0.0833333333s;
+  position: relative;
+}
+.submit1::before, .submit1::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: 0;
+}
+.submit1::before {
+  border-bottom-width: 4px;
+  border-left-width: 4px;
+}
+.submit1::after {
+  border-top-width: 4px;
+  border-right-width: 4px;
+}
+.submit1:hover {
+  color: #ffe593;
+}
+.submit1:hover::before, .submit1:hover::after {
+  border-color: #ffe593;
+  -webkit-transition: border-color 0s, width 0.25s, height 0.25s;
+  transition: border-color 0s, width 0.25s, height 0.25s;
+  width: 100%;
+  height: 100%;
+  -moz-transition: border-color 0s, width 0.25s, height 0.25s;
+  -ms-transition: border-color 0s, width 0.25s, height 0.25s;
+  -o-transition: border-color 0s, width 0.25s, height 0.25s;
+}
+.submit1:hover::before {
+  -webkit-transition-delay: 0s, 0s, 0.25s;
+          transition-delay: 0s, 0s, 0.25s;
+}
+.submit1:hover::after {
+  -webkit-transition-delay: 0s, 0.25s, 0s;
+          transition-delay: 0s, 0.25s, 0s;
+}
 
-.submit1,.submit3 {
+.submit1 {
+  
+  background: 	#ffe593;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  font: 700 0.5rem 'Roboto Slab', sans-serif;
+  padding: 0.5em 2em;
+  left:12vw;
+  letter-spacing: 0.05rem;
+
+  
+}
+.submit1:focus {
+  outline: 2px dotted #55d7dc;
+ 
+}
+
+
+
+.submit3 {
   cursor: pointer;
   border-radius: 0.1em;
   color: #fff;
