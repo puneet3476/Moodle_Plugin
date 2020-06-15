@@ -2,6 +2,7 @@ var supportsVideo = !!document.createElement('video').canPlayType;
 if (supportsVideo) {
 var videoContainer = document.getElementById('videoContainer');
 var video = document.getElementById('myVideo');
+console.log(video)
 var videoControls = document.getElementById('video-controls');
 video.controls = false;
 

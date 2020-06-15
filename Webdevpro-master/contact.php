@@ -16,6 +16,6 @@ if ($link->query($qa) === TRUE) {
 } else {
     echo "Error: " . $qa . "<br>" . $link->error;
 }
-header( "Location: http://localhost:<?php echo($appache_localhost_port);?>/Webdevpro-master/generic.html" );//............This you may have to change
+header( "Location: http://localhost/Moodle_Plugin/Webdevpro-master/generic.html" );//............This you may have to change
 die();
 ?>

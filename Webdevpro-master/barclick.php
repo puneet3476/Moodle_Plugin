@@ -1,8 +1,8 @@
 <?php
 $user = 'root';//............This you may have to change
-$password = 'root';//............This you may have to change
+$password = 'bottletopple202';//............This you may have to change
 $db = 'mydb';//............This you may have to change
-$host = 'localhost:8889';//............This you may have to change
+$host = 'localhost';//............This you may have to change
 
 $link = new mysqli(
    $host,

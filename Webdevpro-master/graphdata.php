@@ -3,7 +3,7 @@
 $user = 'root';
 $password = 'root';
 $db = 'mydb';
-$host = 'localhost:8889';
+$host = 'localhost';
 
 $link = new mysqli(
    $host,
@@ -23,8 +23,8 @@ $r2_arr = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 $q = mysqli_query($link,"SELECT second,reaction FROM `chat` ORDER BY second ASC" );
 $m = 1;
 while($row=mysqli_fetch_array($q)){
-	if((int)$row['second'] < $m*vid_len){
-		t_arr[(int)$m-1] += 1;
+	if((int)$row['second'] < $m*$vid_len){
+		$t_arr[(int)$m-1] += 1;
 		$r1_arr[(int)$row['reaction']] += 1;
 	} else {
 		$max = 0;
@@ -36,10 +36,10 @@ while($row=mysqli_fetch_array($q)){
 		$r2_arr[$m-1] = $max;
 
 
-		while((int)$row['second'] >= $m*vid_len){
+		while((int)$row['second'] >= $m*$vid_len){
 			$m += 1;
 		}
-		t_arr[$m-1] += 1;
+		$t_arr[$m-1] += 1;
 
 		$r1_arr = array(0,0,0,0,0,0,0);
 		$r1_arr[(int)$row['reaction']] += 1;
