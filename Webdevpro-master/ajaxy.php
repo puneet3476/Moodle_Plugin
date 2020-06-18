@@ -48,9 +48,29 @@ while ($rowy=mysqli_fetch_array($resulty)) {
 </div>
 	<script type="text/javascript">
          $("#<?php echo $rowy['id']; ?>").click(function (argument) {
+                     var old_note_time=timeConvert(document.getElementById('myVideo').currentTime);
                      var timenote="<?php echo $rowy['second']; ?>";
                      var clicknote=1;
+                     var note_id="<?php echo $rowy['id']; ?>";
                      document.getElementById('myVideo').currentTime=timenote;
+                     var new_note_time=timeConvert(document.getElementById('myVideo').currentTime);
+                     $.ajax({
+   url:"clickdata.php",
+   method:"POST",
+   data:{
+    clicknote:clicknote,
+    note_id:note_id,
+old_note_time:old_note_time,
+new_note_time:new_note_time
+
+   },
+   success:function(data)
+   {
+       }
+  })
+                     
+                    
+                  
 
 
         });
@@ -127,7 +147,20 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
 		<span class="timestamp"><?php echo $rowchat['time_mark']; ?></span>
 
 		<p class="comment_content"><?php echo $rowchat['chat']; ?></p>
-		<div class="reply_btn r<?php echo $rowchat['id']; ?>">Reply</div>
+		<div class="reply_btn r<?php echo $rowchat['id']; ?>">Reply (
+      <?php
+      $post_reply_id=$rowchat['id'];
+       $replychat = mysqli_query($link,"SELECT * FROM `reply` WHERE `post_id`='$post_reply_id' " );
+       //$replies=mysqli_fetch_array($replychat);
+       $replies=0;
+       while ($replieschat=mysqli_fetch_array($replychat)) {
+        $replies=$replies+1;
+       }
+
+      echo($replies);
+
+
+      ?> )</div>
 		<img class="comment_react" src="images/<?php echo $rowchat['reaction']; ?>.png">
 
 	</div>
@@ -157,8 +190,7 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
 				document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Reply";
 			}
 		}
-	</script>
-	<script type="text/javascript">
+	
          $("#<?php echo $rowchat['id']; ?>t").click(function (argument) {
                      var oldposttime=timeConvert(document.getElementById('myVideo').currentTime);
 
@@ -250,6 +282,8 @@ reply_content:reply_content
         });
 
  function displayreply(reply_id) {
+
+ 
 	var display_reply=1;
 	  $.ajax({
    url:"ajaxy1.php",
@@ -265,7 +299,41 @@ reply_content:reply_content
 
 }
 
-
+          function timeConvert(time){
+        var currenttime= parseInt(time);
+        var totalsecsy=Math.floor(currenttime);
+        var secs = Math.round(currenttime);
+        var hours = Math.floor(secs / (60 * 60));
+        var divisor_for_minutes = secs % (60 * 60);
+        var minutes = Math.floor(divisor_for_minutes / 60);
+        var divisor_for_seconds = divisor_for_minutes % 60;
+        var seconds = Math.ceil(divisor_for_seconds);
+        var zero="0";
+        if (hours<10) {
+        var hour=hours.toString();
+        hour=zero.concat(hour);
+        }
+        else{
+          var hour=hours.toString();
+        }
+        if (minutes<10) {
+        var minute=minutes.toString();
+        minute=zero.concat(minute);
+        }
+        else{
+          var minute=minutes.toString();
+        }
+        if (seconds<10) {
+        var second=seconds.toString();
+        second=zero.concat(second);
+        }
+        else{
+          var second=seconds.toString();
+        }
+        var colon=":";
+        var timemin=hour.concat(colon,minute,colon,second);
+        return timemin;
+      }
 	</script>
 
 
@@ -290,7 +358,7 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
 		<br>
 		<div class="timestamp"><?php echo $rowchat['time_mark']; ?></div>
 		<p class="comment_content"><?php echo $rowchat['chat']; ?></p>
-		<div class="reply_btn r<?php echo $rowchat['id']; ?>">Reply</div>
+		<div class="reply_btn r<?php echo $rowchat['id']; ?>">Reply (<?php echo($rowchat['Replies']); ?>)</div>
 		<img class="comment_react" src="images/<?php echo $rowchat['reaction']; ?>.png">
 
 		</div>
@@ -307,14 +375,14 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
           document.getElementsByClassName("comment_react")[0].style.display="none";
 		}
 		document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].onclick = function(){
-			if(document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML == "Reply"){
+			if(document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML == "Reply (<?php echo($rowchat['Replies']); ?>)"){
 				var current_id="<?php echo $rowchat['id']; ?>";
 				displayreply(current_id);
 				document.getElementsByClassName("reply_column<?php echo $rowchat['id']; ?>")[0].style.display = "block";
 				document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Hide Reply";
 			} else {
 				document.getElementsByClassName("reply_column<?php echo $rowchat['id']; ?>")[0].style.display = "none";
-				document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Reply";
+				document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Reply (<?php echo($rowchat['Replies']); ?>)";
 			}
 		}
 	</script>
@@ -383,15 +451,16 @@ newposttimey:newposttimey
 
       
 		$("#<?php echo $rowchat['id']; ?>").click(function (argument) {
+      var oldposttimereply=document.getElementById('myVideo').currentTime;
 			var reply_id="<?php echo $rowchat['id']; ?>";
 			var user_reply=document.querySelector('#phplogin').innerText;
             var reply_content=$(".reply<?php echo $rowchat['id']; ?>").val();
             var reply_post=1;
 
-		load_reply();
+		load_reply(oldposttimereply);
 
- function load_reply()
- {
+ function load_reply(oldposttimereply)
+ {console.log(oldposttimereply);
   $.ajax({
    url:"ajaxy1.php",
    method:"POST",
@@ -404,14 +473,15 @@ reply_content:reply_content
    },
    success:function(data)
    {
-   displayreply(reply_id);
+   displayreply(reply_id,oldposttimereply);
     $(".reply<?php echo $rowchat['id']; ?>").val('');
        }
   })
  }
         });
 
- function displayreply(reply_id) {
+ function displayreply(reply_id,oldposttimereply) {
+  console.log(oldposttimereply);
 	var display_reply=1;
 	  $.ajax({
    url:"ajaxy1.php",

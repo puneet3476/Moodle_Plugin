@@ -101,55 +101,51 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
 
 
 <?php } ?>
-      
+            var bore_time;
 			var vid = document.getElementById('myVideo');
             var vid_curenttime=document.getElementById('myVideo').currentTime;
             			vid.onloadedmetadata = function() {
 			  	document.getElementsByClassName("positioner")[0].innerHTML = timeConvert(vid.currentTime) + " / " + timeConvert(vid.duration);
+                      myFunction();
 			};
 			setInterval( function() {
 			  	document.getElementsByClassName("positioner")[0].innerHTML = timeConvert(vid.currentTime) + " / " + timeConvert(vid.duration);
+			  	
 			},1000);
             
-            //vid.ontimeupdate = function() {myFunction()};
-           
+  document.getElementById('progress').onclick=function(){
+    window.value=(timeConvert(vid.currentTime));
 
-/*function myFunction() {var seta=1;
-	var vid_alltime=timeConvert(document.getElementById('myVideo').currentTime);
-	$.ajax({
-			url:"ajaxy1.php",
-		    method:"POST",
-		    data:{       
-		 vid_alltime:vid_alltime,
-		 seta:seta
-		 
-		    },
-		    success:function(data)
-		    {
-		    }
-		   })} */
+};
   // Display the current position of the video in a p element with id="demo"
   
 
 vid.onseeked = function() {
-  var vid_curenttimesecond=document.getElementById('myVideo').currentTime;
-  var vid_curenttime=timeConvert(vid_curenttimesecond);
-  var video_timeline_click=1;
+  var from_video_timestamp=window.value;
+  var to_video_timestamp=timeConvert(vid.currentTime);
+  console.log(window.value);
+  console.log(to_video_timestamp);
+  var click_on_video_stamp=1;
+  var loginbool=document.getElementById('loginbool').innerHTML;
+  console.log(loginbool);
 	$.ajax({
 			url:"clickdata.php",
 		    method:"POST",
 		    data:{
-		        video_timeline_click:video_timeline_click,
-		 vid_curenttime:vid_curenttime,
+		        click_on_video_stamp:click_on_video_stamp,
+		 to_video_timestamp:to_video_timestamp,
+		 from_video_timestamp:from_video_timestamp,	 
 		 loginbool:loginbool
 		    },
 		    success:function(data)
 		    {
 		    }
-		   })}
+		   });
+};
 			var letbool=false;
    function play(){
 	var vid_curenttimesecond=document.getElementById('myVideo').currentTime;
+
 	var vid_curenttime=timeConvert(vid_curenttimesecond);
 	var play=0;
 	var pause=0;
@@ -181,7 +177,26 @@ vid.onseeked = function() {
    })	 
 	
 }
-
+vid.onvolumechange = function() {
+	var volumechange=1;
+    var vid_curenttime=timeConvert(vid.currentTime);
+    var volume=vid.volume;
+    var mute =vid.muted;
+    $.ajax({
+    url:"clickdata.php",
+    method:"POST",
+    data:{
+        volumechange:volumechange,
+ vid_curenttime:vid_curenttime,
+ loginbool:loginbool,
+ volume:volume,
+ mute:mute
+    },
+    success:function(data)
+    {
+    }
+   })	 
+};
 
 function graphtime(count) {search=[];
 			var vid_t = document.getElementById('myVideo').duration;
@@ -209,7 +224,7 @@ function graphtime(count) {search=[];
                  searchbar(search[1]);
             }
             //search_bartime();
-
+            vid_currenttimey=timeConvert(document.getElementById('myVideo').currentTime);
 	        var bar_click=1;
 	                $.ajax({
 							url:"clickdata.php",
@@ -218,7 +233,7 @@ function graphtime(count) {search=[];
 						        bar_click:bar_click,
 						        count:count,
 						        vid_prevtime:vid_prevtime,
-						 vid_curenttime:vid_curenttime,
+						 vid_curenttime:vid_currenttimey,
 						 loginbool:loginbool
 						    },
 						    success:function(data)
@@ -445,7 +460,7 @@ function graphtime(count) {search=[];
                        <label for="unsatisfied3 logout">unsatisfied</label>
                        <input class="logout_radio" type="radio" id="very unsatisfied3 logout" name="gender3" value="very unsatisfied">
 					   <label for="very unsatisfied3 logout">very unsatisfied</label>   
-					   <button class="submit3" align="center" type="submit" name="submit">Logout</button>                                        
+					   <button class="submit3" align="center" type="submit" name="submit" id="logout_button">Logout</button>                                        
 				</form>
 					
 
@@ -464,8 +479,8 @@ function graphtime(count) {search=[];
 				<li class="dd_opt" id="profile">Profile</li>
 			</ul>
 			
-			<select class="sort_method" id="sort_method">
-				<option value="1">Newest</option>
+			<select class="sort_method" id="sort_method" >
+				<option value="1" id="Newest">Newest</option>
 				<option value="2" id="sort">Timestamp</option>
 
 			</select>
@@ -540,7 +555,8 @@ function graphtime(count) {search=[];
 					   <label for="very unsatisfied3">very unsatisfied</label>
 					   <input class="username" type="text" align="center"  name="user" placeholder="USERNAME">
 		      			<input class="pass" type="password" align="center" name="pass" placeholder="PASSWORD">
-		      		<button class="submit1" align="center" type="submit" name="submit">Login</button>
+
+		      		<button class="submit1" align="center" type="submit" name="submit" id="login_button">Login</button>
 					</form>
 	    		</div>
 	    		<div class="main3" id="main3">
@@ -578,7 +594,43 @@ function cross1(argument) {
 $(document).ready(function () {var usery=document.querySelector('#phplogin').innerText;
 	displaytopic(usery);
 	    //adding event listeners
+$("#login_button").click(function (argument) { 
+	var login_time = timeConvert(document.getElementById("myVideo").currentTime);
+	var login_button=1;
+	$.ajax({
+   url:"clickdata.php",
+   method:"POST",
+   data:{login_button:1,
+   	login_time:login_time
+   	},
+   success:function(d)
+   {}
+  })
 
+});
+
+$("#mydivheader").click(function (argument) { 
+	var drag_time = timeConvert(document.getElementById("myVideo").currentTime);
+	var drag_button=1;
+	var one = document.querySelector( "#mydivheader" );
+    var coordinates = one.getBoundingClientRect();
+    var y=coordinates.top +" px";    
+    var x=coordinates.left +" px";
+
+$.ajax({
+   url:"clickdata.php",
+   method:"POST",
+   data:{drag_button:1,
+   	drag_time:drag_time,
+   	loginbool:loginbool,
+   	x:x,
+   	y:y
+   	},
+   success:function(d)
+   {}
+  })
+
+});
 
 
 $("#submitpost").click(function (argument) {
@@ -623,7 +675,20 @@ var timemin=hour.concat(colon,minute,colon,second);
 
 
  load_comment();
-
+   $.ajax({
+   url:"clickdata.php",
+   method:"POST",
+   data:{
+   	done:done,
+   	id:id,
+usery:usery,
+timemin:timemin,
+topic:topic
+   },
+   success:function(data)
+   {
+   }
+  })
  function load_comment()
  {
   $.ajax({
@@ -737,6 +802,20 @@ var displaytimechat=0;
  var val = document.getElementsByTagName('select')[0].value;
  // show selected value
 if (val==2) {
+	var timestamp_time=timeConvert(document.getElementById('myVideo').currentTime);
+	$.ajax({
+		url:'clickdata.php',
+		method:"POST",
+		data:{
+			timestamp_time:timestamp_time,
+			Timestamp:1,
+			loginbool:loginbool
+		},
+		   success:function(d)
+   {
+   
+   }
+	});
 	displaytimechat();
 var vid = document.getElementById("myVideo");
 
@@ -844,9 +923,21 @@ function displaytimechat() {
 } }
 
 
-if (val==1) {displaychat();}
-
-
+if (val==1) {displaychat();
+	var newest_time=timeConvert(document.getElementById('myVideo').currentTime);
+	$.ajax({
+		url:'clickdata.php',
+		method:"POST",
+		data:{newest_time:newest_time,
+			Newest:1,
+			loginbool:loginbool
+		},
+		   success:function(d)
+   {
+   
+   }
+	});
+}
 }
 //now, you can invoke show() method as per your requirement.
 document.getElementsByTagName('select')[0].addEventListener('change',function(){
@@ -898,7 +989,7 @@ var timeminy=hour.concat(colon,minute,colon,second);
 
 
  load_chat();
- 
+
 
 
  function load_chat()
@@ -940,7 +1031,7 @@ current_react:current_react
 
    },
    success:function(data)
-   {alert('success');}
+   { }
 });
 
 
@@ -1079,6 +1170,20 @@ current_react:current_react
 //<b>Notice</b>:  Undefined index: user in <b>C:\MAMP\htdocs\Webdevpro-master\load.php</b> on line <b>115</b><br>
 
 	chat.onclick = function(){
+       var event="Select_Chat";
+       var videotime=timeConvert(document.getElementById("myVideo").currentTime);
+		   $.ajax({
+   url:"clickdata.php",
+   method:"POST",
+   data:{
+   	event:event,
+   	loginbool:loginbool,
+videotime:videotime
+
+   },
+   success:function(data)
+   {}
+});
 		ind.style.background = "red";
 		bg.style.background = "#f56e6e";
 		con.innerHTML = "Chat";
@@ -1115,6 +1220,20 @@ current_react:current_react
 		}
 	}
 	profile.onclick=function(){
+		       var event="Select_Profile";
+       var videotime=timeConvert(document.getElementById("myVideo").currentTime);
+		   $.ajax({
+   url:"clickdata.php",
+   method:"POST",
+   data:{
+   	event:event,
+   	loginbool:loginbool,
+videotime:videotime
+
+   },
+   success:function(data)
+   {}
+});
 		ind.style.background = "#0465b5";
 		bg.style.background = "#3966e3";
 		con.innerHTML = "Profile";
@@ -1150,6 +1269,20 @@ current_react:current_react
 		}
 	}
 	note.onclick = function(){
+		       var event="Select_Note";
+       var videotime=timeConvert(document.getElementById("myVideo").currentTime);
+		   $.ajax({
+   url:"clickdata.php",
+   method:"POST",
+   data:{
+   	event:event,
+   	loginbool:loginbool,
+videotime:videotime
+
+   },
+   success:function(data)
+   {}
+});
 		ind.style.background = "#0465b5";
 		bg.style.background = "#3966e3";
 		con.innerHTML = "Notes";
