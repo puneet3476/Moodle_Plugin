@@ -1095,8 +1095,8 @@ require 'connect.php';
 			//<b>Notice</b>:  Undefined index: user in <b>C:\MAMP\htdocs\Webdevpro-master\load.php</b> on line <b>115</b><br>
 
 			chat.onclick = function() {
-				ind.style.background = "#EE82EE";
-				bg.style.background = "#EE82EE";
+				ind.style.background = "#95c2fd";
+				bg.style.background = "#95c2fd";
 				con.innerHTML = "Chat";
 				dd.style.opacity = "0";
 				dd.style.transform = "translateY(-10px)";
@@ -1118,7 +1118,7 @@ require 'connect.php';
 				profile.style.display = 'none';
 				mover.style.display = 'none';
 
-				Bg.style.background = "#EE82EE";
+				Bg.style.background = "#95c2fd";
 				if (loginbool != "1" || loginuser == "empty1") {
 					log_second.style.display = 'block';
 				}
@@ -1188,7 +1188,7 @@ require 'connect.php';
 				profile.style.display = 'none';
 				mover.style.display = 'none';
 
-				Bg.style.background = "#EE82EE";
+				Bg.style.background = "#95c2fd";
 				document.getElementById("main6").style.display = 'block';
 				if (loginbool != "1" || loginuser == "empty1") {
 
