@@ -13,23 +13,23 @@ require 'connect.php';
 
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@1,500&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@1,500&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<link rel="stylesheet" href="assets/css/chatbox.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/videocontrols.css">
 	<link rel='stylesheet' type='text/css' href='assets/css/player.css' />
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 	<script src="assets/js/jquery.js"></script>
 	<script src='assets/js/javascript.js'></script>
 
-	
+
 
 </head>
 
 <body style="overflow-y: scroll;">
 
 
-	
+
 	<header id="header">
 		<div class="inner">
 			<a href="index.html" class="logo">Annoto</a>
@@ -83,7 +83,7 @@ require 'connect.php';
 			<li class="graph_column" onclick="graphtime(18)"></li>
 			<li class="graph_column" onclick="graphtime(19)"></li>
 		</ul>
-		<ul id="video-controls" class="controls" >
+		<ul id="video-controls" class="controls">
 			<li class="progress">
 				<progress id="progress" value="0" min="0">
 					<span id="progress-bar"></span>
@@ -93,7 +93,7 @@ require 'connect.php';
 			<li><button id="stop" type="button"><img src="images/stop.png" height="25" width="25"></button></li>
 			<li><button id="mute" type="button"><img src="images/mute.svg" height="25" width="25"></button></li>
 			<li class="positioner"></li>
-			
+
 			<script language="javascript" type="text/javascript">
 				var fruits = [];
 				<?php
@@ -398,11 +398,11 @@ require 'connect.php';
 
 				}
 			</script>
-			<li style="margin-left:4.5em;"><button id="volinc" type="button" ><img src="images/volinc.png" height="25" width="25" ></button></li>
-			<li ><button id="voldec" type="button" ><img src="images/voldec.png" height="25" width="25"></button></li>
+			<li style="margin-left:4.5em;"><button id="volinc" type="button"><img src="images/volinc.png" height="25" width="25"></button></li>
+			<li><button id="voldec" type="button"><img src="images/voldec.png" height="25" width="25"></button></li>
 
 		</ul>
-		
+
 		<div class="main5" id="main5" style="display:none;">
 			<img src="images/cross.png" class="cross" onclick="cross1()">
 			<form class="form1" action="logout.php" method="POST">
@@ -461,13 +461,13 @@ require 'connect.php';
 				<div class="dragarea" id="mydivheader">DragArea</div>
 				<input type="checkbox" id="openmenu" class="hamburger-checkbox">
 				<div class="hamburger-icon" id="ddb">
-    				<label for="openmenu" id="hamburger-label">
-	  					
-      					<span></span>
-     			 		<span></span>
-   
-    				</label>    
-  				</div>
+					<label for="openmenu" id="hamburger-label">
+
+						<span></span>
+						<span></span>
+
+					</label>
+				</div>
 				<div class="con" id="con" style="left:3.4vw;top:0.1vh;">Chat</div>
 
 				<ul class="dropdownbox" id="dd">
@@ -1406,7 +1406,7 @@ require 'connect.php';
 
 
 		<div class="valueone">
-			<header  style="margin-top:5vh;">
+			<header style="margin-top:5vh;">
 				<p style="position:relative;">Value Proposition</p>
 			</header>
 		</div>
@@ -1555,4 +1555,5 @@ require 'connect.php';
 </body>
 <script src="assets/js/feature.js"></script>
 <script type="text/javascript" src="assets/js/videocontrols.js"></script>
+
 </html>

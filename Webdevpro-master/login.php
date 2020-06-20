@@ -24,6 +24,10 @@ $_SESSION['loginid']=$row["student_id"];
 $_SESSION['loginname']=$row["realname"];
 $_SESSION['loginrole']=$row["role"];
 $user_id=$row["student_id"];
+
+
+
+
 $question1=mysqli_real_escape_string($link, $_POST['gender']);
 $question2=mysqli_real_escape_string($link, $_POST['gender1']);
 $question3=mysqli_real_escape_string($link, $_POST['gender2']);
@@ -43,8 +47,8 @@ if ($link->query($qy) === TRUE) {
     echo "Error: " . $qy . "<br>" . $link->error;
 }
 
-$clickdata="INSERT INTO clickdata(username,login,user_id)
-VALUES ('$name','1','$user_id')" ;
+$clickdata="INSERT INTO clickdata(username,Event,user_id)
+VALUES ('$name','Login','$user_id',)" ;
 if ($link->query($clickdata) === TRUE) {
     echo "New record created successfully";
 } else {
