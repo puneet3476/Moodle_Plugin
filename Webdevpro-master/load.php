@@ -458,7 +458,7 @@ require 'connect.php';
 		</div>
 		<div class="chatbox" id="mydiv" style="font-weight:500;">
 			<div class="chatbox_upbar">
-				<div class="dragarea" id="mydivheader">Drag Area</div>
+				<div class="dragarea" id="mydivheader">DragArea</div>
 				<input type="checkbox" id="openmenu" class="hamburger-checkbox">
 				<div class="hamburger-icon" id="ddb">
     				<label for="openmenu" id="hamburger-label">
@@ -576,7 +576,7 @@ require 'connect.php';
 
 						<div class="displaya"></div>
 						<div class="reactionhide" id="reactionhide">0</div>
-						<button id="download">Download Notes</button>
+						<button id="download" style="font-size:0.7vw;border-radius: 12px;">Download Notes</button>
 
 
 
