@@ -18,7 +18,7 @@ require 'connect.php';
 	<link rel="stylesheet" href="assets/css/chatbox.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/videocontrols.css">
 	<link rel='stylesheet' type='text/css' href='assets/css/player.css' />
-
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
 	<script src="assets/js/jquery.js"></script>
 	<script src='assets/js/javascript.js'></script>
 
