@@ -23,18 +23,16 @@ require 'connect.php';
 	<script src='assets/js/javascript.js'></script>
 
 
-
 </head>
 
 <body style="overflow-y: scroll;">
-
 
 
 	<header id="header">
 		<div class="inner">
 			<a href="index.html" class="logo">Annoto</a>
 			<nav id="nav">
-				<a href="load.php">Home</a>
+				<a href="index.html">Home</a>
 				<a href="generic.html">Edtech</a>
 				<a href="generic.html">Corporate</a>
 				<a href="generic.html">Portals</a>
@@ -44,8 +42,6 @@ require 'connect.php';
 			</nav>
 		</div>
 	</header>
-
-
 	<div id="php" class="load"><?php echo isset(($_SESSION['signuser'])); ?></div>
 	<div id="phpname" class="load"><?php echo ($_SESSION['signuser']); ?></div>
 	<div id="phplogin" class="load"><?php echo ($_SESSION['loginuser']); ?></div>
@@ -93,7 +89,6 @@ require 'connect.php';
 			<li><button id="stop" type="button"><img src="images/stop.png" height="25" width="25"></button></li>
 			<li><button id="mute" type="button"><img src="images/mute.svg" height="25" width="25"></button></li>
 			<li class="positioner"></li>
-
 			<script language="javascript" type="text/javascript">
 				var fruits = [];
 				<?php
@@ -108,55 +103,50 @@ require 'connect.php';
 
 
 				<?php } ?>
-
+				var bore_time;
 				var vid = document.getElementById('myVideo');
 				var vid_curenttime = document.getElementById('myVideo').currentTime;
 				vid.onloadedmetadata = function() {
 					document.getElementsByClassName("positioner")[0].innerHTML = timeConvert(vid.currentTime) + " / " + timeConvert(vid.duration);
+					myFunction();
 				};
 				setInterval(function() {
 					document.getElementsByClassName("positioner")[0].innerHTML = timeConvert(vid.currentTime) + " / " + timeConvert(vid.duration);
+
 				}, 1000);
 
-				//vid.ontimeupdate = function() {myFunction()};
+				document.getElementById('progress').onclick = function() {
+					window.value = (timeConvert(vid.currentTime));
 
-
-				/*function myFunction() {var seta=1;
-					var vid_alltime=timeConvert(document.getElementById('myVideo').currentTime);
-					$.ajax({
-							url:"ajaxy1.php",
-						    method:"POST",
-						    data:{       
-						 vid_alltime:vid_alltime,
-						 seta:seta
-						 
-						    },
-						    success:function(data)
-						    {
-						    }
-						   })} */
+				};
 				// Display the current position of the video in a p element with id="demo"
 
 
 				vid.onseeked = function() {
-					var vid_curenttimesecond = document.getElementById('myVideo').currentTime;
-					var vid_curenttime = timeConvert(vid_curenttimesecond);
-					var video_timeline_click = 1;
+					var from_video_timestamp = window.value;
+					var to_video_timestamp = timeConvert(vid.currentTime);
+					console.log(window.value);
+					console.log(to_video_timestamp);
+					var click_on_video_stamp = 1;
+					var loginbool = document.getElementById('loginbool').innerHTML;
+					console.log(loginbool);
 					$.ajax({
 						url: "clickdata.php",
 						method: "POST",
 						data: {
-							video_timeline_click: video_timeline_click,
-							vid_curenttime: vid_curenttime,
+							click_on_video_stamp: click_on_video_stamp,
+							to_video_timestamp: to_video_timestamp,
+							from_video_timestamp: from_video_timestamp,
 							loginbool: loginbool
 						},
 						success: function(data) {}
-					})
-				}
+					});
+				};
 				var letbool = false;
 
 				function play() {
 					var vid_curenttimesecond = document.getElementById('myVideo').currentTime;
+
 					var vid_curenttime = timeConvert(vid_curenttimesecond);
 					var play = 0;
 					var pause = 0;
@@ -185,7 +175,24 @@ require 'connect.php';
 					})
 
 				}
-
+				vid.onvolumechange = function() {
+					var volumechange = 1;
+					var vid_curenttime = timeConvert(vid.currentTime);
+					var volume = vid.volume;
+					var mute = vid.muted;
+					$.ajax({
+						url: "clickdata.php",
+						method: "POST",
+						data: {
+							volumechange: volumechange,
+							vid_curenttime: vid_curenttime,
+							loginbool: loginbool,
+							volume: volume,
+							mute: mute
+						},
+						success: function(data) {}
+					})
+				};
 
 				function graphtime(count) {
 					search = [];
@@ -215,7 +222,7 @@ require 'connect.php';
 						searchbar(search[1]);
 					}
 					//search_bartime();
-
+					vid_currenttimey = timeConvert(document.getElementById('myVideo').currentTime);
 					var bar_click = 1;
 					$.ajax({
 						url: "clickdata.php",
@@ -224,7 +231,7 @@ require 'connect.php';
 							bar_click: bar_click,
 							count: count,
 							vid_prevtime: vid_prevtime,
-							vid_curenttime: vid_curenttime,
+							vid_curenttime: vid_currenttimey,
 							loginbool: loginbool
 						},
 						success: function(data) {}
@@ -402,7 +409,7 @@ require 'connect.php';
 			<li><button id="voldec" type="button"><img src="images/voldec.png" height="25" width="25"></button></li>
 
 		</ul>
-
+		<script type="text/javascript" src="assets/js/videocontrols.js"></script>
 		<div class="main5" id="main5" style="display:none;">
 			<img src="images/cross.png" class="cross" onclick="cross1()">
 			<form class="form1" action="logout.php" method="POST">
@@ -451,7 +458,7 @@ require 'connect.php';
 				<label for="unsatisfied3 logout">unsatisfied</label>
 				<input class="logout_radio" type="radio" id="very unsatisfied3 logout" name="gender3" value="very unsatisfied">
 				<label for="very unsatisfied3 logout">very unsatisfied</label>
-				<button class="submit3" align="center" type="submit" name="submit">Logout</button>
+				<button class="submit3" align="center" type="submit" name="submit" id="logout_button">Logout</button>
 			</form>
 
 
@@ -479,7 +486,7 @@ require 'connect.php';
 				</ul>
 
 				<select class="sort_method" id="sort_method">
-					<option value="1">Newest</option>
+					<option value="1" id="Newest">Newest</option>
 					<option value="2" id="sort">Timestamp</option>
 
 				</select>
@@ -554,7 +561,8 @@ require 'connect.php';
 							<label for="very unsatisfied3">very unsatisfied</label>
 							<input class="username" type="text" align="center" name="user" placeholder="USERNAME">
 							<input class="pass" type="password" align="center" name="pass" placeholder="PASSWORD">
-							<button class="submit1" align="center" type="submit" name="submit">Login</button>
+
+							<button class="submit1" align="center" type="submit" name="submit" id="login_button">Login</button>
 						</form>
 					</div>
 					<div class="main3" id="main3">
@@ -595,7 +603,43 @@ require 'connect.php';
 								var usery = document.querySelector('#phplogin').innerText;
 								displaytopic(usery);
 								//adding event listeners
+								$("#login_button").click(function(argument) {
+									var login_time = timeConvert(document.getElementById("myVideo").currentTime);
+									var login_button = 1;
+									$.ajax({
+										url: "clickdata.php",
+										method: "POST",
+										data: {
+											login_button: 1,
+											login_time: login_time
+										},
+										success: function(d) {}
+									})
 
+								});
+
+								$("#mydivheader").click(function(argument) {
+									var drag_time = timeConvert(document.getElementById("myVideo").currentTime);
+									var drag_button = 1;
+									var one = document.querySelector("#mydivheader");
+									var coordinates = one.getBoundingClientRect();
+									var y = coordinates.top + " px";
+									var x = coordinates.left + " px";
+
+									$.ajax({
+										url: "clickdata.php",
+										method: "POST",
+										data: {
+											drag_button: 1,
+											drag_time: drag_time,
+											loginbool: loginbool,
+											x: x,
+											y: y
+										},
+										success: function(d) {}
+									})
+
+								});
 
 
 								$("#submitpost").click(function(argument) {
@@ -637,6 +681,18 @@ require 'connect.php';
 
 
 									load_comment();
+									$.ajax({
+										url: "clickdata.php",
+										method: "POST",
+										data: {
+											done: done,
+											id: id,
+											usery: usery,
+											timemin: timemin,
+											topic: topic
+										},
+										success: function(data) {}
+									})
 
 									function load_comment() {
 										$.ajax({
@@ -672,7 +728,7 @@ require 'connect.php';
 											usery: usery
 										},
 										success: function(d) {
-											urldownload = "http://localhost/Moodle_Plugin/Webdevpro-master/ajaxy.php?display=1&usery=" + usery; //............This you may have to change
+											urldownload = "http://localhost:<?php echo ($appache_localhost_port); ?>/Webdevpro-master/ajaxy.php?display=1&usery=" + usery; //............This you may have to change
 											window.location.href = urldownload;
 										}
 									})
@@ -746,6 +802,19 @@ require 'connect.php';
 									var val = document.getElementsByTagName('select')[0].value;
 									// show selected value
 									if (val == 2) {
+										var timestamp_time = timeConvert(document.getElementById('myVideo').currentTime);
+										$.ajax({
+											url: 'clickdata.php',
+											method: "POST",
+											data: {
+												timestamp_time: timestamp_time,
+												Timestamp: 1,
+												loginbool: loginbool
+											},
+											success: function(d) {
+
+											}
+										});
 										displaytimechat();
 										var vid = document.getElementById("myVideo");
 
@@ -862,9 +931,20 @@ require 'connect.php';
 
 									if (val == 1) {
 										displaychat();
+										var newest_time = timeConvert(document.getElementById('myVideo').currentTime);
+										$.ajax({
+											url: 'clickdata.php',
+											method: "POST",
+											data: {
+												newest_time: newest_time,
+												Newest: 1,
+												loginbool: loginbool
+											},
+											success: function(d) {
+
+											}
+										});
 									}
-
-
 								}
 								//now, you can invoke show() method as per your requirement.
 								document.getElementsByTagName('select')[0].addEventListener('change', function() {
@@ -952,9 +1032,7 @@ require 'connect.php';
 												current_react: current_react
 
 											},
-											success: function(data) {
-												alert('success');
-											}
+											success: function(data) {}
 										});
 
 
@@ -1004,11 +1082,11 @@ require 'connect.php';
 				</div>
 				<div class="chatarea_side">
 					<div class="indicator" id="indicator"></div>
-					<div class="chatarea_btn" id="chat_b">CHAT</div>
-					<div class="pnotes_btn" id="note_b">NOTES</div>
+					<div class="chatarea_btn" id="chat_b">Chat</div>
+					<div class="pnotes_btn" id="note_b">Notes</div>
 				</div>
 				<div class="chatbox_downbar" id="log">
-					<button class='login3' style="display: none;" onclick='logClick()'>LOGIN</button>
+					<button class='login3' style="display: none;" onclick='logClick()'>Login</button>
 					<ul class="insight_list" id="il">
 						<li class="reaction"><img src="images/1.png" class="react"></li>
 						<li class="reaction"><img src="images/2.png" class="react"></li>
@@ -1095,6 +1173,19 @@ require 'connect.php';
 			//<b>Notice</b>:  Undefined index: user in <b>C:\MAMP\htdocs\Webdevpro-master\load.php</b> on line <b>115</b><br>
 
 			chat.onclick = function() {
+				var event = "Select_Chat";
+				var videotime = timeConvert(document.getElementById("myVideo").currentTime);
+				$.ajax({
+					url: "clickdata.php",
+					method: "POST",
+					data: {
+						event: event,
+						loginbool: loginbool,
+						videotime: videotime
+
+					},
+					success: function(data) {}
+				});
 				ind.style.background = "#95c2fd";
 				bg.style.background = "#95c2fd";
 				con.innerHTML = "Chat";
@@ -1131,6 +1222,19 @@ require 'connect.php';
 				}
 			}
 			profile.onclick = function() {
+				var event = "Select_Profile";
+				var videotime = timeConvert(document.getElementById("myVideo").currentTime);
+				$.ajax({
+					url: "clickdata.php",
+					method: "POST",
+					data: {
+						event: event,
+						loginbool: loginbool,
+						videotime: videotime
+
+					},
+					success: function(data) {}
+				});
 				ind.style.background = "#0465b5";
 				bg.style.background = "#3966e3";
 				con.innerHTML = "Profile";
@@ -1166,6 +1270,19 @@ require 'connect.php';
 				}
 			}
 			note.onclick = function() {
+				var event = "Select_Note";
+				var videotime = timeConvert(document.getElementById("myVideo").currentTime);
+				$.ajax({
+					url: "clickdata.php",
+					method: "POST",
+					data: {
+						event: event,
+						loginbool: loginbool,
+						videotime: videotime
+
+					},
+					success: function(data) {}
+				});
 				ind.style.background = "#0465b5";
 				bg.style.background = "#3966e3";
 				con.innerHTML = "Notes";
@@ -1188,7 +1305,7 @@ require 'connect.php';
 				profile.style.display = 'none';
 				mover.style.display = 'none';
 
-				Bg.style.background = "#95c2fd";
+				Bg.style.background = "rgb(57, 102, 227)";
 				document.getElementById("main6").style.display = 'block';
 				if (loginbool != "1" || loginuser == "empty1") {
 
@@ -1406,8 +1523,8 @@ require 'connect.php';
 
 
 		<div class="valueone">
-			<header style="margin-top:5vh;">
-				<p style="position:relative;">Value Proposition</p>
+			<header>
+				<p>Value Proposition</p>
 			</header>
 		</div>
 		<div class="my_card">
@@ -1554,6 +1671,5 @@ require 'connect.php';
 
 </body>
 <script src="assets/js/feature.js"></script>
-<script type="text/javascript" src="assets/js/videocontrols.js"></script>
 
 </html>
