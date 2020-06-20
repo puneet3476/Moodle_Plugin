@@ -319,7 +319,7 @@ input[type="password"]:focus{
   height: 100%;
 }
 .main1,.main5,.main6 {display: none;
-  background-color: rgb(57, 102, 227);
+  background-color:white;
   height: 100%;
   
 }
