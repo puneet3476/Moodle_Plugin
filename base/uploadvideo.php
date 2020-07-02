@@ -1,10 +1,10 @@
 <?php
-$appache_localhost_port='8888';//............This you may have to change
+$appache_localhost_port='';//............This you may have to change
 $urla="Location: http://localhost:";//............This you may have to change
 $user = 'root';//............This you may have to change
-$password = 'root';//............This you may have to change
+$password = '';//............This you may have to change
 $users_db = 'central';//............This you may have to change
-$host = 'localhost:8889';//............This you may have to change
+$host = 'localhost';//............This you may have to change
 $urlb="load.php";
 
 if(isset($_FILES['video'])){
@@ -13,13 +13,14 @@ $folder_name=$_POST['folder_name'];
 $database_name=$_POST['database_name'];
 $hyperlink=$_POST['hyperlink'];
 $uploadfile = basename($_FILES['video']['name']);
-$videopath=$dir_name."\\videos\\".$uploadfile;
-
+$videopath=$dir_name."/videos/".$uploadfile;
+@mkdir($dir_name."/videos");
 echo $videopath;
 $video_extension=pathinfo($videopath,PATHINFO_EXTENSION);
 $uploadsize=$_FILES['video']['size'];
 $temp=$_FILES['video']['tmp_name'];
 echo $temp;
+echo "2";
 
 $link_central = new mysqli(
    $host,
@@ -31,7 +32,7 @@ if ($video_extension!='mp4') {?>
 	<h3>Video format should be mp4</h3>
 	<?php
 	die();
-	
+
 }
 if ($uploadsize>1.8e+8) {?>
 	<h3>Video size should not be more than 200MB</h3>
@@ -39,7 +40,7 @@ if ($uploadsize>1.8e+8) {?>
 	die();
 }
 if (move_uploaded_file($_FILES['video']['tmp_name'], $videopath)) {
-rename($videopath,$dir_name."\\videos\\"."video1.".$video_extension);
+rename($videopath,$dir_name."/videos/"."video1.".$video_extension);
 ?>
 <script type="text/javascript">
 	alert("Video Uploaded Successfully");
