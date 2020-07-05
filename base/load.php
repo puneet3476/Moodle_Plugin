@@ -17,6 +17,8 @@ require 'connect.php';
     <link rel="stylesheet" href="assets/css/chatbox.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/videocontrols.css">
     <link rel='stylesheet' type='text/css' href='assets/css/player.css' />
+    <link rel="stylesheet" href="assets/css/question.css">
+
     <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/dist/plyr.css" />
     <link href="https://vjs.zencdn.net/7.8.3/video-js.css" rel="stylesheet" />
@@ -1498,7 +1500,74 @@ videotime:videotime
     }
   }
 </script>
-
+<script>var answerMatrix = {};</script>
+			<?php
+				$x = 1;
+				$questions = mysqli_query($link,"SELECT * FROM `question` ");
+				$qno = mysqli_num_rows($questions);
+				while($question = mysqli_fetch_array( $questions)){	
+				?>
+				<div class="questionbox_container" id="qc<?php echo $x ?>" style="display: none;">	
+					<div id="questionbox" class="questionbox">
+						<div class="questionbox_header"><?php echo $question['question']?></div>
+						<div class="questionbox_options_container">
+							<div class="questionbox_option_container">
+								<input class="q<?php echo $x ?>" type="radio" id="<?php echo $question['option1']?>" name="answer" value="1">
+								<label for="<?php echo $question['option1']?>"><?php echo $question['option1']?></label>
+							</div>
+							<div class="questionbox_option_container">
+								<input class="q<?php echo $x ?>" type="radio" id="<?php echo $question['option2']?>" name="answer" value="2?>">
+								<label for="<?php echo $question['option2']?>"><?php echo $question['option2']?></label>
+							</div>
+						</div>
+						<div class="questionbox_options_container">	
+							<div class="questionbox_option_container">
+								<input class="q<?php echo $x ?>" type="radio" id="<?php echo $question['option3']?>" name="answer" value="3">
+								<label for="<?php echo $question['option3']?>"><?php echo $question['option3']?></label>
+							</div>
+							<div class="questionbox_option_container">
+								<input class="q<?php echo $x ?>" type="radio" id="<?php echo $question['option4'];?>" name="answer" value="4">
+								<label for="<?php echo $question['option4']?>"><?php echo $question['option4'];?></label>
+							</div>
+						</div>
+						<button class="questionbox_submit_btn" id="sbtn<?php echo $x;?>" type="submit">Submit</button>
+					</div>
+				</div>
+				<script>
+					var abc<?php echo $x?> = setInterval(() => {console.log(Math.floor(vid.currentTime));
+						if ("<?php echo $question['timestamp']+1; ?>" == Math.floor(vid.currentTime)){
+							vid.pause();
+						document.getElementById('qc<?php echo $x ?>').style.display = "block";
+					}
+					
+					}, 1000);
+					document.getElementById('sbtn<?php echo $x?>').onclick = () => {
+						document.getElementById('qc<?php echo $x ?>').style.display = "none";
+						clearInterval(abc<?php echo $x?>); 
+						vid.play();
+						answerMatrix['qno'] = <?php echo $qno?>;
+						answerMatrix['user'] = "<?php echo ($_SESSION['loginuser']); ?>";
+						for(var i = 0; i < 4; i++){
+							if (document.getElementsByClassName("q<?php echo $x ?>")[i].checked){
+								answerMatrix['ans<?php echo $x?>'] = document.getElementsByClassName("q<?php echo $x ?>")[i].value;
+							} 
+						}
+						if ("<?php echo $x?>" == "<?php echo $qno?>" ){
+							$.ajax({
+									url:"calculateScore.php",
+									method:"POST",
+									data:answerMatrix,
+									success:function(data)
+									{
+									}
+								});
+						}
+					}
+				</script>
+				<?php	
+				$x++;
+				}
+			?>
 
 
 
