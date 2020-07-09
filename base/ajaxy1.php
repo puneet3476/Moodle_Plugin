@@ -3,7 +3,7 @@ session_start();
 require 'connect.php';
 
 if (isset($_GET['clickposy'])) {
-	if(!isset($_SESSION['loginuser'])){
+  if(!isset($_SESSION['loginuser'])){
     $username='Notloggedin';
     $user_id=-1;
   }
@@ -12,9 +12,7 @@ if (isset($_GET['clickposy'])) {
     $user_id=$_SESSION['loginid'];
 
   }
-
   $postid=$_GET['postid'];
-
   $clickpost=1;
   $time_mark=$_GET['newposttime'];
   $from_time_mark=$_GET['oldposttime'];
@@ -26,7 +24,7 @@ if ($link->query($clickdata) === TRUE) {
 }
 }
 if (isset($_GET['clickpost'])) {
-	if(!isset($_SESSION['loginuser'])){
+  if(!isset($_SESSION['loginuser'])){
     $username='Notloggedin';
     $user_id=-1;
   }
@@ -36,11 +34,6 @@ if (isset($_GET['clickpost'])) {
 
   }
   $postidy=$_GET['postidy'];
-  $chatuser=$_GET['chatuser'];
-  if ($chatuser==$username) {
-    echo "author";
-    $username=$username."(author)";
-  }
   $clickpost=1;
   $time_mark=$_GET['newposttimey'];
   $from_time_mark=$_GET['oldposttimey'];
@@ -58,8 +51,8 @@ if (isset($_GET['reply_post'])) {
   $reply_content=$_GET['reply_content'];
   $user_reply=$_GET['user_reply'];
  //if ($reply_content!="") {
-   	# code...
-   
+    # code...
+
 $qy="INSERT INTO `reply` (user,reply,post_id)
 VALUES ('$user_reply','$reply_content','$reply_id')" ;
 mysqli_query($link,$qy);
@@ -69,7 +62,7 @@ $result = $link->query($result_reply);
 
 if ($result->num_rows > 0) {
   // output data of each row
-  while($rowreply = $result->fetch_assoc()) { 
+  while($rowreply = $result->fetch_assoc()) {
 $replies=$rowreply['Replies']+1;
 $up="UPDATE `chat` SET `Replies`='$replies' WHERE `id`='$reply_id' ";
 if ($link->query($up) === TRUE) {
@@ -112,7 +105,7 @@ if ($link->query($clickdata) === TRUE) {
 
 
 <script type="text/javascript">
-	
+
 </script>
 <?php
 $resulty = mysqli_query($link,"SELECT * FROM `reply`  WHERE `post_id` = '$reply_id'" );
@@ -120,14 +113,14 @@ while ($rowy=mysqli_fetch_array($resulty)) {
 ?>
 
 
-		<div class="comment_display reply_display" style="text-align: left"><span class="comment_u"><?php echo $rowy['user']; ?></span>
-		<p class="comment_content"><?php echo $rowy['reply']; ?></p></div>
+    <div class="comment_display reply_display" style="text-align: left"><span class="comment_u"><?php echo $rowy['user']; ?></span>
+    <p class="comment_content"><?php echo $rowy['reply']; ?></p></div>
 
 
 
 
 
-	<?php
+  <?php
 }
 
 }

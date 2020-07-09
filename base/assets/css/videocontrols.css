@@ -1,17 +1,20 @@
-.controls{
+/*.controls{
+  background-color:grey;
   list-style: none;
-  width: 100%;
-  height: fit-content;
-  padding: 0 2.4vw;
+  width: 600px;
+  height: min-content;
+  padding: 0 ;
+  padding-left: 20px;
+  padding-top: 10px;
   position: absolute;
-  left: 0;
-  top: calc(7.5vh + 507px);
+  left: 11vw;
+  top: calc(15vh + 355px);
 }
 .progressid{
   width: 880px!important;
 }
 .controls li{
-  display: inline;
+  display: contents;
   padding: 0;
 
   height: fit-content;
@@ -25,11 +28,18 @@
   background-color: inherit;
   border: none;
 }
-.progress{cursor: grab;
+.progress{cursor: pointer;
   display: block!important;
+  height: 10px;
 }
 .positioner{
-  
+
   padding: 0 256px!important;
-  
+
 }
+li .fas{
+font-size: 2em;
+color: black;
+}
+
+*/

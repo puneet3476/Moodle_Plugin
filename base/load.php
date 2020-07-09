@@ -15,10 +15,8 @@ require 'connect.php';
         <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/chatbox.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="assets/css/videocontrols.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/videocontrols.css">
     <link rel='stylesheet' type='text/css' href='assets/css/player.css' />
-    <link rel="stylesheet" href="assets/css/question.css">
-
     <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/dist/plyr.css" />
     <link href="https://vjs.zencdn.net/7.8.3/video-js.css" rel="stylesheet" />
@@ -26,10 +24,9 @@ require 'connect.php';
     <link href="assets/videojs.chapter-thumbnails.min.css" rel="stylesheet">
 
 
-  </head>
-  <body>
 
-<body style="overflow-y: scroll;">
+  </head>
+  <body style="overflow-y: scroll;">
 
 
       <header id="header">
@@ -47,19 +44,30 @@ require 'connect.php';
                         </nav>
                     </div>
                 </header>
-
-<div id="php" class="load"><?php echo isset(($_SESSION['signuser'])); ?></div>
+      <div id="php" class="load"><?php echo isset(($_SESSION['signuser'])); ?></div>
 <div id="phpname" class="load"><?php echo ($_SESSION['signuser']); ?></div>
 <div id="phplogin" class="load"><?php echo ($_SESSION['loginuser']); ?></div>
 <div id="loginbool" class="load"><?php echo isset(($_SESSION['loginuser'])); ?></div>
-
+      <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 
     <!--Video player-->
+
 <div class="data" id="data"></div>
 <div class="container" style="width: 672px;float: left;margin-left: 11vw;margin-top: 10%;">
+
+
 <video playsinline controls class="vidchaVideo" id="myVideo" preload="metadata" width="600px" height="400px" style="--plyr-color-main:#e82c2f;--plyr-video-control-background-hover:rgba(0,0,0,0);--plyr-video-control-color:white;" >
   <source src="videos/video1.mp4" type="video/mp4" >
 </video>
+<!--  <video
+    id="myVideo"
+    class="video-js"
+    controls
+    preload="metadata"
+    style="width: 600px;height: 367px;"
+  >
+    <source src="videos/video1.mp4" type="video/mp4" >
+  </video> -->
  <div>Topics:</div>
 <ul class="vidchaNav">
   <li data-start="0" class="topics">1. Intro</li>
@@ -93,16 +101,17 @@ require 'connect.php';
     <li class="graph_column" onclick="graphtime(18)"></li>
     <li class="graph_column" onclick="graphtime(19)"></li>
   </ul>
-  <ul id="video-controls" class="controls"  style="display: none;">
-    <li class="progress" >
-      <progress id="progress" value="0" min="0" class="progressid">
+  <ul id="video-controls" class="controls" style="display: none;" >
+    <li class="progress">
+      <progress id="progress" value="0" min="0">
         <span id="progress-bar"></span>
       </progress>
     </li>
-       <li><button id="playpause" type="button"><img src="images/play_pause.png" height="40" width="40" onClick="play()"></button></li>
-       <li><button id="stop" type="button"><img src="images/stop.png" height="40" width="40"></button></li>
-       <li><button id="mute" type="button"><img src="images/mute.png" height="40" width="40"></button></li>
-    <li class="positioner"></li>
+    <div style="width: 100%;padding-left: 10px;padding-right: 20px;">
+       <div><button id="playpause" type="button"><img src="images/play_pause.png" height="25" width="25" onClick="play()"></button></li>
+       <li><button id="stop" type="button"><img src="images/stop.png" height="25" width="25"></button></li>
+       <li><button id="mute" type="button"><img src="images/mute.svg" height="25" width="25"></button></li>
+       <li class="positioner"></li>
     <script language="javascript" type="text/javascript">
       var fruits = [];
 <?php
@@ -423,16 +432,16 @@ function graphtime(count) {search=[];
 
 }
     </script>
-       <li><button id="volinc" type="button"><img src="images/volinc.png" height="40" width="40"></button></li>
-       <li><button id="voldec" type="button"><img src="images/voldec.png" height="40" width="40"></button></li>
-
+       <li><button id="volinc" type="button"><img src="images/volinc.png" height="25" width="25" ></button></li>
+       <li><button id="voldec" type="button"><img src="images/voldec.png" height="25" width="25"></button></li>
+       <li><button    type="button" style="float: right;"><i class="fas fa-expand" ></i></button></li>
+     </div>
   </ul>
 <script type="text/javascript" src="assets/js/videocontrols.js"></script>
 <div class="main5" id="main5" style="display:none;">
                    <img src="images/cross.png" class="cross" onclick="cross1()">
           <form class="form1" action="logout.php" method="POST">
-
-                   <button class="submit3" align="center" type="submit" name="submit" id="logout_button">Logout</button>
+             <button class="submit3" align="center" type="submit" name="submit" id="logout_button">Logout</button>
         </form>
 
 
@@ -482,7 +491,51 @@ function graphtime(count) {search=[];
             <p class="welcome">Please Login</p>
             <form class="form1" action="login.php" method="POST">
               <img src="images/cross.png" class="cross" onclick="cross()">
-
+                We would like to take a survey before you login:
+          <p class="mnone">The quality of our brand</p>
+                       <input type="radio" id="very satisfied" name="gender" value="very satisfied">
+                       <label for="very satisfied">very satisfied</label>
+                       <input type="radio" id="satisfied" name="gender" value="satisfied">
+                       <label for="satisfied">satisfied</label>
+                       <input type="radio" id="neutral" name="gender" value="neutral">
+                       <label for="neutral">neutral</label>
+                       <input type="radio" id="unsatisfied" name="gender" value="unsatisfied">
+                       <label for="unsatisfied">unsatisfied</label>
+                       <input type="radio" id="very unsatisfied" name="gender" value="very unsatisfied">
+                       <label for="very unsatisfied">very unsatisfied</label>
+          <p class="mnone">The prices we offer</p>
+                       <input type="radio" id="very satisfied1" name="gender1" value="very satisfied">
+                       <label for="very satisfied1">very satisfied</label>
+                       <input type="radio" id="satisfied1" name="gender1" value="satisfied">
+                       <label for="satisfied1">satisfied</label>
+                       <input type="radio" id="neutral1" name="gender1" value="neutral">
+                       <label for="neutral1">neutral</label>
+                       <input type="radio" id="unsatisfied1" name="gender1" value="unsatisfied">
+                       <label for="unsatisfied1">unsatisfied</label>
+                       <input type="radio" id="very unsatisfied1" name="gender1" value="very unsatisfied">
+                       <label for="very unsatisfied1">very unsatisfied</label>
+          <p class="mnone">The speed of service we provide</p>
+                       <input type="radio" id="very satisfied2" name="gender2" value="very satisfied">
+                       <label for="very satisfied2">very satisfied</label>
+                       <input type="radio" id="satisfied2" name="gender2" value="satisfied">
+                       <label for="satisfied2">satisfied</label>
+                       <input type="radio" id="neutral2" name="gender2" value="neutral">
+                       <label for="neutral2">neutral</label>
+                       <input type="radio" id="unsatisfied2" name="gender2" value="unsatisfied">
+                       <label for="unsatisfied2">unsatisfied</label>
+                       <input type="radio" id="very unsatisfied2" name="gender2" value="very unsatisfied">
+                       <label for="very unsatisfied2">very unsatisfied</label>
+          <p class="mnone">The customer support offered</p>
+                       <input type="radio" id="very satisfied3" name="gender3" value="very satisfied">
+                       <label for="very satisfied3">very satisfied</label>
+                       <input type="radio" id="satisfied3" name="gender3" value="satisfied">
+                       <label for="satisfied3">satisfied</label>
+                       <input type="radio" id="neutral3" name="gender3" value="neutral">
+                       <label for="neutral3">neutral</label>
+                       <input type="radio" id="unsatisfied3" name="gender3" value="unsatisfied">
+                       <label for="unsatisfied3">unsatisfied</label>
+                       <input type="radio" id="very unsatisfied3" name="gender3" value="very unsatisfied">
+             <label for="very unsatisfied3">very unsatisfied</label>
              <input class="username" type="text" align="center"  name="user" placeholder="USERNAME">
                 <input class="pass" type="password" align="center" name="pass" placeholder="PASSWORD">
 
@@ -655,7 +708,7 @@ var download=1;
     },
    success:function(d)
    {
-   urldownload="http://localhost:<?php echo($appache_localhost_port);?><?php echo($folder);?>ajaxy.php?display=1&usery="+usery;   //............This you may have to change
+   urldownload="http://localhost:<?php echo($appache_localhost_port);?>/Webdevpro-master/ajaxy.php?display=1&usery="+usery;   //............This you may have to change
     window.location.href =urldownload;
    }
   })
@@ -982,7 +1035,6 @@ current_react:current_react
    url:"ajaxy.php",
    method:"POST",
    data:{displaychat:1,
-
     },
    success:function(d)
    {
@@ -1020,16 +1072,18 @@ current_react:current_react
         <li class="reaction"><img src="images/3.png" class="react"></li>
         <li class="reaction"><img src="images/4.png" class="react"></li>
         <li class="reaction"><img src="images/5.png" class="react"></li>
-      </ul>
+              </ul>
+      <span style="display:<?php echo (isset($_SESSION['loginname'])) ? 'block' : 'none'; ?>">
       <div class="comment_insight" id="ilb">+</div>
         <input class="commentarea topicy" type="text" required="required" name="comment" placeholder="Comment here" style="display:block">
         <button class="post_btn submitposty" id="submitposty" type="submit" ><i class="fas fa-location-arrow"></i></button>
-         <input class="commentarea topic" type="text" required="required" name="comment" placeholder="Comment here" style="display:none">
-        <button class="post_btn submitpost" id="submitpost" type="submit" style="display:none">Submit</button>
-
+        <input class="commentarea topic" type="text" required="required" name="comment" placeholder="Comment here" style="display:none">
+        <button class="post_btn submitpost" id="submitpost" type="submit" style="display:none" ><i class="fas fa-location-arrow"></i></button>
     </div>
+  </span>
 </div>
 </div>
+
 
 <script type="text/javascript">
   var ind = document.getElementById("indicator");
@@ -1447,43 +1501,6 @@ videotime:videotime
 
 
 
-    <div class="valueone">
-
-    </div>
-
-    <div id="myModal" class="modal" data-backdrop="false">
-
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="container">
-              <form id="contact" action="" method="post">
-              <h3>Contact Us</h3>
-
-              <fieldset>
-                <input placeholder="Your name" type="text" tabindex="1" required>
-              </fieldset>
-              <fieldset>
-                <input placeholder="Your Email Address" type="email" tabindex="2" required>
-              </fieldset>
-              <fieldset>
-                <input placeholder="Your Phone Number (optional)" type="tel" tabindex="3" required>
-              </fieldset>
-              <fieldset>
-                <input placeholder="Your Web Site (optional)" type="url" tabindex="4" required>
-              </fieldset>
-              <fieldset>
-                <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
-              </fieldset>
-
-              <fieldset>
-                <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Send Message</button>
-              </fieldset>
-
-              </form>
-            </div>
-          </div>
-
-        </div>
 
 
 
@@ -1491,15 +1508,36 @@ videotime:videotime
 
 
 
-     <script src="assets/js/drag.js"></script>
+
+
+
+
+
+
+
+
+    <!-- Scripts -->
+  <!--    <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/skel.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script> -->
+      <!-- <script src="assets/js/drag.js"></script> !-->
+
+      <script src="assets/js/drag.js"></script>
       <script src="assets/js/jquery.js"></script>
       <script src='assets/js/javascript.js'></script>
+ <!--      <script src="assets/videojs.chapter-thumbnails.min.js"></script>
+    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
     <script src="assets/js/vidcha.js"></script>
       <script src="assets/dist/plyr.js"></script>
 
       <script>
       const player = new Plyr('#myVideo');
+      // const player = videojs('myVideo');
+      // videojs('myVideo').chapter_thumbnails({
+      //   src: 'chapters/video1.webvtt'});
     </script>
+
 
   </body>
   <script src="assets/js/feature.js"></script>

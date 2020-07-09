@@ -1,4 +1,4 @@
-
+/*
 
 
 .player {
@@ -26,7 +26,7 @@
 	position: relative;
 	margin: 20px auto;
 
-	
+
 }
 
 .video:hover .player {
@@ -89,12 +89,13 @@
 	font-size: 6mm;
 	float: left;
 	text-shadow: 0 0 0 #fff;
-	color: rgba(255,255,255,0.8);
-	width: 8%;
+	color: black;
+	width: 15%;
 	padding: 15px 0 4px 9px;
 	cursor: pointer;
 	font-variant: normal;
 }
+
 
 .player .play, .player .pause-button {
 	-webkit-transition: all 0.2s ease-out;
@@ -205,7 +206,7 @@
 
 .player .volume-button-holder {
 	position: relative;
-	top: -10px;	
+	top: -10px;
 }
 
 .player .volume-bar {
@@ -270,7 +271,7 @@
 	height: 5%;
 	border: 1px solid #fff;
 	left: 290%;
-	border-width: 0px 0px 0 0; 
+	border-width: 0px 0px 0 0;
 	top: 5 px;
 	border-radius: 0 50px 0 0;
 	-webkit-transform: rotate(45deg);
@@ -300,12 +301,12 @@
 	top: -6px;
 	left: 25px;
 }
-/*Overlay over a video*/
+/*Overlay over a video
 
 #overlay {
-	position: relative; 
-	top: 50px; 
-	color: #FFF; 
+	position: relative;
+	top: 50px;
+	color: #FFF;
 	text-align: center;
 	font-size: 20px;
 	background-color: rgba(221, 221, 221, 0.3);
@@ -316,3 +317,5 @@
 
 
 
+*/
+*/
