@@ -589,10 +589,13 @@ a {
   text-align: center;
   font-weight: 500;
   padding-top:30%;
+  overflow-wrap: break-word;
+
 }
 .displaya{
   background: #eeeeee;
   height: fit-content;
+
 }
 .topicy{
   position: absolute;
@@ -668,6 +671,7 @@ top: 0;
   font-weight: 400;
   padding-left: 40px;
   margin:0;
+  overflow-wrap: break-word;
 }
 .reply_btn{
   position: absolute;
