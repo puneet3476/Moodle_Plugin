@@ -40,9 +40,9 @@ while ($rowy=mysqli_fetch_array($resulty)) {
   <div id="<?php echo $rowy['id']; ?>">
   <div class="comment_displaya" id="n">
 
-    <span class="timestamp"><?php echo $rowy['time_mark']; ?></span>
-    <p class="comment_content"><?php echo $rowy['note']; ?></p>
-    <img class="comment_react" src="images/<?php echo $rowy['reaction']; ?>.png">
+    <span class="timestamp" ><?php echo $rowy['time_mark']; ?></span>
+    <p class="comment_content" style="padding-top: 24px;"><?php echo $rowy['note']; ?></p>
+    <img class="comment_react" src="images/<?php echo ($rowy['reaction']+7); ?>.png">
 
   </div>
 </div>

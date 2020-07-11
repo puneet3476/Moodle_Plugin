@@ -1,11 +1,11 @@
 <?php
 $user = 'root';//............This you may have to change
-$password = '';//............This you may have to change
+$password = 'bottletopple202';//............This you may have to change
 $host = 'localhost';//............This you may have to change
 $appache_localhost_port='';//............This you may have to change
 $urla="Location: http://localhost";
 
-$folder="/Webdevpro-test/";
+$folder="/base/";
 
 $urlb="load.php";
 
