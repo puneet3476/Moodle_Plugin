@@ -287,11 +287,11 @@ span + span {
 
 }
 .chatarea_btn{
-  background-color: #a1e2d9;
+  background-color: #00bfb6;
   top: calc(21% + 15px);
 }
 .pnotes_btn{
-  background-color: #87f79f;
+  background-color: #37db5b;
   bottom: calc(30% + 1px);
 }
 .chatbox_downbar{
@@ -632,7 +632,7 @@ top: 0;
   .comment_u{
   font-size: 20px!important;
   font-weight: 450;
- 
+  display:initial;
 
 }
 .timestamp{
@@ -652,16 +652,16 @@ top: 0;
   width: 100%;
   position: relative;
   padding-left: 5px;
-  background: #a1e2d9;
+  background: #00bfb6;
 
 }
 .comment_displaya{
-  background: #87f79f;
+  background: #37db5b;
 
   height: 100%;
   min-height: 68px;
 }
-.comment_content{
+ .comment_content{
  cursor: pointer;
   height: fit-content;
   width: fit-content;
@@ -670,9 +670,12 @@ top: 0;
   position: relative;
   font-weight: 400;
   padding-left: 40px;
+  color:white;
   margin:0;
   overflow-wrap: break-word;
-}
+} 
+
+
 .reply_btn{
   position: absolute;
     right: 0;bottom: 5px;
@@ -697,13 +700,10 @@ top: 0;
 
 }
 .reply_display{
-  width: 70%!important;
-  margin-left: 16%;
+  width: 100%!important;
+ 
 }
-.reply_display p{
-  margin: 0 0 1em 0;
 
-}
 .submitreply{
   background-color: inherit!important;
   border: none;
@@ -817,4 +817,8 @@ top: 0;
   .notes_style{
     min-height: 68px;
     margin-bottom: 20px;
+  }
+
+  .download_notes{
+    margin-left: 110px;
   }

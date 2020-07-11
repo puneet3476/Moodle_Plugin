@@ -564,7 +564,7 @@ require 'connect.php';
 
             <div class="displaya"></div>
             <div class="reactionhide" id="reactionhide">0</div>
-            <button id="download">Download Notes</button>
+            <button id="download" class="download_notes">Download Notes</button>
 
 
 
