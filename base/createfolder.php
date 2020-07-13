@@ -6,10 +6,10 @@ if (empty($folder_name) or empty($database_name) ) {
 	echo "Error: Either Foldername or Database name is empty";
 	die();
 }
-$dir_name="/var/www/html"."/".$folder_name;//use this for windows "C:\MAMP\htdocs"."\\".$folder_name;
+$dir_name="/opt/lampp/htdocs/".$folder_name;//use this for windows "C:\MAMP\htdocs"."\\".$folder_name;
 
 // Store the path of source file
-$source = "/var/www/html/base/";// for windows "C:\MAMP\htdocs\base"
+$source = "/opt/lampp/htdocs/base";// for windows "C:\MAMP\htdocs\base"
 $hyperlink=$urla.$appache_localhost_port."//".$folder_name."//".$urlb;
 
 
@@ -23,7 +23,7 @@ if ($link->query($sql) === TRUE) {
   echo "Error creating database: " . $link->error;
 }
 $sql = file_get_contents('mydb.sql');
-$mysqli = new mysqli('localhost', "root", "bottletopple202",$database_name);//............This you may have to change
+$mysqli = new mysqli('localhost', "root", "",$database_name);//............This you may have to change
 
 /* execute multi query */
 $mysqli->multi_query($sql);
@@ -52,12 +52,12 @@ $createfile=fopen('connect.php', "w") or die("Can't create Connect.php file");
 
 $connect="<?php
 \$user = 'root';//............This you may have to change
-\$password = 'bottletopple202';//............This you may have to change
+\$password = '';//............This you may have to change
 \$db = '".$database_name."';//............This you may have to change\
 \$users_db = 'central';//............This you may have to change
 \$host = 'localhost';//............This you may have to change
 \$appache_localhost_port='';//............This you may have to change
-\$urla=\"Location: http://localhost\";//............This you may have to change
+\$urla=\"Location: http://localhost:\";//............This you may have to change
 
 \$folder=\"/".$folder_name."/\";
 

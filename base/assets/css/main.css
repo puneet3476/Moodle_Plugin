@@ -3304,7 +3304,7 @@ body {
 	padding-top: 5em;
 }
 
-#header {
+	#header {
 	background: #f98012;
 	color: #000000;
 	cursor: default;
@@ -3316,6 +3316,8 @@ body {
 	top: 0;
 	width: 100%;
 	z-index: 10001;
+	display: table;
+	padding: 2vw;
 }
 
 		#header .inner {
@@ -3324,6 +3326,9 @@ body {
 			margin: 0 auto;
 			position: relative;
 			top: 18%;
+			display: table-cell;
+			vertical-align: middle;
+
 		}
 
 			@media screen and (max-width: 480px) {

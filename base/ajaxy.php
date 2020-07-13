@@ -38,11 +38,16 @@ while ($rowy=mysqli_fetch_array($resulty)) {
 ?>
 
   <div id="<?php echo $rowy['id']; ?>">
+
+
   <div class="comment_displaya" id="n">
 
     <span class="timestamp" ><?php echo $rowy['time_mark']; ?></span>
-    <p class="comment_content" style="padding-top: 24px;margin-right:12px;"><?php echo $rowy['note']; ?></p>
-    <img class="comment_react" src="images/<?php echo ($rowy['reaction']+7); ?>.png">
+    <p class="comment_content" style="padding-top: 24px;margin-right:12px;">
+      <?php if($rowchat['reaction']!=0){?>
+        <img class="comment_react" src="images/<?php echo $rowchat['reaction']; ?>.png"></span>
+      <?php }?>
+      <?php echo $rowy['note']; ?></p>
 
   </div>
 </div>
@@ -144,9 +149,13 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
   <div class="comment_display" id="<?php echo $rowchat['second']; ?>">
     <span class="comment_u"><?php echo $rowchat['chatuser']; ?></span>
     <br>
+    <!-- <img class="comment_react" src="images/<?php echo $rowchat['reaction']; ?>.png"> -->
     <span class="timestamp"><?php echo $rowchat['time_mark']; ?></span>
 
-    <p class="comment_content"><?php echo $rowchat['chat']; ?></p>
+    <p class="comment_content">
+      <?php if($rowchat['reaction']!=0){?>
+        <img class="comment_react" src="images/<?php echo $rowchat['reaction']; ?>.png"></span>
+      <?php }?><?php echo $rowchat['chat']; ?></p>
     <div class="reply_btn r<?php echo $rowchat['id']; ?>">Reply (
       <?php
       $post_reply_id=$rowchat['id'];
@@ -161,7 +170,7 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
 
 
       ?> )</div>
-    <img class="comment_react" src="images/<?php echo $rowchat['reaction']; ?>.png">
+
 
   </div>
  </div>
@@ -355,18 +364,25 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
   <div id="<?php echo $rowchat['id']; ?>h">
   <div class="comment_display" id="<?php echo $rowchat['second']; ?>">
     <span class="comment_u"><?php echo $rowchat['chatuser']; ?></span>
+
     <br>
+
     <div class="timestamp"><?php echo $rowchat['time_mark']; ?></div>
-    <p class="comment_content"><?php echo $rowchat['chat']; ?></p>
+    <p class="comment_content">
+      <span>
+        <?php if($rowchat['reaction']!=0){?>
+        <img class="comment_react" src="images/<?php echo $rowchat['reaction']; ?>.png"></span>
+      <?php }?>
+      <?php echo $rowchat['chat']; ?></p>
     <div class="reply_btn r<?php echo $rowchat['id']; ?>">Reply (<?php echo($rowchat['Replies']); ?>)</div>
-    <img class="comment_react" src="images/<?php echo $rowchat['reaction']; ?>.png">
+
 
     </div>
       </div>
   </div>
   <div class="reply_column reply_column<?php echo $rowchat['id']; ?>">
     <div class=" reply_c<?php echo $rowchat['id']; ?>"></div>
-    <input type="text" class="reply reply<?php echo $rowchat['id']; ?>">
+    <input type="text" class="reply reply<?php echo $rowchat['id']; ?>" placeholde="Reply here">
     <button type="submit" class="submitreply" id="<?php echo $rowchat['id']; ?>"><img src="images/tick.png" class="tick"></button>
   </div>
   <script type="text/javascript">

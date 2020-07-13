@@ -446,8 +446,8 @@ require 'connect.php';
     </div>
     <div class="chatbox" id="mydiv">
       <div class="chatbox_upbar">
-        <div class="dragarea" id="mydivheader">DragArea</div>
-     
+        <div class="dragarea" id="mydivheader">Drag</div>
+
         <div class="btn not-active" id="ddb">
           <span style="background: black;height: 3.2px;"></span>
           <span style="background: black;height: 3.2px;"></span>
@@ -468,7 +468,7 @@ require 'connect.php';
             <option value="1" id="Newest">Newest</option>
             <option value="2" id="sort">Timestamp</option>
           </select>
-          <i class="fas fa-caret-down " style="left: 55%;top: 1vh;position: absolute;"></i>
+          <i class="fas fa-caret-down " style="left: 55%;top: 1.5vh;position: absolute;z-index: 999;"></i>
         </div>
         <div id="mouseover" class="mouseover"></div>
       </div>
@@ -568,7 +568,7 @@ require 'connect.php';
 
 
 
-            <?php     //<textarea class="topic"  type="text" align="center" name="topic" placeholder="ADD TOPIC"></textarea>    
+            <?php     //<textarea class="topic"  type="text" align="center" name="topic" placeholder="ADD TOPIC"></textarea>
             ?>
             <script type="text/javascript" src="jquery.js"></script>
             <script type="text/javascript">
