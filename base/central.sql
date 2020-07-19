@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Jun 28, 2020 at 12:56 PM
--- Server version: 5.7.24-log
--- PHP Version: 7.2.10
+-- Host: localhost
+-- Generation Time: Jul 19, 2020 at 10:12 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -33,8 +32,16 @@ CREATE TABLE `total_videos` (
   `folder_name` varchar(30) NOT NULL,
   `database_name` varchar(30) NOT NULL,
   `page_url` varchar(200) NOT NULL,
-  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `total_videos`
+--
+
+INSERT INTO `total_videos` (`id`, `folder_name`, `database_name`, `page_url`, `creation_date`) VALUES
+(9, 'Physics', 'physics', 'Location: http://localhost/Moodle_Plugin/Physics//load.php', '2020-07-19 15:07:27'),
+(10, 'Coding', 'code', 'Location: http://localhost/Moodle_Plugin/Coding//load.php', '2020-07-19 16:39:39');
 
 -- --------------------------------------------------------
 
@@ -81,7 +88,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `total_videos`
 --
 ALTER TABLE `total_videos`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`

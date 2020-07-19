@@ -6,12 +6,12 @@ if (empty($folder_name) or empty($database_name) ) {
 	echo "Error: Either Foldername or Database name is empty";
 	die();
 }
-$dir_name="/opt/lampp/htdocs/".$folder_name;//use this for windows "C:\MAMP\htdocs"."\\".$folder_name;
+$dir_name="/opt/lampp/htdocs/Moodle_Plugin/".$folder_name;//use this for windows "C:\MAMP\htdocs"."\\".$folder_name;
 
 // Store the path of source file
-$source = "/opt/lampp/htdocs/base";// for windows "C:\MAMP\htdocs\base"
-$hyperlink=$urla.$appache_localhost_port."//".$folder_name."//".$urlb;
-
+$source = "/opt/lampp/htdocs/Moodle_Plugin/base";// for windows "C:\MAMP\htdocs\base"
+$hyperlink=$urla.$appache_localhost_port."/Moodle_Plugin/".$folder_name."//".$urlb;
+ 
 
 // Create database
 $sql = "CREATE DATABASE ".$database_name;
@@ -59,7 +59,7 @@ $connect="<?php
 \$appache_localhost_port='';//............This you may have to change
 \$urla=\"Location: http://localhost:\";//............This you may have to change
 
-\$folder=\"/".$folder_name."/\";
+\$folder=\"/Moodle_Plugin/".$folder_name."/\";
 
 \$urlb=\"load.php\";
 
