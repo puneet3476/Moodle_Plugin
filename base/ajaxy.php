@@ -43,15 +43,15 @@ while ($rowy=mysqli_fetch_array($resulty)) {
 ?>
 
   <div id="<?php echo $rowy['id']; ?>">
-  <div class="comment_displaya" id="n">
+	<div class="comment_displaya" id="n">
 
-    <span class="timestamp"><?php echo $rowy['time_mark']; ?></span>
-    <p class="comment_content"><?php echo $rowy['note']; ?></p>
-    <img class="comment_react" src="images/<?php echo $rowy['reaction']; ?>.png">
+		<span class="timestamp"><?php echo $rowy['time_mark']; ?></span>
+		<p class="comment_content"><?php echo $rowy['note']; ?></p>
+		<img class="comment_react" src="images/<?php echo $rowy['reaction']; ?>.png">
 
-  </div>
+	</div>
 </div>
-  <script type="text/javascript">
+	<script type="text/javascript">
          $("#<?php echo $rowy['id']; ?>").click(function (argument) {
                      var old_note_time=timeConvert(document.getElementById('myVideo').currentTime);
                      var timenote="<?php echo $rowy['second']; ?>";
@@ -85,13 +85,13 @@ new_note_time:new_note_time
 
 
 
-    var blank="<?php echo $rowy['reaction']; ?>";
-    if (blank=="0") {
+		var blank="<?php echo $rowy['reaction']; ?>";
+		if (blank=="0") {
           document.getElementsByClassName("comment_react")[0].style.display="none";
-    }
-  </script>
+		}
+	</script>
 
-  <?php
+	<?php
 }
 
 }
@@ -114,7 +114,7 @@ while ($rowy=mysqli_fetch_array($resulty)) {
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script type="text/javascript">
-      Export();
+    	Export();
 
         function Export() {var excel_data = $('#tblCustomers').html();  
            var page = "excel.php?data=" + excel_data;  
@@ -146,43 +146,43 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
 ?>
 
   <div id="<?php echo $rowchat['id']; ?>t">
-  <div class="comment_display" id="<?php echo $rowchat['second']; ?>">
-    <span class="comment_u"><?php echo $rowchat['chatuser']; ?></span>
-    <br>
-    <span class="timestamp"><?php echo $rowchat['time_mark']; ?></span>
+	<div class="comment_display" id="<?php echo $rowchat['second']; ?>">
+		<span class="comment_u"><?php echo $rowchat['chatuser']; ?></span>
+		<br>
+		<span class="timestamp"><?php echo $rowchat['time_mark']; ?></span>
 
-    <p class="comment_content"><?php echo $rowchat['chat']; ?></p>
-    <div class="reply_btn r<?php echo $rowchat['id']; ?>">Reply (<?php echo($rowchat['Replies']); ?>)</div>
-    <img class="comment_react" src="images/<?php echo $rowchat['reaction']; ?>.png">
+		<p class="comment_content"><?php echo $rowchat['chat']; ?></p>
+		<div class="reply_btn r<?php echo $rowchat['id']; ?>">Reply (<?php echo($rowchat['Replies']); ?>)</div>
+		<img class="comment_react" src="images/<?php echo $rowchat['reaction']; ?>.png">
 
-  </div>
+	</div>
  </div>
-  <div class="reply_column reply_column<?php echo $rowchat['id']; ?>">
-    <div class=" reply_c<?php echo $rowchat['id']; ?>"></div>
-    <input type="text" class="reply reply<?php echo $rowchat['id']; ?>">
-    <button type="submit" class="submitreply" id="<?php echo $rowchat['id']; ?>"><img src="images/tick.png" class="tick"></button>
-  </div>
-  <script type="text/javascript">
-    var blank="<?php echo $rowchat['reaction']; ?>";
-    if (blank=="0") {
+	<div class="reply_column reply_column<?php echo $rowchat['id']; ?>">
+		<div class=" reply_c<?php echo $rowchat['id']; ?>"></div>
+		<input type="text" class="reply reply<?php echo $rowchat['id']; ?>">
+		<button type="submit" class="submitreply" id="<?php echo $rowchat['id']; ?>"><img src="images/tick.png" class="tick"></button>
+	</div>
+	<script type="text/javascript">
+		var blank="<?php echo $rowchat['reaction']; ?>";
+		if (blank=="0") {
           document.getElementsByClassName("comment_react")[0].style.display="none";
-    }
-    document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].onclick = function(){
-      if(document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML == "Reply (<?php echo($rowchat['Replies']); ?>)"){
-        var current_id="<?php echo $rowchat['id']; ?>";
-        var loginbool="<?php $_SESSION['loginuser']; ?>";
-      
+		}
+		document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].onclick = function(){
+			if(document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML == "Reply (<?php echo($rowchat['Replies']); ?>)"){
+				var current_id="<?php echo $rowchat['id']; ?>";
+				var loginbool="<?php $_SESSION['loginuser']; ?>";
+			
 
 
-        displayreply(current_id);
-        document.getElementsByClassName("reply_column<?php echo $rowchat['id']; ?>")[0].style.display = "block";
-        document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Hide Reply";
-      } else {
-        document.getElementsByClassName("reply_column<?php echo $rowchat['id']; ?>")[0].style.display = "none";
-        document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Reply (<?php echo($rowchat['Replies']); ?>)";
-      }
-    }
-  
+				displayreply(current_id);
+				document.getElementsByClassName("reply_column<?php echo $rowchat['id']; ?>")[0].style.display = "block";
+				document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Hide Reply";
+			} else {
+				document.getElementsByClassName("reply_column<?php echo $rowchat['id']; ?>")[0].style.display = "none";
+				document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Reply (<?php echo($rowchat['Replies']); ?>)";
+			}
+		}
+	
          $("#<?php echo $rowchat['id']; ?>t").click(function (argument) {
                      var oldposttime=timeConvert(document.getElementById('myVideo').currentTime);
 
@@ -244,13 +244,13 @@ newposttime:newposttime
         var timemin=hour.concat(colon,minute,colon,second);
         return timemin;
       }
-    $("#<?php echo $rowchat['id']; ?>").click(function (argument) {
-      var reply_id="<?php echo $rowchat['id']; ?>";
-      var user_reply=document.querySelector('#phplogin').innerText;
+		$("#<?php echo $rowchat['id']; ?>").click(function (argument) {
+			var reply_id="<?php echo $rowchat['id']; ?>";
+			var user_reply=document.querySelector('#phplogin').innerText;
             var reply_content=$(".reply<?php echo $rowchat['id']; ?>").val();
             var reply_post=1;
 
-    load_reply();
+		load_reply();
 
  function load_reply()
  {
@@ -258,8 +258,8 @@ newposttime:newposttime
    url:"ajaxy1.php",
    method:"POST",
    data:{
-    reply_post:reply_post,
-    reply_id:reply_id,
+   	reply_post:reply_post,
+   	reply_id:reply_id,
 user_reply:user_reply,
 reply_content:reply_content
 
@@ -276,13 +276,13 @@ reply_content:reply_content
  function displayreply(reply_id) {
 
  
-  var display_reply=1;
-    $.ajax({
+	var display_reply=1;
+	  $.ajax({
    url:"ajaxy1.php",
    method:"POST",
    data:{display_reply:1,
-    reply_id:reply_id
-    },
+   	reply_id:reply_id
+   	},
    success:function(d)
    {
    $(".reply_c"+reply_id).html(d);
@@ -326,11 +326,11 @@ reply_content:reply_content
         var timemin=hour.concat(colon,minute,colon,second);
         return timemin;
       }
-  </script>
+	</script>
 
 
 
-  <?php
+	<?php
 }
 die();
 }
@@ -345,9 +345,9 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
 ?>
 
   <div id="<?php echo $rowchat['id']; ?>h">
-  <div class="comment_display" id="<?php echo $rowchat['second']; ?>">
-    <span class="comment_u"><?php echo $rowchat['chatuser']; ?></span>
-    <br>
+	<div class="comment_display" id="<?php echo $rowchat['second']; ?>">
+		<span class="comment_u"><?php echo $rowchat['chatuser']; ?></span>
+		<br>
     <?php 
     $this_chatuser=$rowchat['student_ID'];
     $q="SELECT * FROM `register_user` WHERE `Student_ID`='$this_chatuser';";
@@ -366,37 +366,37 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
 
     ?>
 
-    <div class="timestamp"><?php echo $rowchat['time_mark']; ?></div>
-    <p class="comment_content"><?php echo $rowchat['chat']; ?></p>
-    <div class="reply_btn r<?php echo $rowchat['id']; ?>">Reply (<?php echo($rowchat['Replies']); ?>)</div>
-    <img class="comment_react" src="images/<?php echo $rowchat['reaction']; ?>.png">
+		<div class="timestamp"><?php echo $rowchat['time_mark']; ?></div>
+		<p class="comment_content"><?php echo $rowchat['chat']; ?></p>
+		<div class="reply_btn r<?php echo $rowchat['id']; ?>">Reply (<?php echo($rowchat['Replies']); ?>)</div>
+		<img class="comment_react" src="images/<?php echo $rowchat['reaction']; ?>.png">
 
-    </div>
+		</div>
       </div>  
-  </div>
-  <div class="reply_column reply_column<?php echo $rowchat['id']; ?>">
-    <div class=" reply_c<?php echo $rowchat['id']; ?>"></div>
-    <input type="text" class="reply reply<?php echo $rowchat['id']; ?>">
-    <button type="submit" class="submitreply" id="<?php echo $rowchat['id']; ?>"><img src="images/tick.png" class="tick"></button>
-  </div>
-  <script type="text/javascript">
-    var blank="<?php echo $rowchat['reaction']; ?>";
-    if (blank=="0") {
+	</div>
+	<div class="reply_column reply_column<?php echo $rowchat['id']; ?>">
+		<div class=" reply_c<?php echo $rowchat['id']; ?>"></div>
+		<input type="text" class="reply reply<?php echo $rowchat['id']; ?>">
+		<button type="submit" class="submitreply" id="<?php echo $rowchat['id']; ?>"><img src="images/tick.png" class="tick"></button>
+	</div>
+	<script type="text/javascript">
+		var blank="<?php echo $rowchat['reaction']; ?>";
+		if (blank=="0") {
           document.getElementsByClassName("comment_react")[0].style.display="none";
-    }
-    document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].onclick = function(){
-      if(document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML == "Reply (<?php echo($rowchat['Replies']); ?>)"){
-        var current_id="<?php echo $rowchat['id']; ?>";
-        displayreply(current_id);
-        document.getElementsByClassName("reply_column<?php echo $rowchat['id']; ?>")[0].style.display = "block";
-        document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Hide Reply";
-      } else {
-        document.getElementsByClassName("reply_column<?php echo $rowchat['id']; ?>")[0].style.display = "none";
-        document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Reply (<?php echo($rowchat['Replies']); ?>)";
-      }
-    }
-  </script>
-  <script type="text/javascript">
+		}
+		document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].onclick = function(){
+			if(document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML == "Reply (<?php echo($rowchat['Replies']); ?>)"){
+				var current_id="<?php echo $rowchat['id']; ?>";
+				displayreply(current_id);
+				document.getElementsByClassName("reply_column<?php echo $rowchat['id']; ?>")[0].style.display = "block";
+				document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Hide Reply";
+			} else {
+				document.getElementsByClassName("reply_column<?php echo $rowchat['id']; ?>")[0].style.display = "none";
+				document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Reply (<?php echo($rowchat['Replies']); ?>)";
+			}
+		}
+	</script>
+	<script type="text/javascript">
         $("#<?php echo $rowchat['id']; ?>h").click(function (argument) {
           var chatuser="<?php echo $rowchat['chatuser']; ?>";
            var time="<?php echo $rowchat['second']; ?>";
@@ -462,14 +462,14 @@ chatuser:chatuser
       }
 
       
-    $("#<?php echo $rowchat['id']; ?>").click(function (argument) {
+		$("#<?php echo $rowchat['id']; ?>").click(function (argument) {
       var oldposttimereply=document.getElementById('myVideo').currentTime;
-      var reply_id="<?php echo $rowchat['id']; ?>";
-      var user_reply=document.querySelector('#phplogin').innerText;
+			var reply_id="<?php echo $rowchat['id']; ?>";
+			var user_reply=document.querySelector('#phplogin').innerText;
             var reply_content=$(".reply<?php echo $rowchat['id']; ?>").val();
             var reply_post=1;
 
-    load_reply(oldposttimereply);
+		load_reply(oldposttimereply);
 
  function load_reply(oldposttimereply)
  {console.log(oldposttimereply);
@@ -477,8 +477,8 @@ chatuser:chatuser
    url:"ajaxy1.php",
    method:"POST",
    data:{
-    reply_post:reply_post,
-    reply_id:reply_id,
+   	reply_post:reply_post,
+   	reply_id:reply_id,
 user_reply:user_reply,
 reply_content:reply_content
 
@@ -494,13 +494,13 @@ reply_content:reply_content
 
  function displayreply(reply_id,oldposttimereply) {
   console.log(oldposttimereply);
-  var display_reply=1;
-    $.ajax({
+	var display_reply=1;
+	  $.ajax({
    url:"ajaxy1.php",
    method:"POST",
    data:{display_reply:1,
-    reply_id:reply_id
-    },
+   	reply_id:reply_id
+   	},
    success:function(d)
    {
    $(".reply_c"+reply_id).html(d);
@@ -510,9 +510,9 @@ reply_content:reply_content
 }
 
 
-  </script>
+	</script>
 
-  <?php
+	<?php
 }
 die();
 }

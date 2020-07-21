@@ -23,7 +23,6 @@ require 'connect.php';
   <link href="https://vjs.zencdn.net/7.8.3/video-js.css" rel="stylesheet" />
   <link href="//vjs.zencdn.net/7.8.2/video-js.min.css" rel="stylesheet">
   <link href="assets/videojs.chapter-thumbnails.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/question.css">
 
 
 
@@ -410,8 +409,8 @@ require 'connect.php';
     </div>
     <div class="chatbox" id="mydiv">
       <div class="chatbox_upbar">
-        <div class="dragarea" id="mydivheader">Drag</div>
-
+        <div class="dragarea" id="mydivheader">DragArea</div>
+     
         <div class="btn not-active" id="ddb">
           <span style="background: black;height: 3.2px;"></span>
           <span style="background: black;height: 3.2px;"></span>
@@ -430,7 +429,7 @@ require 'connect.php';
             <option value="1" id="Newest">Newest</option>
             <option value="2" id="sort">Timestamp</option>
           </select>
-          <i class="fas fa-caret-down " style="left: 55%;top: 1.5vh;position: absolute;z-index: 999;"></i>
+          <i class="fas fa-caret-down " style="left: 55%;top: 1vh;position: absolute;"></i>
         </div>
         <div id="mouseover" class="mouseover"></div>
       </div>
@@ -481,7 +480,7 @@ require 'connect.php';
 
 
 
-            <?php     //<textarea class="topic"  type="text" align="center" name="topic" placeholder="ADD TOPIC"></textarea>
+            <?php     //<textarea class="topic"  type="text" align="center" name="topic" placeholder="ADD TOPIC"></textarea>    
             ?>
             <script type="text/javascript" src="jquery.js"></script>
             <script type="text/javascript">
@@ -1253,16 +1252,44 @@ require 'connect.php';
           il.style.display = "none";
         }
       }
-      for(let i = 0; i<6; i++){
 
-      react[i].onclick = function() {
-        ilb.innerHTML = `<img src="${react[i].src}" >`;
+      react[0].onclick = function() {
+        ilb.innerHTML = "<img src='" + react[0].src + "' >";
         il.style.opacity = "0";
         il.style.display = "none";
-        document.getElementById("reactionhide").innerHTML = `${i+1}`;
+        document.getElementById("reactionhide").innerHTML = "1";
       }
+      react[1].onclick = function() {
+        ilb.innerHTML = "<img src='" + react[1].src + "' >";
+        il.style.opacity = "0";
+        il.style.display = "none";
+        document.getElementById("reactionhide").innerHTML = "2";
       }
-      
+      react[2].onclick = function() {
+        ilb.innerHTML = "<img src='" + react[2].src + "' >";
+        il.style.opacity = "0";
+        il.style.display = "none";
+        document.getElementById("reactionhide").innerHTML = "3";
+
+      }
+      react[3].onclick = function() {
+        ilb.innerHTML = "<img src='" + react[3].src + "' >";
+        il.style.opacity = "0";
+        il.style.display = "none";
+        document.getElementById("reactionhide").innerHTML = "4";
+      }
+      react[4].onclick = function() {
+        ilb.innerHTML = "<img src='" + react[4].src + "' >";
+        il.style.opacity = "0";
+        il.style.display = "none";
+        document.getElementById("reactionhide").innerHTML = "5";
+      }
+      react[5].onclick = function() {
+        ilb.innerHTML = "<img src='" + react[5].src + "' >";
+        il.style.opacity = "0";
+        il.style.display = "none";
+        document.getElementById("reactionhide").innerHTML = "6";
+      }
       var ifield = document.getElementsByClassName('commentarea');
 
       ifield[0].addEventListener('keypress', (event) => {
@@ -1293,79 +1320,7 @@ require 'connect.php';
         }
       }
     </script>
-    <script>var answerMatrix = {};</script>
-			<?php
-				$x = 1;
-				$questions = mysqli_query($link,"SELECT * FROM `question` ");
-				$qno = mysqli_num_rows($questions);
-				while($question = mysqli_fetch_array( $questions)){	
-				?>
-				<div class="questionbox_container" id="qc<?php echo $x ?>" style="display: none;">	
-					<div id="questionbox" class="questionbox">
-						<div class="questionbox_header"><?php echo $question['question']?></div>
-            <?php 
-            $opts = explode("**",$question['options']);
-            ?>
-            <div class="questionbox_options_container">
-							<div class="questionbox_option_container">
-								<input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[0]?>" name="answer" value="1">
-								<label for="<?php echo $opts[0]?>"><?php echo $opts[0]?></label>
-							</div>
-							<div class="questionbox_option_container">
-								<input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[1]?>" name="answer" value="2?>">
-								<label for="<?php echo $opts[1]?>"><?php echo $opts[1]?></label>
-							</div>
-						</div>
-						<div class="questionbox_options_container">	
-							<div class="questionbox_option_container">
-								<input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[2]?>" name="answer" value="3">
-								<label for="<?php echo $opts[2]?>"><?php echo $opts[2]?></label>
-							</div>
-							<?php if($opts[3] != "null"){?>
-              <div class="questionbox_option_container">
-								<input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[3];?>" name="answer" value="4">
-								<label for="<?php echo $opts[3]?>"><?php echo $opts[3];?></label>
-							</div>
-              <?php }?>
-						</div>
-						<button class="questionbox_submit_btn" id="sbtn<?php echo $x;?>" type="submit">Submit</button>
-					</div>
-				</div>
-				<script>
-					var abc<?php echo $x?> = setInterval(() => {console.log(Math.floor(vid.currentTime));
-						if ("<?php echo $question['timestamp']; ?>" == Math.floor(vid.currentTime)){
-							vid.pause();
-						document.getElementById('qc<?php echo $x ?>').style.display = "block";
-					}
-					
-					}, 1000);
-					document.getElementById('sbtn<?php echo $x?>').onclick = () => {
-						document.getElementById('qc<?php echo $x ?>').style.display = "none";
-						clearInterval(abc<?php echo $x?>); 
-						vid.play();
-						answerMatrix['qno'] = <?php echo $qno?>;
-						answerMatrix['user'] = "<?php echo $_SESSION['loginuser']; ?>";
-						for(var i = 0; i < 4; i++){
-							if (document.getElementsByClassName("q<?php echo $x ?>")[i].checked){
-								answerMatrix['ans<?php echo $x?>'] = document.getElementsByClassName("q<?php echo $x ?>")[i].value;
-							} 
-						}
-						if ("<?php echo $x?>" == "<?php echo $qno?>" ){
-							$.ajax({
-									url:"calculateScore.php",
-									method:"POST",
-									data:answerMatrix,
-									success:function(data)
-									{
-									}
-								});
-						}
-					}
-				</script>
-				<?php	
-				$x++;
-				}
-			?>
+
 
 
     <!-- Scripts -->
@@ -1514,6 +1469,6 @@ require 'connect.php';
 
 
 </body>
-<!--<script src="assets/js/feature.js"></script>-->
+<script src="assets/js/feature.js"></script>
 
 </html>

@@ -15,14 +15,14 @@ session_start();
 
 if(isset($_SESSION["user_id"]))
 {
-	header("location:http://localhost:8888/otp-php-registration/home.php");
+	header($urla.$appache_localhost_port."/otp-php-registration/home.php");
 }
 
 include('function.php');
 
-$connect = new mysqli('localhost:8889', "root", "root",'central');
-if ($connect->connect_error) {
-  die("Connection failed: " . $connect->connect_error);
+
+if ($link_central->link_central_error) {
+  die("Connection failed: " . $link_central->link_central_error);
 }
 $message = '';
 $error_user_name = '';
@@ -137,7 +137,7 @@ if(isset($_POST["register"]))
 		$query = "INSERT INTO register_user 
 		(user_name,user_email, user_Roll_no,user_password, user_activation_code, user_email_status, user_otp,user_avatar,user_role) values('$user_name','$user_email','$student_ID','$user_password','$user_activation_code','$user_email_status','$user_otp','$user_avatar','$user_role');";
 
-if ($connect->query($query) === TRUE) {
+if ($link_central->query($query) === TRUE) {
 
 echo (getcwd());
 /*
@@ -207,7 +207,7 @@ echo (getcwd());
 		
 	}
 	  else{
-  echo "Error: " . $query . "<br>" . $connect->error;
+  echo "Error: " . $query . "<br>" . $link_central->error;
 }
 
 	}
