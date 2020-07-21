@@ -31,14 +31,26 @@ input[type="text"]{
   position: absolute;
   top: -1vh;
   left: calc(11vw + 650px);
-  -webkit-box-shadow: 10px 11px 18px -2px rgba(0,0,0,0.56);
-  -moz-box-shadow: 10px 11px 18px -2px rgba(0,0,0,0.56);
-  box-shadow: 10px 11px 18px -2px rgba(0,0,0,0.56);
+
   z-index: 1000;
   background-color: white;
   border-radius: 5%; 
 }
-
+.avatar {
+  align-content: left;
+  vertical-align: middle;
+  width:35px;
+  height: 35px;
+  border-radius: 50%;
+}
+.profile_avatar {
+  align-content: left;
+  vertical-align: middle;
+  width:80px;
+  height: 80px;
+  border-radius: 50%;
+  
+}
 .chatbox_upbar{
   width: 100%;
   height: 10%;
@@ -287,11 +299,11 @@ span + span {
 
 }
 .chatarea_btn{
-  background-color: #00bfb6;
+  background-color: #a1e2d9;
   top: calc(21% + 15px);
 }
 .pnotes_btn{
-  background-color: #37db5b;
+  background-color: #87f79f;
   bottom: calc(30% + 1px);
 }
 .chatbox_downbar{
@@ -589,13 +601,10 @@ a {
   text-align: center;
   font-weight: 500;
   padding-top:30%;
-  overflow-wrap: break-word;
-
 }
 .displaya{
   background: #eeeeee;
   height: fit-content;
-
 }
 .topicy{
   position: absolute;
@@ -632,7 +641,7 @@ top: 0;
   .comment_u{
   font-size: 20px!important;
   font-weight: 450;
-  display:initial;
+ 
 
 }
 .timestamp{
@@ -652,16 +661,16 @@ top: 0;
   width: 100%;
   position: relative;
   padding-left: 5px;
-  background: #00bfb6;
+  background:white;
 
 }
 .comment_displaya{
-  background: #37db5b;
+  background: #87f79f;
 
   height: 100%;
   min-height: 68px;
 }
- .comment_content{
+.comment_content{
  cursor: pointer;
   height: fit-content;
   width: fit-content;
@@ -670,12 +679,8 @@ top: 0;
   position: relative;
   font-weight: 400;
   padding-left: 40px;
-  color:white;
   margin:0;
-  overflow-wrap: break-word;
-} 
-
-
+}
 .reply_btn{
   position: absolute;
     right: 0;bottom: 5px;
@@ -700,10 +705,13 @@ top: 0;
 
 }
 .reply_display{
-  width: 100%!important;
- 
+  width: 70%!important;
+  margin-left: 16%;
 }
+.reply_display p{
+  margin: 0 0 1em 0;
 
+}
 .submitreply{
   background-color: inherit!important;
   border: none;
@@ -718,7 +726,7 @@ top: 0;
   width: 30px;
   height: 30px;
   position: absolute;
-  left: 10px;
+  right: 10px;
   top: 39px;
   border-radius: 5px;
   /*border: 1px solid red;*/
@@ -773,7 +781,7 @@ top: 0;
   .load{display: none;}
   .displayb,
   .main7{
-    background-color: #DCF8C6;
+    background-color: white;
   }
   .displaya{
     background: #f0f5ff;
@@ -817,8 +825,4 @@ top: 0;
   .notes_style{
     min-height: 68px;
     margin-bottom: 20px;
-  }
-
-  .download_notes{
-    margin-left: 110px;
   }

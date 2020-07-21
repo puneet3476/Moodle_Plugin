@@ -33,12 +33,15 @@ require 'connect.php';
 
   <header id="header">
     <div class="inner">
-      <a href="#" class="logo">Name
+      <a href="#" class="logo"><?php if (isset(($_SESSION['loginuser'])) && $_SESSION['loginuser']!='empty1') {
+        echo ("Welcome ".$_SESSION['loginuser']);
+      } ?>
       </a>
       <nav id="nav">
 
-        <a href="#">Login </a>
-        <a href="#">Sign up</a>
+        <a id="login_but" href="<?php echo($url_h.$appache_localhost_port.$folder."login.php")?>">Login </a>
+
+        <a href="<?php echo($url_h.$appache_localhost_port.$folder."index.php")?>">Sign up</a>
         <button id="myBtn" class="button alt">How to Use</button>
         <button id="freeze" class="button">Freeze</button>
 
@@ -59,8 +62,11 @@ require 'connect.php';
 
 
     <video playsinline controls class="vidchaVideo" id="myVideo" preload="metadata" width="600px" height="400px" style="--plyr-color-main:#e82c2f;--plyr-video-control-background-hover:rgba(0,0,0,0);--plyr-video-control-color:white;">
+
       <source src="videos/video1.mp4" type="video/mp4">
     </video>
+
+
     <!--  <video
     id="myVideo"
     class="video-js"
@@ -115,6 +121,10 @@ require 'connect.php';
           <li><button id="mute" type="button"><img src="images/mute.svg" height="25" width="25"></button></li>
           <li class="positioner"></li>
           <script language="javascript" type="text/javascript">
+
+          document.getElementsByClassName('plyr__progress').onclick=function(){
+        console.log('ASD');
+       }
             var fruits = [];
             <?php
             require 'connect.php';
@@ -167,57 +177,10 @@ require 'connect.php';
                 success: function(data) {}
               });
             };
-            var letbool = false;
-
-            function play() {
-              var vid_curenttimesecond = document.getElementById('myVideo').currentTime;
-
-              var vid_curenttime = timeConvert(vid_curenttimesecond);
-              var play = 0;
-              var pause = 0;
-              var playpause = 1;
-              var loginbool = document.getElementById("loginbool").innerHTML;
-              letbool = !letbool;
-              if (letbool) {
-                play = 1;
+          
 
 
-              } else {
-                pause = 1;
 
-              }
-              $.ajax({
-                url: "clickdata.php",
-                method: "POST",
-                data: {
-                  playpause: playpause,
-                  play: play,
-                  pause: pause,
-                  vid_curenttime: vid_curenttime,
-                  loginbool: loginbool
-                },
-                success: function(data) {}
-              })
-
-            }
-            vid.onvolumechange = function() {
-              var volumechange = 1;
-              var vid_curenttime = timeConvert(vid.currentTime);
-              var volume = vid.volume;
-              var mute = vid.muted;
-              $.ajax({
-                url: "clickdata.php",
-                method: "POST",
-                data: {
-                  volumechange: volumechange,
-                  vid_curenttime: vid_curenttime,
-                  loginbool: loginbool,
-                  volume: volume,
-                  mute: mute
-                },
-                success: function(data) {}
-              })
-            };
 
             function graphtime(count) {
               search = [];
@@ -459,8 +422,6 @@ require 'connect.php';
         <ul class="dropdownbox" id="dd">
           <li class="dd_opt" id="chat_b2">Chat</li>
           <li class="dd_opt" id="note_b2">Notes</li>
-          <li class="dd_opt" id="log">Login</li>
-          <li class="dd_opt" id="sign">Sign Up</li>
           <li class="dd_opt" id="profile">Profile</li>
         </ul>
 
@@ -474,77 +435,8 @@ require 'connect.php';
       </div>
       <div class="chatbox_midbar" id="bg">
         <div class="chatarea">
-          <div class="main1" id="main1">
-            <p class="welcome">Please fill the following form:</p>
-            <form class="form1" action="createaccount.php" method="POST">
-              <input class="username" type="text" align="center" name="user" placeholder="USERNAME">
-              <input class="username" type="text" align="center" name="realname" placeholder="Your Real Name">
-              <p class="welcome">Choose your Role:</p>
-              <select class="username" type="text" align="center" name="role" placeholder="Choose Role">
-                <option value="Student">Student</option>
-                <option value="Teacher">Teacher</option>
-                <option value="Assistant">Assistant</option>
-              </select>
-              <input class="pass" type="password" align="center" name="pass" placeholder="PASSWORD">
-              <button class="submit" align="center" type="submit" name="submit">Signup</button>
-            </form>
-          </div>
-          <div class="main2" id="main2" style="display:none;">
 
-            <p class="welcome">Please Login</p>
-            <form class="form1" action="login.php" method="POST">
-              <img src="images/cross.png" class="cross" onclick="cross()">
-              We would like to take a survey before you login:
-              <p class="mnone">The quality of our brand</p>
-              <input type="radio" id="very satisfied" name="gender" value="very satisfied">
-              <label for="very satisfied">very satisfied</label>
-              <input type="radio" id="satisfied" name="gender" value="satisfied">
-              <label for="satisfied">satisfied</label>
-              <input type="radio" id="neutral" name="gender" value="neutral">
-              <label for="neutral">neutral</label>
-              <input type="radio" id="unsatisfied" name="gender" value="unsatisfied">
-              <label for="unsatisfied">unsatisfied</label>
-              <input type="radio" id="very unsatisfied" name="gender" value="very unsatisfied">
-              <label for="very unsatisfied">very unsatisfied</label>
-              <p class="mnone">The prices we offer</p>
-              <input type="radio" id="very satisfied1" name="gender1" value="very satisfied">
-              <label for="very satisfied1">very satisfied</label>
-              <input type="radio" id="satisfied1" name="gender1" value="satisfied">
-              <label for="satisfied1">satisfied</label>
-              <input type="radio" id="neutral1" name="gender1" value="neutral">
-              <label for="neutral1">neutral</label>
-              <input type="radio" id="unsatisfied1" name="gender1" value="unsatisfied">
-              <label for="unsatisfied1">unsatisfied</label>
-              <input type="radio" id="very unsatisfied1" name="gender1" value="very unsatisfied">
-              <label for="very unsatisfied1">very unsatisfied</label>
-              <p class="mnone">The speed of service we provide</p>
-              <input type="radio" id="very satisfied2" name="gender2" value="very satisfied">
-              <label for="very satisfied2">very satisfied</label>
-              <input type="radio" id="satisfied2" name="gender2" value="satisfied">
-              <label for="satisfied2">satisfied</label>
-              <input type="radio" id="neutral2" name="gender2" value="neutral">
-              <label for="neutral2">neutral</label>
-              <input type="radio" id="unsatisfied2" name="gender2" value="unsatisfied">
-              <label for="unsatisfied2">unsatisfied</label>
-              <input type="radio" id="very unsatisfied2" name="gender2" value="very unsatisfied">
-              <label for="very unsatisfied2">very unsatisfied</label>
-              <p class="mnone">The customer support offered</p>
-              <input type="radio" id="very satisfied3" name="gender3" value="very satisfied">
-              <label for="very satisfied3">very satisfied</label>
-              <input type="radio" id="satisfied3" name="gender3" value="satisfied">
-              <label for="satisfied3">satisfied</label>
-              <input type="radio" id="neutral3" name="gender3" value="neutral">
-              <label for="neutral3">neutral</label>
-              <input type="radio" id="unsatisfied3" name="gender3" value="unsatisfied">
-              <label for="unsatisfied3">unsatisfied</label>
-              <input type="radio" id="very unsatisfied3" name="gender3" value="very unsatisfied">
-              <label for="very unsatisfied3">very unsatisfied</label>
-              <input class="username" type="text" align="center" name="user" placeholder="USERNAME">
-              <input class="pass" type="password" align="center" name="pass" placeholder="PASSWORD">
 
-              <button class="submit1" align="center" type="submit" name="submit" id="login_button">Login</button>
-            </form>
-          </div>
           <div class="main3" id="main3">
             <h4 class="contenty" id="log"> Hi <?php echo ($_SESSION['signuser']); ?>, your account is created successfully,please login to add notes and comment</h4>
           </div>
@@ -555,6 +447,26 @@ require 'connect.php';
 
           <div class="main8" id="main8">Your profile<br>
             Name:<?php echo ($_SESSION['loginname']); ?><br>
+              <?php 
+    $this_chatuser=$_SESSION['loginid'];
+    $q="SELECT * FROM `register_user` WHERE `Student_ID`='$this_chatuser';";
+    $avatar = mysqli_query($link_central,$q);
+    $result = $link_central->query($q);
+
+     while ($chatavatar=mysqli_fetch_array($avatar)) {
+
+      $image_url="otp-php-registration/class/".$chatavatar['user_avatar'];
+     ?>
+    <img src="../<?php echo($image_url);?>" alt="Avatar" class="profile_avatar">
+    <br>
+    Email: 
+    <?php 
+    echo ($chatavatar['user_email']);    
+    }
+    ?>
+     <br>
+
+
             Username:<?php echo ($_SESSION['loginuser']); ?><br>
             Your role:<?php echo ($_SESSION['loginrole']); ?><br>
             ID:<?php echo ($_SESSION['loginid']); ?><br>
@@ -564,7 +476,7 @@ require 'connect.php';
 
             <div class="displaya"></div>
             <div class="reactionhide" id="reactionhide">0</div>
-            <button id="download" class="download_notes">Download Notes</button>
+            <button id="download">Download Notes</button>
 
 
 
@@ -579,9 +491,7 @@ require 'connect.php';
                 $(this).toggleClass('not-active');
               });
 
-              function cross(argument) {
-                document.getElementById("main2").style.display = 'none';
-              }
+
 
               function cross1(argument) {
                 document.getElementById("main5").style.display = 'none';
@@ -956,6 +866,7 @@ require 'connect.php';
                   var divisor_for_seconds = divisor_for_minutes % 60;
                   var seconds = Math.ceil(divisor_for_seconds);
                   var zero = "0";
+                  var login_ID="<?php echo ($_SESSION['loginid']); ?>";
 
                   if (hours < 10) {
                     var hour = hours.toString();
@@ -981,8 +892,6 @@ require 'connect.php';
 
                   load_chat();
 
-
-
                   function load_chat() {
                     $.ajax({
                       url: "ajaxy.php",
@@ -994,7 +903,8 @@ require 'connect.php';
                         timeminy: timeminy,
                         topicy: topicy,
                         totalsecs: totalsecs,
-                        current_react: current_react
+                        current_react: current_react,
+                        login_ID:login_ID
 
                       },
                       success: function(data) {
@@ -1124,23 +1034,18 @@ require 'connect.php';
       var cis = document.getElementsByClassName('chatarea')[0];
 
       if (loginuser == "empty1") {
-        alert("Wrong Username Or Password");
+        alert("Wrong Email ID Or Password");
+        document.getElementById('login_but').innerHTML="Login";
+        document.getElementById('login_but').href="<?php echo($url_h.$appache_localhost_port.$folder."login.php")?>";
       }
       if (loginuser != "empty1" && loginbool == "1") {
-        log.innerHTML = "Logout";
+            
+              document.getElementById('login_but').innerHTML="Logout";
+              document.getElementById('login_but').href="<?php echo($url_h.$appache_localhost_port.$folder."logout.php")?>";
+
+            
       }
 
-      if (loginbool != "1" || loginuser == "empty1") {
-        //document.getElementsByClassName("chatbox_downbar")[0].style.display='none';
-        document.getElementsByClassName("chatbox_downbar")[0].id = "log";
-        log_second.style.display = 'block';
-        n_btn.style.display = 'none';
-        n_in.style.display = 'none';
-        c_btn.style.display = 'none';
-        c_in.style.display = 'none';
-        ilb.style.display = 'none';
-
-      }
 
       mover.addEventListener('mouseover', function() {
         if (dd.style.opacity == "1") {
@@ -1149,8 +1054,7 @@ require 'connect.php';
           dd.style.display = "none";
           chat2.style.display = 'none';
           note2.style.display = 'none';
-          log.style.display = 'none';
-          sign.style.display = 'none';
+
           profile.style.display = 'none';
           mover.style.display = 'none';
         }
@@ -1180,8 +1084,8 @@ require 'connect.php';
         dd.style.transform = "translateY(-10px)";
         dd.style.display = "none";
         document.getElementsByClassName("chatbox_downbar")[0].style.pointerEvents = "all";
-        document.getElementById("main1").style.display = 'none';
-        document.getElementById("main2").style.display = 'none';
+
+      
         document.getElementById("main3").style.display = 'none';
         document.getElementById("main4").style.display = 'none';
         document.getElementById("main5").style.display = 'none';
@@ -1191,8 +1095,7 @@ require 'connect.php';
         document.getElementById("sort_method").style.display = "block";
         chat2.style.display = 'none';
         note2.style.display = 'none';
-        log.style.display = 'none';
-        sign.style.display = 'none';
+
         profile.style.display = 'none';
         mover.style.display = 'none';
 
@@ -1229,8 +1132,8 @@ require 'connect.php';
         dd.style.transform = "translateY(-10px)";
         dd.style.display = "none";
         document.getElementsByClassName("chatbox_downbar")[0].style.pointerEvents = "all";
-        document.getElementById("main1").style.display = 'none';
-        document.getElementById("main2").style.display = 'none';
+
+        
         document.getElementById("main4").style.display = 'none';
         document.getElementById("main3").style.display = 'none';
         document.getElementById("main5").style.display = 'none';
@@ -1239,8 +1142,7 @@ require 'connect.php';
         document.getElementById("sort_method").style.display = "none";
         chat2.style.display = 'none';
         note2.style.display = 'none';
-        log.style.display = 'none';
-        sign.style.display = 'none';
+
         profile.style.display = 'none';
         mover.style.display = 'none';
 
@@ -1277,8 +1179,8 @@ require 'connect.php';
         dd.style.transform = "translateY(-10px)";
         dd.style.display = "none";
         document.getElementsByClassName("chatbox_downbar")[0].style.pointerEvents = "all";
-        document.getElementById("main1").style.display = 'none';
-        document.getElementById("main2").style.display = 'none';
+
+        
         document.getElementById("main4").style.display = 'none';
         document.getElementById("main3").style.display = 'none';
         document.getElementById("main5").style.display = 'none';
@@ -1287,8 +1189,7 @@ require 'connect.php';
         document.getElementById("sort_method").style.display = "block";
         chat2.style.display = 'none';
         note2.style.display = 'none';
-        log.style.display = 'none';
-        sign.style.display = 'none';
+
         profile.style.display = 'none';
         mover.style.display = 'none';
 
@@ -1316,8 +1217,7 @@ require 'connect.php';
           dd.style.display = "none";
           chat2.style.display = 'none';
           note2.style.display = 'none';
-          log.style.display = 'none';
-          sign.style.display = 'none';
+
           profile.style.display = 'none';
           mover.style.display = 'none';
 
@@ -1327,7 +1227,7 @@ require 'connect.php';
           dd.style.display = "block";
           chat2.style.display = 'block';
           note2.style.display = 'block';
-          log.style.display = 'block';
+
           if (loginuser != "empty1" && loginbool == "1") {
             profile.style.display = 'block';
           } else {
@@ -1335,11 +1235,7 @@ require 'connect.php';
           }
 
           mover.style.display = 'block';
-          if (log.innerHTML == "Login") {
-            sign.style.display = 'block';
-          } else {
-            sign.style.display = 'none';
-          }
+
 
 
         }
@@ -1347,88 +1243,6 @@ require 'connect.php';
       chat2.onclick = chat.onclick;
       note2.onclick = note.onclick;
 
-      log.onclick = function() {
-        if (loginuser != "empty1" && loginbool == "1") {
-          con.innerHTML = "Logout";
-        } else {
-          con.innerHTML = "LogIn";
-        }
-
-        dd.style.opacity = "0";
-        dd.style.transform = "translateY(-10px)";
-        dd.style.display = "none";
-        ind.style.background = "#f0f5ff";
-        bg.style.background = "#f0f5ff";
-        document.getElementById("main1").style.display = 'none';
-        document.getElementsByClassName("chatbox_downbar")[0].style.pointerEvents = "none";
-        document.getElementById("main2").style.display = 'block';
-        document.getElementById("main3").style.display = 'none';
-        document.getElementById("main4").style.display = 'none';
-        document.getElementById("main6").style.display = 'none';
-        document.getElementById("main7").style.display = 'none';
-        document.getElementById("main8").style.display = 'none';
-        document.getElementById("sort_method").style.display = "none";
-
-        chat2.style.display = 'none';
-        note2.style.display = 'none';
-        log.style.display = 'none';
-        sign.style.display = 'none';
-        profile.style.display = 'none';
-        mover.style.display = 'none';
-
-        Bg.style.background = "white";
-        if (log.innerHTML == "Logout") {
-          document.getElementById("main2").style.display = 'none';
-          document.getElementById("main5").style.display = 'block';
-        }
-        log_second.style.display = 'none';
-        if (loginbool == "1" && loginuser != "empty1") {
-          n_btn.style.display = 'none';
-          n_in.style.display = 'none';
-          c_btn.style.display = 'none';
-          c_in.style.display = 'none';
-          ilb.style.display = 'none';
-        }
-      }
-      var logClick = log.onclick;
-      sign.onclick = function() {
-        con.innerHTML = "Sign Up";
-        dd.style.opacity = "0";
-        dd.style.transform = "translateY(-10px)";
-        dd.style.display = "none";
-        ind.style.background = "#6b07ff";
-        bg.style.background = "#281740";
-        document.getElementById("main1").style.display = 'block';
-        document.getElementsByClassName("chatbox_downbar")[0].style.pointerEvents = "none";
-        document.getElementById("main2").style.display = 'none';
-        document.getElementById("main4").style.display = 'none';
-        document.getElementById("main5").style.display = 'none';
-        document.getElementById("main6").style.display = 'none';
-        document.getElementById("main7").style.display = 'none';
-        document.getElementById("main8").style.display = 'none';
-        document.getElementById("sort_method").style.display = "none";
-
-        chat2.style.display = 'none';
-        note2.style.display = 'none';
-        log.style.display = 'none';
-        sign.style.display = 'none';
-        profile.style.display = 'none';
-        mover.style.display = 'none';
-
-        Bg.style.background = "white";
-        if (userbool == "1") {
-          document.getElementById("main3").style.display = 'block';
-          document.getElementById("main1").style.display = 'none';
-        }
-        log_second.style.display = 'none';
-        if (loginbool == "1" && loginuser != "empty1") {
-          n_btn.style.display = 'none';
-          n_in.style.display = 'none';
-          c_btn.style.display = 'none';
-          c_in.style.display = 'none';
-          ilb.style.display = 'none';
-        }
-      }
       ilb.onclick = function() {
         if (il.style.opacity == "0") {
           il.style.opacity = "1";
@@ -1509,21 +1323,6 @@ require 'connect.php';
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- Scripts -->
     <!--    <script src="assets/js/jquery.min.js"></script>
       <script src="assets/js/skel.min.js"></script>
@@ -1540,7 +1339,129 @@ require 'connect.php';
     <script src="assets/dist/plyr.js"></script>
 
     <script>
+      MyObject = {
+    play:function (letbool) {
+              var vid_curenttimesecond = player.currentTime;
+
+              var vid_curenttime = timeConvert(vid_curenttimesecond);
+              var play = 0;
+              var pause = 0;
+              var playpause = 1;
+              var loginbool = document.getElementById("loginbool").innerHTML;
+              
+              if (letbool) {
+                play = 1;
+
+
+              } else {
+                pause = 1;
+
+              }
+              $.ajax({
+                url: "clickdata.php",
+                method: "POST",
+                data: {
+                  playpause: playpause,
+                  play: play,
+                  pause: pause,
+                  vid_curenttime: vid_curenttime,
+                  loginbool: loginbool
+                },
+                success: function(data) {}
+              })
+
+            },
+    timeConvert: function(time) {
+
+                var currenttime = parseInt(time);
+                var totalsecsy = Math.floor(currenttime);
+                var secs = Math.round(currenttime);
+                var hours = Math.floor(secs / (60 * 60));
+                var divisor_for_minutes = secs % (60 * 60);
+                var minutes = Math.floor(divisor_for_minutes / 60);
+                var divisor_for_seconds = divisor_for_minutes % 60;
+                var seconds = Math.ceil(divisor_for_seconds);
+                var zero = "0";
+                if (hours < 10) {
+                  var hour = hours.toString();
+                  hour = zero.concat(hour);
+                } else {
+                  var hour = hours.toString();
+                }
+                if (minutes < 10) {
+                  var minute = minutes.toString();
+                  minute = zero.concat(minute);
+                } else {
+                  var minute = minutes.toString();
+                }
+                if (seconds < 10) {
+                  var second = seconds.toString();
+                  second = zero.concat(second);
+                } else {
+                  var second = seconds.toString();
+                }
+                var colon = ":";
+                var timemin = hour.concat(colon, minute, colon, second);
+                return timemin;
+              },
+    onvolumechange: function() {
+              var volumechange = 1;
+              var vid_curenttime = timeConvert(player.currentTime);
+              var volume = player.volume;
+              
+              if (player.muted==true) {
+               var mute = 1; 
+              }
+              $.ajax({
+                url: "clickdata.php",
+                method: "POST",
+                data: {
+                  volumechange: volumechange,
+                  vid_curenttime: vid_curenttime,
+                  loginbool: loginbool,
+                  volume: volume,
+                  mute: mute
+                },
+                success: function(data) {}
+              })
+            }
+
+    // other functions...
+}
       const player = new Plyr('#myVideo');
+ 
+      player.on('playing', play => {
+      const instance = play.detail.plyr;
+      
+});
+      player.on('pause', pause => {
+        console.log('pause');
+        console.log(player.currentTime);
+        MyObject.play(false);
+});
+      player.on('play', play => {
+        console.log('play');
+        console.log(player.currentTime);
+        MyObject.play(true);
+         });
+
+      player.on('volumechange', volumechange => {
+        console.log('volumechange');
+        console.log(player.currentTime);
+        MyObject.onvolumechange();
+         });
+      player.on('seeking', seeking => {
+        console.log('seeking');
+        console.log(MyObject.timeConvert(player.currentTime));
+  
+         });      
+      player.on('seeked', seeked => {
+        console.log('seeked');
+        console.log(MyObject.timeConvert(player.currentTime));
+  
+         });
+
+
       // const player = videojs('myVideo');
       // videojs('myVideo').chapter_thumbnails({
       //   src: 'chapters/video1.webvtt'});

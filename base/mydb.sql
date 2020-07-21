@@ -35,15 +35,41 @@ CREATE TABLE `chat` (
   `time_mark` time DEFAULT NULL,
   `second` int(30) DEFAULT NULL,
   `reaction` int(2) DEFAULT NULL,
-  `Replies` int(10) NOT NULL DEFAULT '0'
+  `Replies` int(10) NOT NULL DEFAULT '0',
+  `student_ID` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `chat`
 --
 
-INSERT INTO `chat` (`id`, `chatuser`, `chat`, `time_mark`, `second`, `reaction`, `Replies`) VALUES
-(1, 'Admin', 'WELCOME !!', '00:00:04', 4, 1, 0);
+INSERT INTO `chat` (`id`, `chatuser`, `chat`, `time_mark`, `second`, `reaction`, `Replies`, `student_ID`) VALUES
+(1, 'Admin', 'WELCOME !!', '00:00:04', 4, 1, 0, 0);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `chat`
+--
+ALTER TABLE `chat`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `chat`
+--
+ALTER TABLE `chat`
+  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 -- --------------------------------------------------------
 
@@ -145,10 +171,7 @@ CREATE TABLE `reply` (
 --
 
 --
--- Indexes for table `chat`
---
-ALTER TABLE `chat`
-  ADD PRIMARY KEY (`id`);
+
 
 --
 -- Indexes for table `clickdata`
@@ -188,11 +211,7 @@ ALTER TABLE `reply`
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `chat`
---
-ALTER TABLE `chat`
-  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 
 --
 -- AUTO_INCREMENT for table `clickdata`

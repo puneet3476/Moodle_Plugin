@@ -71,9 +71,15 @@ if (isset($_GET['volumechange'])) {
 
   }
 $mute=$_GET['mute'];
+if ($mute==1) {
+  $event="Muted";
+}
+else{
+  $event="Volume Changed";
+
+}
 $volume=$_GET['volume'];
 $vid_curenttime=$_GET['vid_curenttime'];
-$event="Volume Changed";
 
 
 

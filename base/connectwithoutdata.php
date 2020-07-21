@@ -1,11 +1,11 @@
 <?php
 $user = 'root';//............This you may have to change
-$password = 'bottletopple202';//............This you may have to change
-$host = 'localhost';//............This you may have to change
-$appache_localhost_port='';//............This you may have to change
-$urla="Location: http://localhost";
-
-$folder="/base/";
+$password = 'root';//............This you may have to change
+$host = 'localhost:8889';//............This you may have to change
+$appache_localhost_port='8888';
+$urla="Location: http://localhost:";
+$users_db='central';
+$folder="/Webdevpro-master/";
 
 $urlb="load.php";
 
@@ -16,5 +16,10 @@ $link = new mysqli(
    $host,
    $user,
    $password
+);
+$link_central = new mysqli(
+   $host,
+   $user,
+   $password,$users_db
 );
 ?>

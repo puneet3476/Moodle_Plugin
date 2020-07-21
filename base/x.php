@@ -54,9 +54,28 @@ var normalizer = parseInt(document.getElementById('normalizer').innerHTML);
 
 for(i=0;i<20;i++){
   column_array[i].style.height = (parseInt(t_array[i]) / normalizer * 100).toFixed(2) + "%";
-  var random_color = Math.floor(Math.random()*16777215).toString(16);
-    column_array[i].style.backgroundColor = '#'+random_color;
-  
+   if(r_array[i] == '0'){
+    column_array[i].style.backgroundColor = '#808080';
+
+  }
+  if(r_array[i] == '1'){
+    column_array[i].style.backgroundColor = 'green';
+  }
+  if(r_array[i] == '2'){
+    column_array[i].style.backgroundColor = 'red';
+  }
+  if(r_array[i] == '3'){
+    column_array[i].style.backgroundColor = '#fc6888';
+  }
+  if(r_array[i] == '4'){
+    column_array[i].style.backgroundColor = '#fcb968';
+  }
+  if(r_array[i] == '5'){
+    column_array[i].style.backgroundColor = '#c21111';
+  }
+  if(r_array[i] == '6'){
+    column_array[i].style.backgroundColor = 'yellow';
+  }
 }
 
 

@@ -4,7 +4,7 @@ require 'connectwithoutdata.php';
 <h1>Welcome to Admin Panel</h1>
 <h3>Warning! If you are a student please go back to the course page.</h3>
 
-<h1>Upload A new Video</h1>
+<p class="welcome">Upload A new Video</p>
 	    			<form class="form1" action="createfolder.php" method="POST" >
 		      			<input class="username" type="text" align="center"  name="folder_name" placeholder="FOLDER NAME">
 		      			<input class="username" type="text" align="center"  name="database_name" placeholder="Database Name">
