@@ -6,11 +6,13 @@ if (empty($folder_name) or empty($database_name) ) {
 	echo "Error: Either Foldername or Database name is empty";
 	die();
 }
-$dir_name="C:\MAMP\htdocs"."\\".$folder_name;
 
-// Store the path of source file 
-$source = "C:\MAMP\htdocs\base";  
-$hyperlink=$urla.$appache_localhost_port."//".$folder_name."//".$urlb;
+$dir_name="/opt/lampp/htdocs/Moodle_Plugin/".$folder_name;//use this for windows "C:\MAMP\htdocs"."\\".$folder_name;
+
+// Store the path of source file
+$source = "/opt/lampp/htdocs/Moodle_Plugin/base";// for windows "C:\MAMP\htdocs\base"
+$hyperlink=$urla.$appache_localhost_port."/Moodle_Plugin/".$folder_name."//".$urlb;
+ 
 
 
 // Create database
@@ -24,7 +26,8 @@ if ($link->query($sql) === TRUE) {
 }
 $sql = file_get_contents('mydb.sql');
 
-$mysqli = new mysqli('localhost:8889', "root", "root",$database_name);//............This you may have to change
+$mysqli = new mysqli('localhost', "root", "",$database_name);//............This you may have to change
+
 
 /* execute multi query */
 $mysqli->multi_query($sql);
@@ -53,6 +56,7 @@ $createfile=fopen('connect.php', "w") or die("Can't create Connect.php file");
 
 $connect="<?php
 \$user = 'root';//............This you may have to change
+
 \$password = 'root';//............This you may have to change
 \$db = '".$database_name."';//............This you may have to change\
 \$users_db = 'central';//............This you may have to change
@@ -61,6 +65,7 @@ $connect="<?php
 \$urla=\"Location: http://localhost:\";//............This you may have to change
 \$url_h=\"http://localhost:\";//............This you may have to change
 \$folder=\"/".$folder_name."/\";
+
 
 \$urlb=\"load.php\";
 

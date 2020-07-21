@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Jun 25, 2020 at 10:53 AM
--- Server version: 5.7.24-log
--- PHP Version: 7.2.10
+-- Host: localhost
+-- Generation Time: Jul 19, 2020 at 10:15 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `new`
+-- Database: `mydb`
 --
 
 -- --------------------------------------------------------
@@ -37,6 +36,7 @@ CREATE TABLE `chat` (
   `reaction` int(2) DEFAULT NULL,
   `Replies` int(10) NOT NULL DEFAULT '0',
   `student_ID` int(12) NOT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -79,10 +79,10 @@ COMMIT;
 
 CREATE TABLE `clickdata` (
   `id` int(6) UNSIGNED NOT NULL,
-  `user_id` int(12) DEFAULT '0',
+  `user_id` int(12) DEFAULT 0,
   `username` varchar(30) NOT NULL,
   `Event` varchar(30) NOT NULL,
-  `Start_Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `Start_Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `from_video_timestamp` varchar(30) DEFAULT NULL,
   `to_video_timestamp` varchar(30) DEFAULT NULL,
   `Post_ID` int(12) DEFAULT NULL,
@@ -91,11 +91,6 @@ CREATE TABLE `clickdata` (
   `x` varchar(20) DEFAULT NULL,
   `y` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `clickdata`
---
-
 
 -- --------------------------------------------------------
 
@@ -146,7 +141,19 @@ CREATE TABLE `prevideosurvey` (
   `question6` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `question`
+--
+
+CREATE TABLE `question` (
+  `id` int(11) NOT NULL,
+  `question` int(255) NOT NULL,
+  `options` text NOT NULL,
+  `answer` int(255) NOT NULL,
+  `timestamp` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -162,11 +169,6 @@ CREATE TABLE `reply` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `reply`
---
-
-
---
 -- Indexes for dumped tables
 --
 
@@ -178,8 +180,6 @@ CREATE TABLE `reply` (
 --
 ALTER TABLE `clickdata`
   ADD PRIMARY KEY (`id`);
-
-
 
 --
 -- Indexes for table `note`
@@ -200,12 +200,16 @@ ALTER TABLE `prevideosurvey`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `question`
+--
+ALTER TABLE `question`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `reply`
 --
 ALTER TABLE `reply`
   ADD PRIMARY KEY (`id`);
-
-
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -218,8 +222,6 @@ ALTER TABLE `reply`
 --
 ALTER TABLE `clickdata`
   MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
-
-
 
 --
 -- AUTO_INCREMENT for table `note`
@@ -240,12 +242,17 @@ ALTER TABLE `prevideosurvey`
   MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `question`
+--
+ALTER TABLE `question`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `reply`
 --
 ALTER TABLE `reply`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
-
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

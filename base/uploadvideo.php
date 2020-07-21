@@ -2,7 +2,9 @@
 $appache_localhost_port='8888';//............This you may have to change
 $urla="Location: http://localhost:";//............This you may have to change
 $user = 'root';//............This you may have to change
-$password = 'root';//............This you may have to change
+
+$password = '';//............This you may have to change
+
 $users_db = 'central';//............This you may have to change
 $host = 'localhost:8889';//............This you may have to change
 $urlb="load.php";
