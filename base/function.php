@@ -1,10 +1,10 @@
 <?php
-
+require 'connectwithoutdata.php';
 //function.php
 
 function make_avatar($character)
 {   echo (getcwd());
-	chdir('C:\MAMP\htdocs\otp-php-registration\class');
+	chdir($class_link);
 
     $path = "avatar/". time() . ".png";
 	$image = imagecreate(200, 200);
@@ -14,7 +14,7 @@ function make_avatar($character)
     imagecolorallocate($image, $red, $green, $blue);  
     $textcolor = imagecolorallocate($image, 255,255,255);  
    
- imagettftext($image, 80, 0, 30, 150, $textcolor, 'C:\MAMP\htdocs\otp-php-registration\class\avatar\PTSans.ttf', $character);  
+ imagettftext($image, 80, 0, 30, 150, $textcolor, $font_link, $character);  
     #header("Content-type: image/png");  
     imagepng($image, $path);
     imagedestroy($image);

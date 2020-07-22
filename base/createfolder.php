@@ -7,10 +7,10 @@ if (empty($folder_name) or empty($database_name) ) {
 	die();
 }
 
-$dir_name="/opt/lampp/htdocs/Moodle_Plugin/".$folder_name;//use this for windows "C:\MAMP\htdocs"."\\".$folder_name;
+$dir_name="C:\MAMP\htdocs"."\\".$folder_name;
 
-// Store the path of source file
-$source = "/opt/lampp/htdocs/Moodle_Plugin/base";// for windows "C:\MAMP\htdocs\base"
+// Store the path of source file 
+$source = "C:\MAMP\htdocs\base";
 $hyperlink=$urla.$appache_localhost_port."/Moodle_Plugin/".$folder_name."//".$urlb;
  
 
@@ -26,7 +26,7 @@ if ($link->query($sql) === TRUE) {
 }
 $sql = file_get_contents('mydb.sql');
 
-$mysqli = new mysqli('localhost', "root", "",$database_name);//............This you may have to change
+$mysqli = new mysqli($host, $user,$password,$database_name);//............This you may have to change
 
 
 /* execute multi query */
@@ -49,6 +49,7 @@ custom_copy($source,$destination);
 echo ("Base file copied to ".$destination);
 
 
+chdir("../");
 chdir("../");
 chdir($folder_name);
 

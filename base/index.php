@@ -1,8 +1,10 @@
 <?php
+    echo (getcwd());
 	require 'includes/PHPMailer.php';
 	require 'includes/SMTP.php';
 	require 'includes/Exception.php';
 	require 'connect.php';
+	require 'connectwithoutdata.php';
 //Define name spaces
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\SMTP;
@@ -161,7 +163,7 @@ echo (getcwd());
 
 			//Include required PHPMailer files
 
-	chdir('C:\MAMP\htdocs\otp-php-registration\class'); 
+	chdir($class_link); 
 
 //Create instance of PHPMailer
 	$mail = new PHPMailer();
