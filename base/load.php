@@ -38,10 +38,12 @@ require 'connect.php';
       } ?>
       </a>
       <nav id="nav">
-
-        <a id="login_but" href="<?php echo($url_h.$appache_localhost_port.$folder."login.php")?>">Login </a>
-
-        <a href="<?php echo($url_h.$appache_localhost_port.$folder."index.php")?>">Sign up</a>
+      <?php if (isset(($_SESSION['loginuser'])) && $_SESSION['loginuser']!='empty1') { ?>
+          <a href="<?php echo($appache_localhost_port.$folder."logout.php")?>">Logout</a>
+        <?php }else{ ?>
+        <a id="login_but" href="<?php echo($appache_localhost_port.$folder."login.php")?>">Login </a>
+        <a href="<?php echo($appache_localhost_port.$folder."index.php")?>">Sign up</a>
+      <?php }?>
         <button id="myBtn" class="button alt">How to Use</button>
         <button id="freeze" class="button">Freeze</button>
 
@@ -177,7 +179,7 @@ require 'connect.php';
                 success: function(data) {}
               });
             };
-          
+
 
 
 
@@ -410,7 +412,7 @@ require 'connect.php';
     <div class="chatbox" id="mydiv">
       <div class="chatbox_upbar">
         <div class="dragarea" id="mydivheader">DragArea</div>
-     
+
         <div class="btn not-active" id="ddb">
           <span style="background: black;height: 3.2px;"></span>
           <span style="background: black;height: 3.2px;"></span>
@@ -447,7 +449,7 @@ require 'connect.php';
 
           <div class="main8" id="main8">Your profile<br>
             Name:<?php echo ($_SESSION['loginname']); ?><br>
-              <?php 
+              <?php
     $this_chatuser=$_SESSION['loginid'];
     $q="SELECT * FROM `register_user` WHERE `Student_ID`='$this_chatuser';";
     $avatar = mysqli_query($link_central,$q);
@@ -459,9 +461,9 @@ require 'connect.php';
      ?>
     <img src="../<?php echo($image_url);?>" alt="Avatar" class="profile_avatar">
     <br>
-    Email: 
-    <?php 
-    echo ($chatavatar['user_email']);    
+    Email:
+    <?php
+    echo ($chatavatar['user_email']);
     }
     ?>
      <br>
@@ -480,7 +482,7 @@ require 'connect.php';
 
 
 
-            <?php     //<textarea class="topic"  type="text" align="center" name="topic" placeholder="ADD TOPIC"></textarea>    
+            <?php     //<textarea class="topic"  type="text" align="center" name="topic" placeholder="ADD TOPIC"></textarea>
             ?>
             <script type="text/javascript" src="jquery.js"></script>
             <script type="text/javascript">
@@ -1039,11 +1041,11 @@ require 'connect.php';
         document.getElementById('login_but').href="<?php echo($url_h.$appache_localhost_port.$folder."login.php")?>";
       }
       if (loginuser != "empty1" && loginbool == "1") {
-            
+
               document.getElementById('login_but').innerHTML="Logout";
               document.getElementById('login_but').href="<?php echo($url_h.$appache_localhost_port.$folder."logout.php")?>";
 
-            
+
       }
 
 
@@ -1085,7 +1087,7 @@ require 'connect.php';
         dd.style.display = "none";
         document.getElementsByClassName("chatbox_downbar")[0].style.pointerEvents = "all";
 
-      
+
         document.getElementById("main3").style.display = 'none';
         document.getElementById("main4").style.display = 'none';
         document.getElementById("main5").style.display = 'none';
@@ -1133,7 +1135,7 @@ require 'connect.php';
         dd.style.display = "none";
         document.getElementsByClassName("chatbox_downbar")[0].style.pointerEvents = "all";
 
-        
+
         document.getElementById("main4").style.display = 'none';
         document.getElementById("main3").style.display = 'none';
         document.getElementById("main5").style.display = 'none';
@@ -1180,7 +1182,7 @@ require 'connect.php';
         dd.style.display = "none";
         document.getElementsByClassName("chatbox_downbar")[0].style.pointerEvents = "all";
 
-        
+
         document.getElementById("main4").style.display = 'none';
         document.getElementById("main3").style.display = 'none';
         document.getElementById("main5").style.display = 'none';
@@ -1348,7 +1350,7 @@ require 'connect.php';
               var pause = 0;
               var playpause = 1;
               var loginbool = document.getElementById("loginbool").innerHTML;
-              
+
               if (letbool) {
                 play = 1;
 
@@ -1408,9 +1410,9 @@ require 'connect.php';
               var volumechange = 1;
               var vid_curenttime = timeConvert(player.currentTime);
               var volume = player.volume;
-              
+
               if (player.muted==true) {
-               var mute = 1; 
+               var mute = 1;
               }
               $.ajax({
                 url: "clickdata.php",
@@ -1429,10 +1431,10 @@ require 'connect.php';
     // other functions...
 }
       const player = new Plyr('#myVideo');
- 
+
       player.on('playing', play => {
       const instance = play.detail.plyr;
-      
+
 });
       player.on('pause', pause => {
         console.log('pause');
@@ -1453,12 +1455,12 @@ require 'connect.php';
       player.on('seeking', seeking => {
         console.log('seeking');
         console.log(MyObject.timeConvert(player.currentTime));
-  
-         });      
+
+         });
       player.on('seeked', seeked => {
         console.log('seeked');
         console.log(MyObject.timeConvert(player.currentTime));
-  
+
          });
 
 

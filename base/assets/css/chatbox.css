@@ -31,26 +31,14 @@ input[type="text"]{
   position: absolute;
   top: -1vh;
   left: calc(11vw + 650px);
-
+  -webkit-box-shadow: 10px 11px 18px -2px rgba(0,0,0,0.56);
+  -moz-box-shadow: 10px 11px 18px -2px rgba(0,0,0,0.56);
+  box-shadow: 10px 11px 18px -2px rgba(0,0,0,0.56);
   z-index: 1000;
   background-color: white;
-  border-radius: 5%; 
+  border-radius: 5%;
 }
-.avatar {
-  align-content: left;
-  vertical-align: middle;
-  width:35px;
-  height: 35px;
-  border-radius: 50%;
-}
-.profile_avatar {
-  align-content: left;
-  vertical-align: middle;
-  width:80px;
-  height: 80px;
-  border-radius: 50%;
-  
-}
+
 .chatbox_upbar{
   width: 100%;
   height: 10%;
@@ -69,13 +57,11 @@ border-top-right-radius: 8px;
   z-index: 1000;
 }
 
-span {
+#ddb span {
   display: block;
-  
-  box-shadow: 0 2px 10px 0 rgba(121, 199, 197,0.5);
-  border-radius: 3px;
-  height: 3.2px;
-  
+
+
+
   transition: all .3s;
   position: relative;
 }
@@ -249,19 +235,22 @@ span + span {
   background: white;
   cursor: pointer;
 }
+.dd_opt:hover{
+  background-color: #e7e8ea;
+}
 .chatbox_midbar{
   max-width: 100%;
   height: 75%;
   background-color: #f0f5ff;
   transition: all .5s;
-  
+
 }
 .chatarea{
   float: left;
   width: 92%;
   background: #ffffff;
   height: 96%;
-  
+
   border-radius: 1%;
   overflow-y: scroll;
   scrollbar-width: thin;
@@ -299,12 +288,14 @@ span + span {
 
 }
 .chatarea_btn{
-  background-color: #a1e2d9;
+  background-color: #00bfb6;
+  -webkit-box-shadow: 6px -6px 6px -2px rgba(0,0,0,0.56);
   top: calc(21% + 15px);
 }
 .pnotes_btn{
-  background-color: #87f79f;
+  background-color: #37db5b;
   bottom: calc(30% + 1px);
+  -webkit-box-shadow: 6px -6px 6px -2px rgba(0,0,0,0.56);
 }
 .chatbox_downbar{
   width: 100%;
@@ -324,15 +315,20 @@ border-bottom-right-radius: 8px;
   position: absolute;
   cursor: pointer;
 }
-.comment_insight{
-  width: 10%;
-  left: 0;
-  top:15px;
-  font-size: 36px;
+.comment_insight {
+  width: 8%;
+  left: 5px;
+  top: 15px;
+  font-size: 27px;
   font-weight: bold;
   text-align: center;
   line-height: normal;
   cursor: pointer;
+  height: 38px;
+  background: rgb(234,84,81);
+  margin: ;
+  border-radius: 42px;
+  color: white;
 }
 
 .commentarea{
@@ -454,7 +450,7 @@ input[type="password"]:focus{
     overflow-y: scroll;
     z-index: 9999999;
     width: 50%;
- 
+
 }
 .main6{
   background: #f0f5ff;
@@ -477,7 +473,7 @@ input[type="password"]:focus{
     overflow-y: scroll;
     z-index: 9999999;
     width: 33%;
-   
+
 }
 .main8 {display: none;
   background-color: #FFFFFF;
@@ -601,10 +597,13 @@ a {
   text-align: center;
   font-weight: 500;
   padding-top:30%;
+  overflow-wrap: break-word;
+
 }
 .displaya{
   background: #eeeeee;
   height: fit-content;
+
 }
 .topicy{
   position: absolute;
@@ -625,7 +624,7 @@ top: 0;
     top: 0.1vh;
     left: 30%;
     border: none;
-    font-weight: bold;
+    font-weight: normal;
   font-size: 1rem;
     height: min-content;
     width: fit-content;
@@ -638,49 +637,60 @@ top: 0;
   border: none;
   box-shadow: none;
 }
+.sort_method:hover{
+  background-color:#e7e8ea;
+}
   .comment_u{
-  font-size: 20px!important;
-  font-weight: 450;
- 
+  font-size: 14px!important;
+  font-weight: 250;
+  display:initial;
 
 }
 .timestamp{
   margin: 2px;
   font-size: smaller;
   display: block;
-  
+
   position: absolute;
   right: 10px;
   top: 0;
-  font-weight: 600;
+  font-weight: 300;
 }
 .comment_display,.comment_displaya{
   cursor: pointer;
   height: fit-content;
-  border-bottom: .4px solid black;
+  border-bottom: .1px solid grey;
   width: 100%;
   position: relative;
   padding-left: 5px;
-  background:white;
+  background: ;
+  color: black;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+
 
 }
 .comment_displaya{
-  background: #87f79f;
+  background: #37db5b;
 
   height: 100%;
   min-height: 68px;
 }
-.comment_content{
+ .comment_content{
  cursor: pointer;
   height: fit-content;
   width: fit-content;
-  font-size: 16px;
+  font-size: 13px;
   font-family:'Roboto', sans-serif;
   position: relative;
   font-weight: 400;
-  padding-left: 40px;
-  margin:0;
+  /*padding-left: 40px;*/
+  color:black;
+  margin-bottom: 3.1vh;
+  overflow-wrap: break-word;
 }
+
+
 .reply_btn{
   position: absolute;
     right: 0;bottom: 5px;
@@ -705,13 +715,11 @@ top: 0;
 
 }
 .reply_display{
-  width: 70%!important;
-  margin-left: 16%;
-}
-.reply_display p{
-  margin: 0 0 1em 0;
+  width: 100%!important;
+  margin-left: 4vw;
 
 }
+
 .submitreply{
   background-color: inherit!important;
   border: none;
@@ -725,9 +733,8 @@ top: 0;
 .comment_react{
   width: 30px;
   height: 30px;
-  position: absolute;
-  right: 10px;
-  top: 39px;
+  position: relative;
+  top: 8px;
   border-radius: 5px;
   /*border: 1px solid red;*/
   padding: 2px;
@@ -781,7 +788,7 @@ top: 0;
   .load{display: none;}
   .displayb,
   .main7{
-    background-color: white;
+    background-color: ;
   }
   .displaya{
     background: #f0f5ff;
@@ -792,12 +799,15 @@ top: 0;
   .main7::-webkit-scrollbar{
     display: none;
   }
-
+  .displayb{
+  margin-left: 2vw;
+  margin-right: 2vw;
+  }
   .dragarea{
     height: 10%;
     width: 48%;
     position: absolute;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 1rem;
     right: 0;
     text-align: center;
@@ -825,4 +835,8 @@ top: 0;
   .notes_style{
     min-height: 68px;
     margin-bottom: 20px;
+  }
+
+  .download_notes{
+    margin-left: 110px;
   }

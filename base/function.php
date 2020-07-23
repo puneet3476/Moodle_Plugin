@@ -3,7 +3,8 @@ require 'connectwithoutdata.php';
 //function.php
 
 function make_avatar($character)
-{   echo (getcwd());
+{   require 'connectwithoutdata.php';
+    echo (getcwd());
 	chdir($class_link);
 
     $path = "avatar/". time() . ".png";
@@ -11,11 +12,11 @@ function make_avatar($character)
 	$red = rand(0, 255);
 	$green = rand(0, 255);
 	$blue = rand(0, 255);
-    imagecolorallocate($image, $red, $green, $blue);  
-    $textcolor = imagecolorallocate($image, 255,255,255);  
-   
- imagettftext($image, 80, 0, 30, 150, $textcolor, $font_link, $character);  
-    #header("Content-type: image/png");  
+    imagecolorallocate($image, $red, $green, $blue);
+    $textcolor = imagecolorallocate($image, 255,255,255);
+
+ imagettftext($image, 80, 0, 30, 150, $textcolor, $font_link, $character);
+    #header("Content-type: image/png");
     imagepng($image, $path);
     imagedestroy($image);
     return $path;
@@ -24,7 +25,7 @@ function make_avatar($character)
 function Get_user_avatar($user_id, $connect)
 {
 	$query = "
-	SELECT user_avatar FROM register_user 
+	SELECT user_avatar FROM register_user
     WHERE register_user_id = '".$user_id."'
 	";
 

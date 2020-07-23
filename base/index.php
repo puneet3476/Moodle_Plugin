@@ -23,9 +23,9 @@ if(isset($_SESSION["user_id"]))
 include('function.php');
 
 
-if ($link_central->link_central_error) {
-  die("Connection failed: " . $link_central->link_central_error);
-}
+// if ($link_central->link_central_error) {
+//   die("Connection failed: " . $link_central->link_central_error);
+// }
 $message = '';
 $error_user_name = '';
 $error_user_email = '';
@@ -120,7 +120,7 @@ if(isset($_POST["register"]))
 		$user_activation_code = md5(rand());
 
 		$user_otp = rand(100000, 999999);
-        $user_email_status='not-verified'; 
+        $user_email_status='not-verified';
 		$data = array(
 			':user_name'		=>	$user_name,
 			':user_email'		=>	$user_email,
@@ -135,8 +135,8 @@ if(isset($_POST["register"]))
           $name_initials=implode("", array($name_initials[0][0],$name_initials[1][0]));
 
 	       $user_avatar = make_avatar(strtoupper($name_initials));
-        
-		$query = "INSERT INTO register_user 
+
+		$query = "INSERT INTO register_user
 		(user_name,user_email, user_Roll_no,user_password, user_activation_code, user_email_status, user_otp,user_avatar,user_role) values('$user_name','$user_email','$student_ID','$user_password','$user_activation_code','$user_email_status','$user_otp','$user_avatar','$user_role');";
 
 if ($link_central->query($query) === TRUE) {
@@ -163,7 +163,7 @@ echo (getcwd());
 
 			//Include required PHPMailer files
 
-	chdir($class_link); 
+	chdir($class_link);
 
 //Create instance of PHPMailer
 	$mail = new PHPMailer();
@@ -206,14 +206,14 @@ echo (getcwd());
 			{
 				$message = $mail->ErrorInfo;
 			}
-		
+
 	}
 	  else{
   echo "Error: " . $query . "<br>" . $link_central->error;
 }
 
 	}
-} 
+}
 
 ?>
 <!DOCTYPE html>
