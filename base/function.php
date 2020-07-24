@@ -5,7 +5,7 @@ require 'connectwithoutdata.php';
 function make_avatar($character)
 {   require 'connectwithoutdata.php';
     echo (getcwd());
-	chdir($class_link);
+	@chdir($class_link);
 
     $path = "avatar/". time() . ".png";
 	$image = imagecreate(200, 200);
@@ -17,8 +17,8 @@ function make_avatar($character)
 
  imagettftext($image, 80, 0, 30, 150, $textcolor, $font_link, $character);
     #header("Content-type: image/png");
-    imagepng($image, $path);
-    imagedestroy($image);
+    @imagepng($image, $path);
+    @imagedestroy($image);
     return $path;
 }
 
