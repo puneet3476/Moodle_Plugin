@@ -9,7 +9,7 @@ if (empty($folder_name) or empty($database_name) ) {
 $dir_name="/opt/lampp/htdocs/".$folder_name;//use this for windows "C:\MAMP\htdocs"."\\".$folder_name;
 
 // Store the path of source file
-$source = "/opt/lampp/htdocs/base";// for windows "C:\MAMP\htdocs\base"
+$source =   /base";// for windows "C:\MAMP\htdocs\base"
 $hyperlink=$urla.$appache_localhost_port."//".$folder_name."//".$urlb;
 
 

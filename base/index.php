@@ -1,5 +1,5 @@
 <?php
-    echo (getcwd());
+    // echo (getcwd());
 	require 'includes/PHPMailer.php';
 	require 'includes/SMTP.php';
 	require 'includes/Exception.php';

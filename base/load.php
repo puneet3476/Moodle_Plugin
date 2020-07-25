@@ -459,7 +459,7 @@ require 'connect.php';
 
       $image_url="otp-php-registration/class/".$chatavatar['user_avatar'];
      ?>
-    <img src="../<?php echo($image_url);?>" alt="Avatar" class="profile_avatar">
+    <img src="../<?php echo($image_url);?>" class="profile_avatar">
     <br>
     Email:
     <?php
@@ -1035,18 +1035,22 @@ require 'connect.php';
       var body = document.getElementsByTagName("body")[0];
       var cis = document.getElementsByClassName('chatarea')[0];
 
-      if (loginuser == "empty1") {
-        alert("Wrong Email ID Or Password");
-        document.getElementById('login_but').innerHTML="Login";
-        document.getElementById('login_but').href="<?php echo($url_h.$appache_localhost_port.$folder."login.php")?>";
-      }
       if (loginuser != "empty1" && loginbool == "1") {
+          log.innerHTML = "Logout";
+        }
 
-              document.getElementById('login_but').innerHTML="Logout";
-              document.getElementById('login_but').href="<?php echo($url_h.$appache_localhost_port.$folder."logout.php")?>";
+        if (loginbool != "1" || loginuser == "empty1") {
+          //document.getElementsByClassName("chatbox_downbar")[0].style.display='none';
+          document.getElementsByClassName("chatbox_downbar")[0].id = "log";
+          log_second.style.display = 'block';
+          n_btn.style.display = 'none';
+          n_in.style.display = 'none';
+          c_btn.style.display = 'none';
+          c_in.style.display = 'none';
+          ilb.style.display = 'none';
 
+        }
 
-      }
 
 
       mover.addEventListener('mouseover', function() {
