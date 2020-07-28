@@ -2,6 +2,7 @@
 session_start();
 require 'connect.php';
 
+
 ?>
 
 <!DOCTYPE HTML>
@@ -13,7 +14,6 @@ require 'connect.php';
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/chatbox.css" />
   <link rel="stylesheet" type="text/css" href="assets/css/videocontrols.css">
@@ -80,13 +80,16 @@ require 'connect.php';
   </video> -->
     <div>Topics:</div>
     <ul class="vidchaNav">
-      <li data-start="0" class="topics">1. Intro</li>
-      <li data-start="6.6" class="topics">2. Types of Viruses</li>
-      <li data-start="12.1" class="topics">3. Prevention</li>
-      <li data-start="15.1" class="topics">4. Cause</li>
-      <li data-start="18.1" class="topics">5. Measures</li>
-      <li data-start="19.1" class="topics">6. Eradication</li>
-      <li data-start="22.1" class="topics">7. Conclusion</li>
+      <?php
+      require 'connect.php';
+       $q="SELECT * FROM `segments`";
+    $segments = mysqli_query($link,$q);
+    if (mysqli_num_rows($segments) > 0) {
+    while($row = mysqli_fetch_assoc($segments)) { ?>
+        <li data-start="<?php echo $row['segment_time']?>" class="topics"><?php echo $row['segments_name']?></li>
+    <?php }
+  }?>
+
     </ul>
 
     <ul class="graph" id="graph">

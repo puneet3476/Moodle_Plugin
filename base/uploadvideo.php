@@ -1,19 +1,15 @@
 <?php
-$appache_localhost_port='8888';//............This you may have to change
-$urla="Location: http://localhost:";//............This you may have to change
-$user = 'root';//............This you may have to change
-
-$password = '';//............This you may have to change
-
-$users_db = 'central';//............This you may have to change
-$host = 'localhost:8889';//............This you may have to change
-$urlb="load.php";
-
+require 'connectwithoutdata.php';
+$segs=array();$times=array();
 if(isset($_FILES['video'])){
 $dir_name=$_POST['dir_name'];
 $folder_name=$_POST['folder_name'];
 $database_name=$_POST['database_name'];
 $hyperlink=$_POST['hyperlink'];
+for($x=1;$x<=2;$x++){
+    $segs[$x]=$_POST['seg'.$x];
+    $times[$x]=$_POST['time'.$x];
+}
 $uploadfile = basename($_FILES['video']['name']);
 $videopath=$dir_name."\\videos\\".$uploadfile;
 
@@ -28,12 +24,17 @@ $link_central = new mysqli(
    $user,
    $password,$users_db
 );
+$link_video = new mysqli(
+   $host,
+   $user,
+   $password,$database_name
+);
 
 if ($video_extension!='mp4') {?>
 	<h3>Video format should be mp4</h3>
 	<?php
 	die();
-	
+
 }
 if ($uploadsize>1.8e+8) {?>
 	<h3>Video size should not be more than 200MB</h3>
@@ -49,9 +50,18 @@ rename($videopath,$dir_name."\\videos\\"."video1.".$video_extension);
 <h3>Video Uploaded Successfully</h3>
 <h4><?php echo $uploadsize;?></h4>
 <?php
+
 $total_videos="INSERT INTO total_videos (database_name,folder_name,page_url)
 VALUES ('$database_name','$folder_name','$hyperlink')" ;
-if ($link_central->query($total_videos) === TRUE) {
+for($x=1;$x<=sizeof($segs);$x++){
+    $e=$_POST['seg'.$x];$ss=$_POST['time'.$x];
+    $total_segments="INSERT INTO segments (segments_name,segment_time)
+    VALUES ('$e','$ss')" ;
+    $link_video->query($total_segments);
+}
+
+
+if ($link_central->query($total_videos) === TRUE  ) {
     echo "New record created successfully";
 }
 else{
@@ -68,6 +78,7 @@ else{
 print_r($_FILES);
 } }
 else{?>
+    <!-- <?php echo $segs[0];?> -->
 	<h3>Video Cannot be uploaded because of connection error.<br>
 	Video size should not be more than 200MB.
     But you can increase the  maximum allowable upload size in php.ini file by changing the upload_max_size and post_max_file</h3>

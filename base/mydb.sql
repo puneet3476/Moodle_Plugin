@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 19, 2020 at 10:15 PM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.8
+-- Generation Time: Jul 25, 2020 at 09:56 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mydb`
+-- Database: `aloo`
 --
 
 -- --------------------------------------------------------
@@ -34,9 +34,8 @@ CREATE TABLE `chat` (
   `time_mark` time DEFAULT NULL,
   `second` int(30) DEFAULT NULL,
   `reaction` int(2) DEFAULT NULL,
-  `Replies` int(10) NOT NULL DEFAULT '0',
+  `Replies` int(10) NOT NULL DEFAULT 0,
   `student_ID` int(12) NOT NULL
-
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -45,31 +44,6 @@ CREATE TABLE `chat` (
 
 INSERT INTO `chat` (`id`, `chatuser`, `chat`, `time_mark`, `second`, `reaction`, `Replies`, `student_ID`) VALUES
 (1, 'Admin', 'WELCOME !!', '00:00:04', 4, 1, 0, 0);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `chat`
---
-ALTER TABLE `chat`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `chat`
---
-ALTER TABLE `chat`
-  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 -- --------------------------------------------------------
 
@@ -91,6 +65,16 @@ CREATE TABLE `clickdata` (
   `x` varchar(20) DEFAULT NULL,
   `y` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `clickdata`
+--
+
+INSERT INTO `clickdata` (`id`, `user_id`, `username`, `Event`, `Start_Time`, `from_video_timestamp`, `to_video_timestamp`, `Post_ID`, `Bar_ID`, `display_style`, `x`, `y`) VALUES
+(44, 31, 'Deepam Ban', 'submit_chat', '2020-07-25 19:02:20', '00:00:00', NULL, 12, NULL, NULL, NULL, NULL),
+(45, 31, 'Deepam Ban', 'Select_Chat', '2020-07-25 19:02:33', NULL, '00:00:00', NULL, NULL, NULL, NULL, NULL),
+(46, 31, 'Deepam Ban', 'Select_Note', '2020-07-25 19:02:33', NULL, '00:00:00', NULL, NULL, NULL, NULL, NULL),
+(47, 31, 'Deepam Ban', 'Select_Chat', '2020-07-25 19:02:34', NULL, '00:00:00', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -168,12 +152,26 @@ CREATE TABLE `reply` (
   `reply` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `segments`
+--
+
+CREATE TABLE `segments` (
+  `segments_name` varchar(20) NOT NULL,
+  `segment_time` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Indexes for dumped tables
 --
 
 --
-
+-- Indexes for table `chat`
+--
+ALTER TABLE `chat`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `clickdata`
@@ -215,13 +213,17 @@ ALTER TABLE `reply`
 -- AUTO_INCREMENT for dumped tables
 --
 
-
+--
+-- AUTO_INCREMENT for table `chat`
+--
+ALTER TABLE `chat`
+  MODIFY `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `clickdata`
 --
 ALTER TABLE `clickdata`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `note`
