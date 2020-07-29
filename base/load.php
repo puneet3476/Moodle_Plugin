@@ -14,15 +14,34 @@ require 'connect.php';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <link rel="stylesheet" href="assets/css/chatbox.css" />
-  <link rel="stylesheet" type="text/css" href="assets/css/videocontrols.css">
-  <link rel='stylesheet' type='text/css' href='assets/css/player.css' />
+  <link rel="stylesheet" href="../../basic/assets/css/main.css" />
+  <link rel="stylesheet" href="../../basic/assets/css/chatbox.css" />
+  <link rel="stylesheet" type="text/css" href="../../basic/assets/css/videocontrols.css">
+  <link rel='stylesheet' type='text/css' href='.<?php
+session_start();
+require 'connect.php';
+
+?>
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+  <title>Demo</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="assets/dist/plyr.css" />
+  <link rel="stylesheet" href="../../basic/assets/css/main.css" />
+  <link rel="stylesheet" href="../../basic/assets/css/chatbox.css" />
+  <link rel="stylesheet" type="text/css" href="../../basic/assets/css/videocontrols.css">
+  <link rel='stylesheet' type='text/css' href='../../basic/assets/css/player.css' />
+  <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../basic/assets/dist/plyr.css" />
   <link href="https://vjs.zencdn.net/7.8.3/video-js.css" rel="stylesheet" />
   <link href="//vjs.zencdn.net/7.8.2/video-js.min.css" rel="stylesheet">
-  <link href="assets/videojs.chapter-thumbnails.min.css" rel="stylesheet">
+  <link href="../../basic/assets/videojs.chapter-thumbnails.min.css" rel="stylesheet">
 
 
 
@@ -39,9 +58,9 @@ require 'connect.php';
       </a>
       <nav id="nav">
 
-        <a id="login_but" href="<?php echo($url_h.$appache_localhost_port.$folder."login.php")?>">Login </a>
+        <a id="login_but" href="<?php echo($url_h.$appache_localhost_port.$course.$folder."login.php")?>">Login </a>
 
-        <a href="<?php echo($url_h.$appache_localhost_port.$folder."index.php")?>">Sign up</a>
+        <a href="<?php echo($url_h.$appache_localhost_port.$course.$folder."index.php")?>">Sign up</a>
         <button id="myBtn" class="button alt">How to Use</button>
         <button id="freeze" class="button">Freeze</button>
 
@@ -77,14 +96,19 @@ require 'connect.php';
     <source src="videos/video1.mp4" type="video/mp4" >
   </video> -->
     <div>Topics:</div>
-    <ul class="vidchaNav">
-      <li data-start="0" class="topics">1. Intro</li>
-      <li data-start="6.6" class="topics">2. Types of Viruses</li>
-      <li data-start="12.1" class="topics">3. Prevention</li>
-      <li data-start="15.1" class="topics">4. Cause</li>
-      <li data-start="18.1" class="topics">5. Measures</li>
-      <li data-start="19.1" class="topics">6. Eradication</li>
-      <li data-start="22.1" class="topics">7. Conclusion</li>
+     <ul class="vidchaNav">
+      <?php
+
+      require 'connect.php';
+
+       $q="SELECT * FROM `segments`";
+    $segments = mysqli_query($link,$q);
+    if (mysqli_num_rows($segments) > 0) {
+    while($row = mysqli_fetch_assoc($segments)) { ?>
+        <li data-start="<?php echo $row['segment_time']?>" class="topics"><?php echo $row['segments_name']?></li>
+    <?php }
+  }?>
+
     </ul>
 
     <ul class="graph" id="graph">
@@ -116,9 +140,9 @@ require 'connect.php';
         </progress>
       </li>
       <div style="width: 100%;padding-left: 10px;padding-right: 20px;">
-        <div><button id="playpause" type="button"><img src="images/play_pause.png" height="25" width="25" onClick="play()"></button></li>
-          <li><button id="stop" type="button"><img src="images/stop.png" height="25" width="25"></button></li>
-          <li><button id="mute" type="button"><img src="images/mute.svg" height="25" width="25"></button></li>
+        <div><button id="playpause" type="button"><img src="../../basic/images/play_pause.png" height="25" width="25" onClick="play()"></button></li>
+          <li><button id="stop" type="button"><img src="../../basic/images/stop.png" height="25" width="25"></button></li>
+          <li><button id="mute" type="button"><img src="../../basic/images/mute.svg" height="25" width="25"></button></li>
           <li class="positioner"></li>
           <script language="javascript" type="text/javascript">
 
@@ -177,7 +201,7 @@ require 'connect.php';
                 success: function(data) {}
               });
             };
-          
+
 
 
 
@@ -393,24 +417,16 @@ require 'connect.php';
 
             }
           </script>
-          <li><button id="volinc" type="button"><img src="images/volinc.png" height="25" width="25"></button></li>
-          <li><button id="voldec" type="button"><img src="images/voldec.png" height="25" width="25"></button></li>
+          <li><button id="volinc" type="button"><img src="../../basic/images/volinc.png" height="25" width="25"></button></li>
+          <li><button id="voldec" type="button"><img src="../../basic/images/voldec.png" height="25" width="25"></button></li>
           <li><button type="button" style="float: right;"><i class="fas fa-expand"></i></button></li>
         </div>
     </ul>
-    <script type="text/javascript" src="assets/js/videocontrols.js"></script>
-    <div class="main5" id="main5" style="display:none;">
-      <img src="images/cross.png" class="cross" onclick="cross1()">
-      <form class="form1" action="logout.php" method="POST">
-        <button class="submit3" align="center" type="submit" name="submit" id="logout_button">Logout</button>
-      </form>
-
-
-    </div>
+    <script type="text/javascript" src="../../basic/assets/js/videocontrols.js"></script>
     <div class="chatbox" id="mydiv">
       <div class="chatbox_upbar">
         <div class="dragarea" id="mydivheader">DragArea</div>
-     
+
         <div class="btn not-active" id="ddb">
           <span style="background: black;height: 3.2px;"></span>
           <span style="background: black;height: 3.2px;"></span>
@@ -447,7 +463,7 @@ require 'connect.php';
 
           <div class="main8" id="main8">Your profile<br>
             Name:<?php echo ($_SESSION['loginname']); ?><br>
-              <?php 
+              <?php
     $this_chatuser=$_SESSION['loginid'];
     $q="SELECT * FROM `register_user` WHERE `Student_ID`='$this_chatuser';";
     $avatar = mysqli_query($link_central,$q);
@@ -457,11 +473,11 @@ require 'connect.php';
 
       $image_url="otp-php-registration/class/".$chatavatar['user_avatar'];
      ?>
-    <img src="../<?php echo($image_url);?>" alt="Avatar" class="profile_avatar">
+    <img src="../../<?php echo($image_url);?>" alt="Avatar" class="profile_avatar">
     <br>
-    Email: 
-    <?php 
-    echo ($chatavatar['user_email']);    
+    Email:
+    <?php
+    echo ($chatavatar['user_email']);
     }
     ?>
      <br>
@@ -480,9 +496,10 @@ require 'connect.php';
 
 
 
-            <?php     //<textarea class="topic"  type="text" align="center" name="topic" placeholder="ADD TOPIC"></textarea>    
+            <?php     //<textarea class="topic"  type="text" align="center" name="topic" placeholder="ADD TOPIC"></textarea>
             ?>
-            <script type="text/javascript" src="jquery.js"></script>
+            <script src="../../basic/assets/js/jquery.js"></script>
+
             <script type="text/javascript">
               var btn = $('.btn');
 
@@ -494,7 +511,7 @@ require 'connect.php';
 
 
               function cross1(argument) {
-                document.getElementById("main5").style.display = 'none';
+
               }
               $(document).ready(function() {
                 var usery = document.querySelector('#phplogin').innerText;
@@ -625,7 +642,7 @@ require 'connect.php';
                       usery: usery
                     },
                     success: function(d) {
-                      urldownload = "http://localhost:<?php echo ($appache_localhost_port); ?>/Webdevpro-master/ajaxy.php?display=1&usery=" + usery; //............This you may have to change
+                      urldownload = "http://localhost:<?php echo ($appache_localhost_port); ?><?php echo($folder);?>ajaxy.php?display=1&usery=" + usery; //............This you may have to change
                       window.location.href = urldownload;
                     }
                   })
@@ -984,11 +1001,11 @@ require 'connect.php';
         <div class="chatbox_downbar" id="log">
           <button class='login3' style="display: none;" onclick='logClick()'>Login</button>
           <ul class="insight_list" id="il">
-            <li class="reaction"><img src="images/1.png" class="react"></li>
-            <li class="reaction"><img src="images/2.png" class="react"></li>
-            <li class="reaction"><img src="images/3.png" class="react"></li>
-            <li class="reaction"><img src="images/4.png" class="react"></li>
-            <li class="reaction"><img src="images/5.png" class="react"></li>
+            <li class="reaction"><img src="../../basic/images/1.png" class="react"></li>
+            <li class="reaction"><img src="../../basic/images/2.png" class="react"></li>
+            <li class="reaction"><img src="../../basic/images/3.png" class="react"></li>
+            <li class="reaction"><img src="../../basic/images/4.png" class="react"></li>
+            <li class="reaction"><img src="../../basic/images/5.png" class="react"></li>
           </ul>
           <span style="display:<?php echo (isset($_SESSION['loginname'])) ? 'block' : 'none'; ?>">
             <div class="comment_insight" id="ilb">+</div>
@@ -1039,11 +1056,11 @@ require 'connect.php';
         document.getElementById('login_but').href="<?php echo($url_h.$appache_localhost_port.$folder."login.php")?>";
       }
       if (loginuser != "empty1" && loginbool == "1") {
-            
-              document.getElementById('login_but').innerHTML="Logout";
-              document.getElementById('login_but').href="<?php echo($url_h.$appache_localhost_port.$folder."logout.php")?>";
 
-            
+              document.getElementById('login_but').innerHTML="Logout";
+              document.getElementById('login_but').href="<?php echo($url_h.$appache_localhost_port.$course.$folder."logout.php")?>";
+
+
       }
 
 
@@ -1085,10 +1102,10 @@ require 'connect.php';
         dd.style.display = "none";
         document.getElementsByClassName("chatbox_downbar")[0].style.pointerEvents = "all";
 
-      
+
         document.getElementById("main3").style.display = 'none';
         document.getElementById("main4").style.display = 'none';
-        document.getElementById("main5").style.display = 'none';
+
         document.getElementById("main6").style.display = 'none';
         document.getElementById("main7").style.display = 'block';
         document.getElementById("main8").style.display = 'none';
@@ -1133,10 +1150,10 @@ require 'connect.php';
         dd.style.display = "none";
         document.getElementsByClassName("chatbox_downbar")[0].style.pointerEvents = "all";
 
-        
+
         document.getElementById("main4").style.display = 'none';
         document.getElementById("main3").style.display = 'none';
-        document.getElementById("main5").style.display = 'none';
+
         document.getElementById("main7").style.display = 'none';
         document.getElementById("main8").style.display = 'block';
         document.getElementById("sort_method").style.display = "none";
@@ -1180,10 +1197,10 @@ require 'connect.php';
         dd.style.display = "none";
         document.getElementsByClassName("chatbox_downbar")[0].style.pointerEvents = "all";
 
-        
+
         document.getElementById("main4").style.display = 'none';
         document.getElementById("main3").style.display = 'none';
-        document.getElementById("main5").style.display = 'none';
+
         document.getElementById("main7").style.display = 'none';
         document.getElementById("main8").style.display = 'none';
         document.getElementById("sort_method").style.display = "block";
@@ -1324,19 +1341,19 @@ require 'connect.php';
 
 
     <!-- Scripts -->
-    <!--    <script src="assets/js/jquery.min.js"></script>
-      <script src="assets/js/skel.min.js"></script>
-      <script src="assets/js/util.js"></script>
-      <script src="assets/js/main.js"></script> -->
-    <!-- <script src="assets/js/drag.js"></script> !-->
+    <!--    <script src="../../basic/assets/js/jquery.min.js"></script>
+      <script src="../../basic/assets/js/skel.min.js"></script>
+      <script src="../../basic/assets/js/util.js"></script>
+      <script src="../../basic/assets/js/main.js"></script> -->
+    <!-- <script src="../../basic/assets/js/drag.js"></script> !-->
 
-    <script src="assets/js/drag.js"></script>
-    <script src="assets/js/jquery.js"></script>
-    <script src='assets/js/javascript.js'></script>
-    <!--      <script src="assets/videojs.chapter-thumbnails.min.js"></script>
+    <script src="../../basic/assets/js/drag.js"></script>
+    <script src="../../basic/assets/js/jquery.js"></script>
+    <script src='../../basic/assets/js/javascript.js'></script>
+    <!--      <script src="../../basic/assets/videojs.chapter-thumbnails.min.js"></script>
     <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
-    <script src="assets/js/vidcha.js"></script>
-    <script src="assets/dist/plyr.js"></script>
+    <script src="../../basic/assets/js/vidcha.js"></script>
+    <script src="../../basic/assets/dist/plyr.js"></script>
 
     <script>
       MyObject = {
@@ -1348,7 +1365,7 @@ require 'connect.php';
               var pause = 0;
               var playpause = 1;
               var loginbool = document.getElementById("loginbool").innerHTML;
-              
+
               if (letbool) {
                 play = 1;
 
@@ -1408,9 +1425,9 @@ require 'connect.php';
               var volumechange = 1;
               var vid_curenttime = timeConvert(player.currentTime);
               var volume = player.volume;
-              
+
               if (player.muted==true) {
-               var mute = 1; 
+               var mute = 1;
               }
               $.ajax({
                 url: "clickdata.php",
@@ -1429,10 +1446,10 @@ require 'connect.php';
     // other functions...
 }
       const player = new Plyr('#myVideo');
- 
+
       player.on('playing', play => {
       const instance = play.detail.plyr;
-      
+
 });
       player.on('pause', pause => {
         console.log('pause');
@@ -1453,12 +1470,12 @@ require 'connect.php';
       player.on('seeking', seeking => {
         console.log('seeking');
         console.log(MyObject.timeConvert(player.currentTime));
-  
-         });      
+
+         });
       player.on('seeked', seeked => {
         console.log('seeked');
         console.log(MyObject.timeConvert(player.currentTime));
-  
+
          });
 
 
@@ -1469,6 +1486,6 @@ require 'connect.php';
 
 
 </body>
-<script src="assets/js/feature.js"></script>
+<script src="../../basic/assets/js/feature.js"></script>
 
 </html>

@@ -13,16 +13,16 @@ sleep(2);
 
 if(isset($_POST["action"]))
 {
-	if($_POST["action"] == 'email'){
+    if($_POST["action"] == 'email'){
 $email=mysqli_real_escape_string($link_central, $_POST['user_email']);
 $pass=mysqli_real_escape_string($link_central, $_POST['user_password']);
 
 if (empty($email) || empty($pass)) {
-echo "string";
+echo "Empty password or email";
 exit();
 }
 if ($email=="admin" && $pass=="adminbeijing") {
-header($admin_panel); 	
+header($admin_panel);
 }
 
 
@@ -60,14 +60,21 @@ echo "sucesss";
 header($url_load);
 }
 else {
-$_SESSION['loginuser']="empty1";
-echo "wrong";
-header($url_load);
-  
+    $_SESSION['loginuser']="empty1";
+    echo "wrong";
+    header($url_load);
+    ?>
+    <script type="text/javascript">alert("Wrong Credentials. Go back and try again");</script>
+    <?php
+
+
+
+
 }
 
 
 }
+
 }
 }
 ?>

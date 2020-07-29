@@ -1,10 +1,10 @@
 <?php
-    echo (getcwd());
-	require 'includes/PHPMailer.php';
-	require 'includes/SMTP.php';
-	require 'includes/Exception.php';
+    // echo (getcwd());
+	require '../../basic/includes/PHPMailer.php';
+	require '../../basic/includes/SMTP.php';
+	require '../../basic/includes/Exception.php';
 	require 'connect.php';
-	require 'connectwithoutdata.php';
+	// require 'connectwithoutdata.php';
 //Define name spaces
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\SMTP;
@@ -20,12 +20,16 @@ if(isset($_SESSION["user_id"]))
 	header($urla.$appache_localhost_port."/otp-php-registration/home.php");
 }
 
+
+
+$link_course=new mysqli(
+   $host,
+   $user,
+   $password,$users_db
+);
 include('function.php');
 
-
-if ($link_central->link_central_error) {
-  die("Connection failed: " . $link_central->link_central_error);
-}
+echo $users_db;
 $message = '';
 $error_user_name = '';
 $error_user_email = '';
@@ -63,7 +67,7 @@ if(isset($_POST["register"]))
 			$error_user_email = '<label class="text-danger">Enter Valid Email Address</label>';
 		}
 	 $q="SELECT * FROM `register_user` WHERE `user_email`='$user_email' ";
-     $result = $link_central->query($q);
+     $result = $link_course->query($q);
 
      if ($result->num_rows > 0) {
        $error_user_email = '<label class="text-danger">This Email Address is already Registered. Please Login</label>';
@@ -120,7 +124,7 @@ if(isset($_POST["register"]))
 		$user_activation_code = md5(rand());
 
 		$user_otp = rand(100000, 999999);
-        $user_email_status='not-verified'; 
+        $user_email_status='not-verified';
 		$data = array(
 			':user_name'		=>	$user_name,
 			':user_email'		=>	$user_email,
@@ -135,13 +139,13 @@ if(isset($_POST["register"]))
           $name_initials=implode("", array($name_initials[0][0],$name_initials[1][0]));
 
 	       $user_avatar = make_avatar(strtoupper($name_initials));
-        
-		$query = "INSERT INTO register_user 
+
+		$query = "INSERT INTO register_user
 		(user_name,user_email, user_Roll_no,user_password, user_activation_code, user_email_status, user_otp,user_avatar,user_role) values('$user_name','$user_email','$student_ID','$user_password','$user_activation_code','$user_email_status','$user_otp','$user_avatar','$user_role');";
 
-if ($link_central->query($query) === TRUE) {
+if ($link_course->query($query) === TRUE) {
 
-echo (getcwd());
+// echo (getcwd());
 /*
 
 			require 'class.phpmailer.php';
@@ -163,7 +167,7 @@ echo (getcwd());
 
 			//Include required PHPMailer files
 
-	chdir($class_link); 
+	chdir($class_link);
 
 //Create instance of PHPMailer
 	$mail = new PHPMailer();
@@ -206,14 +210,14 @@ echo (getcwd());
 			{
 				$message = $mail->ErrorInfo;
 			}
-		
+
 	}
 	  else{
-  echo "Error: " . $query . "<br>" . $link_central->error;
+  echo "Error: " . $query . "<br>" . $link_course->error;
 }
 
 	}
-} 
+}
 
 ?>
 <!DOCTYPE html>

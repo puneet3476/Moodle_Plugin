@@ -1,0 +1,52 @@
+
+.questionbox {
+	position: fixed;
+	width: 80%;
+	height: auto;
+	top: 40%;
+	left: 10%;
+	z-index: 999999999999;
+	background: white;
+}
+.questionbox_container {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 999999999998;
+	background: white;
+}
+.questionbox_header {
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.questionbox_options_container {
+	width: 70%;
+	margin: 0 auto;
+	height: fit-content;
+	min-height: 3rem;
+}
+
+.questionbox_option_container {
+	width: 50%;
+	float: left;
+	text-align: center;
+}
+
+.questionbox_submit_btn {
+	display: block;
+	margin: 0 auto;
+	color: white;
+	background: #03bafc;
+	border-radius: 5%;
+}
+
+.questionbox_submit_btn:hover,
+.questionbox_submit_btn:focus {
+	background: #037bfc;
+	border: 1px solid #1803fc;
+}
+

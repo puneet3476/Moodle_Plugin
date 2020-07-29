@@ -66,10 +66,9 @@ if(isset($_SESSION["user_id"]))
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 		<br />
 		<br />
 	</body>
 </html>
-

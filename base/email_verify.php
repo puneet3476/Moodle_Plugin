@@ -1,7 +1,7 @@
 <?php
-
+require 'connect.php';
 //email_verify.php
-$connect =new mysqli('localhost:8889',"root", "root",'central');
+
 
 $error_user_otp = '';
 $user_activation_code = '';
@@ -21,16 +21,16 @@ if(isset($_GET["code"]))
 		{$user_otp=$_POST['user_otp'];
 			$query = "SELECT * FROM `register_user` WHERE `user_activation_code` = '$user_activation_code'AND `user_otp` = '$user_otp';
 			";
-           $resulty = mysqli_query($connect,$query );
-if ($rowy=mysqli_fetch_array($resulty)>0) 
+           $resulty = mysqli_query($link_central,$query );
+if ($rowy=mysqli_fetch_array($resulty)>0)
 			{
 				$query = "
-				UPDATE register_user 
-				SET user_email_status = 'verified' 
+				UPDATE register_user
+				SET user_email_status = 'verified'
 				WHERE user_activation_code = '".$user_activation_code."'
 				";
 
-				$statement = $connect->prepare($query);
+				$statement = $link_central->prepare($query);
 
 				if($statement->execute())
 				{

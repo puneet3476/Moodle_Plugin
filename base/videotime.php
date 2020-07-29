@@ -2,7 +2,7 @@
 session_start();
 require 'connect.php';
 if (!isset($time_array)) {
-	# code...
+    # code...
 $time_=['00:00:00'];
 }
 
@@ -14,4 +14,3 @@ print_r($time_array);
 //$_SESSION['vid_alltime']=$vid_alltime;
 //echo($_SESSION['vid_alltime']);
 //}
-
