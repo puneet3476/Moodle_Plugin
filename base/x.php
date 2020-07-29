@@ -8,16 +8,6 @@ $vid_div=$vid_len / 20;
 $t_arr = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 $r1_arr = array(0,0,0,0,0,0,0);
 $r2_arr = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-$q = mysqli_query($link,"SELECT second,reaction FRO<?php
-require 'connect.php';
-
-//we need t r2 n tmax load kisi div
-if (isset($_GET['x'])) {
-$vid_len=$_GET['vid_len'];
-$vid_div=$vid_len / 20;
-$t_arr = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-$r1_arr = array(0,0,0,0,0,0,0);
-$r2_arr = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 $q = mysqli_query($link,"SELECT second,reaction FROM `chat` ORDER BY second ASC" );
 $m = 1;
 while($row=mysqli_fetch_array($q)){

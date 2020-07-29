@@ -1,6 +1,7 @@
 <?php
 require 'connectwithoutdata.php';
 $course_name=$_POST['course_name'];
+$course_desc=$_POST['course_desc'];
 
 if (empty($course_name)) {
 	echo "Error: Either Course name or course Database name is empty";
@@ -22,8 +23,8 @@ $dir_name=$homedir.$course_name;
 $mysqli = new mysqli($host, $user,$password,$course_name);//............This you may have to change
 $instsql=file_get_contents('institution.sql');
 $link_inst=new mysqli($host,$user,$password,'institution');
-$course="INSERT INTO Courses (course_name,course_id)
-    VALUES ('$course_name','1')" ;
+$course="INSERT INTO Courses (course_name,course_id,description)
+    VALUES ('$course_name','1','$course_desc')" ;
 $link_inst->query($course);
 
 /* execute multi query */
