@@ -32,5 +32,5 @@ $mysqli->multi_query($sql);
 
 //new folder for the course
 @mkdir($dir_name);
+header('location:add_students.php?course_name='.$course_name);
 
-header('location:add_videos.php?course_name='.$course_name);

@@ -42,7 +42,45 @@ CREATE TABLE `register_user` (
   `user_role` varchar(30) NOT NULL DEFAULT 'Student'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+-- ----------------------------------------------------
+-- Table structure for table `tbl_info`
+--
+
+CREATE TABLE `tbl_info` (
+  `id` int(6) UNSIGNED NOT NULL,
+  `Name` varchar(30) NOT NULL,
+  `Roll_no` varchar(30) NOT NULL,
+  `Email` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tbl_info`
+--
+ALTER TABLE `tbl_info`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD UNIQUE KEY `Roll_no` (`Roll_no`),
+  ADD UNIQUE KEY `Email` (`Email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tbl_info`
+--
+ALTER TABLE `tbl_info`
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT;
+COMMIT;
 -- --------------------------------------------------------
+
+
+
 
 --
 -- Table structure for table `total_videos`

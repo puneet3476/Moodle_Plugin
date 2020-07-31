@@ -23,7 +23,7 @@ echo $temp;
 $link_courses = new mysqli(
    $host,
    $user,
-   $password,$users_db
+   $password,$database_name
 );
 $link_video = new mysqli(
    $host,

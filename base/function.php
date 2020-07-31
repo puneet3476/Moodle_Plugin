@@ -3,7 +3,7 @@
 //function.php
 
 function make_avatar($character)
-{   require 'connect.php';
+{   require 'connectwithoutdata.php';
     @chdir($class_link);
 
     $path = "avatar/". time() . ".png";
@@ -20,6 +20,7 @@ function make_avatar($character)
     @imagedestroy($image);
     return $path;
 }
+
 
 function Get_user_avatar($user_id, $connect)
 {

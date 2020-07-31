@@ -73,6 +73,15 @@ if(isset($_POST["register"]))
        $error_user_email = '<label class="text-danger">This Email Address is already Registered. Please Login</label>';
 
 	    }
+	  	 $qr="SELECT * FROM `tbl_info` WHERE `Email`='$user_email' ";
+     $result = $link_course->query($qr);
+
+     if (!($result->num_rows > 0)) {
+       $error_user_email = '<label class="text-danger">This Email Address is not Registered on our site. Please use your Institute Email.</label>';
+
+	    }
+
+
 
 
 	}
@@ -84,6 +93,22 @@ if(isset($_POST["register"]))
 	{
 		$student_ID = trim($_POST["student_ID"]);
 		$student_ID = htmlentities($student_ID);
+		$student_ID=strtoupper($student_ID);
+	    $q="SELECT * FROM `register_user` WHERE `user_Roll_no`='$student_ID' ";
+     $result = $link_course->query($q);
+
+     if ($result->num_rows > 0) {
+       $error_student_ID = '<label class="text-danger">This Roll No. is already Registered. Please Login</label>';
+
+	    }
+	  	 $qr="SELECT * FROM `tbl_info` WHERE `Roll_no`='$student_ID' ";
+     $resultr = $link_course->query($qr);
+
+     if (!($resultr->num_rows > 0)) {
+       $error_student_ID = '<label class="text-danger">This Roll No. is invalid.</label>';
+
+	    }
+
 	}
 
 	    	if(empty($_POST["user_role"]))
@@ -111,15 +136,16 @@ if(isset($_POST["register"]))
 	}
 	else
 	{
-		$user_password_again = trim($_POST["user_password"]);
-		$user_password_again = password_hash($user_password, PASSWORD_DEFAULT);
-		if(!password_verify($user_password,$user_password_again)){
+		$user_password_again = trim($_POST["user_password_again"]);
+		if(password_verify($user_password_again,$user_password)){}
+			else{
 			$error_user_password_again = '<label class="text-danger">Password didn`t matched</label>';
+			$error_user_password = '<label class="text-danger">Password didn`t matched</label>';
 		}
 	}
 
 
-	if($error_user_name == '' && $error_user_email == '' && $error_user_password == '' && $error_user_password_again=='')
+	if($error_user_name == '' && $error_user_email == '' && $error_user_password == '' && $error_user_password_again=='' && $error_student_ID=='')
 	{
 		$user_activation_code = md5(rand());
 
