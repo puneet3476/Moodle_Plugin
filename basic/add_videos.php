@@ -1,6 +1,11 @@
 
 <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
 <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
+<style>
+.hovers:hover{
+    background-color:#999999;
+}
+</style>
 <?php
 if (isset($_GET['course_name'])) {
 	$course_name=$_GET['course_name'];
@@ -40,15 +45,31 @@ if (isset($_GET['course_name'])) {
             $result = mysqli_query($link_course,"SELECT * FROM `total_videos` " );
             while ($row=mysqli_fetch_array($result)) {
             ?>
-            <div class="p-2 " style="cursor:pointer;"><a href="<?php echo ('../'.$course_name.'/'.$row['folder_name'].'/'.'load.php') ?>" class="text-decoration-none text-dark">
-                <div style="text-align:left"><?php echo($row['folder_name']) ?></div>
+            <div class="p-2 hovers rounded" style="cursor:pointer;"><a href="<?php echo ('../'.$course_name.'/'.$row['folder_name'].'/'.'load.php') ?>" class="text-decoration-none text-dark">
+                <div style="text-align:left" class=""><?php echo($row['folder_name']) ?> <i class="fa fa-arrow-circle-right float-right" aria-hidden="true"></i></div>
             </a></div>
             <?php } ?>
             </div>
         </div>
-        <div class="  col-md-5  mx-auto" ">
-            <div class=" jumbotron" style="background-color:;cursor:pointer;"><h6>Add/Delete Segments to videos</h6></div>
-            <div class="jumbotron" style="background-color:;cursor:pointer;">Re-Upload List of enrolled students</div>
+        <div class="  col-md-5  mx-auto" >
+            <div class=" jumbotron  p-3" style="background-color:;cursor:pointer;"><h5>Add/Delete Segments to videos</h5>
+            <form action="handle_segments.php" class="pt-1" method="POST">
+            <input value="<?php echo $course_name ?>" style="display:none;" name="course" type="text">
+            <label for="videos">Choose a Video:</label>
+            <select id="videos" name="vids">
+                <?php 
+                $result = mysqli_query($link_course,"SELECT * FROM `total_videos` " );
+                while ($row=mysqli_fetch_array($result)) {
+                ?>
+                <option value="<?php echo($row['folder_name']) ?>"><?php echo($row['folder_name']) ?> </option>
+                <?php } ?>
+            </select>
+            <button type="submit" class="btn btn-sm btn-success d-block mx-auto mt-2">Submit</button>
+            </form>
+            
+            </div>
+            <a href="<?php echo 'add_students.php?course_name='.$course_name ?>" class="text-decoration-none text-dark"><div class="jumbotron hovers" style="background-color:;cursor:pointer;">
+            Re-Upload List of enrolled students</div></a>
         </div>
 </div>        
 

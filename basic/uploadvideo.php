@@ -23,7 +23,7 @@ echo $temp;
 $link_courses = new mysqli(
    $host,
    $user,
-   $password,$database_name
+   $password,$course_name
 );
 $link_video = new mysqli(
    $host,
@@ -78,8 +78,8 @@ else{
 <?php
 print_r($_FILES);
 } }
-else{?>
-    <!-- <?php echo $segs[0];?> -->
+else{ ?>
+
     <h3>Video Cannot be uploaded because of connection error.<br>
     Video size should not be more than 200MB.
     But you can increase the  maximum allowable upload size in php.ini file by changing the upload_max_size and post_max_file</h3>
