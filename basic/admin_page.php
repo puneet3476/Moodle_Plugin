@@ -1,7 +1,9 @@
+
 <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
 
 <?php
 require 'connectwithoutdata.php';
+require 'header.php';
 ?>
 <div class="container">
 <h1 class="text-center font-bold mb-2" >Create Course</h1>
@@ -11,10 +13,10 @@ require 'connectwithoutdata.php';
 <h2 class="welcome text-center">Create a new Course</h2>
 	    			<form class="form1" action="create_course.php" method="POST" >
 		      			<input class="username d-block mb-2 mx-auto" type="text" align="center"  name="course_name" placeholder="Course Name">
-                        <textarea class="username d-block mb-2 mx-auto" type="text" align="center"  name="course_desc" rows="5" cols="40" style="padding: 10px;" placeholder="Course Description">
+                        <input class="username d-block mb-2 mx-auto w-50 " type="text" name="course_desc"  style="padding: 10px;" placeholder="Course Description">
                         </textarea>
 
-		      			<button class="submit btn btn-success btn-sm  d-block mx-auto " align="center" type="submit" name="create video">Create Course</button>
+		      			<button class="submit btn btn-success btn-sm  d-block mx-auto  " align="center" type="submit" name="create video">Create Course</button>
 					</form>
 
 <br>

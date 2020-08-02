@@ -9,10 +9,10 @@ if (empty($folder_name) or empty($database_name) ) {
   die();
 }
 
-$dir_name="C:\MAMP\htdocs"."\\".$course_name."\\".$folder_name;
+$dir_name="/opt/lampp/htdocs/".$course_name."/".$folder_name;
 
-// Store the path of source file 
-$source = "C:\MAMP\htdocs\base"; 
+// Store the path of source file
+$source =   "/opt/lampp/htdocs/base";
 $hyperlink=$urla.$appache_localhost_port."/".$course_name."/".$folder_name."/".$urlb;
 
 // Create database
@@ -55,11 +55,11 @@ $createfile=fopen('connect.php', "w") or die("Can't create Connect.php file");
 
 $connect="<?php
 \$user = 'root';//............This you may have to change
-\$password = 'root';//............This you may have to change
+\$password = '';//............This you may have to change
 \$db = '".$database_name."';//............This you may have to change\
 \$users_db = '".$course_name."';//............This you may have to change
-\$host = 'localhost:8889';//............This you may have to change
-\$appache_localhost_port='8888';//............This you may have to change
+\$host = 'localhost';//............This you may have to change
+\$appache_localhost_port='';//............This you may have to change
 \$urla=\"Location: http://localhost:\";//............This you may have to change
 \$url_h=\"http://localhost:\";//............This you may have to change
 \$folder=\"".$folder_name."/\";
