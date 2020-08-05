@@ -3,15 +3,15 @@ $user = 'root';//............This you may have to change
 $password = '';//............This you may have to change
 $host = 'localhost';//............This you may have to change
 $appache_localhost_port='';//............This you may have to change
-$urla="Location: http://localhost";
+$urla="Location: http://hs.rivastudio.cn:8080/";
 $users_db='central';
 $inst='institution';
-$folder="/Webdevpro-master/";
-$class_link="/opt/lampp/htdocs/otp-php-registration/class";
+$folder="/Moodle_Plugin/base/";
+$class_link="/var/www/html/Moodle_Plugin/otp-php-registration/class";
 $urlb="load.php";
-$font_link="/opt/lampp/htdocs/otp-php-registration/class/avatar/PTSans.ttf";
+$font_link="/var/www/html/Moodle_Plugin/otp-php-registration/class/avatar/PTSans.ttf";
 $url_load=$urla.$appache_localhost_port.$folder.$urlb;
-$homedir="/opt/lampp/htdocs/";
+$homedir="/var/www/html/Moodle_Plugin/";
 $admin_panel=$urla.$appache_localhost_port.$folder."beijing_admin.php";
 $link = new mysqli(
    $host,
@@ -29,6 +29,6 @@ $link_inst = new mysqli(
    $password,$inst
 );
 ?>
-?>
+
 
 
