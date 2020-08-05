@@ -16,11 +16,11 @@ for($x=1;$x<=10;$x++){
 $uploadfile = basename($_FILES['video']['name']);
 $videopath=$dir_name."/videos/".$uploadfile;
 
-echo $videopath;
+//echo $videopath;
 $video_extension=pathinfo($videopath,PATHINFO_EXTENSION);
 $uploadsize=$_FILES['video']['size'];
 $temp=$_FILES['video']['tmp_name'];
-echo $temp;
+//echo $temp;
 
 $link_courses = new mysqli(
    $host,
@@ -44,7 +44,8 @@ if ($uploadsize>1.8e+8) {?>
     <?php
     die();
 }
-if (move_uploaded_file($_FILES['video']['tmp_name'], $videopath)) {
+echo getcwd();
+if (@move_uploaded_file($_FILES['video']['tmp_name'], $videopath)) {
 rename($videopath,$dir_name."/videos/"."video1.".$video_extension);
 ?>
 <script type="text/javascript">
