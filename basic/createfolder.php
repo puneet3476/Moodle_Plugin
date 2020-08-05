@@ -9,10 +9,10 @@ if (empty($folder_name) or empty($database_name) ) {
   die();
 }
 
-$dir_name="/var/www/html/Moodle_Plugin/".$course_name."/".$folder_name;
+$dir_name="/opt/lampp/htdocs/Moodle_Plugin/".$course_name."/".$folder_name;
 
 // Store the path of source file
-$source =   "/var/www/html/Moodle_Plugin/base";
+$source =   "/opt/lampp/htdocs/Moodle_Plugin/base";
 $hyperlink=$urla.$appache_localhost_port."/".$course_name."/".$folder_name."/".$urlb;
 
 // Create database
