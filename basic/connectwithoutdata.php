@@ -7,11 +7,11 @@ $urla="Location: http://hs.rivastudio.cn:8080/";
 $users_db='central';
 $inst='institution';
 $folder="/Moodle_Plugin/base/";
-$class_link="/var/www/html/Moodle_Plugin/otp-php-registration/class";
+$class_link="/opt/lampp/htdocs/Moodle_Plugin/otp-php-registration/class";
 $urlb="load.php";
-$font_link="/var/www/html/Moodle_Plugin/otp-php-registration/class/avatar/PTSans.ttf";
+$font_link="/opt/lampp/htdocs/Moodle_Plugin/otp-php-registration/class/avatar/PTSans.ttf";
 $url_load=$urla.$appache_localhost_port.$folder.$urlb;
-$homedir="/var/www/html/Moodle_Plugin/";
+$homedir="/opt/lampp/htdocs/Moodle_Plugin/";
 $admin_panel=$urla.$appache_localhost_port.$folder."beijing_admin.php";
 $link = new mysqli(
    $host,
