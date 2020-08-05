@@ -55,7 +55,7 @@ $createfile=fopen('connect.php', "w") or die("Can't create Connect.php file");
 
 $connect="<?php
 \$user = 'root';//............This you may have to change
-\$password = 'eserc@ipcamera';//............This you may have to change
+\$password = '';//............This you may have to change
 \$db = '".$database_name."';//............This you may have to change\
 \$users_db = '".$course_name."';//............This you may have to change
 \$host = 'localhost';//............This you may have to change
