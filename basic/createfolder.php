@@ -9,10 +9,10 @@ if (empty($folder_name) or empty($database_name) ) {
   die();
 }
 
-$dir_name="/opt/lampp/htdocs/".$course_name."/".$folder_name;
+$dir_name="/var/www/html/Moodle_Plugin/".$course_name."/".$folder_name;
 
 // Store the path of source file
-$source =   "/opt/lampp/htdocs/base";
+$source =   "/var/www/html/Moodle_Plugin/base";
 $hyperlink=$urla.$appache_localhost_port."/".$course_name."/".$folder_name."/".$urlb;
 
 // Create database
@@ -60,10 +60,10 @@ $connect="<?php
 \$users_db = '".$course_name."';//............This you may have to change
 \$host = 'localhost';//............This you may have to change
 \$appache_localhost_port='';//............This you may have to change
-\$urla=\"Location: http://localhost:\";//............This you may have to change
-\$url_h=\"http://localhost:\";//............This you may have to change
+\$urla=\"Location: http://hs.rivastudio.cn:8080/\";//............This you may have to change
+\$url_h=\"http://hs.rivastudio.cn:8080/\";//............This you may have to change
 \$folder=\"".$folder_name."/\";
-\$course=\"/".$course_name."/\";
+\$course=\"/Moodle_Plugin/".$course_name."/\";
 \$urlb=\"load.php\";
 
 \$url_load=\$urla.\$appache_localhost_port.\$course.\$folder.\$urlb;
