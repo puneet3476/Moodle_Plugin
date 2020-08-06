@@ -5,7 +5,7 @@
 require 'connectwithoutdata.php';
 require 'header.php';
 ?>
-<div class="bg-light"> 
+<div class="bg-light">
 <div class=" h-100 container">
     <div class="jumbotron bg-white">
         <div class="jumbotron mt-3 p-4" style="background-color:#5ebdf7 ;cursor:pointer ;"><a href="admin_page.php" class="text-decoration-none text-dark">

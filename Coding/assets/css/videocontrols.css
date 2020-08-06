@@ -1,0 +1,45 @@
+/*.controls{
+  background-color:grey;
+  list-style: none;
+  width: 600px;
+  height: min-content;
+  padding: 0 ;
+  padding-left: 20px;
+  padding-top: 10px;
+  position: absolute;
+  left: 11vw;
+  top: calc(15vh + 355px);
+}
+.progressid{
+  width: 880px!important;
+}
+.controls li{
+  display: contents;
+  padding: 0;
+
+  height: fit-content;
+  box-shadow: none;
+}
+
+.controls button{
+  padding: 0;
+  height: fit-content;
+  box-shadow: none;
+  background-color: inherit;
+  border: none;
+}
+.progress{cursor: pointer;
+  display: block!important;
+  height: 10px;
+}
+.positioner{
+
+  padding: 0 256px!important;
+
+}
+li .fas{
+font-size: 2em;
+color: black;
+}
+
+*/

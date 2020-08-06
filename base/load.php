@@ -17,6 +17,7 @@ require 'connect.php';
   <link rel="stylesheet" href="../../basic/assets/css/main.css" />
   <link rel="stylesheet" href="../../basic/assets/css/chatbox.css" />
   <link rel="stylesheet" type="text/css" href="../../basic/assets/css/videocontrols.css">
+  <link rel="stylesheet" href="../../basic/assets/css/question.css">
   <link rel='stylesheet' type='text/css' href='.<?php
 session_start();
 require 'connect.php';
@@ -52,15 +53,15 @@ require 'connect.php';
 
   <header id="header">
     <div class="inner">
-      <a href="#" class="logo"><?php if (isset(($_SESSION['loginuser'])) && $_SESSION['loginuser']!='empty1') {
-        echo ("Welcome ".$_SESSION['loginuser']);
-      } ?>
+      <a href="#" class="logo"><?php if (isset(($_SESSION['loginuser'])) && $_SESSION['loginuser'] != 'empty1') {
+    echo ("Welcome " . $_SESSION['loginuser']);
+}?>
       </a>
       <nav id="nav">
 
-        <a id="login_but" href="<?php echo($url_h.$appache_localhost_port.$course.$folder."login.php")?>">Login </a>
+        <a id="login_but" href="<?php echo ($url_h . $appache_localhost_port . $course . $folder . "login.php") ?>">Login </a>
 
-        <a href="<?php echo($url_h.$appache_localhost_port.$course.$folder."index.php")?>">Sign up</a>
+        <a href="<?php echo ($url_h . $appache_localhost_port . $course . $folder . "index.php") ?>">Sign up</a>
         <button id="myBtn" class="button alt">How to Use</button>
         <button id="freeze" class="button">Freeze</button>
 
@@ -99,15 +100,15 @@ require 'connect.php';
      <ul class="vidchaNav">
       <?php
 
-      require 'connect.php';
+require 'connect.php';
 
-       $q="SELECT * FROM `segments`";
-    $segments = mysqli_query($link,$q);
-    if (mysqli_num_rows($segments) > 0) {
-    while($row = mysqli_fetch_assoc($segments)) { ?>
-        <li data-start="<?php echo $row['segment_time']?>" class="topics"><?php echo $row['segments_name']?></li>
+$q = "SELECT * FROM `segments`";
+$segments = mysqli_query($link, $q);
+if (mysqli_num_rows($segments) > 0) {
+    while ($row = mysqli_fetch_assoc($segments)) {?>
+        <li data-start="<?php echo $row['segment_time'] ?>" class="topics"><?php echo $row['segments_name'] ?></li>
     <?php }
-  }?>
+}?>
 
     </ul>
 
@@ -151,17 +152,17 @@ require 'connect.php';
        }
             var fruits = [];
             <?php
-            require 'connect.php';
-            $resultchat = mysqli_query($link, "SELECT * FROM `chat` ");
-            while ($rowchat = mysqli_fetch_array($resultchat)) {
-            ?>
+require 'connect.php';
+$resultchat = mysqli_query($link, "SELECT * FROM `chat` ");
+while ($rowchat = mysqli_fetch_array($resultchat)) {
+    ?>
               var temp = "<?php echo ($rowchat['second']) ?>";
               fruits.push(temp);
 
 
 
 
-            <?php } ?>
+            <?php }?>
             var bore_time;
             var vid = document.getElementById('myVideo');
             var vid_curenttime = document.getElementById('myVideo').currentTime;
@@ -277,18 +278,10 @@ require 'connect.php';
                       inline: 'nearest'
                     });
 
-
-                    //$('html, body').animate({
-                    //scrollTop: $(`#present_id`).offset().top
-                    // }, 1000);
                     return true;
                     break;
                   } else {
                     continue;
-
-
-
-
                   }
 
                 }
@@ -332,11 +325,6 @@ require 'connect.php';
                       break;
                     } else {
                       continue;
-
-
-                      //elementy=document.getElementById(prev_id);
-                      //elementy.scrollIntoView({ behavior: 'smooth', block: 'nearest',inline:'nearest'});
-                      //elementy.scrollIntoView({ behavior: 'smooth', block: 'nearest',inline:'nearest'}); //$(this).hide();
                     }
                   }
 
@@ -464,22 +452,22 @@ require 'connect.php';
           <div class="main8" id="main8">Your profile<br>
             Name:<?php echo ($_SESSION['loginname']); ?><br>
               <?php
-    $this_chatuser=$_SESSION['loginid'];
-    $q="SELECT * FROM `register_user` WHERE `Student_ID`='$this_chatuser';";
-    $avatar = mysqli_query($link_central,$q);
-    $result = $link_central->query($q);
+$this_chatuser = $_SESSION['loginid'];
+$q = "SELECT * FROM `register_user` WHERE `Student_ID`='$this_chatuser';";
+$avatar = mysqli_query($link_central, $q);
+$result = $link_central->query($q);
 
-     while ($chatavatar=mysqli_fetch_array($avatar)) {
+while ($chatavatar = mysqli_fetch_array($avatar)) {
 
-      $image_url="otp-php-registration/class/".$chatavatar['user_avatar'];
-     ?>
-    <img src="../../<?php echo($image_url);?>" alt="Avatar" class="profile_avatar">
+    $image_url = "otp-php-registration/class/" . $chatavatar['user_avatar'];
+    ?>
+    <img src="../../<?php echo ($image_url); ?>" alt="Avatar" class="profile_avatar">
     <br>
     Email:
     <?php
-    echo ($chatavatar['user_email']);
-    }
-    ?>
+echo ($chatavatar['user_email']);
+}
+?>
      <br>
 
 
@@ -496,8 +484,8 @@ require 'connect.php';
 
 
 
-            <?php     //<textarea class="topic"  type="text" align="center" name="topic" placeholder="ADD TOPIC"></textarea>
-            ?>
+            <?php //<textarea class="topic"  type="text" align="center" name="topic" placeholder="ADD TOPIC"></textarea>
+?>
             <script src="../../basic/assets/js/jquery.js"></script>
 
             <script type="text/javascript">
@@ -642,7 +630,7 @@ require 'connect.php';
                       usery: usery
                     },
                     success: function(d) {
-                      urldownload = "http://localhost:<?php echo ($appache_localhost_port); ?><?php echo($folder);?>ajaxy.php?display=1&usery=" + usery; //............This you may have to change
+                      urldownload = "http://localhost:<?php echo ($appache_localhost_port); ?><?php echo ($folder); ?>ajaxy.php?display=1&usery=" + usery; //............This you may have to change
                       window.location.href = urldownload;
                     }
                   })
@@ -1053,12 +1041,12 @@ require 'connect.php';
       if (loginuser == "empty1") {
         alert("Wrong Email ID Or Password");
         document.getElementById('login_but').innerHTML="Login";
-        document.getElementById('login_but').href="<?php echo($url_h.$appache_localhost_port.$folder."login.php")?>";
+        document.getElementById('login_but').href="<?php echo ($url_h . $appache_localhost_port . $folder . "login.php") ?>";
       }
       if (loginuser != "empty1" && loginbool == "1") {
 
               document.getElementById('login_but').innerHTML="Logout";
-              document.getElementById('login_but').href="<?php echo($url_h.$appache_localhost_port.$course.$folder."logout.php")?>";
+              document.getElementById('login_but').href="<?php echo ($url_h . $appache_localhost_port . $course . $folder . "logout.php") ?>";
 
 
       }
@@ -1340,18 +1328,9 @@ require 'connect.php';
 
 
 
-    <!-- Scripts -->
-    <!--    <script src="../../basic/assets/js/jquery.min.js"></script>
-      <script src="../../basic/assets/js/skel.min.js"></script>
-      <script src="../../basic/assets/js/util.js"></script>
-      <script src="../../basic/assets/js/main.js"></script> -->
-    <!-- <script src="../../basic/assets/js/drag.js"></script> !-->
-
     <script src="../../basic/assets/js/drag.js"></script>
     <script src="../../basic/assets/js/jquery.js"></script>
     <script src='../../basic/assets/js/javascript.js'></script>
-    <!--      <script src="../../basic/assets/videojs.chapter-thumbnails.min.js"></script>
-    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
     <script src="../../basic/assets/js/vidcha.js"></script>
     <script src="../../basic/assets/dist/plyr.js"></script>
 
@@ -1478,14 +1457,93 @@ require 'connect.php';
 
          });
 
-
-      // const player = videojs('myVideo');
-      // videojs('myVideo').chapter_thumbnails({
-      //   src: 'chapters/video1.webvtt'});
     </script>
 
+<script>var answerMatrix = {};var questionTimeArray = [];</script>
+			<?php
+$x = 1;
+$questions = mysqli_query($link, "SELECT * FROM `question` ");
+$qno = mysqli_num_rows($questions);
+while ($question = mysqli_fetch_array($questions)) {
+    ?>
+				<div class="questionbox_container" id="qc<?php echo $x ?>" style="display: none;">
+					<div id="questionbox" class="questionbox">
+						<div class="questionbox_header"><?php echo $question['question'] ?></div>
+            <?php
+$opts = explode("**", $question['options']);
+    ?>
+            <div class="questionbox_options_container">
+							<div class="questionbox_option_container">
+								<input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[0] ?>" name="answer" value="1">
+								<label for="<?php echo $opts[0] ?>"><?php echo $opts[0] ?></label>
+							</div>
+							<div class="questionbox_option_container">
+								<input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[1] ?>" name="answer" value="2?>">
+								<label for="<?php echo $opts[1] ?>"><?php echo $opts[1] ?></label>
+							</div>
+						</div>
+						<div class="questionbox_options_container">
+							<div class="questionbox_option_container">
+								<input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[2] ?>" name="answer" value="3">
+								<label for="<?php echo $opts[2] ?>"><?php echo $opts[2] ?></label>
+							</div>
+							<?php if ($opts[3] != "null") {?>
+              <div class="questionbox_option_container">
+								<input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[3]; ?>" name="answer" value="4">
+								<label for="<?php echo $opts[3] ?>"><?php echo $opts[3]; ?></label>
+							</div>
+              <?php }?>
+						</div>
+						<button class="questionbox_submit_btn" id="sbtn<?php echo $x; ?>" type="submit">Submit</button>
+					</div>
+				</div>
+				<script>
+          questionTimeArray.push({timestamp:<?php echo $question['timestamp']; ?>, isanswered: false})
+					var abc<?php echo $x ?> = setInterval(() => {console.log(Math.floor(vid.currentTime));
+						if ("<?php echo $question['timestamp']; ?>" == Math.floor(vid.currentTime)){
+							vid.pause();
+						document.getElementById('qc<?php echo $x ?>').style.display = "block";
+					}
 
+					}, 1000);
+					document.getElementById('sbtn<?php echo $x ?>').onclick = () => {
+						document.getElementById('qc<?php echo $x ?>').style.display = "none";
+						clearInterval(abc<?php echo $x ?>);
+						vid.play();
+						answerMatrix['qno'] = <?php echo $qno ?>;
+						answerMatrix['user'] = "<?php echo $_SESSION['loginuser']; ?>";
+						for(var i = 0; i < 4; i++){
+							if (document.getElementsByClassName("q<?php echo $x ?>")[i].checked){
+								answerMatrix['ans<?php echo $x ?>'] = document.getElementsByClassName("q<?php echo $x ?>")[i].value;
+                questionTimeArray[<?php echo $x - 1 ?>].isanswered = true;
+              }
+						}
+						if ("<?php echo $x ?>" == "<?php echo $qno ?>" ){
+							$.ajax({
+									url:"calculateScore.php",
+									method:"POST",
+									data:answerMatrix,
+									success:function(data)
+									{
+									}
+								});
+						}
+					}
+				</script>
+				<?php
+$x++;
+}
+?>
+<script>vid.ontimeupdate = function(){
+  var currentUpdateTime = vid.currentTime;
+  for(var i = 0; i < answerMatrix['qno']; i++ ){
+    if(currentUpdateTime > questionTimeArray[i].timestamp && !questionTimeArray[i].isanswered){
+      vid.currentTime = questionTimeArray[i].timestamp;
+      vid.pause()
+      document.getElementById('qc'+(i+1)).style.display = "block";
+    }
+  }
+}</script>
 </body>
-<script src="../../basic/assets/js/feature.js"></script>
 
 </html>
