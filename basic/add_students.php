@@ -3,7 +3,7 @@ require 'connectwithoutdata.php';
   require 'includes/PHPMailer.php';
   require 'includes/SMTP.php';
   require 'includes/Exception.php';
-  
+session_start();
   // require 'connectwithoutdata.php';
 //Define name spaces
   use PHPMailer\PHPMailer\PHPMailer;
@@ -12,7 +12,9 @@ require 'connectwithoutdata.php';
 // connection of database
 if (isset($_GET['course_name'])) {
   $course_name=$_GET['course_name'];
-
+  if(($_SESSION['my_role'])!='TEACHER'){
+    die("You are forbidden to visit this page");
+  }
  $con =  new mysqli(
    $host,
    $user,
@@ -106,8 +108,8 @@ while ($allmails=mysqli_fetch_array($allstds)) {
 }
 header('location:add_videos.php?course_name='.$course_name);
 }
-
 }
+
 
 
 

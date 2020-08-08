@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jul 29, 2020 at 02:33 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.6
+-- Host: localhost:8889
+-- Generation Time: Aug 08, 2020 at 11:12 PM
+-- Server version: 5.7.24-log
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,14 +25,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Courses`
+-- Table structure for table `courses`
 --
 
-CREATE TABLE `Courses` (
+CREATE TABLE `courses` (
   `course_name` varchar(20) NOT NULL,
-  `course_id` varchar(20) NOT NULL
+  `course_id` varchar(20) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `teacher_ID` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-COMMIT;
+
+--
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

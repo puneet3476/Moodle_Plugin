@@ -7,6 +7,11 @@
 }
 </style>
 <?php
+session_start();
+
+  if(($_SESSION['my_role'])!='TEACHER'){
+    die("You are forbidden to visit this page");
+  }
 if (isset($_GET['course_name'])) {
 	$course_name=$_GET['course_name'];
     require 'connectwithoutdata.php';

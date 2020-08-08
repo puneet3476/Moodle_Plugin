@@ -7,77 +7,18 @@ require 'connectwithoutdata.php';
 <?php
 
 if (isset($_SESSION['loginroll'])) {
-	if(($_SESSION['my_role'])!='Student'){
+	if(($_SESSION['my_role'])!='TEACHER'){
 		die("You are forbidden to visit this page");
 	}
-
+    $teacher_ID=$_SESSION['loginroll'];
 	echo ("Your Name".$_SESSION['loginname']);
-	echo("Your Roll No.".$_SESSION['loginroll']);
+	echo("Your Teacher ID.".$_SESSION['loginroll']);
 	$user_roll=$_SESSION['loginroll'];
 	echo("Your Email ID.".$_SESSION['loginemailid']);
-	$query = "SELECT * FROM `courses`;";
-    $result = mysqli_query($link_inst,$query);
-    
-$matched_course=0;
-while ($row=mysqli_fetch_array($result)) {
-	$course_database=strtolower(($row['course_name']));
-   
-	$link_every_course=new mysqli(
-    $host,
-    $user,
-    $password,$course_database
-);
-	if ($link_every_course->connect_error) {
-		die('Connection failed');
-	}
-
-	$found="SELECT * FROM `tbl_info` WHERE `Roll_no`='$user_roll';";
-	$result_found=mysqli_query($link_every_course,$found);
-
-
-	if (($result_found)->num_rows >0)
-	{	$matched_course=$matched_course+1;
-?>
-
-        <div class=" jumbotron p-3 col-md-5  mx-auto" style="background-color:;height:50%; margin-top: 200px;">
-        <h4 class="text-center">Your Videos for <?php  echo($course_database)?> Course</h4>
-            <div class="overflow-auto " style="height:50%;">
-            <?php
-
-            $resulty = mysqli_query($link_every_course,"SELECT * FROM `total_videos` " );
-            while ($rowy=mysqli_fetch_array($resulty)) {
-            ?>
-            <div class="p-2 hovers rounded" style="cursor:pointer;"><a href="<?php echo ('../'.$course_database.'/'.$rowy['folder_name'].'/'.'load.php') ?>" class="text-decoration-none text-dark">
-                <div style="text-align:left" class=""><?php echo($rowy['folder_name']) ?> <i class="fa fa-arrow-circle-right float-right" aria-hidden="true"></i></div>
-            </a></div>
-            <?php } ?>
-            </div>
-        </div>
-
-
-<!--
-
-BootStrap NavBar Example Three - Social Media Icons
- //
-1. Replaced the ugly toggle with angle
-2. Used hover only for large screen and above
-3. You can add resize function if you want in javascript
-4. SlideIn / SlideUp can be replaced with FadeIn /FadeUp
-5. Delay on leaving mouse is applied to ensure the hover actions are not jittery.
-//
--->
-
-
-<!--The html below this line is for display purpose only-->
-
-<?php
-
 
 }
-
-}
-
 ?>
+
 
 <nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light fixed-top" style="    background-image: linear-gradient(268deg, #405f8f, #1c3050);
     padding: 16px 0;">
@@ -130,8 +71,11 @@ margin: 0 !important;
 color: #3d4251;
 font-weight: 700;
 line-height: 1.25;
-font-size: 2rem;'><?php echo($matched_course) ?></strong>
-          <span>Courses</span>
+font-size: 2rem;'><?php 
+$result = mysqli_query($link_inst,"SELECT * FROM `Courses` WHERE `teacher_ID`='$teacher_ID'" );
+echo($result->num_rows);
+?></strong>
+          <span>Courses Added</span>
         </div>
       </div>
 </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar4">
@@ -142,7 +86,7 @@ font-size: 2rem;'><?php echo($matched_course) ?></strong>
 <div class="collapse navbar-collapse" id="navbar4">
 <ul class="navbar-nav mr-auto pl-lg-4">
 <li class="nav-item px-lg-2 active"> <a class="nav-link" href="#"> <span class="d-inline-block d-lg-none icon-width"><i class="fas fa-home"></i></span>Home</a> </li>
-<li class="nav-item px-lg-2"> <a class="nav-link" href="#"><span class="d-inline-block d-lg-none icon-width"><i class="fas fa-spa"></i></span>Courses</a> </li>
+<li class="nav-item px-lg-2"> <a class="nav-link" href=""><span class="d-inline-block d-lg-none icon-width"><i class="fas fa-spa"></i></span>Courses</a> </li>
 <li class="nav-item px-lg-2"> <a class="nav-link" href="logout.php"><span class="d-inline-block d-lg-none icon-width"><i class="far fa-user"></i></i></span>Logout</a> </li>
 
 <li class="nav-item px-lg-2 dropdown d-menu">
@@ -163,16 +107,41 @@ font-size: 2rem;'><?php echo($matched_course) ?></strong>
 
 </div>
 </div>
+
 </nav>
+<div class="container bg-light">
+<div class="jumbotron bg-white">
+<h2 class="mx-auto d-block " style="text-align:center   ">Your Courses</h2>
+<h6 class="mx-auto d-block " style="text-align:center">Add Videos to your Courses by clicking on them</h6>
+<div class="row mx-auto mt-5">
 
-<?
-}
+<div class="jumbotron mt-3 p-4" style="background-color:#5ebdf7 ;cursor:pointer ;"><a href="admin_page.php" class="text-decoration-none text-dark">
+            <h3>Create A Course</h3>
+            <p>Add a course for your institution <i class="fas fa-arrow-right"></i></p>
+        </a></div>
+        <div class="row mx-auto">
+        <div class=" jumbotron p-3 col-md-5  mx-auto" style="background-color:#ade498"><a href=""  class="text-decoration-none text-dark">
+        <img  class="mx-auto d-block mb-3 " width="120px" src="./images/capacity.svg">
+        <h3 class="mx-auto d-block " style="text-align:center   ">Analytics<h3>
+        <p class=" form-control-sm">Get detailed insights into your course usage.</p>
+        </a></div>
+        <div class="jumbotron p-3 col-md-5 mx-auto " style="background-color:#ade498"><a href="course_page.php" class="text-decoration-none text-dark">
+        <img  class="mx-auto d-block mb-3 " width="120px" src="./images/survey.svg">
+            <h3 class="mx-auto d-block " style="text-align:center   ">List of courses</h3>
+            <p>List of all the Courses. You can Add videos,segments to your videos here.
+        </a><div>
+    </div>
+</div>
 
-
-
-else {
-echo "You are not logged as a user.Please Login First";
-
-//header($url_login_check);
-}
-?>
+<?php
+            $result = mysqli_query($link_inst,"SELECT * FROM `Courses` WHERE `teacher_ID`='$teacher_ID'" );
+            while ($row=mysqli_fetch_array($result)) {
+            ?>
+            <div class=" jumbotron p-3 col-md-5  mx-auto" style="background-color:#ede682;cursor:pointer;"><a href="add_videos.php?course_name=<?php echo $row['course_name']?>" class="text-decoration-none text-dark">
+                <h5 style="text-align:center" class=" font-weight-normal"><?php echo($row['course_name'])?><br></h5>
+                <div style="text-align:center"><?php echo($row['description']) ?></div>
+            </a></div>
+            <?php } ?>
+</div>            
+</div>
+</div>           

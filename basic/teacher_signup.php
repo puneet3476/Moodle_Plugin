@@ -14,11 +14,6 @@
 
 session_start();
 
-if(isset($_SESSION['loginuser']))
-{
-	header($student_panel);
-}
-
 
 
 $link_users=new mysqli(
@@ -40,8 +35,8 @@ $user_password_again = '';
 $error_user_password_again='';
 $student_ID='';
 $error_student_ID='';
-$user_role='';
-$error_user_role='';
+$user_dep='';
+$error_user_dep='';
 if(isset($_POST["register"]))
 {
 	if(empty($_POST["user_name"]))
@@ -52,6 +47,16 @@ if(isset($_POST["register"]))
 	{
 		$user_name = trim($_POST["user_name"]);
 		$user_name = htmlentities($user_name);
+	}
+
+		if(empty($_POST["user_dep"]))
+	{
+		$error_user_dep = "<label class='text-danger'>Enter Department</label>";
+	}
+	else
+	{
+		$user_dep = trim($_POST["user_dep"]);
+		$user_dep = htmlentities($user_dep);
 	}
 
 	if(empty($_POST["user_email"]))
@@ -65,7 +70,7 @@ if(isset($_POST["register"]))
 		{
 			$error_user_email = '<label class="text-danger">Enter Valid Email Address</label>';
 		}
-	 $q="SELECT * FROM `register_user` WHERE `user_email`='$user_email' ";
+	 $q="SELECT * FROM `register_teacher` WHERE `teacher_email`='$user_email' ";
      $result = $link_users->query($q);
 
      if ($result->num_rows > 0) {
@@ -76,32 +81,23 @@ if(isset($_POST["register"]))
 	}
     	if(empty($_POST["student_ID"]))
 	{
-		$error_student_ID = "<label class='text-danger'>Enter Student Roll No.</label>";
+		$error_student_ID = "<label class='text-danger'>Enter Teacher ID No.</label>";
 	}
 	else
 	{
 		$student_ID = trim($_POST["student_ID"]);
 		$student_ID = htmlentities($student_ID);
 		$student_ID=strtoupper($student_ID);
-	    $q="SELECT * FROM `register_user` WHERE `user_Roll_no`='$student_ID' ";
+	    $q="SELECT * FROM `register_teacher` WHERE `teacher_ID`='$student_ID' ";
      $result = $link_users->query($q);
 
      if ($result->num_rows > 0) {
-       $error_student_ID = '<label class="text-danger">This Roll No. is already Registered. Please Login</label>';
+       $error_student_ID = '<label class="text-danger">This teacher ID is already Registered. Please Login</label>';
 
 	    }
 
 	}
 
-	    	if(empty($_POST["user_role"]))
-	{
-		$error_user_role = "<label class='text-danger'>Enter Your Role</label>";
-	}
-	else
-	{
-		$user_role = trim($_POST["user_role"]);
-		$user_role = htmlentities($user_role);
-	}
 
 	if(empty($_POST["user_password"]))
 	{
@@ -127,7 +123,7 @@ if(isset($_POST["register"]))
 	}
 
 
-	if($error_user_name == '' && $error_user_email == '' && $error_user_password == '' && $error_user_password_again=='' && $error_student_ID=='' && $error_user_role=='')
+	if($error_user_name == '' && $error_user_email == '' && $error_user_password == '' && $error_user_password_again=='' && $error_student_ID==''&& $error_user_dep=='')
 	{
 		$user_activation_code = md5(rand());
 
@@ -148,8 +144,8 @@ if(isset($_POST["register"]))
 
 	       $user_avatar = make_avatar(strtoupper($name_initials));
 
-		$query = "INSERT INTO register_user
-		(user_name,user_email, user_Roll_no,user_password, user_activation_code, user_email_status, user_otp,user_avatar,user_role) values('$user_name','$user_email','$student_ID','$user_password','$user_activation_code','$user_email_status','$user_otp','$user_avatar','$user_role');";
+		$query = "INSERT INTO register_teacher
+		(teacher_name,teacher_email, teacher_ID,teacher_password, teacher_activation_code, teacher_email_status, teacher_otp,teacher_avatar,teacher_department) values('$user_name','$user_email','$student_ID','$user_password','$user_activation_code','$user_email_status','$user_otp','$user_avatar','$user_dep');";
 
 if ($link_users->query($query) === TRUE) {
 
@@ -212,7 +208,7 @@ if ($link_users->query($query) === TRUE) {
 			{
 				echo '<script> alert("Please Check Your Email for Verification Code")</script>';
 
-				header('location:email_verify.php?code='.$user_activation_code);
+				header('location:teacher_email_verify.php?code='.$user_activation_code);
 			}
 			else
 			{
@@ -254,11 +250,9 @@ if ($link_users->query($query) === TRUE) {
 							<?php echo $error_user_name; ?>
 						</div>
 						<div class="form-group">
-							<label>Choose your Role:</label>
-		      			<select class="form-control" type="text" align="center" name="user_role" placeholder="Choose Role">
-                                 <option value="Student">Student</option>
-                        </select>
-                       <?php echo $error_user_role; ?>
+							<label>Enter your Department</label>
+							<input type="text" name="user_dep" class="form-control" />
+                       <?php echo $error_user_dep; ?>
                     </div>
 						<div class="form-group">
 							<label>Enter Your Email</label>
@@ -276,13 +270,13 @@ if ($link_users->query($query) === TRUE) {
 							<?php echo $error_user_password_again; ?>
 						</div>
 						<div class="form-group">
-							<label>Enter Your Roll No.</label>
+							<label>Enter Your Teacher ID</label>
 							<input type="text" name="student_ID" class="form-control" />
 							<?php echo $error_student_ID; ?>
 						</div>
 						<div class="form-group">
 							<input type="submit" name="register" class="btn btn-success" value="Click to Register" />&nbsp;&nbsp;&nbsp;
-							<a href="login_page.php">Login</a>
+							<a href="teacher_login.php">Login</a>
 						</div>
 					</form>
 				</div>

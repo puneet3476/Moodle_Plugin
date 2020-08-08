@@ -9,10 +9,8 @@ $database_name=$_POST['folder_name'];
 $hyperlink=$_POST['hyperlink'];
 $course_name=$_POST['course_name'];
 for($x=1;$x<=10;$x++){
-    if(isset($_POST['seg'.$x])){
-        $segs[$x]=$_POST['seg'.$x];
-        $times[$x]=$_POST['time'.$x];
-    }
+    $segs[$x]=$_POST['seg'.$x];
+    $times[$x]=$_POST['time'.$x];
 }
 $uploadfile = basename($_FILES['video']['name']);
 $videopath=$dir_name."/videos/".$uploadfile;
@@ -59,13 +57,10 @@ rename($videopath,$dir_name."/videos/"."video1.".$video_extension);
 $total_videos="INSERT INTO total_videos (database_name,folder_name,page_url)
 VALUES ('$database_name','$folder_name','$hyperlink')" ;
 for($x=1;$x<=sizeof($segs);$x++){
-    if(isset($_POST['seg'.$x])){
-        $e=$_POST['seg'.$x];$ss=$_POST['time'.$x];
-        $total_segments="INSERT INTO segments (segments_name,segment_time)
-        VALUES ('$e','$ss')" ;
-        $link_video->query($total_segments);    
-    }
-    
+    $e=$_POST['seg'.$x];$ss=$_POST['time'.$x];
+    $total_segments="INSERT INTO segments (segments_name,segment_time)
+    VALUES ('$e','$ss')" ;
+    $link_video->query($total_segments);
 }
 
 
