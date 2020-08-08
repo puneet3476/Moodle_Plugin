@@ -1,6 +1,7 @@
 <?php
 require 'connectwithoutdata.php';
-$segs=array();$times=array();
+$segs=array();
+$times=array();
 if(isset($_FILES['video'])){
 $dir_name=$_POST['dir_name'];
 $folder_name=$_POST['folder_name'];
@@ -42,6 +43,7 @@ if ($uploadsize>1.8e+8) {?>
     <?php
     die();
 }
+
 if (move_uploaded_file($_FILES['video']['tmp_name'], $videopath)) {
 rename($videopath,$dir_name."/videos/"."video1.".$video_extension);
 ?>
