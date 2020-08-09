@@ -53,6 +53,7 @@ $connect = "<?php
 \$urla=\"Location: \" . \$url_h;//............This you may have to change
 \$folder=\"" . $folder_name . "/\";
 \$course=\"/Moodle_Plugin/" . $course_name . "/\";
+\$class_link='" . $class_link . "';
 \$urlb=\"load.php\";
 
 \$url_load=\$urla.\$appache_localhost_port.\$course.\$folder.\$urlb;
