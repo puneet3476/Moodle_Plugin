@@ -7,6 +7,7 @@ require 'connectwithoutdata.php';
 <?php
 
 
+
 	if(($_SESSION['my_role'])!='TEACHER'){
 		die("You are forbidden to visit this page");}
 	
@@ -20,7 +21,9 @@ require 'connectwithoutdata.php';
 ?>
 
 
-<nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light fixed-top" style="    background-image: linear-gradient(268deg, #405f8f, #1c3050);
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light fixed-top" style="    background-image: linear-gradient(268deg, #405f8f, #1c3050);
     padding: 16px 0;">
 <div class="container"> <a class="navbar-brand d-flex align-items-center" href="#">
 	<?php
@@ -71,8 +74,9 @@ margin: 0 !important;
 color: #3d4251;
 font-weight: 700;
 line-height: 1.25;
-font-size: 2rem;'><?php 
-$result = mysqli_query($link_inst,"SELECT * FROM `Courses` WHERE `teacher_ID`='$teacher_ID'" );
+font-size: 2rem;'><?php
+$result = mysqli_query($link_inst,"SELECT * FROM `courses` WHERE `teacher_ID`='$teacher_ID'" );
+if($result)
 echo($result->num_rows);
 ?></strong>
           <span>Courses Added</span>
@@ -108,40 +112,34 @@ echo($result->num_rows);
 </div>
 </div>
 
-</nav>
-<div class="container bg-light">
-<div class="jumbotron bg-white">
-<h2 class="mx-auto d-block " style="text-align:center   ">Your Courses</h2>
-<h6 class="mx-auto d-block " style="text-align:center">Add Videos to your Courses by clicking on them</h6>
-<div class="row mx-auto mt-5">
+</nav> -->
 
-<div class="jumbotron mt-3 p-4" style="background-color:#5ebdf7 ;cursor:pointer ;"><a href="admin_page.php" class="text-decoration-none text-dark">
+<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
+<link rel="stylesheet" href="assets/css/index.css">
+<script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
+<?php
+require 'connectwithoutdata.php';
+require 'header.php';    
+?>
+<div class="bg-light gradient"> 
+<div class=" h-100 container">
+    <div class="jumbotron bg-white">
+    <a href="admin_page.php" class="text-decoration-none text-dark">
+        <div class="jumbotron mt-3 p-4 w-100" style="background-color:#f7ca5e ;cursor:pointer ;">
             <h3>Create A Course</h3>
             <p>Add a course for your institution <i class="fas fa-arrow-right"></i></p>
-        </a></div>
+        </div></a>
         <div class="row mx-auto">
         <div class=" jumbotron p-3 col-md-5  mx-auto" style="background-color:#ade498"><a href=""  class="text-decoration-none text-dark">
         <img  class="mx-auto d-block mb-3 " width="120px" src="./images/capacity.svg">
         <h3 class="mx-auto d-block " style="text-align:center   ">Analytics<h3>
-        <p class=" form-control-sm">Get detailed insights into your course usage.</p>
+        <p class=" form-control-sm " style="text-align:center   ">Get detailed insights into your course usage.</p>
         </a></div>
         <div class="jumbotron p-3 col-md-5 mx-auto " style="background-color:#ade498"><a href="course_page.php" class="text-decoration-none text-dark">
         <img  class="mx-auto d-block mb-3 " width="120px" src="./images/survey.svg">
             <h3 class="mx-auto d-block " style="text-align:center   ">List of courses</h3>
-            <p>List of all the Courses. You can Add videos,segments to your videos here.
+            <p style="text-align:center   ">List of all the Courses. You can Add videos,segments to your videos here.
         </a><div>
     </div>
 </div>
-
-<?php
-            $result = mysqli_query($link_inst,"SELECT * FROM `Courses` WHERE `teacher_ID`='$teacher_ID'" );
-            while ($row=mysqli_fetch_array($result)) {
-            ?>
-            <div class=" jumbotron p-3 col-md-5  mx-auto" style="background-color:#ede682;cursor:pointer;"><a href="add_videos.php?course_name=<?php echo $row['course_name']?>" class="text-decoration-none text-dark">
-                <h5 style="text-align:center" class=" font-weight-normal"><?php echo($row['course_name'])?><br></h5>
-                <div style="text-align:center"><?php echo($row['description']) ?></div>
-            </a></div>
-            <?php } ?>
-</div>            
 </div>
-</div>           

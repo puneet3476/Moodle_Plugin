@@ -1,6 +1,8 @@
 <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
+<link rel="stylesheet" href="assets/css/index.css">
 <?php
 require 'connectwithoutdata.php';
+require 'header.php'; 
 $folder_name=$_POST['folder_name'];
 $database_name=$_POST['folder_name'];
 $course_name=$_POST['course_name'];
@@ -8,10 +10,11 @@ if (empty($folder_name) or empty($database_name) ) {
   echo "Error: Either Foldername  is empty";
   die();
 }
-$dir_name="C:\MAMP\htdocs"."\\".$course_name."\\".$folder_name;
 
-// Store the path of source file 
-$source = "C:\MAMP\htdocs\base"; 
+$dir_name="/var/www/html/".$course_name."/".$folder_name;
+
+// Store the path of source file
+$source =   "/var/www/html/base";
 $hyperlink=$urla.$appache_localhost_port."/".$course_name."/".$folder_name."/".$urlb;
 
 // Create database
@@ -54,11 +57,11 @@ $createfile=fopen('connect.php', "w") or die("Can't create Connect.php file");
 
 $connect="<?php
 \$user = 'root';//............This you may have to change
-\$password = 'root';//............This you may have to change
+\$password = 'bottletopple202';//............This you may have to change
 \$db = '".$database_name."';//............This you may have to change\
 \$users_db = '".$course_name."';//............This you may have to change
-\$host = 'localhost:8889';//............This you may have to change
-\$appache_localhost_port='8888';//............This you may have to change
+\$host = 'localhost';//............This you may have to change
+\$appache_localhost_port='';//............This you may have to change
 \$urla=\"Location: http://localhost:\";//............This you may have to change
 \$url_h=\"http://localhost:\";//............This you may have to change
 \$folder=\"".$folder_name."/\";
@@ -83,9 +86,10 @@ fclose($createfile);
 
 
 ?>
+<body class="gradient">
 <div class="container jumbotron">
-<form action="uploadvideo.php" enctype="multipart/form-data" method ="POST">
-  <h2 class=" text-center text-success">UPLOAD VIDEO</h2>
+<form action="uploadvideo.php" enctype="multipart/form-data" method ="POST" class="jumbotron mx-auto">
+  <h2 class=" text-center text-success">Select Video</h2>
 
 
 <!-- <form action="" method="get">
@@ -93,20 +97,19 @@ fclose($createfile);
     <button class="submit" align="center" type="submit" name="createsegnum">Create segments</button>
 </form> -->
 
-<input type="file" name="video"  class=" d-block mx-auto mt-4"/><br><br>
-
-<h3>Instructions!</h3>
-<h4>Video size should be less than 200MB.<br>
-Video should be of mp4 format.</h4>
-No. Segments to your Lecture(Optional):<br>
-
+<input type="file" name="video"  class=" d-block mx-auto mt-4"/><br>
+<h6 align="center">(Video size should be less than 200MB.)<br>
+  </h6>
+<h6 align="center" >No. Segments to your Lecture(Optional):<br></h6>
+<div class="col-md-3"></div>
+<div class="mx-auto container col-md-8">
 <?php
 
     for($x=1;$x<=5;$x++){?>
-        <input type="text" name="seg<?php echo $x?>" placeholder="topic" id="seg<?php echo $x ?>" />
+        <input type="text" name="seg<?php echo $x?>" placeholder="topic" id="seg<?php echo $x ?>"  />
         <input type="number" name="time<?php echo $x?>" placeholder="starting time in seconds" id="time<?php echo $x ?>"/><br>
     <?php } ?>
-
+</div>
 <input type="text" value="<?php echo($dir_name)?>" name="dir_name"  style="display: none;">
 <input type="text" value="<?php echo($course_name)?>" name="course_name"  style="display: none;">
 
@@ -123,7 +126,7 @@ No. Segments to your Lecture(Optional):<br>
 
 </script>
 </div>
-
+    </div>
 
 
 
