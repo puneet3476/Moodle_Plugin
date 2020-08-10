@@ -96,20 +96,20 @@ body {
   .hero h1 {
     margin:20px 0 20px;
     font-family: "Montserrat", sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     float: left;
 
   }
   .land_header {
     margin-left: 50px;
     margin-right: 50px;
-    font: 700 60px/1 "Dancing Script", cursive;
+    font: 700 50px/1 "Dancing Script", cursive;
     display: block;
     float: left;
   }
   .hero h2 {
     position: absolute;
-    left:900px;
+    left:800px;
     font-weight: 400;
     top:50px;
     
@@ -213,12 +213,13 @@ body {
     -webkit-box-align: center;
             align-items: center;
     position: relative;
-    width: auto;
+    width: 120px;
     height: 40px;
     margin: 10px;
-    border: 3px solid var(--base-color);
+    border: 2px solid var(--base-color);
     font-size: 1.6rem;
     cursor: pointer;
+
 
   }
   .horizontal > .text {
@@ -233,7 +234,7 @@ body {
     background-clip: text;
     -webkit-transition: background-position 300ms;
     transition: background-position 300ms;
-    padding:0 40px;
+   
   }
   .horizontal::before {
     content: '';
@@ -270,12 +271,13 @@ body {
     -webkit-box-align: center;
             align-items: center;
     position: relative;
-    width: auto;
+    width: 150px;
     height: 40px;
     margin: 10px;
-    border: 3px solid var(--base-color);
+    border: 2px solid var(--base-color);
     font-size: 1.6rem;
     cursor: pointer;
+  
   }
   .vertical > .text {
     position: relative;
@@ -289,7 +291,7 @@ body {
     background-clip: text;
     -webkit-transition: background-position 300ms;
     transition: background-position 300ms;
-    padding:0 40px;
+
   }
   .vertical::before {
     content: '';
