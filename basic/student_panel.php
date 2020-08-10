@@ -1,9 +1,17 @@
 <?php
 session_start();
 require 'connectwithoutdata.php';
+require 'header.php';
 ?>
+<style>
+    .hovers:hover{
+    background-color:#999999;
+}
+    </style>
 <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
-
+<body class="gradient">
+    <div class="container"> 
+    <div class="row">
 <?php
 
 if (isset($_SESSION['loginroll'])) {
@@ -11,17 +19,17 @@ if (isset($_SESSION['loginroll'])) {
 		die("You are forbidden to visit this page");
 	}
 
-	echo ("Your Name".$_SESSION['loginname']);
-	echo("Your Roll No.".$_SESSION['loginroll']);
+	// echo ("Your Name".$_SESSION['loginname']);
+	// echo("Your Roll No.".$_SESSION['loginroll']);
 	$user_roll=$_SESSION['loginroll'];
-	echo("Your Email ID.".$_SESSION['loginemailid']);
+	// echo("Your Email ID.".$_SESSION['loginemailid']);
 	$query = "SELECT * FROM `courses`;";
     $result = mysqli_query($link_inst,$query);
-    
+
 $matched_course=0;
 while ($row=mysqli_fetch_array($result)) {
-	$course_database=strtolower(($row['course_name']));
-   
+	$course_database=(($row['course_name']));
+
 	$link_every_course=new mysqli(
     $host,
     $user,
@@ -38,8 +46,10 @@ while ($row=mysqli_fetch_array($result)) {
 	if (($result_found)->num_rows >0)
 	{	$matched_course=$matched_course+1;
 ?>
+<link rel="stylesheet" href="assets/css/index.css">
 
-        <div class=" jumbotron p-3 col-md-5  mx-auto" style="background-color:;height:50%; margin-top: 200px;">
+        <div class="col-4">
+            <div class=" jumbotron mx-auto overflow-auto" style="background-color:;height:50%; margin-top: 200px;">
         <h4 class="text-center">Your Videos for <?php  echo($course_database)?> Course</h4>
             <div class="overflow-auto " style="height:50%;">
             <?php
@@ -47,14 +57,14 @@ while ($row=mysqli_fetch_array($result)) {
             $resulty = mysqli_query($link_every_course,"SELECT * FROM `total_videos` " );
             while ($rowy=mysqli_fetch_array($resulty)) {
             ?>
-            <div class="p-2 hovers rounded" style="cursor:pointer;"><a href="<?php echo ('../'.$course_database.'/'.$rowy['folder_name'].'/'.'load.php') ?>" class="text-decoration-none text-dark">
+            <div class="p-2 hovers rounded " style="cursor:pointer;"><a href="<?php echo ('../'.$course_database.'/'.$rowy['folder_name'].'/'.'load.php') ?>" class="text-decoration-none text-dark">
                 <div style="text-align:left" class=""><?php echo($rowy['folder_name']) ?> <i class="fa fa-arrow-circle-right float-right" aria-hidden="true"></i></div>
             </a></div>
             <?php } ?>
             </div>
         </div>
-
-
+            </div>
+            
 <!--
 
 BootStrap NavBar Example Three - Social Media Icons
@@ -78,7 +88,10 @@ BootStrap NavBar Example Three - Social Media Icons
 }
 
 ?>
-
+</div>      
+    </div>
+</body>
+<!-- 
 <nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light fixed-top" style="    background-image: linear-gradient(268deg, #405f8f, #1c3050);
     padding: 16px 0;">
 <div class="container"> <a class="navbar-brand d-flex align-items-center" href="#">
@@ -163,7 +176,7 @@ font-size: 2rem;'><?php echo($matched_course) ?></strong>
 
 </div>
 </div>
-</nav>
+</nav> -->
 
 <?
 }

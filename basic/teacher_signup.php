@@ -1,3 +1,5 @@
+	<link rel="stylesheet" href="assets/css/index.css">
+
 <?php
     // echo (getcwd());
 	require 'includes/PHPMailer.php';
@@ -227,15 +229,17 @@ if ($link_users->query($query) === TRUE) {
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>PHP Registration with Email Verification using OTP</title>
+		<title>Panel</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="http://code.jquery.com/jquery.js"></script>
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/css/index.css">
+
 	</head>
-	<body>
+	<body class=" gradient">
 		<br />
-		<div class="container">
-			<h3 align="center">PHP Registration with Email Verification using OTP</h3>
+		<div class="container ">
+		<h1 align="center" class="">Teacher Registration Panel</h1>
 			<br />
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -276,7 +280,7 @@ if ($link_users->query($query) === TRUE) {
 						</div>
 						<div class="form-group">
 							<input type="submit" name="register" class="btn btn-success" value="Click to Register" />&nbsp;&nbsp;&nbsp;
-							<a href="teacher_login.php">Login</a>
+							<button class="btn btn-outline-primary"><a href="teacher_login_page.php">Login</a></button>
 						</div>
 					</form>
 				</div>

@@ -8,7 +8,7 @@ require 'header.php';
 <div class="bg-light"> 
 <div class=" h-100 container">
     <div class="jumbotron bg-white">
-        <div class="jumbotron mt-3 p-4" style="background-color:#5ebdf7 ;cursor:pointer ;"><a href="admin_page.php" class="text-decoration-none text-dark">
+        <div class="jumbotron mt-3 p-4 w-100" style="background-color:#5ebdf7 ;cursor:pointer ;"><a href="admin_page.php" class="text-decoration-none text-dark">
             <h3>Create A Course</h3>
             <p>Add a course for your institution <i class="fas fa-arrow-right"></i></p>
         </a></div>

@@ -3,6 +3,7 @@ require 'connectwithoutdata.php';
   require 'includes/PHPMailer.php';
   require 'includes/SMTP.php';
   require 'includes/Exception.php';
+  require 'header.php';
 session_start();
   // require 'connectwithoutdata.php';
 //Define name spaces
@@ -124,13 +125,14 @@ header('location:add_videos.php?course_name='.$course_name);
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="assets/css/index.css">
     </head>
-    <body>
+    <body class="gradient">
         <div class="container">
           <div class="row" align="center" style="margin-top: 70px;">
               <div class="col-sm-3"></div>
               <div class="col-sm-6">
-                    <h2>Import the excel file that contains student data. </h2><br>
+                    <h2>Import the excel file that contains student data. </h2>
 
                     <!-- Success message print here -->
                     <?php echo $msg; ?>
@@ -139,18 +141,22 @@ header('location:add_videos.php?course_name='.$course_name);
                     
 
 
-                    <form method="post" action="" enctype='multipart/form-data'>
-                        <h2>Select the Column No. that contains Name</h2><br>
-                        <input type="number" name="column_1"  min="0" /><br>
-                        <br>
-                        <h2>Select the Column No. that contains Roll No.</h2><br>
+                    <form method="post" action="" enctype='multipart/form-data' class="row d-inline-flex">
+                    <span class="col-sm">   
+                    <h4>Select the Column No. that contains Name</h4>
+                        <input type="number" name="column_1"  min="0" />
+                    </span><br>
+                    <span class="col">  
+                        <h4>Select the Column No. that contains Roll No.</h4>
                         <input type="number" name="column_2"  min="0"  /><br>
-                        <br>
-                        <h2>Select the Column No. that contains Email</h2><br>
+                    </span>
+                    <span class="col">
+                        <h4>Select the Column No. that contains Email</h4>
                         <input type="number" name="column_3"  min="0" /><br>
                         <br>
+                     </span>   
                         <input type='file' name='file' class="form-control" /><br>
-                        <input type='submit' class="btn btn-primary" value='Upload Data' name='import'>
+                        <input type='submit' class="btn btn-dark mx-auto" value='Upload Data' name='import'>
                     </form>
                     <br>
                    

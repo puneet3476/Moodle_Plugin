@@ -12,9 +12,10 @@ session_start();
 		<title>Login with OTP Authentication</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="http://code.jquery.com/jquery.js"></script>
-    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/css/index.css">
 	</head>
-	<body>
+	<body class=" gradient">
 		<br />
 		<div class="container">
 			<br />
