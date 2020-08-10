@@ -6,10 +6,10 @@ session_start();
 
 	if(($_SESSION['my_role'])=='TEACHER'){
 		session_destroy();
-		header($url_teacher_login_check);
+		header($urla.$appache_localhost_port.$folder);
 		die();
 		
 	}
 session_destroy();
-header($url_login_check);
+header($urla.$appache_localhost_port.$folder);
 ?>
