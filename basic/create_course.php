@@ -26,11 +26,19 @@ $sql = file_get_contents('course.sql');
 $dir_name=$homedir.$course_name;
 $mysqli = new mysqli($host, $user,$password,$course_name);//............This you may have to change
 $instsql=file_get_contents('institution.sql');
-$link_inst=new mysqli($host,$user,$password,'institution');
-$teacher_id=$_SESSION['teacherid'];
-$course="INSERT INTO Courses (course_name,course_id,description,teacher_ID)
+$teacher_id=$_SESSION['loginroll'];
+echo $course_name;
+echo "/n";
+echo $teacher_id;
+echo $inst;
+$link_inst = new mysqli(
+   $host,
+   $user,
+   $password,$inst
+);
+$course="INSERT INTO courses (course_name,course_id,description,teacher_ID)
     VALUES ('$course_name','1','$course_desc','$teacher_id')" ;
-$link_inst->query($course);
+echo $link_inst->query($course);
 
 /* execute multi query */
 $mysqli->multi_query($sql);

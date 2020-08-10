@@ -10,6 +10,8 @@ if (isset($_SESSION['loginroll'])) {
 require 'connectwithoutdata.php';
 require 'header.php';
 ?>
+<link rel="stylesheet" href="assets/css/index.css">
+<div class="gradient">
 <div class="container">
 <h1 class="text-center font-bold mb-2" >Create Course</h1>
 <div class="jumbotron">
@@ -30,7 +32,7 @@ require 'header.php';
 
 </div>
 </div>
-
+</div>
 <?php
 }
 else{

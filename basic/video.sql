@@ -53,7 +53,7 @@ INSERT INTO `chat` (`id`, `chatuser`, `chat`, `time_mark`, `second`, `reaction`,
 
 CREATE TABLE `clickdata` (
   `id` int(6) UNSIGNED NOT NULL,
-  `user_id` int(12) DEFAULT 0,
+  `user_id` varchar(30) DEFAULT 0,
   `username` varchar(30) NOT NULL,
   `Event` varchar(30) NOT NULL,
   `Start_Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -133,7 +133,7 @@ CREATE TABLE `prevideosurvey` (
 
 CREATE TABLE `question` (
   `id` int(11) NOT NULL,
-  `question` int(255) NOT NULL,
+  `question` varchar(255) NOT NULL,
   `options` text NOT NULL,
   `answer` int(255) NOT NULL,
   `timestamp` int(100) NOT NULL

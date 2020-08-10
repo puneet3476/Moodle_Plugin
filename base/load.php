@@ -1,6 +1,8 @@
 <?php
 session_start();
 require 'connect.php';
+// require '../../basic/header.php';
+
 
 ?>
 
@@ -16,58 +18,60 @@ require 'connect.php';
   <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../../basic/assets/css/main.css" />
   <link rel="stylesheet" href="../../basic/assets/css/chatbox.css" />
-  <link rel="stylesheet" type="text/css" href="../../basic/assets/css/videocontrols.css">
-  <link rel='stylesheet' type='text/css' href='.<?php
-session_start();
-require 'connect.php';
+  <link rel="stylesheet" href="../../basic/assets/css/landing.css" />
 
-?>
-
-<!DOCTYPE HTML>
-
-<html>
-
-<head>
-  <title>Demo</title>
-
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="../../basic/assets/css/main.css" />
-  <link rel="stylesheet" href="../../basic/assets/css/chatbox.css" />
-  <link rel="stylesheet" type="text/css" href="../../basic/assets/css/videocontrols.css">
+  <link
+      href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat:400,700|Dancing+Script:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+  <link rel="stylesheet" type="text/css" href="../../basic/assets/css/index.css'">
   <link rel='stylesheet' type='text/css' href='../../basic/assets/css/player.css' />
   <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../../basic/assets/dist/plyr.css" />
   <link href="https://vjs.zencdn.net/7.8.3/video-js.css" rel="stylesheet" />
   <link href="//vjs.zencdn.net/7.8.2/video-js.min.css" rel="stylesheet">
   <link href="../../basic/assets/videojs.chapter-thumbnails.min.css" rel="stylesheet">
-
-
-
+  <link rel="stylesheet" href="../../basic/assets/css/question.css">
 </head>
 
 <body style="overflow-y: scroll;">
 
 
-  <header id="header">
-    <div class="inner">
-      <a href="#" class="logo"><?php if (isset(($_SESSION['loginuser'])) && $_SESSION['loginuser']!='empty1') {
-        echo ("Welcome ".$_SESSION['loginuser']);
-      } ?>
+
+  <section class="hero gradient">
+      <h1>
+        <span class="land_header">EdEl</span>
+        Educate to Elevate
+      </h1>
+      <br>
+      <a href="#" class="logo"  style="float: left;
+position: relative;
+right: 510px;
+top: 35px;
+font-size: 40px;"> <?php if (isset(($_SESSION['loginuser'])) && $_SESSION['loginuser'] != 'empty1') {
+
+}?>
       </a>
-      <nav id="nav">
+      <h2>
 
-        <a id="login_but" href="<?php echo($url_h.$appache_localhost_port.$course.$folder."login.php")?>">Login </a>
+      <nav id="nav" style="font-size:20px;">
 
-        <a href="<?php echo($url_h.$appache_localhost_port.$course.$folder."index.php")?>">Sign up</a>
-        <button id="myBtn" class="button alt">How to Use</button>
-        <button id="freeze" class="button">Freeze</button>
+
+   <div style="display:flex;flex-direction:row;justify-content: space-between; right: 10px;"><a class="horizontal" id="login_but" style="font-size:20px;padding:0 20px;" href="<?php echo ($url_h . $appache_localhost_port . $folder . "login.php") ?>">
+    <span class="text"  >Login</span></a>
+    <!--  <a class="vertical"  href="<?php echo ($url_h . $appache_localhost_port . $folder . 'index.php') ?>">
+   <span class="text"  style="font-size:20px;">Sign Up</span></a> -->
+   <a class="vertical"  href="<?php echo ($url_h . $appache_localhost_port . $folder . 'index.php') ?>">
+   <span class="text"  style="font-size:20px;">How to Use</span></a>
+   <a class="horizontal"  href="<?php echo ($url_h . $appache_localhost_port . $folder . 'index.php') ?>">
+   <span class="text"  style="font-size:20px;">Freeze</span></a></div>
+
 
 
       </nav>
-    </div>
-  </header>
+      </h2>
+    </section>
   <div id="php" class="load"><?php echo isset(($_SESSION['signuser'])); ?></div>
   <div id="phpname" class="load"><?php echo ($_SESSION['signuser']); ?></div>
   <div id="phplogin" class="load"><?php echo ($_SESSION['loginuser']); ?></div>
@@ -99,15 +103,15 @@ require 'connect.php';
      <ul class="vidchaNav">
       <?php
 
-      require 'connect.php';
+require 'connect.php';
 
-       $q="SELECT * FROM `segments`";
-    $segments = mysqli_query($link,$q);
-    if (mysqli_num_rows($segments) > 0) {
-    while($row = mysqli_fetch_assoc($segments)) { ?>
-        <li data-start="<?php echo $row['segment_time']?>" class="topics"><?php echo $row['segments_name']?></li>
+$q = "SELECT * FROM `segments`";
+$segments = mysqli_query($link, $q);
+if (mysqli_num_rows($segments) > 0) {
+    while ($row = mysqli_fetch_assoc($segments)) {?>
+        <li data-start="<?php echo $row['segment_time'] ?>" class="topics"><?php echo $row['segments_name'] ?></li>
     <?php }
-  }?>
+}?>
 
     </ul>
 
@@ -151,17 +155,17 @@ require 'connect.php';
        }
             var fruits = [];
             <?php
-            require 'connect.php';
-            $resultchat = mysqli_query($link, "SELECT * FROM `chat` ");
-            while ($rowchat = mysqli_fetch_array($resultchat)) {
-            ?>
+require 'connect.php';
+$resultchat = mysqli_query($link, "SELECT * FROM `chat` ");
+while ($rowchat = mysqli_fetch_array($resultchat)) {
+    ?>
               var temp = "<?php echo ($rowchat['second']) ?>";
               fruits.push(temp);
 
 
 
 
-            <?php } ?>
+            <?php }?>
             var bore_time;
             var vid = document.getElementById('myVideo');
             var vid_curenttime = document.getElementById('myVideo').currentTime;
@@ -465,26 +469,20 @@ require 'connect.php';
             Name:<?php echo ($_SESSION['loginname']); ?><br>
               <?php
     $this_chatuser=$_SESSION['loginid'];
-    $q="SELECT * FROM `register_user` WHERE `Student_ID`='$this_chatuser';";
-    $avatar = mysqli_query($link_central,$q);
-    $result = $link_central->query($q);
 
-     while ($chatavatar=mysqli_fetch_array($avatar)) {
-
-      $image_url="otp-php-registration/class/".$chatavatar['user_avatar'];
+    $image_url="otp-php-registration/class/".$_SESSION['user_avatar'];
      ?>
-    <img src="../../<?php echo($image_url);?>" alt="Avatar" class="profile_avatar">
+    <img src="../../<?php echo($image_url);?>"  class="avatar" style="align-content: left;vertical-align: middle;width:50px;height: 50px;border-radius: 50%;">
     <br>
     Email:
     <?php
-    echo ($chatavatar['user_email']);
-    }
+    echo ($_SESSION['loginemailid']);
     ?>
      <br>
 
 
             Username:<?php echo ($_SESSION['loginuser']); ?><br>
-            Your role:<?php echo ($_SESSION['loginrole']); ?><br>
+            Your role:<?php echo ($_SESSION['my_role']); ?><br>
             ID:<?php echo ($_SESSION['loginid']); ?><br>
           </div>
           <div class="main6" id="main6">
@@ -496,8 +494,8 @@ require 'connect.php';
 
 
 
-            <?php     //<textarea class="topic"  type="text" align="center" name="topic" placeholder="ADD TOPIC"></textarea>
-            ?>
+            <?php //<textarea class="topic"  type="text" align="center" name="topic" placeholder="ADD TOPIC"></textarea>
+?>
             <script src="../../basic/assets/js/jquery.js"></script>
 
             <script type="text/javascript">
@@ -642,7 +640,7 @@ require 'connect.php';
                       usery: usery
                     },
                     success: function(d) {
-                      urldownload = "http://localhost:<?php echo ($appache_localhost_port); ?><?php echo($folder);?>ajaxy.php?display=1&usery=" + usery; //............This you may have to change
+                      urldownload = "http://localhost:<?php echo ($appache_localhost_port); ?><?php echo ($folder); ?>ajaxy.php?display=1&usery=" + usery; //............This you may have to change
                       window.location.href = urldownload;
                     }
                   })
@@ -1053,12 +1051,12 @@ require 'connect.php';
       if (loginuser == "empty1") {
         alert("Wrong Email ID Or Password");
         document.getElementById('login_but').innerHTML="Login";
-        document.getElementById('login_but').href="<?php echo($url_h.$appache_localhost_port.$folder."login.php")?>";
+        document.getElementById('login_but').href="<?php echo ($url_h . $appache_localhost_port . $folder . "login.php") ?>";
       }
       if (loginuser != "empty1" && loginbool == "1") {
 
               document.getElementById('login_but').innerHTML="Logout";
-              document.getElementById('login_but').href="<?php echo($url_h.$appache_localhost_port.$course.$folder."logout.php")?>";
+              document.getElementById('login_but').href="<?php echo ($url_h . $appache_localhost_port . $course . $folder . "logout.php") ?>";
 
 
       }
@@ -1354,6 +1352,119 @@ require 'connect.php';
     <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
     <script src="../../basic/assets/js/vidcha.js"></script>
     <script src="../../basic/assets/dist/plyr.js"></script>
+
+
+<?php
+$user_roll=$_SESSION['loginroll'];
+$anwsered_check="SELECT * FROM `score` WHERE `user_roll_no`='$user_roll' and `video_name`='$db' ";
+$link_users=new mysqli(
+   $host,
+   $user,
+   $password,'users'
+);
+$result = $link_users->query($anwsered_check);
+?>
+<script type="text/javascript">
+  console.log("<?php print_r($result);?>");
+</script>
+<?php
+if (!($result->num_rows > 0)) {
+?>
+<script>var answerMatrix = {};var questionTimeArray = [];</script>
+      <?php
+$x = 1;
+$questions = mysqli_query($link, "SELECT * FROM `question` ");
+$qno = mysqli_num_rows($questions);
+while ($question = mysqli_fetch_array($questions)) {
+    ?>
+        <div class="questionbox_container" id="qc<?php echo $x ?>" style="display: none;">
+          <div id="questionbox" class="questionbox">
+            <div class="questionbox_header"><?php echo $question['question'] ?></div>
+            <?php
+$opts = explode("**", $question['options']);
+    ?>
+            <div class="questionbox_options_container">
+              <div class="questionbox_option_container">
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[0] ?>" name="answer" value="1">
+                <label for="<?php echo $opts[0] ?>"><?php echo $opts[0] ?></label>
+              </div>
+              <div class="questionbox_option_container">
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[1] ?>" name="answer" value="2?>">
+                <label for="<?php echo $opts[1] ?>"><?php echo $opts[1] ?></label>
+              </div>
+            </div>
+            <div class="questionbox_options_container">
+              <div class="questionbox_option_container">
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[2] ?>" name="answer" value="3">
+                <label for="<?php echo $opts[2] ?>"><?php echo $opts[2] ?></label>
+              </div>
+              <?php if ($opts[3] != "null") {?>
+              <div class="questionbox_option_container">
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[3]; ?>" name="answer" value="4">
+                <label for="<?php echo $opts[3] ?>"><?php echo $opts[3]; ?></label>
+              </div>
+              <?php }?>
+            </div>
+            <button class="questionbox_submit_btn" id="sbtn<?php echo $x; ?>" type="submit">Submit</button>
+          </div>
+        </div>
+        <script>
+          questionTimeArray.push({timestamp:<?php echo $question['timestamp']; ?>, isanswered: false})
+          var abc<?php echo $x ?> = setInterval(() => {console.log(Math.floor(vid.currentTime));
+            if ("<?php echo $question['timestamp']; ?>" == Math.floor(vid.currentTime)){
+              vid.pause();
+            document.getElementById('qc<?php echo $x ?>').style.display = "block";
+          }
+
+          }, 1000);
+          document.getElementById('sbtn<?php echo $x ?>').onclick = () => {
+            document.getElementById('qc<?php echo $x ?>').style.display = "none";
+            clearInterval(abc<?php echo $x ?>);
+            vid.play();
+            answerMatrix['qno'] = <?php echo $qno ?>;
+            answerMatrix['user_Roll_no'] = "<?php echo $_SESSION['loginroll']; ?>";
+            answerMatrix['course_name']="<?php echo $users_db; ?>";
+            answerMatrix['video_name']="<?php echo $db; ?>";
+            answerMatrix['user'] = "<?php echo $_SESSION['loginuser']; ?>";
+
+
+            for(var i = 0; i < 4; i++){
+              if (document.getElementsByClassName("q<?php echo $x ?>")[i].checked){
+                answerMatrix['ans<?php echo $x ?>'] = document.getElementsByClassName("q<?php echo $x ?>")[i].value;
+                questionTimeArray[<?php echo $x - 1 ?>].isanswered = true;
+              }
+            }
+            if ("<?php echo $x ?>" == "<?php echo $qno ?>" ){
+              $.ajax({
+                  url:"../../basic/calculateScore.php",
+                  method:"POST",
+                  data:answerMatrix,
+                  success:function(data)
+                  {console.log(answerMatrix);
+                  }
+                });
+            }
+          }
+        </script>
+        <?php
+$x++;
+}
+?>
+<script>vid.ontimeupdate = function(){
+  var currentUpdateTime = vid.currentTime;
+  for(var i = 0; i < answerMatrix['qno']; i++ ){
+    if(currentUpdateTime > questionTimeArray[i].timestamp && !questionTimeArray[i].isanswered){
+      vid.currentTime = questionTimeArray[i].timestamp;
+      vid.pause()
+      document.getElementById('qc'+(i+1)).style.display = "block";
+    }
+  }
+}</script>
+
+<?php } ?>
+
+
+
 
     <script>
       MyObject = {

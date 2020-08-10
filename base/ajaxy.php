@@ -147,6 +147,24 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
 
   <div id="<?php echo $rowchat['id']; ?>t">
   <div class="comment_display" id="<?php echo $rowchat['second']; ?>">
+
+        <?php
+    $this_chatuser=$rowchat['student_ID'];
+    $q="SELECT * FROM `register_user` WHERE `user_Roll_no`='$this_chatuser';";
+    $avatar = mysqli_query($link_users,$q);
+
+
+     while ($chatavatar=mysqli_fetch_array($avatar)) {
+
+      $image_url="otp-php-registration/class/".$chatavatar['user_avatar'];
+     ?>
+    <img src="../../<?php echo($image_url);?>"  class="avatar" style="position:relative;align-content: left;vertical-align: middle;width:50px;height: 50px;border-radius: 50%;">
+    <?php
+    }
+
+
+
+    ?>
     <span class="comment_u"><?php echo $rowchat['chatuser']; ?></span>
     <br>
     <span class="timestamp"><?php echo $rowchat['time_mark']; ?></span>
@@ -348,15 +366,15 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
   <div class="comment_display" id="<?php echo $rowchat['second']; ?>">
     <?php
     $this_chatuser=$rowchat['student_ID'];
-    $q="SELECT * FROM `register_user` WHERE `Student_ID`='$this_chatuser';";
-    $avatar = mysqli_query($link_central,$q);
-    $result = $link_central->query($q);
+    $q="SELECT * FROM `register_user` WHERE `user_Roll_no`='$this_chatuser';";
+    $avatar = mysqli_query($link_users,$q);
+
 
      while ($chatavatar=mysqli_fetch_array($avatar)) {
 
       $image_url="otp-php-registration/class/".$chatavatar['user_avatar'];
      ?>
-    <img src="../../<?php echo($image_url);?>"  class="avatar" style="width: 1.5vw;padding-top: .5vh;position:relative;top: 5px;padding-right: 5px;">
+    <img src="../../<?php echo($image_url);?>"  class="avatar" style="position:relative;align-content: left;vertical-align: middle;width:50px;height: 50px;border-radius: 50%;">
     <?php
     }
 

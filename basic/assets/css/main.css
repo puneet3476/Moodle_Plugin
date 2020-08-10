@@ -1780,9 +1780,7 @@ body {
 		text-decoration: none;
 	}
 
-		a:hover {
-			text-decoration: underline;
-		}
+		
 
 	strong, b {
 		font-weight: 700;
@@ -1800,8 +1798,8 @@ body {
 	h1, h2, h3, h4, h5, h6 {
 		font-weight: 700;
 		line-height: 1.5;
-		margin: 0 0 1em 0;
-		text-transform: uppercase;
+	
+	
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -1926,9 +1924,7 @@ body {
 		color: #e5474b;
 	}
 
-	h1, h2, h3, h4, h5, h6 {
-		color: #e5474b;
-	}
+	
 
 	blockquote {
 		border-left-color: #e5474b;
@@ -3301,7 +3297,7 @@ body {
 
 body {
 	position: relative;
-	padding-top: 5em;
+	
 }
 
 	#header {
@@ -3342,7 +3338,7 @@ body {
 
 		#header .logo {
 			font-family: 'Open Sans', sans-serif;
-			display: inline-block;
+			
 			height: inherit;
 			left: 0;
 			line-height: inherit;
