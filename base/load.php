@@ -46,23 +46,23 @@ require 'connect.php';
 position: relative;
 right: 510px;
 top: 35px;
-font-size: 30px;"> <?php if (isset(($_SESSION['loginuser'])) && $_SESSION['loginuser'] != 'empty1') {
+font-size: 40px;"> <?php if (isset(($_SESSION['loginuser'])) && $_SESSION['loginuser'] != 'empty1') {
     echo ("Welcome " . $_SESSION['loginuser']);
 }?>
       </a>
 			<h2>
 
-      <nav id="nav" style="font-size:16px;">
+      <nav id="nav" style="font-size:20px;">
 
 
-   <div style="display:flex;flex-direction:row;justify-content: space-between;"><a class="horizontal" id="login_but" style="font-size:16px;padding:0 16px;" href="<?php echo ($url_h . $appache_localhost_port . $folder . "login.php") ?>">
+   <div style="display:flex;flex-direction:row;justify-content: space-between;"><a class="horizontal" id="login_but" style="font-size:20px;padding:0 20px;" href="<?php echo ($url_h . $appache_localhost_port . $folder . "login.php") ?>">
     <span class="text"  >Login</span></a>
      <a class="vertical"  href="<?php echo ($url_h . $appache_localhost_port . $folder . 'index.php') ?>">
-   <span class="text"  style="font-size:16px;">Sign Up</span></a>
+   <span class="text"  style="font-size:20px;">Sign Up</span></a>
    <a class="vertical"  href="<?php echo ($url_h . $appache_localhost_port . $folder . 'index.php') ?>">
-   <span class="text"  style="font-size:16px;">How to Use</span></a>
+   <span class="text"  style="font-size:20px;">How to Use</span></a>
    <a class="horizontal"  href="<?php echo ($url_h . $appache_localhost_port . $folder . 'index.php') ?>">
-   <span class="text"  style="font-size:16px;">Freeze</span></a></div>
+   <span class="text"  style="font-size:20px;">Freeze</span></a></div>
 
 
 
@@ -465,22 +465,16 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
           <div class="main8" id="main8">Your profile<br>
             Name:<?php echo ($_SESSION['loginname']); ?><br>
               <?php
-$this_chatuser = $_SESSION['loginid'];
-$q = "SELECT * FROM `register_user` WHERE `Student_ID`='$this_chatuser';";
-$avatar = mysqli_query($link_central, $q);
-$result = $link_central->query($q);
-
-while ($chatavatar = mysqli_fetch_array($avatar)) {
-
-    $image_url = "otp-php-registration/class/" . $chatavatar['user_avatar'];
-    ?>
-    <img src="../../<?php echo ($image_url); ?>" alt="Avatar" class="profile_avatar">
+    $this_chatuser=$_SESSION['loginid'];
+  
+    $image_url="otp-php-registration/class/".$_SESSION['user_avatar'];
+     ?>
+    <img src="../../<?php echo($image_url);?>"  class="avatar" style="align-content: left;vertical-align: middle;width:50px;height: 50px;border-radius: 50%;">
     <br>
     Email:
     <?php
-echo ($chatavatar['user_email']);
-}
-?>
+    echo ($_SESSION['loginemailid']);
+    ?>
      <br>
 
 
