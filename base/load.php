@@ -17,6 +17,7 @@ require 'connect.php';
   <link rel="stylesheet" href="../../basic/assets/css/main.css" />
   <link rel="stylesheet" href="../../basic/assets/css/chatbox.css" />
   <link rel="stylesheet" type="text/css" href="../../basic/assets/css/videocontrols.css">
+  <link rel="stylesheet" type="text/css" href="../../basic/assets/css/landing.css">
   <link rel='stylesheet' type='text/css' href='.<?php
 session_start();
 require 'connect.php';
