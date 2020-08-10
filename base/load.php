@@ -16,8 +16,13 @@ require 'connect.php';
   <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../../basic/assets/css/main.css" />
   <link rel="stylesheet" href="../../basic/assets/css/chatbox.css" />
+  <link rel="stylesheet" href="../../basic/assets/css/landing.css" />
+  <link
+			href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat:400,700|Dancing+Script:400,700"
+			rel="stylesheet"
+			type="text/css"
+		/>
   <link rel="stylesheet" type="text/css" href="../../basic/assets/css/videocontrols.css">
-  <link rel="stylesheet" type="text/css" href="../../basic/assets/css/landing.css">
   <link rel='stylesheet' type='text/css' href='.<?php
 session_start();
 require 'connect.php';
@@ -51,24 +56,40 @@ require 'connect.php';
 <body style="overflow-y: scroll;">
 
 
-  <header id="header">
-    <div class="inner">
-      <a href="#" class="logo"><?php if (isset(($_SESSION['loginuser'])) && $_SESSION['loginuser']!='empty1') {
-        echo ("Welcome ".$_SESSION['loginuser']);
-      } ?>
+
+  <section class="hero">
+			<h1>
+				<span class="land_header">EdEl</span>
+				Educate to Elevate
+			</h1>
+      <br>
+      <a href="#" class="logo"  style="float: left;
+position: relative;
+right: 510px;
+top: 35px;
+font-size: 40px;"> <?php if (isset(($_SESSION['loginuser'])) && $_SESSION['loginuser'] != 'empty1') {
+    echo ("Welcome " . $_SESSION['loginuser']);
+}?>
       </a>
-      <nav id="nav">
+			<h2>
 
-        <a id="login_but" href="<?php echo($url_h.$appache_localhost_port.$course.$folder."login.php")?>">Login </a>
+      <nav id="nav" style="font-size:20px;">
 
-        <a href="<?php echo($url_h.$appache_localhost_port.$course.$folder."index.php")?>">Sign up</a>
-        <button id="myBtn" class="button alt">How to Use</button>
-        <button id="freeze" class="button">Freeze</button>
+
+   <div style="display:flex;flex-direction:row;justify-content: space-between;"><a class="horizontal" id="login_but" style="font-size:20px;padding:0 20px;" href="<?php echo ($url_h . $appache_localhost_port . $folder . "login.php") ?>">
+    <span class="text"  >Login</span></a>
+     <a class="vertical"  href="<?php echo ($url_h . $appache_localhost_port . $folder . 'index.php') ?>">
+   <span class="text"  style="font-size:20px;">Sign Up</span></a>
+   <a class="vertical"  href="<?php echo ($url_h . $appache_localhost_port . $folder . 'index.php') ?>">
+   <span class="text"  style="font-size:20px;">How to Use</span></a>
+   <a class="horizontal"  href="<?php echo ($url_h . $appache_localhost_port . $folder . 'index.php') ?>">
+   <span class="text"  style="font-size:20px;">Freeze</span></a></div>
+
 
 
       </nav>
-    </div>
-  </header>
+			</h2>
+		</section>
   <div id="php" class="load"><?php echo isset(($_SESSION['signuser'])); ?></div>
   <div id="phpname" class="load"><?php echo ($_SESSION['signuser']); ?></div>
   <div id="phplogin" class="load"><?php echo ($_SESSION['loginuser']); ?></div>
@@ -100,15 +121,15 @@ require 'connect.php';
      <ul class="vidchaNav">
       <?php
 
-      require 'connect.php';
+require 'connect.php';
 
-       $q="SELECT * FROM `segments`";
-    $segments = mysqli_query($link,$q);
-    if (mysqli_num_rows($segments) > 0) {
-    while($row = mysqli_fetch_assoc($segments)) { ?>
-        <li data-start="<?php echo $row['segment_time']?>" class="topics"><?php echo $row['segments_name']?></li>
+$q = "SELECT * FROM `segments`";
+$segments = mysqli_query($link, $q);
+if (mysqli_num_rows($segments) > 0) {
+    while ($row = mysqli_fetch_assoc($segments)) {?>
+        <li data-start="<?php echo $row['segment_time'] ?>" class="topics"><?php echo $row['segments_name'] ?></li>
     <?php }
-  }?>
+}?>
 
     </ul>
 
@@ -152,17 +173,17 @@ require 'connect.php';
        }
             var fruits = [];
             <?php
-            require 'connect.php';
-            $resultchat = mysqli_query($link, "SELECT * FROM `chat` ");
-            while ($rowchat = mysqli_fetch_array($resultchat)) {
-            ?>
+require 'connect.php';
+$resultchat = mysqli_query($link, "SELECT * FROM `chat` ");
+while ($rowchat = mysqli_fetch_array($resultchat)) {
+    ?>
               var temp = "<?php echo ($rowchat['second']) ?>";
               fruits.push(temp);
 
 
 
 
-            <?php } ?>
+            <?php }?>
             var bore_time;
             var vid = document.getElementById('myVideo');
             var vid_curenttime = document.getElementById('myVideo').currentTime;
@@ -465,22 +486,22 @@ require 'connect.php';
           <div class="main8" id="main8">Your profile<br>
             Name:<?php echo ($_SESSION['loginname']); ?><br>
               <?php
-    $this_chatuser=$_SESSION['loginid'];
-    $q="SELECT * FROM `register_user` WHERE `Student_ID`='$this_chatuser';";
-    $avatar = mysqli_query($link_central,$q);
-    $result = $link_central->query($q);
+$this_chatuser = $_SESSION['loginid'];
+$q = "SELECT * FROM `register_user` WHERE `Student_ID`='$this_chatuser';";
+$avatar = mysqli_query($link_central, $q);
+$result = $link_central->query($q);
 
-     while ($chatavatar=mysqli_fetch_array($avatar)) {
+while ($chatavatar = mysqli_fetch_array($avatar)) {
 
-      $image_url="otp-php-registration/class/".$chatavatar['user_avatar'];
-     ?>
-    <img src="../../<?php echo($image_url);?>" alt="Avatar" class="profile_avatar">
+    $image_url = "otp-php-registration/class/" . $chatavatar['user_avatar'];
+    ?>
+    <img src="../../<?php echo ($image_url); ?>" alt="Avatar" class="profile_avatar">
     <br>
     Email:
     <?php
-    echo ($chatavatar['user_email']);
-    }
-    ?>
+echo ($chatavatar['user_email']);
+}
+?>
      <br>
 
 
@@ -497,8 +518,8 @@ require 'connect.php';
 
 
 
-            <?php     //<textarea class="topic"  type="text" align="center" name="topic" placeholder="ADD TOPIC"></textarea>
-            ?>
+            <?php //<textarea class="topic"  type="text" align="center" name="topic" placeholder="ADD TOPIC"></textarea>
+?>
             <script src="../../basic/assets/js/jquery.js"></script>
 
             <script type="text/javascript">
@@ -643,7 +664,7 @@ require 'connect.php';
                       usery: usery
                     },
                     success: function(d) {
-                      urldownload = "http://localhost:<?php echo ($appache_localhost_port); ?><?php echo($folder);?>ajaxy.php?display=1&usery=" + usery; //............This you may have to change
+                      urldownload = "http://localhost:<?php echo ($appache_localhost_port); ?><?php echo ($folder); ?>ajaxy.php?display=1&usery=" + usery; //............This you may have to change
                       window.location.href = urldownload;
                     }
                   })
@@ -1054,12 +1075,12 @@ require 'connect.php';
       if (loginuser == "empty1") {
         alert("Wrong Email ID Or Password");
         document.getElementById('login_but').innerHTML="Login";
-        document.getElementById('login_but').href="<?php echo($url_h.$appache_localhost_port.$folder."login.php")?>";
+        document.getElementById('login_but').href="<?php echo ($url_h . $appache_localhost_port . $folder . "login.php") ?>";
       }
       if (loginuser != "empty1" && loginbool == "1") {
 
               document.getElementById('login_but').innerHTML="Logout";
-              document.getElementById('login_but').href="<?php echo($url_h.$appache_localhost_port.$course.$folder."logout.php")?>";
+              document.getElementById('login_but').href="<?php echo ($url_h . $appache_localhost_port . $course . $folder . "logout.php") ?>";
 
 
       }

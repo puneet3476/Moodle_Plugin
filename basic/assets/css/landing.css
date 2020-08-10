@@ -87,39 +87,32 @@ body {
     text-align: center;
     position: relative;
     height: auto;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
     background: #4f2f60 url("https://miguelquispe.com/pen//hero.jpg") center top no-repeat;
     background-size: cover;
     color: #fff;
     overflow: hidden;
   }
   .hero h1 {
-    margin: 20px 0 20px;
+    margin:20px 0 20px;
     font-family: "Montserrat", sans-serif;
-    font-size: 35px;
+    font-size: 40px;
+    float: left;
+
   }
   .land_header {
+    margin-left: 50px;
+    margin-right: 50px;
     font: 700 60px/1 "Dancing Script", cursive;
     display: block;
+    float: left;
   }
   .hero h2 {
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 1em;
+    position: absolute;
+    left:900px;
     font-weight: 400;
+    top:50px;
     
-  }
-  @media only screen and (min-width: 37.5em) {
-    .hero h1 {
-      font-size: 50px;
-    }
-    .hero h1 span {
-      font-size: 76px;
-    }
-    .hero h2 {
-      width: 76%;
-      font-size: 18px;
-    }
   }
   
   .wrapper {
@@ -163,11 +156,9 @@ body {
     background: #f9f9f9;
   }
   .box__grid {
-    display: -webkit-box;
+
     display: flex;
-    flex-wrap: wrap;
-    -webkit-box-pack: justify;
-            justify-content: space-between;
+
   }
   .box__title {
     font-family: "Montserrat", sans-serif;
@@ -223,9 +214,9 @@ body {
             align-items: center;
     position: relative;
     width: auto;
-    height: 60px;
+    height: 40px;
     margin: 10px;
-    border: 5px solid var(--base-color);
+    border: 3px solid var(--base-color);
     font-size: 1.6rem;
     cursor: pointer;
 
@@ -280,9 +271,9 @@ body {
             align-items: center;
     position: relative;
     width: auto;
-    height: 60px;
+    height: 40px;
     margin: 10px;
-    border: 5px solid var(--base-color);
+    border: 3px solid var(--base-color);
     font-size: 1.6rem;
     cursor: pointer;
   }
