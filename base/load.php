@@ -1,6 +1,8 @@
 <?php
 session_start();
 require 'connect.php';
+// require '../../basic/header.php';
+
 
 ?>
 
@@ -17,12 +19,13 @@ require 'connect.php';
   <link rel="stylesheet" href="../../basic/assets/css/main.css" />
   <link rel="stylesheet" href="../../basic/assets/css/chatbox.css" />
   <link rel="stylesheet" href="../../basic/assets/css/landing.css" />
+
   <link
-			href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat:400,700|Dancing+Script:400,700"
-			rel="stylesheet"
-			type="text/css"
-		/>
-  <link rel="stylesheet" type="text/css" href="../../basic/assets/css/videocontrols.css">
+      href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat:400,700|Dancing+Script:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+  <link rel="stylesheet" type="text/css" href="../../basic/assets/css/index.css'">
   <link rel='stylesheet' type='text/css' href='../../basic/assets/css/player.css' />
   <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../../basic/assets/dist/plyr.css" />
@@ -36,29 +39,29 @@ require 'connect.php';
 
 
 
-  <section class="hero">
-			<h1>
-				<span class="land_header">EdEl</span>
-				Educate to Elevate
-			</h1>
+  <section class="hero gradient">
+      <h1>
+        <span class="land_header">EdEl</span>
+        Educate to Elevate
+      </h1>
       <br>
       <a href="#" class="logo"  style="float: left;
 position: relative;
 right: 510px;
 top: 35px;
 font-size: 40px;"> <?php if (isset(($_SESSION['loginuser'])) && $_SESSION['loginuser'] != 'empty1') {
-    echo ("Welcome " . $_SESSION['loginuser']);
+
 }?>
       </a>
-			<h2>
+      <h2>
 
       <nav id="nav" style="font-size:20px;">
 
 
-   <div style="display:flex;flex-direction:row;justify-content: space-between;"><a class="horizontal" id="login_but" style="font-size:20px;padding:0 20px;" href="<?php echo ($url_h . $appache_localhost_port . $folder . "login.php") ?>">
+   <div style="display:flex;flex-direction:row;justify-content: space-between; right: 10px;"><a class="horizontal" id="login_but" style="font-size:20px;padding:0 20px;" href="<?php echo ($url_h . $appache_localhost_port . $folder . "login.php") ?>">
     <span class="text"  >Login</span></a>
-     <a class="vertical"  href="<?php echo ($url_h . $appache_localhost_port . $folder . 'index.php') ?>">
-   <span class="text"  style="font-size:20px;">Sign Up</span></a>
+    <!--  <a class="vertical"  href="<?php echo ($url_h . $appache_localhost_port . $folder . 'index.php') ?>">
+   <span class="text"  style="font-size:20px;">Sign Up</span></a> -->
    <a class="vertical"  href="<?php echo ($url_h . $appache_localhost_port . $folder . 'index.php') ?>">
    <span class="text"  style="font-size:20px;">How to Use</span></a>
    <a class="horizontal"  href="<?php echo ($url_h . $appache_localhost_port . $folder . 'index.php') ?>">
@@ -67,8 +70,8 @@ font-size: 40px;"> <?php if (isset(($_SESSION['loginuser'])) && $_SESSION['login
 
 
       </nav>
-			</h2>
-		</section>
+      </h2>
+    </section>
   <div id="php" class="load"><?php echo isset(($_SESSION['signuser'])); ?></div>
   <div id="phpname" class="load"><?php echo ($_SESSION['signuser']); ?></div>
   <div id="phplogin" class="load"><?php echo ($_SESSION['loginuser']); ?></div>
@@ -466,7 +469,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
             Name:<?php echo ($_SESSION['loginname']); ?><br>
               <?php
     $this_chatuser=$_SESSION['loginid'];
-  
+
     $image_url="otp-php-registration/class/".$_SESSION['user_avatar'];
      ?>
     <img src="../../<?php echo($image_url);?>"  class="avatar" style="align-content: left;vertical-align: middle;width:50px;height: 50px;border-radius: 50%;">
@@ -1351,7 +1354,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
     <script src="../../basic/assets/dist/plyr.js"></script>
 
 
-<?php 
+<?php
 $user_roll=$_SESSION['loginroll'];
 $anwsered_check="SELECT * FROM `score` WHERE `user_roll_no`='$user_roll' and `video_name`='$db' ";
 $link_users=new mysqli(

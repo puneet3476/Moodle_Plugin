@@ -39,9 +39,11 @@ if (isset($_GET['course_name'])) {
 
 </div>
 
-<div class="row mx-auto mb-4 h-50 container">
+<div class="row mx-auto mb-4 container">
+        
         <div class=" jumbotron p-3 col-md-5  mx-auto" style="background-color:;height:100%;">
-        <h4 class="text-center">Your Videos for this Course</h4>
+        <div class="jumbotron mb-3" style="height:70%;">
+        <h4 class="text-center h-100">Your Videos for this Course</h4>
             <div class="overflow-auto " style="height:90%;">
             <?php
             $link_course = new mysqli(
@@ -57,9 +59,13 @@ if (isset($_GET['course_name'])) {
             </a></div>
             <?php } ?>
             </div>
+        </div><br>
+           
         </div>
-        <div class="  col-md-5  mx-auto" >
-            <div class=" jumbotron  p-3" style="background-color:;cursor:pointer;"><h5>Add/Delete Segments to videos</h5>
+        
+        <div class="  col-md-5  mx-auto " >
+            <div class=" jumbotron  p-3" style="background-color:;cursor:pointer;">
+            <h5>Add/Delete Segments to videos</h5>
             <form action="handle_segments.php" class="pt-1" method="POST">
             <input value="<?php echo $course_name ?>" style="display:none;" name="course" type="text">
             <label for="videos">Choose a Video:</label>
@@ -92,10 +98,12 @@ if (isset($_GET['course_name'])) {
             </form>
             
             </div>
-        
-            <a href="<?php echo 'add_students.php?course_name='.$course_name ?>" class="text-decoration-none text-dark"><div class="jumbotron hovers p-3" style="background-color:;cursor:pointer;">
-
-            Re-Upload List of enrolled students</div></a>
+            <a href="<?php echo 'add_students.php?course_name='.$course_name ?>" class="text-decoration-none text-dark ">
+            <div class="jumbotron hovers p-3" style="background-color:;cursor:pointer;">
+            Re-Upload List of enrolled students
+            </div>
+            </a> 
+            
         </div>
 </div>        
 

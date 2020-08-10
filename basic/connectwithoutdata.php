@@ -1,6 +1,6 @@
 <?php
 $user = 'root';//............This you may have to change
-$password = 'bottletopple202';//............This you may have to change
+$password = '';//............This you may have to change
 $host = 'localhost';//............This you may have to change
 $appache_localhost_port='';//............This you may have to change
 $urla="Location: http://localhost";
@@ -8,11 +8,11 @@ $urla="Location: http://localhost";
 $users_db='central';
 $inst='institution';
 $folder="/basic/";
-$class_link="/var/www/html/otp-php-registration/class";
+$class_link="/opt/lampp/htdocs/otp-php-registration/class";
 $urlb="load.php";
-$font_link="/var/www/html/otp-php-registration/class/avatar/PTSans.ttf";
+$font_link="/opt/lampp/htdocs/otp-php-registration/class/avatar/PTSans.ttf";
 $url_load=$urla.$appache_localhost_port.$folder.$urlb;
-$homedir="/var/www/html/";
+$homedir="/opt/lampp/htdocs/";
 
 // $user = 'root';//............This you may have to change
 // $password = 'root';//............This you may have to change

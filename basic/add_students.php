@@ -3,7 +3,7 @@ require 'connectwithoutdata.php';
   require 'includes/PHPMailer.php';
   require 'includes/SMTP.php';
   require 'includes/Exception.php';
-  require 'header.php';
+  
 session_start();
   // require 'connectwithoutdata.php';
 //Define name spaces
@@ -113,7 +113,7 @@ header('location:add_videos.php?course_name='.$course_name);
 
 
 
-
+require 'header.php';
 ?>
 
 

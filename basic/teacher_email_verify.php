@@ -1,7 +1,7 @@
 <?php
 require 'connectwithoutdata.php';
 //email_verify.php
-
+ 
 
 $error_user_otp = '';
 $user_activation_code = '';
@@ -57,8 +57,9 @@ else
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="http://code.jquery.com/jquery.js"></script>
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/css/index.css">
 	</head>
-	<body>
+	<body class="gradient">
 		<br />
 		<div class="container">
 			<h3 align="center">PHP Registration with Email Verification using OTP</h3>
