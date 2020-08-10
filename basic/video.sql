@@ -133,7 +133,7 @@ CREATE TABLE `prevideosurvey` (
 
 CREATE TABLE `question` (
   `id` int(11) NOT NULL,
-  `question` int(255) NOT NULL,
+  `question` varchar(255) NOT NULL,
   `options` text NOT NULL,
   `answer` int(255) NOT NULL,
   `timestamp` int(100) NOT NULL

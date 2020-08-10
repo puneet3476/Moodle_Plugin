@@ -217,6 +217,7 @@ if ($link_users->query($query) === TRUE) {
 			else
 			{
 				$message = $mail->ErrorInfo;
+				echo($mail->ErrorInfo);
 			}
 
 	}
