@@ -73,6 +73,22 @@ if (isset($_GET['course_name'])) {
             </form>
             
             </div>
+            <div class=" jumbotron  p-3" style="background-color:;cursor:pointer;"><h5>Add Questions</h5>
+            <form action="addNoOfQuestions.php" class="pt-1" method="POST">
+            <input value="<?php echo $course_name ?>" style="display:none;" name="course" type="text">
+            <label for="videos">Choose a Video:</label>
+            <select id="videos" name="vids">
+                <?php 
+                $result = mysqli_query($link_course,"SELECT * FROM `total_videos` " );
+                while ($row=mysqli_fetch_array($result)) {
+                ?>
+                <option value="<?php echo($row['folder_name']) ?>"><?php echo($row['folder_name']) ?> </option>
+                <?php } ?>
+            </select>
+            <button type="submit" class="btn btn-sm btn-success d-block mx-auto mt-2">Submit</button>
+            </form>
+            
+            </div>
             <a href="<?php echo 'add_students.php?course_name='.$course_name ?>" class="text-decoration-none text-dark"><div class="jumbotron hovers" style="background-color:;cursor:pointer;">
             Re-Upload List of enrolled students</div></a>
         </div>

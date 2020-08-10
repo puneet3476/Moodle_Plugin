@@ -17,34 +17,13 @@ require 'connect.php';
   <link rel="stylesheet" href="../../basic/assets/css/main.css" />
   <link rel="stylesheet" href="../../basic/assets/css/chatbox.css" />
   <link rel="stylesheet" type="text/css" href="../../basic/assets/css/videocontrols.css">
-  <link rel='stylesheet' type='text/css' href='.<?php
-session_start();
-require 'connect.php';
-
-?>
-
-<!DOCTYPE HTML>
-
-<html>
-
-<head>
-  <title>Demo</title>
-
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="../../basic/assets/css/main.css" />
-  <link rel="stylesheet" href="../../basic/assets/css/chatbox.css" />
-  <link rel="stylesheet" type="text/css" href="../../basic/assets/css/videocontrols.css">
   <link rel='stylesheet' type='text/css' href='../../basic/assets/css/player.css' />
   <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../../basic/assets/dist/plyr.css" />
   <link href="https://vjs.zencdn.net/7.8.3/video-js.css" rel="stylesheet" />
   <link href="//vjs.zencdn.net/7.8.2/video-js.min.css" rel="stylesheet">
   <link href="../../basic/assets/videojs.chapter-thumbnails.min.css" rel="stylesheet">
-
-
-
+  <link rel="stylesheet" href="../../basic/assets/css/question.css">
 </head>
 
 <body style="overflow-y: scroll;">
@@ -484,7 +463,7 @@ require 'connect.php';
 
 
             Username:<?php echo ($_SESSION['loginuser']); ?><br>
-            Your role:<?php echo ($_SESSION['loginrole']); ?><br>
+            Your role:<?php echo ($_SESSION['my_role']); ?><br>
             ID:<?php echo ($_SESSION['loginid']); ?><br>
           </div>
           <div class="main6" id="main6">
@@ -1354,6 +1333,119 @@ require 'connect.php';
     <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
     <script src="../../basic/assets/js/vidcha.js"></script>
     <script src="../../basic/assets/dist/plyr.js"></script>
+
+
+<?php 
+$user_roll=$_SESSION['loginroll'];
+$anwsered_check="SELECT * FROM `score` WHERE `user_roll_no`='$user_roll' and `video_name`='$db' ";
+$link_users=new mysqli(
+   $host,
+   $user,
+   $password,'users'
+);
+$result = $link_users->query($anwsered_check);
+?>
+<script type="text/javascript">
+  console.log("<?php print_r($result);?>");
+</script>
+<?php
+if (!($result->num_rows > 0)) {
+?>
+<script>var answerMatrix = {};var questionTimeArray = [];</script>
+      <?php
+$x = 1;
+$questions = mysqli_query($link, "SELECT * FROM `question` ");
+$qno = mysqli_num_rows($questions);
+while ($question = mysqli_fetch_array($questions)) {
+    ?>
+        <div class="questionbox_container" id="qc<?php echo $x ?>" style="display: none;">
+          <div id="questionbox" class="questionbox">
+            <div class="questionbox_header"><?php echo $question['question'] ?></div>
+            <?php
+$opts = explode("**", $question['options']);
+    ?>
+            <div class="questionbox_options_container">
+              <div class="questionbox_option_container">
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[0] ?>" name="answer" value="1">
+                <label for="<?php echo $opts[0] ?>"><?php echo $opts[0] ?></label>
+              </div>
+              <div class="questionbox_option_container">
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[1] ?>" name="answer" value="2?>">
+                <label for="<?php echo $opts[1] ?>"><?php echo $opts[1] ?></label>
+              </div>
+            </div>
+            <div class="questionbox_options_container">
+              <div class="questionbox_option_container">
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[2] ?>" name="answer" value="3">
+                <label for="<?php echo $opts[2] ?>"><?php echo $opts[2] ?></label>
+              </div>
+              <?php if ($opts[3] != "null") {?>
+              <div class="questionbox_option_container">
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[3]; ?>" name="answer" value="4">
+                <label for="<?php echo $opts[3] ?>"><?php echo $opts[3]; ?></label>
+              </div>
+              <?php }?>
+            </div>
+            <button class="questionbox_submit_btn" id="sbtn<?php echo $x; ?>" type="submit">Submit</button>
+          </div>
+        </div>
+        <script>
+          questionTimeArray.push({timestamp:<?php echo $question['timestamp']; ?>, isanswered: false})
+          var abc<?php echo $x ?> = setInterval(() => {console.log(Math.floor(vid.currentTime));
+            if ("<?php echo $question['timestamp']; ?>" == Math.floor(vid.currentTime)){
+              vid.pause();
+            document.getElementById('qc<?php echo $x ?>').style.display = "block";
+          }
+
+          }, 1000);
+          document.getElementById('sbtn<?php echo $x ?>').onclick = () => {
+            document.getElementById('qc<?php echo $x ?>').style.display = "none";
+            clearInterval(abc<?php echo $x ?>);
+            vid.play();
+            answerMatrix['qno'] = <?php echo $qno ?>;
+            answerMatrix['user_Roll_no'] = "<?php echo $_SESSION['loginroll']; ?>";
+            answerMatrix['course_name']="<?php echo $users_db; ?>";
+            answerMatrix['video_name']="<?php echo $db; ?>";
+            answerMatrix['user'] = "<?php echo $_SESSION['loginuser']; ?>";
+
+
+            for(var i = 0; i < 4; i++){
+              if (document.getElementsByClassName("q<?php echo $x ?>")[i].checked){
+                answerMatrix['ans<?php echo $x ?>'] = document.getElementsByClassName("q<?php echo $x ?>")[i].value;
+                questionTimeArray[<?php echo $x - 1 ?>].isanswered = true;
+              }
+            }
+            if ("<?php echo $x ?>" == "<?php echo $qno ?>" ){
+              $.ajax({
+                  url:"../../basic/calculateScore.php",
+                  method:"POST",
+                  data:answerMatrix,
+                  success:function(data)
+                  {console.log(answerMatrix);
+                  }
+                });
+            }
+          }
+        </script>
+        <?php
+$x++;
+}
+?>
+<script>vid.ontimeupdate = function(){
+  var currentUpdateTime = vid.currentTime;
+  for(var i = 0; i < answerMatrix['qno']; i++ ){
+    if(currentUpdateTime > questionTimeArray[i].timestamp && !questionTimeArray[i].isanswered){
+      vid.currentTime = questionTimeArray[i].timestamp;
+      vid.pause()
+      document.getElementById('qc'+(i+1)).style.display = "block";
+    }
+  }
+}</script>
+
+<?php } ?>
+
+
+
 
     <script>
       MyObject = {

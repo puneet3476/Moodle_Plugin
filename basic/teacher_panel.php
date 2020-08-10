@@ -6,17 +6,17 @@ require 'connectwithoutdata.php';
 
 <?php
 
-if (isset($_SESSION['loginroll'])) {
+
 	if(($_SESSION['my_role'])!='TEACHER'){
-		die("You are forbidden to visit this page");
-	}
+		die("You are forbidden to visit this page");}
+	
     $teacher_ID=$_SESSION['loginroll'];
 	echo ("Your Name".$_SESSION['loginname']);
 	echo("Your Teacher ID.".$_SESSION['loginroll']);
 	$user_roll=$_SESSION['loginroll'];
 	echo("Your Email ID.".$_SESSION['loginemailid']);
 
-}
+
 ?>
 
 
