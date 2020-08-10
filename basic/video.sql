@@ -53,7 +53,7 @@ INSERT INTO `chat` (`id`, `chatuser`, `chat`, `time_mark`, `second`, `reaction`,
 
 CREATE TABLE `clickdata` (
   `id` int(6) UNSIGNED NOT NULL,
-  `user_id` int(12) DEFAULT 0,
+  `user_id` varchar(30) DEFAULT 0,
   `username` varchar(30) NOT NULL,
   `Event` varchar(30) NOT NULL,
   `Start_Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
