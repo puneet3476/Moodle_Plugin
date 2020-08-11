@@ -415,6 +415,7 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
       }
     }
   </script>
+
   <script type="text/javascript">
         $("#<?php echo $rowchat['id']; ?>h").click(function (argument) {
           var chatuser="<?php echo $rowchat['chatuser']; ?>";
