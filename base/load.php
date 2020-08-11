@@ -441,30 +441,24 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
           </div>
 
 
-          <div class="main8" id="main8">Your profile<br>
+           <div class="main8" id="main8">Your profile<br>
             Name:<?php echo ($_SESSION['loginname']); ?><br>
               <?php
-$this_chatuser = $_SESSION['loginid'];
-$q = "SELECT * FROM `register_user` WHERE `Student_ID`='$this_chatuser';";
-$avatar = mysqli_query($link_central, $q);
-$result = $link_central->query($q);
-
-while ($chatavatar = mysqli_fetch_array($avatar)) {
-
-    $image_url = "otp-php-registration/class/" . $chatavatar['user_avatar'];
-    ?>
-    <img src="../../<?php echo ($image_url); ?>" alt="Avatar" class="profile_avatar">
+    $this_chatuser=$_SESSION['loginid'];
+  
+    $image_url="otp-php-registration/class/".$_SESSION['user_avatar'];
+     ?>
+    <img src="../../<?php echo($image_url);?>"  class="avatar" style="align-content: left;vertical-align: middle;width:50px;height: 50px;border-radius: 50%;">
     <br>
     Email:
     <?php
-echo ($chatavatar['user_email']);
-}
-?>
+    echo ($_SESSION['loginemailid']);
+    ?>
      <br>
 
 
             Username:<?php echo ($_SESSION['loginuser']); ?><br>
-            Your role:<?php echo ($_SESSION['loginrole']); ?><br>
+            Your role:<?php echo ($_SESSION['my_role']); ?><br>
             ID:<?php echo ($_SESSION['loginid']); ?><br>
           </div>
           <div class="main6" id="main6">
