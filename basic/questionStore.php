@@ -46,6 +46,6 @@ echo "Connected successfully";
         echo "data entered successfully";
 }
     }
-    header($urla.$appache_localhost_port.'/'.$course.'/'.$video.'/'.$urlb);
+    header($urla.$appache_localhost_port.'/Moodle_Plugin/'.$course.'/'.$video.'/'.$urlb);
 
 ?>

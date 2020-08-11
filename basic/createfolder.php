@@ -3,7 +3,7 @@
 <?php
 require 'connectwithoutdata.php';
 $folder_name = $_POST['folder_name'];
-$database_name = $_POST['database_name'];
+$database_name = $_POST['folder_name'];
 $course_name = $_POST['course_name'];
 if (empty($folder_name) or empty($database_name)) {
     echo "Error: Either Foldername  is empty";
@@ -56,7 +56,7 @@ $connect = "<?php
 \$course=\"/Moodle_Plugin/" . $course_name . "/\";
 \$class_link='" . $class_link . "';
 \$urlb=\"load.php\";
-
+\$users_database='users';
 \$url_load=\$urla.\$appache_localhost_port.\$course.\$folder.\$urlb;
 \$admin_panel=\$urla.\$appache_localhost_port.\$folder.\"beijing_admin.php\";
 \$link = new mysqli(
@@ -68,6 +68,11 @@ $connect = "<?php
    \$host,
    \$user,
    \$password,\$users_db
+);
+\$link_users = new mysqli(
+    \$host,
+    \$user,
+    \$password, \$users_database
 );
 ?>";
 $write = fwrite($createfile, $connect);

@@ -191,7 +191,7 @@ if ($link_users->query($query) === TRUE) {
 //Set smtp encryption type (ssl/tls)
 	$mail->SMTPSecure = "tls";
 //Port to connect smtp
-	$mail->Port = "587";
+	$mail->Port = "25";
 //Set gmail username
 	$mail->Username = 'moodlepluginonline@gmail.com';
 	$mail->Password = 'qwerty!@1';

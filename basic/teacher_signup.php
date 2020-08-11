@@ -180,7 +180,7 @@ if ($link_users->query($query) === TRUE) {
 //Set mailer to use smtp
 	$mail->isSMTP();
 //Define smtp host
-           $mail->SMTPDebug = 4;
+           $mail->SMTPDebug = SMTP::DEBUG_CONNECTION;
            $mail->Mailer = "smtp";
            $mail->Host = "smtp.gmail.com";
 
@@ -189,7 +189,7 @@ if ($link_users->query($query) === TRUE) {
 //Set smtp encryption type (ssl/tls)
 	$mail->SMTPSecure = "tls";
 //Port to connect smtp
-	$mail->Port = "587";
+	$mail->Port = "25";
 //Set gmail username
 	$mail->Username = 'moodlepluginonline@gmail.com';
 	$mail->Password = 'qwerty!@1';
