@@ -6,16 +6,15 @@ require 'connectwithoutdata.php';
 
 <?php
 
-
-
-	if(($_SESSION['my_role'])!='TEACHER'){
-		die("You are forbidden to visit this page");}
-	
-    $teacher_ID=$_SESSION['loginroll'];
-	echo ("Your Name".$_SESSION['loginname']);
-	echo("Your Teacher ID.".$_SESSION['loginroll']);
-	$user_roll=$_SESSION['loginroll'];
-	echo("Your Email ID.".$_SESSION['loginemailid']);
+if (isset($_SESSION['loginroll'])) {
+    if (($_SESSION['my_role']) != 'TEACHER') {
+        die("You are forbidden to visit this page");
+    }
+    $teacher_ID = $_SESSION['loginroll'];
+    echo ("Your Name" . $_SESSION['loginname']);
+    echo ("Your Teacher ID." . $_SESSION['loginroll']);
+    $user_roll = $_SESSION['loginroll'];
+    echo ("Your Email ID." . $_SESSION['loginemailid']);
 
 
 ?>
@@ -27,12 +26,12 @@ require 'connectwithoutdata.php';
     padding: 16px 0;">
 <div class="container"> <a class="navbar-brand d-flex align-items-center" href="#">
 	<?php
-      $image_url="otp-php-registration/class/".$_SESSION['user_avatar'];
-     ?>
-    <img src="../../<?php echo($image_url);?>"  class="avatar" style="align-content: left;vertical-align: middle;width:80px;height: 80px;border-radius: 50%;">
+$image_url = "otp-php-registration/class/" . $_SESSION['user_avatar'];
+?>
+    <img src="../../<?php echo ($image_url); ?>"  class="avatar" style="align-content: left;vertical-align: middle;width:80px;height: 80px;border-radius: 50%;">
 
 
-<div class="ml-3 font-weight-bold" style="color: white; font-size: 40px;"><?php echo($_SESSION['loginname'])?></div>
+<div class="ml-3 font-weight-bold" style="color: white; font-size: 40px;"><?php echo ($_SESSION['loginname']) ?></div>
 <div class="col-xs-12 col-sm-4 dc-u-mb-16" style='color: #4d5356;
 font-family: "Lato", sans-serif;
 font-size: 100%;
@@ -75,9 +74,8 @@ color: #3d4251;
 font-weight: 700;
 line-height: 1.25;
 font-size: 2rem;'><?php
-$result = mysqli_query($link_inst,"SELECT * FROM `courses` WHERE `teacher_ID`='$teacher_ID'" );
-if($result)
-echo($result->num_rows);
+$result = mysqli_query($link_inst, "SELECT * FROM `courses` WHERE `teacher_ID`='$teacher_ID'");
+echo ($result->num_rows);
 ?></strong>
           <span>Courses Added</span>
         </div>
@@ -141,5 +139,17 @@ require 'header.php';
             <p style="text-align:center   ">List of all the Courses. You can Add videos,segments to your videos here.
         </a><div>
     </div>
+</div>
+
+<?php
+$result = mysqli_query($link_inst, "SELECT * FROM `courses` WHERE `teacher_ID`='$teacher_ID'");
+while ($row = mysqli_fetch_array($result)) {
+    ?>
+            <div class=" jumbotron p-3 col-md-5  mx-auto" style="background-color:#ede682;cursor:pointer;"><a href="add_videos.php?course_name=<?php echo $row['course_name'] ?>" class="text-decoration-none text-dark">
+                <h5 style="text-align:center" class=" font-weight-normal"><?php echo ($row['course_name']) ?><br></h5>
+                <div style="text-align:center"><?php echo ($row['description']) ?></div>
+            </a></div>
+            <?php }?>
+</div>
 </div>
 </div>

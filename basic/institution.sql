@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Aug 08, 2020 at 11:12 PM
+-- Generation Time: Aug 09, 2020 at 12:23 PM
 -- Server version: 5.7.24-log
 -- PHP Version: 7.2.10
 
@@ -36,7 +36,15 @@ CREATE TABLE `courses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `courses`
+--
 
+INSERT INTO `courses` (`course_name`, `course_id`, `description`, `teacher_ID`) VALUES
+('Yash', '1', 'frnd course', ''),
+('Finance', '1', 'FE lelo', ''),
+('ALgorithms', '1', 'algo bhia', ''),
+('Teachercr', '1', 'Crore', 'T3476');
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
