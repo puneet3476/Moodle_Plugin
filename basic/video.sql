@@ -35,7 +35,7 @@ CREATE TABLE `chat` (
   `second` int(30) DEFAULT NULL,
   `reaction` int(2) DEFAULT NULL,
   `Replies` int(10) NOT NULL DEFAULT 0,
-  `student_ID` int(12) NOT NULL
+  `student_ID` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
