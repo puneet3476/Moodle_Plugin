@@ -23,6 +23,7 @@ require 'connect.php';
   <link href="//vjs.zencdn.net/7.8.2/video-js.min.css" rel="stylesheet">
   <link href="../../basic/assets/videojs.chapter-thumbnails.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../basic/assets/css/question.css">
+  <link rel="stylesheet" href="../../basic/assets/css/videocontrols.css">
 
 
 </head>
