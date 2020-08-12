@@ -822,9 +822,10 @@ top: 0;
     font-size: 12px;
     font-weight: bold;
   }
-  input[type="radio"] + label:before{
-    transform: scale(0.5);
+  input[type="radio"] + label::before {
+    transform: scale(1.1);
   }
+  
   .mnone{
     margin: 0!important;
   }

@@ -150,7 +150,7 @@ if(isset($_POST["register"]))
 		(teacher_name,teacher_email, teacher_ID,teacher_password, teacher_activation_code, teacher_email_status, teacher_otp,teacher_avatar,teacher_department) values('$user_name','$user_email','$student_ID','$user_password','$user_activation_code','$user_email_status','$user_otp','$user_avatar','$user_dep');";
 
 if ($link_users->query($query) === TRUE) {
-
+header('location:teacher_login_page.php');
 // echo (getcwd());
 /*
 

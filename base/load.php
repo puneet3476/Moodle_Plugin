@@ -40,7 +40,7 @@ require 'connect.php';
 
         <a id="login_but" href="<?php echo ($url_h . $appache_localhost_port . "/Moodle_Plugin/basic/login_page.php") ?>">Login </a>
 
-        <a href="<?php echo ($url_h . $appache_localhost_port . "/Moodle_Plugin/basic/signup_page.php") ?>">Sign up</a>
+        <a href="<?php echo("../../basic/".strtolower($_SESSION['my_role'])."_panel.php"); ?>">Home</a>
         <button id="myBtn" class="button alt">How to Use</button>
         <button id="freeze" class="button">Freeze</button>
 

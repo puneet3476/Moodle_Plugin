@@ -1,12 +1,19 @@
+<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
+<link rel="stylesheet" href="assets/css/index.css">
+<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
+
 <?php 
 require 'connectwithoutdata.php';
+require 'header.php';
 session_start();
   if(($_SESSION['my_role'])!='TEACHER'){
     die("You are forbidden to visit this page");
   }
 ?>
+<body class="gradient">
+<div class="mt-3">
 <center><h2>Enter Questions' details</h2></center>
-<form action="<?php echo $folder;?>questionStore.php" method="post">
+<form action="questionStore.php" method="post">
 <input type="hidden" name="qno" value="<?php echo $_POST['qno']?>">
 <?php
 $video=$_POST['video_name'];
@@ -57,5 +64,7 @@ for ($x = 1; $x <= $_POST['qno']; $x++) {
 ?>
 <input type="text" name="video_name" id="video_name" value="<?echo($video);?>" style="display: none">
 <input type="text" name="course_name" id="course_name" value="<?echo($course);?>" style="display: none">
-<div style="margin: 0 auto; width: 70%;margin-bottom: 1rem"><button type="submit">Submit</button></div>
+<div style="margin: 0 auto; width: 70%;margin-bottom: 1rem"><button type="submit" class="btn btn-danger ">Submit</button></div>
 </form>
+</div>
+</body>

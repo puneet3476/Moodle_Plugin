@@ -9,8 +9,10 @@ if (isset($_FILES['video'])) {
     $hyperlink = $_POST['hyperlink'];
     $course_name = $_POST['course_name'];
     for ($x = 1; $x <= 10; $x++) {
-        $segs[$x] = $_POST['seg' . $x];
+        if($_POST['seg' . $x]!=""){
+        $segs[$x] = $x." ".$_POST['seg' . $x];
         $times[$x] = $_POST['time' . $x];
+        }
     }
     $uploadfile = basename($_FILES['video']['name']);
     $videopath = $dir_name . "/videos/" . $uploadfile;

@@ -117,11 +117,21 @@ echo($result->num_rows);
 <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
 <link rel="stylesheet" href="assets/css/index.css">
 <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
+<style type="text/css">
+    .vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+</style>
 <?php
 require 'connectwithoutdata.php';
 require 'header.php';    
 ?>
-<div class="bg-light gradient"> 
+<body class="vertical-center">
+<div class="bg-light gradient "> 
 <div class=" h-100 container">
     <div class="jumbotron bg-white">
     <a href="admin_page.php" class="text-decoration-none text-dark">
@@ -142,4 +152,5 @@ require 'header.php';
         </a><div>
     </div>
 </div>
-</div>>
+</div>
+</body>
