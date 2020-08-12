@@ -176,7 +176,7 @@ if ($link_users->query($query) === TRUE) {
 			//Include required PHPMailer files
 
 	chdir($class_link);
-
+/*
 //Create instance of PHPMailer
 	$mail = new PHPMailer();
 //Set mailer to use smtp
@@ -218,7 +218,7 @@ if ($link_users->query($query) === TRUE) {
 			{
 				$message = $mail->ErrorInfo;
 				echo($mail->ErrorInfo);
-			}
+			}*/
 
 	}
 	  else{
