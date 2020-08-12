@@ -24,7 +24,7 @@ require_once './connect.php';
             <svg class="ico-cup">
               <use xlink:href="#cup"></use>
             </svg>
-            SCORECARD
+            SCOREBOARD
           </h1>
           <ol style="list-style-type:none;padding:0;">
             <li>
