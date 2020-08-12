@@ -1429,7 +1429,7 @@ $opts = explode("**", $question['options']);
         <?php
 $x++;
     }
-  }
+  }}
     ?>
 
 
