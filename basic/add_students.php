@@ -62,7 +62,7 @@ if(isset($_POST['import'])){
 
     }
 
-
+/*
 //Create instance of PHPMailer
   $mail = new PHPMailer();
 //Set mailer to use smtp
@@ -105,7 +105,7 @@ while ($allmails=mysqli_fetch_array($allstds)) {
         echo "\n";
 
         
-      }
+      }*/
 }
 header('location:add_videos.php?course_name='.$course_name);
 }
