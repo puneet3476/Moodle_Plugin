@@ -59,7 +59,12 @@ while ($row=mysqli_fetch_array($result)) {
             ?>
             <div class="p-2 hovers rounded " style="cursor:pointer;"><a href="<?php echo ('../'.$course_database.'/'.$rowy['folder_name'].'/'.'load.php') ?>" class="text-decoration-none text-dark">
                 <div style="text-align:left" class=""><?php echo($rowy['folder_name']) ?> <i class="fa fa-arrow-circle-right float-right" aria-hidden="true"></i></div>
-            </a></div>
+                    
+            </a>
+
+        </div>
+        <a href="student_scorecard.php?course_name=<?php  echo($course_database)?>">
+         <div style="text-align:left" class="">Scoreboard<i class="fa fa-arrow-circle-right float-right" aria-hidden="true"></i></div></a>
             <?php } ?>
             </div>
         </div>
