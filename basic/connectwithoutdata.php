@@ -1,18 +1,19 @@
 <?php
 $user = 'root';//............This you may have to change
-$password = '';//............This you may have to change
+$password = 'bottletopple202';//............This you may have to change
 $host = 'localhost';//............This you may have to change
 $appache_localhost_port='';//............This you may have to change
 $urla="Location: http://localhost";
+$DB_name = "users";
 
 $users_db='central';
 $inst='institution';
 $folder="/basic/";
-$class_link="/opt/lampp/htdocs/otp-php-registration/class";
+$class_link="/var/www/html/Moodle_Plugin/otp-php-registration/class";
 $urlb="load.php";
-$font_link="/opt/lampp/htdocs/otp-php-registration/class/avatar/PTSans.ttf";
+$font_link="/var/www/html/Moodle_Plugin/otp-php-registration/class/avatar/PTSans.ttf";
 $url_load=$urla.$appache_localhost_port.$folder.$urlb;
-$homedir="/opt/lampp/htdocs/";
+$homedir="/var/www/html/Moodle_Plugin/";
 
 // $user = 'root';//............This you may have to change
 // $password = 'root';//............This you may have to change

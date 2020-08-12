@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 	
    $.ajax({
-		url:'../../controller.php',
+		url:'./controller.php',
 		type: 'POST',
 		data:{
 			functionname: 'leaders'
@@ -43,6 +43,7 @@ var odd = new Array(arr.length/2);
 			error:function(err)
 			{
 				console.log(err);
+		
 			}
 	});
 

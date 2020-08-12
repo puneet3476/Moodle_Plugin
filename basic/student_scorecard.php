@@ -1,15 +1,16 @@
 <?php
 session_start();
-require 'connectwithoutdata.php';
+require_once 'req_database.php';
 require 'header.php';
-require_once './connect.php';
+require 'connectwithoutdata.php';
+
 ?>
 <style>
     .hovers:hover{
     background-color:#999999;
 }
     </style>
-<link rel="stylesheet" type="text/css" href="../Moodle_Plugin/basic/assets/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
 
 <link rel="stylesheet" type="text/css" href="./assets/css/leaderboard.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

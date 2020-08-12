@@ -1,11 +1,5 @@
 <?php
-require_once './connect.php';
-
-
-include 'user.php';
-$user = new user($pdo);
-
- 
+require_once './req_database.php';
 
 session_start();
 if (isset($_POST['functionname']))
