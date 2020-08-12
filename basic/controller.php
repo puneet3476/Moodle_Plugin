@@ -8,7 +8,7 @@ if (isset($_POST['functionname']))
 
    if ($functionname == 'leaders')
   {
-      $leaders=array(array(),array());
+      $leaders=array(array(),array(),array());
       $leaders = $user->leaders();
       echo json_encode($leaders);
     }

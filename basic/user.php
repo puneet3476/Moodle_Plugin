@@ -10,16 +10,18 @@ class User {
     public function leaders()
     {
       try {
-        $stmt = $this->db->prepare("SELECT user_name,score FROM score ORDER BY score DESC LIMIT 12");
+        $stmt = $this->db->prepare("SELECT user_roll_no,`user_name`,score FROM score ORDER BY score DESC LIMIT 12");
             $stmt->execute();
             $result = $stmt->fetchAll();
             $rowCount = $stmt->rowCount();
-            $arrayTemp = array(array(),array());
+            $arrayTemp = array(array(),array(),array());
             $i = 0;
               foreach($result as $val)
               {
-              $arrayTemp[$i][0] = $val['user_name'];
-              $arrayTemp[$i][1] = $val['score'];
+                
+              $arrayTemp[$i][0] = $val['user_roll_no'];
+              $arrayTemp[$i][1] = $val['user_name'];
+              $arrayTemp[$i][2] = $val['score'];
               $i++;
               }
               $x=$arrayTemp;
