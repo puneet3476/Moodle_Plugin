@@ -1,36 +1,35 @@
 <?php
 session_start();
 require 'connect.php';
-
+ 
 ?>
-
+ 
 <!DOCTYPE HTML>
-
+ 
 <html>
-
+ 
 <head>
   <title>Demo</title>
-
+ 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../../basic/assets/css/main.css" />
   <link rel="stylesheet" href="../../basic/assets/css/chatbox.css" />
-
+ 
   <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../../basic/assets/dist/plyr.css" />
   <link href="https://vjs.zencdn.net/7.8.3/video-js.css" rel="stylesheet" />
   <link href="//vjs.zencdn.net/7.8.2/video-js.min.css" rel="stylesheet">
   <link href="../../basic/assets/videojs.chapter-thumbnails.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../basic/assets/css/question.css">
-  <link rel="stylesheet" href="../../basic/assets/css/videocontrols.css">
-
-
+ 
+ 
 </head>
-
+ 
 <body style="overflow-y: scroll;">
-
-
+ 
+ 
   <header id="header">
     <div class="inner">
       <a href="#" class="logo"><?php if (isset(($_SESSION['loginuser'])) && $_SESSION['loginuser'] != 'empty1') {
@@ -38,14 +37,14 @@ require 'connect.php';
 }?>
       </a>
       <nav id="nav">
-
+ 
         <a id="login_but" href="<?php echo ($url_h . $appache_localhost_port . "/Moodle_Plugin/basic/login_page.php") ?>">Login </a>
-
+ 
         <a href="<?php echo("../../basic/".strtolower($_SESSION['my_role'])."_panel.php"); ?>">Home</a>
         <button id="myBtn" class="button alt">How to Use</button>
         <button id="freeze" class="button">Freeze</button>
-
-
+ 
+ 
       </nav>
     </div>
   </header>
@@ -54,19 +53,19 @@ require 'connect.php';
   <div id="phplogin" class="load"><?php echo ($_SESSION['loginuser']); ?></div>
   <div id="loginbool" class="load"><?php echo isset(($_SESSION['loginuser'])); ?></div>
   <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
-
+ 
   <!--Video player-->
-
+ 
   <div class="data" id="data"></div>
   <div class="container" style="width: 672px;float: left;margin-left: 11vw;margin-top: 10%;">
-
-
+ 
+ 
     <video playsinline controls class="vidchaVideo" id="myVideo" preload="metadata" width="600px" height="400px" style="--plyr-color-main:#e82c2f;--plyr-video-control-background-hover:rgba(0,0,0,0);--plyr-video-control-color:white;">
-
+ 
       <source src="videos/video1.mp4" type="video/mp4">
     </video>
-
-
+ 
+ 
     <!--  <video
     id="myVideo"
     class="video-js"
@@ -79,9 +78,9 @@ require 'connect.php';
     <div>Topics:</div>
      <ul class="vidchaNav">
       <?php
-
+ 
 require 'connect.php';
-
+ 
 $q = "SELECT * FROM `segments`";
 $segments = mysqli_query($link, $q);
 if (mysqli_num_rows($segments) > 0) {
@@ -89,9 +88,9 @@ if (mysqli_num_rows($segments) > 0) {
         <li data-start="<?php echo $row['segment_time'] ?>" class="topics"><?php echo $row['segments_name'] ?></li>
     <?php }
 }?>
-
+ 
     </ul>
-
+ 
     <ul class="graph" id="graph">
       <li class="graph_column" onclick="graphtime(0)"></li>
       <li class="graph_column" onclick="graphtime(1)"></li>
@@ -125,7 +124,7 @@ if (mysqli_num_rows($segments) > 0) {
           <li><button id="stop" type="button"><img src="../../basic/images/stop.png" height="25" width="25"></button></li>
           <li><button id="mute" type="button"><img src="../../basic/images/mute.svg" height="25" width="25"></button></li>
           <li class="positioner"></li>
-
+ 
           <script language="javascript" type="text/javascript">
           document.getElementsByClassName('plyr__progress').onclick=function(){
         console.log('ASD');
@@ -138,10 +137,10 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
     ?>
               var temp = "<?php echo ($rowchat['second']) ?>";
               fruits.push(temp);
-
-
-
-
+ 
+ 
+ 
+ 
             <?php }?>
             var bore_time;
             var vid = document.getElementById('myVideo');
@@ -152,16 +151,16 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
             };
             setInterval(function() {
               document.getElementsByClassName("positioner")[0].innerHTML = timeConvert(vid.currentTime) + " / " + timeConvert(vid.duration);
-
+ 
             }, 1000);
-
+ 
             document.getElementById('progress').onclick = function() {
               window.value = (timeConvert(vid.currentTime));
-
+ 
             };
             // Display the current position of the video in a p element with id="demo"
-
-
+ 
+ 
             vid.onseeked = function() {
               var from_video_timestamp = window.value;
               var to_video_timestamp = timeConvert(vid.currentTime);
@@ -182,11 +181,11 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                 success: function(data) {}
               });
             };
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
             function graphtime(count) {
               search = [];
               var vid_t = document.getElementById('myVideo').duration;
@@ -199,7 +198,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
               var vid_curenttimesecond = Math.round(document.getElementById('myVideo').currentTime);
               var vid_curenttime = timeConvert(vid_curenttimesecond);
               var vid_curenttime_max = Math.floor((vid_div + vid_curenttimesecond));
-
+ 
               for (var i = vid_curenttimesecond; i <= vid_curenttime_max; i++) {
                 for (var j = 0; j <= fruits.length - 1; j++) {
                   if (i == fruits[j]) {
@@ -211,7 +210,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
               }
               if (searchbar(search[0]) != true) {
                 //document.getElementById('myVideo').currentTime=document.getElementById('myVideo').currentTime+1;
-
+ 
                 searchbar(search[1]);
               }
               //search_bartime();
@@ -229,7 +228,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                 },
                 success: function(data) {}
               });
-
+ 
               function searchbar(values) {
                 var found = 'false';
                 var present_id, prev_id, elementy;
@@ -238,7 +237,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                 for (i = 0; i < x.length; i++) {
                   //console.log(x[i].innerHTML.toLowerCase());
                   if (x[i].innerHTML.toLowerCase().includes(values)) {
-
+ 
                     found = 'true';
                     prev_id = present_id;
                     //x[i].style.border = "1px solid #0000FF";
@@ -257,8 +256,8 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                       block: 'nearest',
                       inline: 'nearest'
                     });
-
-
+ 
+ 
                     //$('html, body').animate({
                     //scrollTop: $(`#present_id`).offset().top
                     // }, 1000);
@@ -266,33 +265,33 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                     break;
                   } else {
                     continue;
-
-
-
-
+ 
+ 
+ 
+ 
                   }
-
+ 
                 }
               }
-
+ 
               function search_bartime() {
                 $('.comment_display').each(function() {
                   var found = 'false';
                   var present_id, prev_id, elementy;
                   for (var i = search.length - 1; i >= 0; i--) {
                     var value = search[i];
-
+ 
                     $(this).each(function() {
-
+ 
                       if ($(this).text().indexOf(value) >= 0) {
                         found = 'true';
-
+ 
                       }
                     });
                     if (found == 'true') {
                       prev_id = present_id;
-
-
+ 
+ 
                       $(this).show();
                       present_id = $(this).attr("id");
                       elementy = document.getElementById(present_id);
@@ -309,22 +308,22 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                       //$('html, body').animate({
                       //scrollTop: $(`#present_id`).offset().top
                       // }, 1000);
-
+ 
                       break;
                     } else {
                       continue;
-
-
+ 
+ 
                       //elementy=document.getElementById(prev_id);
                       //elementy.scrollIntoView({ behavior: 'smooth', block: 'nearest',inline:'nearest'});
                       //elementy.scrollIntoView({ behavior: 'smooth', block: 'nearest',inline:'nearest'}); //$(this).hide();
                     }
                   }
-
+ 
                 });
               }
-
-
+ 
+ 
               function graphtimeConvert(time) {
                 var vid_div = vid_t / 20;
                 var currenttime = parseInt(time) + vid_div;
@@ -345,7 +344,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                 if (minutes < 10) { //minutes=minutes+1;
                   var minute = minutes.toString();
                   minute = zero.concat(minute);
-
+ 
                 } else { //minutes=minutes+1;
                   var minute = minutes.toString();
                 }
@@ -359,9 +358,9 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                 var timemin = hour.concat(colon, minute);
                 return timemin;
               }
-
-
-
+ 
+ 
+ 
               function timeConvert(time) {
                 var currenttime = parseInt(time);
                 var totalsecsy = Math.floor(currenttime);
@@ -394,8 +393,8 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                 var timemin = hour.concat(colon, minute, colon, second);
                 return timemin;
               }
-
-
+ 
+ 
             }
           </script>
           <li><button id="volinc" type="button"><img src="../../basic/images/volinc.png" height="25" width="25"></button></li>
@@ -407,21 +406,21 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
     <div class="chatbox" id="mydiv">
       <div class="chatbox_upbar">
         <div class="dragarea" id="mydivheader">DragArea</div>
-
+ 
         <div class="btn not-active" id="ddb">
           <span style="background: black;height: 3.2px;"></span>
           <span style="background: black;height: 3.2px;"></span>
           <span style="background: black;height: 3.2px;"></span>
         </div>
-
+ 
         <div class="con" id="con">CHAT</div>
-
+ 
         <ul class="dropdownbox" id="dd">
           <li class="dd_opt" id="chat_b2">Chat</li>
           <li class="dd_opt" id="note_b2">Notes</li>
           <li class="dd_opt" id="profile">Profile</li>
         </ul>
-
+ 
         <div><select class="sort_method con" id="sort_method">
             <option value="1" id="Newest">Newest</option>
             <option value="2" id="sort">Timestamp</option>
@@ -432,21 +431,21 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
       </div>
       <div class="chatbox_midbar" id="bg">
         <div class="chatarea">
-
-
+ 
+ 
           <div class="main3" id="main3">
             <h4 class="contenty" id="log"> Hi <?php echo ($_SESSION['signuser']); ?>, your account is created successfully,please login to add notes and comment</h4>
           </div>
           <div class="main4" id="main4">
             <h4 class="contenty"> Please Login to Add Notes</h4>
           </div>
-
-
+ 
+ 
            <div class="main8" id="main8">Your profile<br>
             Name:<?php echo ($_SESSION['loginname']); ?><br>
               <?php
     $this_chatuser=$_SESSION['loginid'];
-  
+ 
     $image_url="otp-php-registration/class/".$_SESSION['user_avatar'];
      ?>
     <img src="../../<?php echo($image_url);?>"  class="avatar" style="align-content: left;vertical-align: middle;width:50px;height: 50px;border-radius: 50%;">
@@ -456,37 +455,37 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
     echo ($_SESSION['loginemailid']);
     ?>
      <br>
-
-
+ 
+ 
             Username:<?php echo ($_SESSION['loginuser']); ?><br>
             Your role:<?php echo ($_SESSION['my_role']); ?><br>
             ID:<?php echo ($_SESSION['loginid']); ?><br>
           </div>
           <div class="main6" id="main6">
-
-
+ 
+ 
             <div class="displaya"></div>
             <div class="reactionhide" id="reactionhide">0</div>
             <button id="download">Download Notes</button>
-
-
-
+ 
+ 
+ 
             <?php //<textarea class="topic"  type="text" align="center" name="topic" placeholder="ADD TOPIC"></textarea>
 ?>
             <script src="../../basic/assets/js/jquery.js"></script>
-
+ 
             <script type="text/javascript">
               var btn = $('.btn');
-
+ 
               btn.on('click', function() {
                 $(this).toggleClass('active');
                 $(this).toggleClass('not-active');
               });
-
-
-
+ 
+ 
+ 
               function cross1(argument) {
-
+ 
               }
               $(document).ready(function() {
                 var usery = document.querySelector('#phplogin').innerText;
@@ -504,9 +503,9 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                     },
                     success: function(d) {}
                   })
-
+ 
                 });
-
+ 
                 $("#mydivheader").click(function(argument) {
                   var drag_time = timeConvert(document.getElementById("myVideo").currentTime);
                   var drag_button = 1;
@@ -514,7 +513,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                   var coordinates = one.getBoundingClientRect();
                   var y = coordinates.top + " px";
                   var x = coordinates.left + " px";
-
+ 
                   $.ajax({
                     url: "clickdata.php",
                     method: "POST",
@@ -527,10 +526,10 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                     },
                     success: function(d) {}
                   })
-
+ 
                 });
-
-
+ 
+ 
                 $("#submitpost").click(function(argument) {
                   var current_reacty = document.getElementById("reactionhide").innerHTML;
                   var vid = document.getElementById("myVideo");
@@ -567,8 +566,8 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                   }
                   var colon = ":";
                   var timemin = hour.concat(colon, minute, colon, second);
-
-
+ 
+ 
                   load_comment();
                   $.ajax({
                     url: "clickdata.php",
@@ -582,7 +581,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                     },
                     success: function(data) {}
                   })
-
+ 
                   function load_comment() {
                     $.ajax({
                       url: "ajaxy.php",
@@ -604,8 +603,8 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                       }
                     })
                   }
-
-
+ 
+ 
                 });
                 $("#download").click(function(argument) {
                   var download = 1;
@@ -621,12 +620,12 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                       window.location.href = urldownload;
                     }
                   })
-
-
+ 
+ 
                 });
-
+ 
               });
-
+ 
               function displaytopic(usery) {
                 var display = 1;
                 $.ajax({
@@ -640,16 +639,16 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                     $(".displaya").html(d);
                   }
                 })
-
+ 
               }
             </script>
-
-
+ 
+ 
           </div>
           <!-- chat starts from here -->
           <div class="main7" id="main7">
             <div class="displayb" id="displayb"></div>
-
+ 
             <script type="text/javascript">
               $(document).ready(function() {
                 var myvid = document.getElementById("myVideo");
@@ -657,7 +656,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                   var vid_len = document.getElementById('myVideo').duration;
                   var x = 1;
                   load_graph();
-
+ 
                   function load_graph() {
                     $.ajax({
                       url: "x.php",
@@ -665,24 +664,24 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                       data: {
                         x: x,
                         vid_len: vid_len
-
+ 
                       },
                       success: function(d) {
-
+ 
                         $(".data").html(d);
                       }
                     })
                   }
-
-
-
+ 
+ 
+ 
                 };
-
-
-
+ 
+ 
+ 
                 var usery = document.querySelector('#phplogin').innerText;
                 displaychat(usery);
-
+ 
                 //setInterval(function(){displaytopic();}, 1000);
                 var displaytimechat = 0;
                 //setInterval(function(){displaytopic();}, 1000);
@@ -701,18 +700,18 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                         loginbool: loginbool
                       },
                       success: function(d) {
-
+ 
                       }
                     });
                     displaytimechat();
                     var vid = document.getElementById("myVideo");
-
-
-
+ 
+ 
+ 
                     vid.ontimeupdate = function() {
                       myFunction()
                     };
-
+ 
                     function myFunction() {
                       var showtime = Math.floor(vid.currentTime);
                       // Display the current position of the video in a p element with id="demo"
@@ -743,34 +742,34 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                       }
                       var colon = ":";
                       var time_show = hour.concat(colon, minute, colon, second);
-
+ 
                       if (time_show == "00:00:00") {
                         elementy = document.getElementById("0");
-
+ 
                         elementy.scrollIntoView({
                           behavior: 'smooth',
                           block: 'nearest',
                           inline: 'nearest'
                         });
-
+ 
                       }
                       search_table(time_show);
-
-
+ 
+ 
                       function search_table(value) {
                         $('.comment_display').each(function() {
                           var found = 'false';
                           var present_id, prev_id, elementy;
-
+ 
                           $(this).each(function() {
-
+ 
                             if ($(this).text().indexOf(value) >= 0) {
                               found = 'true';
                             }
                           });
                           if (found == 'true') {
                             prev_id = present_id;
-
+ 
                             $(this).show();
                             present_id = $(this).attr("id");
                             elementy = document.getElementById(present_id);
@@ -782,25 +781,25 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                             //$('html, body').animate({
                             //scrollTop: $(`#present_id`).offset().top
                             // }, 1000);
-
+ 
                           } else {
-
-
+ 
+ 
                             //elementy=document.getElementById(prev_id);
                             //elementy.scrollIntoView({ behavior: 'smooth', block: 'nearest',inline:'nearest'});
                             //elementy.scrollIntoView({ behavior: 'smooth', block: 'nearest',inline:'nearest'}); //$(this).hide();
                           }
                         });
                       }
-
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
+ 
                     }
-
-
+ 
+ 
                     function displaytimechat() {
                       var displaytimechat = 1;
                       $.ajax({
@@ -813,11 +812,11 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                           $(".displayb").html(d);
                         }
                       })
-
+ 
                     }
                   }
-
-
+ 
+ 
                   if (val == 1) {
                     displaychat();
                     var newest_time = timeConvert(document.getElementById('myVideo').currentTime);
@@ -830,7 +829,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                         loginbool: loginbool
                       },
                       success: function(d) {
-
+ 
                       }
                     });
                   }
@@ -839,10 +838,10 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                 document.getElementsByTagName('select')[0].addEventListener('change', function() {
                   show();
                 });
-
-
+ 
+ 
                 $("#submitposty").click(function(argument) {
-
+ 
                   var current_react = document.getElementById("reactionhide").innerHTML;
                   var vid = document.getElementById("myVideo");
                   var usery = document.querySelector('#phplogin').innerText;
@@ -859,7 +858,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                   var seconds = Math.ceil(divisor_for_seconds);
                   var zero = "0";
                   var login_ID="<?php echo ($_SESSION['loginid']); ?>";
-
+ 
                   if (hours < 10) {
                     var hour = hours.toString();
                     hour = zero.concat(hour);
@@ -880,10 +879,10 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                   }
                   var colon = ":";
                   var timeminy = hour.concat(colon, minute, colon, second);
-
-
+ 
+ 
                   load_chat();
-
+ 
                   function load_chat() {
                     $.ajax({
                       url: "ajaxy.php",
@@ -897,15 +896,15 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                         totalsecs: totalsecs,
                         current_react: current_react,
                         login_ID:login_ID
-
+ 
                       },
                       success: function(data) {
                         displaychat();
                         $('.topicy').val('');
                         document.getElementById("reactionhide").innerHTML = "0";
                         document.getElementById("ilb").innerHTML = "+";
-
-
+ 
+ 
                       }
                     })
                     $.ajax({
@@ -919,23 +918,23 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                         topicy: topicy,
                         totalsecs: totalsecs,
                         current_react: current_react
-
+ 
                       },
                       success: function(data) {}
                     });
-
-
+ 
+ 
                   }
-
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
+ 
                 });
-
+ 
               });
-
+ 
               function displaychat() {
                 var displaychat = 1;
                 $.ajax({
@@ -956,17 +955,17 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
                     });
                   }
                 })
-
+ 
               }
             </script>
-
-
-
+ 
+ 
+ 
           </div>
-
-
-
-
+ 
+ 
+ 
+ 
         </div>
         <div class="chatarea_side">
           <div class="indicator" id="indicator"></div>
@@ -992,8 +991,8 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
         </span>
       </div>
     </div>
-
-
+ 
+ 
     <script type="text/javascript">
       var ind = document.getElementById("indicator");
       var chat = document.getElementById("chat_b");
@@ -1024,21 +1023,21 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
       var freeze_btn = document.getElementById("freeze");
       var body = document.getElementsByTagName("body")[0];
       var cis = document.getElementsByClassName('chatarea')[0];
-
+ 
       if (loginuser == "empty1") {
         alert("Wrong Email ID Or Password");
         document.getElementById('login_but').innerHTML="Login";
         document.getElementById('login_but').href="<?php echo ($url_h . $appache_localhost_port . "/Moodle_Plugin/basic/login_page.php") ?>";
       }
       if (loginuser != "empty1" && loginbool == "1") {
-
+ 
               document.getElementById('login_but').innerHTML="Logout";
               document.getElementById('login_but').href="<?php echo ($url_h . $appache_localhost_port . "/Moodle_Plugin/basic/logout.php") ?>";
-
-
+ 
+ 
       }
-
-
+ 
+ 
       mover.addEventListener('mouseover', function() {
         if (dd.style.opacity == "1") {
           dd.style.opacity = "0";
@@ -1046,15 +1045,15 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
           dd.style.display = "none";
           chat2.style.display = 'none';
           note2.style.display = 'none';
-
+ 
           profile.style.display = 'none';
           mover.style.display = 'none';
         }
       });
-
+ 
       //<br>
       //<b>Notice</b>:  Undefined index: user in <b>C:\MAMP\htdocs\Webdevpro-master\load.php</b> on line <b>115</b><br>
-
+ 
       chat.onclick = function() {
         var event = "Select_Chat";
         var videotime = timeConvert(document.getElementById("myVideo").currentTime);
@@ -1065,7 +1064,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
             event: event,
             loginbool: loginbool,
             videotime: videotime
-
+ 
           },
           success: function(data) {}
         });
@@ -1076,21 +1075,21 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
         dd.style.transform = "translateY(-10px)";
         dd.style.display = "none";
         document.getElementsByClassName("chatbox_downbar")[0].style.pointerEvents = "all";
-
-
+ 
+ 
         document.getElementById("main3").style.display = 'none';
         document.getElementById("main4").style.display = 'none';
-
+ 
         document.getElementById("main6").style.display = 'none';
         document.getElementById("main7").style.display = 'block';
         document.getElementById("main8").style.display = 'none';
         document.getElementById("sort_method").style.display = "block";
         chat2.style.display = 'none';
         note2.style.display = 'none';
-
+ 
         profile.style.display = 'none';
         mover.style.display = 'none';
-
+ 
         Bg.style.background = "#f0f5ff";
         if (loginbool != "1" || loginuser == "empty1") {
           log_second.style.display = 'block';
@@ -1113,7 +1112,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
             event: event,
             loginbool: loginbool,
             videotime: videotime
-
+ 
           },
           success: function(data) {}
         });
@@ -1124,20 +1123,20 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
         dd.style.transform = "translateY(-10px)";
         dd.style.display = "none";
         document.getElementsByClassName("chatbox_downbar")[0].style.pointerEvents = "all";
-
-
+ 
+ 
         document.getElementById("main4").style.display = 'none';
         document.getElementById("main3").style.display = 'none';
-
+ 
         document.getElementById("main7").style.display = 'none';
         document.getElementById("main8").style.display = 'block';
         document.getElementById("sort_method").style.display = "none";
         chat2.style.display = 'none';
         note2.style.display = 'none';
-
+ 
         profile.style.display = 'none';
         mover.style.display = 'none';
-
+ 
         Bg.style.background = "white";
         if (loginbool != "1" || loginuser == "empty1") {
           log_second.style.display = 'block';
@@ -1160,7 +1159,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
             event: event,
             loginbool: loginbool,
             videotime: videotime
-
+ 
           },
           success: function(data) {}
         });
@@ -1171,24 +1170,24 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
         dd.style.transform = "translateY(-10px)";
         dd.style.display = "none";
         document.getElementsByClassName("chatbox_downbar")[0].style.pointerEvents = "all";
-
-
+ 
+ 
         document.getElementById("main4").style.display = 'none';
         document.getElementById("main3").style.display = 'none';
-
+ 
         document.getElementById("main7").style.display = 'none';
         document.getElementById("main8").style.display = 'none';
         document.getElementById("sort_method").style.display = "block";
         chat2.style.display = 'none';
         note2.style.display = 'none';
-
+ 
         profile.style.display = 'none';
         mover.style.display = 'none';
-
+ 
         Bg.style.background = "#f0f5ff";
         document.getElementById("main6").style.display = 'block';
         if (loginbool != "1" || loginuser == "empty1") {
-
+ 
           //document.getElementsByClassName("chatbox_downbar")[0].style.display='none';
           log_second.style.display = 'block';
           document.getElementById("main4").style.display = 'block';
@@ -1209,32 +1208,32 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
           dd.style.display = "none";
           chat2.style.display = 'none';
           note2.style.display = 'none';
-
+ 
           profile.style.display = 'none';
           mover.style.display = 'none';
-
+ 
         } else {
           dd.style.opacity = "1";
           dd.style.transform = "translateY(0)";
           dd.style.display = "block";
           chat2.style.display = 'block';
           note2.style.display = 'block';
-
+ 
           if (loginuser != "empty1" && loginbool == "1") {
             profile.style.display = 'block';
           } else {
             profile.style.display = 'none';
           }
-
+ 
           mover.style.display = 'block';
-
-
-
+ 
+ 
+ 
         }
       }
       chat2.onclick = chat.onclick;
       note2.onclick = note.onclick;
-
+ 
       ilb.onclick = function() {
         if (il.style.opacity == "0") {
           il.style.opacity = "1";
@@ -1244,7 +1243,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
           il.style.display = "none";
         }
       }
-
+ 
       react[0].onclick = function() {
         ilb.innerHTML = "<img src='" + react[0].src + "' >";
         il.style.opacity = "0";
@@ -1262,7 +1261,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
         il.style.opacity = "0";
         il.style.display = "none";
         document.getElementById("reactionhide").innerHTML = "3";
-
+ 
       }
       react[3].onclick = function() {
         ilb.innerHTML = "<img src='" + react[3].src + "' >";
@@ -1283,20 +1282,20 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
         document.getElementById("reactionhide").innerHTML = "6";
       }
       var ifield = document.getElementsByClassName('commentarea');
-
+ 
       ifield[0].addEventListener('keypress', (event) => {
         if (event.which == 13) {
           console.log("Success");
-
+ 
           $('#submitposty').trigger("click");
-
-
+ 
+ 
         }
       });
       ifield[1].addEventListener('keypress', (event) => {
         if (event.which == 13) {
           console.log("Success");
-
+ 
           $('#submitpost').trigger("click");
         }
       });
@@ -1312,16 +1311,16 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
         }
       }
     </script>
-
-
-
+ 
+ 
+ 
     <!-- Scripts -->
     <!--    <script src="../../basic/assets/js/jquery.min.js"></script>
       <script src="../../basic/assets/js/skel.min.js"></script>
       <script src="../../basic/assets/js/util.js"></script>
       <script src="../../basic/assets/js/main.js"></script> -->
     <!-- <script src="../../basic/assets/js/drag.js"></script> !-->
-
+ 
     <script src="../../basic/assets/js/drag.js"></script>
     <script src="../../basic/assets/js/jquery.js"></script>
     <script src='../../basic/assets/js/javascript.js'></script>
@@ -1329,7 +1328,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
     <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
     <script src="../../basic/assets/js/vidcha.js"></script>
     <script src="../../basic/assets/dist/plyr.js"></script>
-
+ 
     <?php 
 $user_roll=$_SESSION['loginroll'];
 $anwsered_check="SELECT * FROM `score` WHERE `user_roll_no`='$user_roll' and `video_name`='$db' ";
@@ -1391,7 +1390,7 @@ $opts = explode("**", $question['options']);
               vid.pause();
             document.getElementById('qc<?php echo $x ?>').style.display = "block";
           }
-
+ 
           }, 1000);
           document.getElementById('sbtn<?php echo $x ?>').onclick = () => {
             document.getElementById('qc<?php echo $x ?>').style.display = "none";
@@ -1402,8 +1401,8 @@ $opts = explode("**", $question['options']);
             answerMatrix['course_name']="<?php echo $users_db; ?>";
             answerMatrix['video_name']="<?php echo $db; ?>";
             answerMatrix['user'] = "<?php echo $_SESSION['loginuser']; ?>";
-
-
+ 
+ 
             for(var i = 0; i < 4; i++){
               if (document.getElementsByClassName("q<?php echo $x ?>")[i].checked){
                 answerMatrix['ans<?php echo $x ?>'] = document.getElementsByClassName("q<?php echo $x ?>")[i].value;
@@ -1436,28 +1435,28 @@ $x++;
     }
   }
 }</script>
-
+ 
 <?php } ?>
-    
-    
+ 
+ 
     <script>
       MyObject = {
     play:function (letbool) {
               var vid_curenttimesecond = player.currentTime;
-
+ 
               var vid_curenttime = timeConvert(vid_curenttimesecond);
               var play = 0;
               var pause = 0;
               var playpause = 1;
               var loginbool = document.getElementById("loginbool").innerHTML;
-
+ 
               if (letbool) {
                 play = 1;
-
-
+ 
+ 
               } else {
                 pause = 1;
-
+ 
               }
               $.ajax({
                 url: "clickdata.php",
@@ -1471,10 +1470,10 @@ $x++;
                 },
                 success: function(data) {}
               })
-
+ 
             },
     timeConvert: function(time) {
-
+ 
                 var currenttime = parseInt(time);
                 var totalsecsy = Math.floor(currenttime);
                 var secs = Math.round(currenttime);
@@ -1510,7 +1509,7 @@ $x++;
               var volumechange = 1;
               var vid_curenttime = timeConvert(player.currentTime);
               var volume = player.volume;
-
+ 
               if (player.muted==true) {
                var mute = 1;
               }
@@ -1527,14 +1526,14 @@ $x++;
                 success: function(data) {}
               })
             }
-
+ 
     // other functions...
 }
       const player = new Plyr('#myVideo');
-
+ 
       player.on('playing', play => {
       const instance = play.detail.plyr;
-
+ 
 });
       player.on('pause', pause => {
         console.log('pause');
@@ -1546,7 +1545,7 @@ $x++;
         console.log(player.currentTime);
         MyObject.play(true);
          });
-
+ 
       player.on('volumechange', volumechange => {
         console.log('volumechange');
         console.log(player.currentTime);
@@ -1555,21 +1554,22 @@ $x++;
       player.on('seeking', seeking => {
         console.log('seeking');
         console.log(MyObject.timeConvert(player.currentTime));
-
+ 
          });
       player.on('seeked', seeked => {
         console.log('seeked');
         console.log(MyObject.timeConvert(player.currentTime));
-
+ 
          });
-
-
+ 
+ 
       // const player = videojs('myVideo');
       // videojs('myVideo').chapter_thumbnails({
       //   src: 'chapters/video1.webvtt'});
     </script>
-
-
+ 
+ 
 </body>
-
+ 
 </html>
+ 
