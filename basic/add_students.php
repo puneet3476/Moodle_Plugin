@@ -1,117 +1,107 @@
-<?php 
+<?php
 require 'connectwithoutdata.php';
-  require 'includes/PHPMailer.php';
-  require 'includes/SMTP.php';
-  require 'includes/Exception.php';
-  
+require 'includes/PHPMailer.php';
+require 'includes/SMTP.php';
+require 'includes/Exception.php';
+
 session_start();
-  // require 'connectwithoutdata.php';
+// require 'connectwithoutdata.php';
 //Define name spaces
-  use PHPMailer\PHPMailer\PHPMailer;
-  use PHPMailer\PHPMailer\SMTP;
-  use PHPMailer\PHPMailer\Exception;
 // connection of database
 if (isset($_GET['course_name'])) {
-  $course_name=$_GET['course_name'];
-  if(($_SESSION['my_role'])!='TEACHER'){
-    die("You are forbidden to visit this page");
-  }
- $con =  new mysqli(
-   $host,
-   $user,
-   $password,
-   $course_name
-);
-if ($con->connect_error) {
-  die("Connection failed: " . $con->connect_error);
-}
-
-$msg = '';
-
-
-if(isset($_POST['import'])){
-
-    $filename = $_FILES["file"]["tmp_name"];
-    if (pathinfo(basename($_FILES["file"]['name']),PATHINFO_EXTENSION)!='csv') {
-      die("Please Upload a CSV file");
+    $course_name = $_GET['course_name'];
+    if (($_SESSION['my_role']) != 'TEACHER') {
+        die("You are forbidden to visit this page");
     }
-    $i= $_POST["column_1"];
-    $j= $_POST["column_2"];
-    $k= $_POST["column_3"];
-    
+    $con = new mysqli(
+        $host,
+        $user,
+        $password,
+        $course_name
+    );
+    if ($con->connect_error) {
+        die("Connection failed: " . $con->connect_error);
+    }
 
-    if($_FILES["file"]["size"] > 0)
-    {
-        
-        $file = fopen($filename, "r");
+    $msg = '';
 
-        while (($col = fgetcsv($file, 10000, ",")) !== FALSE) 
+    if (isset($_POST['import'])) { //
+
+        $filename = $_FILES["file"]["tmp_name"];
+        if (pathinfo(basename($_FILES["file"]['name']), PATHINFO_EXTENSION) != 'csv') { //
+            die("Please Upload a CSV file");
+        }
+        $i = $_POST["column_1"];
+        $j = $_POST["column_2"];
+        $k = $_POST["column_3"];
+
+        if ($_FILES["file"]["size"] > 0) //
         {
-            
-            
-            $insert = "INSERT INTO `tbl_info` (`Name`,`Roll_no`,`Email`) values('".$col[$i]."','".$col[$j]."','".$col[$k]."')";
-            if ($con->query($insert) === TRUE) {
-  
-} else {
-  echo "Error: " . $insert . "<br>" . $con->error;
-}
 
+            $file = fopen($filename, "r");
+
+            while (($col = fgetcsv($file, 10000, ",")) !== false) //
+            {
+
+                $insert = "INSERT INTO `tbl_info` (`Name`,`Roll_no`,`Email`) values('" . $col[$i] . "','" . $col[$j] . "','" . $col[$k] . "')";
+                if ($con->query($insert) === true) { //
+
+                } else { //
+                    echo "Error: " . $insert . "<br>" . $con->error;
+                }
+
+            }
+            $msg = '<p style="color: green;"> CSV Data inserted successfully</p>';
 
         }
-        $msg = '<p style="color: green;"> CSV Data inserted successfully</p>';
-
-    }
 
 /*
 //Create instance of PHPMailer
-  $mail = new PHPMailer();
+$mail = new PHPMailer();
 //Set mailer to use smtp
-  $mail->isSMTP();
+$mail->isSMTP();
 //Define smtp host
-           $mail->SMTPDebug = 4;
-           $mail->Mailer = "smtp";
-           $mail->Host = "smtp.gmail.com";
+$mail->SMTPDebug = 4;
+$mail->Mailer = "smtp";
+$mail->Host = "smtp.gmail.com";
 
 //Enable smtp authentication
-  $mail->SMTPAuth = true;
+$mail->SMTPAuth = true;
 //Set smtp encryption type (ssl/tls)
-  $mail->SMTPSecure = "tls";
+$mail->SMTPSecure = "tls";
 //Port to connect smtp
-  $mail->Port = "587";
+$mail->Port = "587";
 //Set gmail username
-  $mail->Username = 'moodlepluginonline@gmail.com';
-  $mail->Password = 'qwerty!@1';
+$mail->Username = 'moodlepluginonline@gmail.com';
+$mail->Password = 'qwerty!@1';
 $allstds=mysqli_query($con,"SELECT * FROM `tbl_info`");
 while ($allmails=mysqli_fetch_array($allstds)) {
-  echo($allmails['Email']);
-  $user_email=$allmails['Email'];
-  $mail->AddAddress($user_email);
-      $mail->WordWrap = 50;
-      $mail->IsHTML(true);
-      $mail->Subject = 'You have been added to '.$course_name.' course';
+echo($allmails['Email']);
+$user_email=$allmails['Email'];
+$mail->AddAddress($user_email);
+$mail->WordWrap = 50;
+$mail->IsHTML(true);
+$mail->Subject = 'You have been added to '.$course_name.' course';
 
-      $message_body = '
-      <p>Dear '.$allmails['Name'].',<br>
-      You have been added to '.$course_name.' course. <b>
-      </b>Please Check Our Site.</p>
-      <p>Sincerely,<br>
-      Moodle Plugin</p>
-      ';
-      $mail->Body = $message_body;
+$message_body = '
+<p>Dear '.$allmails['Name'].',<br>
+You have been added to '.$course_name.' course. <b>
+</b>Please Check Our Site.</p>
+<p>Sincerely,<br>
+Moodle Plugin</p>
+';
+$mail->Body = $message_body;
 
-      if($mail->Send())
-      {
-        echo ("Email Sent to".$allmails['Email']);
-        echo "\n";
+if($mail->Send())
+{
+echo ("Email Sent to".$allmails['Email']);
+echo "\n";
 
-        
-      }*/
 }
-header('location:add_videos.php?course_name='.$course_name);
+}*/
+        header('location:add_videos.php?course_name=' . $course_name);
+    }
 }
-}
-
-
 
 require 'header.php';
 ?>
@@ -138,15 +128,15 @@ require 'header.php';
                     <?php echo $msg; ?>
 
 
-                    
+
 
 
                     <form method="post" action="" enctype='multipart/form-data' class="row d-inline-flex">
-                    <span class="col-sm">   
+                    <span class="col-sm">
                     <h4>Select the Column No. that contains Name</h4>
                         <input type="number" name="column_1"  min="0" />
                     </span><br>
-                    <span class="col">  
+                    <span class="col">
                         <h4>Select the Column No. that contains Roll No.</h4>
                         <input type="number" name="column_2"  min="0"  /><br>
                     </span>
@@ -154,15 +144,15 @@ require 'header.php';
                         <h4>Select the Column No. that contains Email</h4>
                         <input type="number" name="column_3"  min="0" /><br>
                         <br>
-                     </span>   
+                     </span>
                         <input type='file' name='file' class="form-control" /><br>
                         <input type='submit' class="btn btn-dark mx-auto" value='Upload Data' name='import'>
                     </form>
                     <br>
-                   
-              </div> 
+
+              </div>
               <div class="col-sm-3"></div>
-          </div>        
+          </div>
         </div>
     </body>
 </html>
