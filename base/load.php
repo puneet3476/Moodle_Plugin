@@ -39,9 +39,9 @@ require 'connect.php';
       </a>
       <nav id="nav">
 
-        <a id="login_but" href="<?php echo ($url_h . $appache_localhost_port . "/Moodle_Plugin/basic/") ?>">Login </a>
+        <a id="login_but" href="<?php echo ($url_h . $appache_localhost_port . "/Moodle_Plugin/basic/login_page.php") ?>">Login </a>
 
-        <a href="<?php echo("../../basic/".strtolower($_SESSION['my_role'])."_panel.php"); ?>">Home</a>
+        <a href="<?php echo ("../../basic/" . strtolower($_SESSION['my_role']) . "_panel.php"); ?>">Home</a>
         <button id="myBtn" class="button alt">How to Use</button>
         <button id="freeze" class="button">Freeze</button>
 
@@ -453,8 +453,8 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
     <br>
     Email:
     <?php
-    echo ($_SESSION['loginemailid']);
-    ?>
+echo ($_SESSION['loginemailid']);
+?>
      <br>
 
 
@@ -1348,39 +1348,39 @@ $result = $link_users->query($anwsered_check);
 </script>
 <?php
 if (!($result->num_rows > 0)) {
-?>
+    ?>
 <script>var answerMatrix = {};var questionTimeArray = [];</script>
       <?php
 $x = 1;
-$questions = mysqli_query($link, "SELECT * FROM `question` ");
-$qno = mysqli_num_rows($questions);
-while ($question = mysqli_fetch_array($questions)) {
-    ?>
+    $questions = mysqli_query($link, "SELECT * FROM `question` ");
+    $qno = mysqli_num_rows($questions);
+    while ($question = mysqli_fetch_array($questions)) {
+        ?>
         <div class="questionbox_container" id="qc<?php echo $x ?>" style="display: none;">
           <div id="questionbox" class="questionbox">
             <div class="questionbox_header"><?php echo $question['question'] ?></div>
             <?php
 $opts = explode("**", $question['options']);
-    ?>
+        ?>
             <div class="questionbox_options_container">
               <div class="questionbox_option_container">
-                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[0] ?>" name="answer" value="1">
-                <label for="<?php echo $opts[0] ?>"><?php echo $opts[0] ?></label>
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $x . $opts[0] ?>" name="answer" value="1">
+                <label for="<?php echo $x . $opts[0] ?>"><?php echo $opts[0] ?></label>
               </div>
               <div class="questionbox_option_container">
-                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[1] ?>" name="answer" value="2?>">
-                <label for="<?php echo $opts[1] ?>"><?php echo $opts[1] ?></label>
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $x . $opts[1] ?>" name="answer" value="2?>">
+                <label for="<?php echo $x . $opts[1] ?>"><?php echo $opts[1] ?></label>
               </div>
             </div>
             <div class="questionbox_options_container">
               <div class="questionbox_option_container">
-                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[2] ?>" name="answer" value="3">
-                <label for="<?php echo $opts[2] ?>"><?php echo $opts[2] ?></label>
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $x . $opts[2] ?>" name="answer" value="3">
+                <label for="<?php echo $x . $opts[2] ?>"><?php echo $opts[2] ?></label>
               </div>
               <?php if ($opts[3] != "null") {?>
               <div class="questionbox_option_container">
-                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[3]; ?>" name="answer" value="4">
-                <label for="<?php echo $opts[3] ?>"><?php echo $opts[3]; ?></label>
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $x . $opts[3]; ?>" name="answer" value="4">
+                <label for="<?php echo $x . $opts[3] ?>"><?php echo $opts[3]; ?></label>
               </div>
               <?php }
               ?>
@@ -1390,7 +1390,7 @@ $opts = explode("**", $question['options']);
         </div>
         <script>
           questionTimeArray.push({timestamp:<?php echo $question['timestamp']; ?>, isanswered: false})
-          var abc<?php echo $x ?> = setInterval(() => {console.log(Math.floor(vid.currentTime));
+          var abc<?php echo $x ?> = setInterval(() => {//console.log(Math.floor(vid.currentTime));
             if ("<?php echo $question['timestamp']; ?>" == Math.floor(vid.currentTime)){
               vid.pause();
             document.getElementById('qc<?php echo $x ?>').style.display = "block";
@@ -1428,22 +1428,13 @@ $opts = explode("**", $question['options']);
         </script>
         <?php
 $x++;
-}
-?>
-<script>vid.ontimeupdate = function(){
-  var currentUpdateTime = vid.currentTime;
-  for(var i = 0; i < answerMatrix['qno']; i++ ){
-    if(currentUpdateTime > questionTimeArray[i].timestamp && !questionTimeArray[i].isanswered){
-      vid.currentTime = questionTimeArray[i].timestamp;
-      vid.pause()
-      document.getElementById('qc'+(i+1)).style.display = "block";
     }
   }
-}</script>
+    ?>
 
-<?php } } ?>
-    
-    
+
+
+
     <script>
       MyObject = {
     play:function (letbool) {
@@ -1541,31 +1532,39 @@ $x++;
 
 });
       player.on('pause', pause => {
-        console.log('pause');
-        console.log(player.currentTime);
+        //console.log('pause');
+        //console.log(player.currentTime);
         MyObject.play(false);
 });
       player.on('play', play => {
-        console.log('play');
-        console.log(player.currentTime);
+        //console.log('play');
+        //console.log(player.currentTime);
         MyObject.play(true);
          });
 
       player.on('volumechange', volumechange => {
-        console.log('volumechange');
-        console.log(player.currentTime);
+        //console.log('volumechange');
+        //console.log(player.currentTime);
         MyObject.onvolumechange();
          });
       player.on('seeking', seeking => {
-        console.log('seeking');
-        console.log(MyObject.timeConvert(player.currentTime));
+        //console.log('seeking');
+        //console.log(MyObject.timeConvert(player.currentTime));
 
          });
       player.on('seeked', seeked => {
-        console.log('seeked');
-        console.log(MyObject.timeConvert(player.currentTime));
-
-         });
+        //console.log('seeked');
+        //console.log(MyObject.timeConvert(player.currentTime));
+        var currentUpdateTime = player.currentTime;
+        if(answerMatrix){
+        for(var i = 0; i < answerMatrix['qno']; i++ ){
+          if(currentUpdateTime > questionTimeArray[i].timestamp && !questionTimeArray[i].isanswered){
+            player.currentTime = questionTimeArray[i].timestamp;
+            player.pause()
+            document.getElementById('qc'+(i+1)).style.display = "block";
+          }
+        }
+         }});
 
 
       // const player = videojs('myVideo');
