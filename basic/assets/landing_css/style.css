@@ -1,5 +1,18 @@
 @import url("https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700|Poppins:200,300,400,500,500i,600,700,800&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700|Poppins:200,300,400,500,500i,600,700,800&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Pirata+One|Rubik:900');
+
+
+.title {
+  margin-top: 0.5vh;
+  font-family: 'Pirata One', cursive;
+  font-size: 4rem;
+  color: #F7971E;
+  text-align: center;}
+  
+ 
+
+
 /* line 1, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_extend.scss */
 .flex-center-start {
   display: -webkit-box;
@@ -1649,8 +1662,8 @@ h3 {
 
 /* line 9, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_footer.scss */
 .footer .footer_top {
-  padding-top: 145px;
-  padding-bottom: 129px;
+  padding-top: 45px;
+  padding-bottom: 29px;
 }
 
 @media (max-width: 767px) {
