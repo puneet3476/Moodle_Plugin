@@ -9,14 +9,14 @@
 <?php
 session_start();
 
-  if(($_SESSION['my_role'])!='TEACHER'){
+if (($_SESSION['my_role']) != 'TEACHER') {
     die("You are forbidden to visit this page");
-  }
+}
 if (isset($_GET['course_name'])) {
-	$course_name=$_GET['course_name'];
+    $course_name = $_GET['course_name'];
     require 'connectwithoutdata.php';
     require 'header.php';
-?>
+    ?>
 <link rel="stylesheet" href="assets/css/index.css">
 <body class="gradient">
 <div class=" ">
@@ -31,7 +31,7 @@ if (isset($_GET['course_name'])) {
                         <form class="form1 mx-auto " action="createfolder.php" method="POST" >
 
                             <input class="username d-block mb-2 mx-auto " type="text" align="center"  name="folder_name" placeholder="Lecture Name">
-                            <input type="text" value="<?php echo($course_name)?>" name="course_name" style="display: none">
+                            <input type="text" value="<?php echo ($course_name) ?>" name="course_name" style="display: none">
                             <button class="submit btn btn-success btn-sm  d-block mx-auto " align="center" type="submit" name="create video">Create Video</button>
 
                         </form>
@@ -40,29 +40,29 @@ if (isset($_GET['course_name'])) {
 </div>
 
 <div class="row mx-auto mb-4 container">
-        
+
         <div class=" jumbotron p-3 col-md-5  mx-auto" style="background-color:;height:100%;">
         <div class="jumbotron mb-3" style="height:70%;">
         <h4 class="text-center h-100">Your Videos for this Course</h4>
             <div class="overflow-auto " style="height:90%;">
             <?php
-            $link_course = new mysqli(
-                $host,
-                $user,
-                $password,$course_name
-             );
-            $result = mysqli_query($link_course,"SELECT * FROM `total_videos` " );
-            while ($row=mysqli_fetch_array($result)) {
-            ?>
-            <div class="p-2 hovers rounded" style="cursor:pointer;"><a href="<?php echo ('../'.$course_name.'/'.$row['folder_name'].'/'.'load.php') ?>" class="text-decoration-none text-dark">
-                <div style="text-align:left" class=""><?php echo($row['folder_name']) ?> <i class="fa fa-arrow-circle-right float-right" aria-hidden="true"></i></div>
+$link_course = new mysqli(
+        $host,
+        $user,
+        $password, $course_name
+    );
+    $result = mysqli_query($link_course, "SELECT * FROM `total_videos` ");
+    while ($row = mysqli_fetch_array($result)) {
+        ?>
+            <div class="p-2 hovers rounded" style="cursor:pointer;"><a href="<?php echo ('../' . $course_name . '/' . $row['folder_name'] . '/' . 'load.php') ?>" class="text-decoration-none text-dark">
+                <div style="text-align:left" class=""><?php echo ($row['folder_name']) ?> <i class="fa fa-arrow-circle-right float-right" aria-hidden="true"></i></div>
             </a></div>
-            <?php } ?>
+            <?php }?>
             </div>
         </div><br>
-           
+
         </div>
-        
+
         <div class="  col-md-5  mx-auto " >
             <div class=" jumbotron  p-3" style="background-color:;cursor:pointer;">
             <h5>Add/Delete Segments to videos</h5>
@@ -70,42 +70,42 @@ if (isset($_GET['course_name'])) {
             <input value="<?php echo $course_name ?>" style="display:none;" name="course" type="text">
             <label for="videos">Choose a Video:</label>
             <select id="videos" name="vids">
-                <?php 
-                $result = mysqli_query($link_course,"SELECT * FROM `total_videos` " );
-                while ($row=mysqli_fetch_array($result)) {
-                ?>
-                <option value="<?php echo($row['folder_name']) ?>"><?php echo($row['folder_name']) ?> </option>
-                <?php } ?>
+                <?php
+$result = mysqli_query($link_course, "SELECT * FROM `total_videos` ");
+    while ($row = mysqli_fetch_array($result)) {
+        ?>
+                <option value="<?php echo ($row['folder_name']) ?>"><?php echo ($row['folder_name']) ?> </option>
+                <?php }?>
             </select>
             <button type="submit" class="btn btn-sm btn-success d-block mx-auto mt-2">Submit</button>
             </form>
-            
+
             </div>
 
             <div class=" jumbotron  p-3" style="background-color:;cursor:pointer;"><h5>Add Questions</h5>
-            <form action="addNoOfQuestions.php" class="pt-1" method="POST">
+            <form action="addQuestions.php" class="pt-1" method="POST">
             <input value="<?php echo $course_name ?>" style="display:none;" name="course" type="text">
             <label for="videos">Choose a Video:</label>
             <select id="videos" name="vids">
-                <?php 
-                $result = mysqli_query($link_course,"SELECT * FROM `total_videos` " );
-                while ($row=mysqli_fetch_array($result)) {
-                ?>
-                <option value="<?php echo($row['folder_name']) ?>"><?php echo($row['folder_name']) ?> </option>
-                <?php } ?>
+                <?php
+$result = mysqli_query($link_course, "SELECT * FROM `total_videos` ");
+    while ($row = mysqli_fetch_array($result)) {
+        ?>
+                <option value="<?php echo ($row['folder_name']) ?>"><?php echo ($row['folder_name']) ?> </option>
+                <?php }?>
             </select>
             <button type="submit" class="btn btn-sm btn-success d-block mx-auto mt-2">Submit</button>
             </form>
-            
+
             </div>
-            <a href="<?php echo 'add_students.php?course_name='.$course_name ?>" class="text-decoration-none text-dark ">
+            <a href="<?php echo 'add_students.php?course_name=' . $course_name ?>" class="text-decoration-none text-dark ">
             <div class="jumbotron hovers p-3" style="background-color:;cursor:pointer;">
             Re-Upload List of enrolled students
             </div>
-            </a> 
-            
+            </a>
+
         </div>
-</div>        
+</div>
 
 
 <div class="jumbotron  w-100" style="background-color:#ade498;">
@@ -116,21 +116,20 @@ if (isset($_GET['course_name'])) {
 <option selected value="none">SELECT Database</option>
 <?php
 $link_central = new mysqli(
-   $host,
-   $user,
-   $password,
-   $course_name
-);
-$result = mysqli_query($link_central,"SELECT * FROM `total_videos` " );
-while ($row=mysqli_fetch_array($result)) {
-?>
+        $host,
+        $user,
+        $password,
+        $course_name
+    );
+    $result = mysqli_query($link_central, "SELECT * FROM `total_videos` ");
+    while ($row = mysqli_fetch_array($result)) {
+        ?>
 <option value="<?php echo $row['database_name']; ?>"><?php echo $row['folder_name']; ?></option>
 
 <?php
 }
-}
-else{echo "You are restricted to view this page!";
-	die();
+} else {echo "You are restricted to view this page!";
+    die();
 }
 
 ?>
