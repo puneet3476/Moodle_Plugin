@@ -42,7 +42,7 @@
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo-img">
                                 <a href="index.php">
-                                    <img src="assets/img/logo.png" alt="">
+                                   <h2 class="title">PILOT</h2>
                                 </a>
                             </div>
                         </div>
@@ -76,12 +76,7 @@
                                     <i class="flaticon-user"></i>
                                     <span>Log In/ Sign up</span>
                                 </a>
-                                <div class="live_chat_btn">
-                                    <a class="boxed_btn_orange" href="#">
-                                        <i class="fa fa-phone"></i>
-                                        <span>+10 378 467 3672</span>
-                                    </a>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="col-12">
@@ -1916,7 +1911,7 @@
                         <div class="footer_widget">
                             <div class="footer_logo">
                                 <a href="#">
-                                    <img src="assets/img/logo.png" alt="">
+                                <h2 class="title">PILOT</h2>
                                 </a>
                             </div>
                             <p>
@@ -1969,7 +1964,7 @@
                     <div class="col-xl-2 col-md-6 col-lg-2">
                         <div class="footer_widget">
                             <h3 class="footer_title">
-                                Resourches
+                                Resources
                             </h3>
                             <ul>
                                 <li><a href="#">Free Adobe XD</a></li>
