@@ -10,7 +10,7 @@ $DB_user = "root";
 $DB_pass = "root";
 $DB_name = "users";
 
-$selectq="SELECT user_roll_no,`user_name`,score,course_name FROM score WHERE `course_name`='$course_name' ORDER BY score DESC";
+$selectq="SELECT user_roll_no,`user_name`,score,course_name,video_name FROM score WHERE `course_name`='$course_name' ORDER BY score DESC";
 $resulty = mysqli_query($link_users,$selectq);
 ?>
 <style>
@@ -37,7 +37,7 @@ $resulty = mysqli_query($link_users,$selectq);
             <li>
               <mark id='1'></mark>
               <small>
-              <div style="text-align: left; width:20px; display: inline;"><?php echo($rowy['user_roll_no']);?>------------------------<?php echo($rowy['user_name']);?>------------------------<?php echo($rowy['score']); ?></div>
+              <div style="text-align: left; width:20px; display: inline;"><?php echo($rowy['user_roll_no']);?>-------------<?php echo($rowy['user_name']);?>-------------<?php echo($rowy['video_name']);?>-------------<?php echo($rowy['score']); ?></div>
             </small>
               
             </li>
