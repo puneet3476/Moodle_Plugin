@@ -11,9 +11,9 @@ if(($_SESSION['my_role'])!='TEACHER'){
 	
     $teacher_ID=$_SESSION['loginroll'];
 	
-	echo("Your Teacher ID.".$_SESSION['loginroll']);
+	// echo("Your Teacher ID.".$_SESSION['loginroll']);
 	$user_roll=$_SESSION['loginroll'];
-    echo("Your Email ID.".$_SESSION['loginemailid']);
+    // echo("Your Email ID.".$_SESSION['loginemailid']);
 ?>
 <!-- <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css"> -->
 <div class="container vertical-center   ">
