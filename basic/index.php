@@ -1971,8 +1971,8 @@
                                 Address
                             </h3>
                             <p>
-                                200, D-block, Green lane USA <br>
-                                +10 367 467 8934 <br>
+                               Center for Education Technology,<br> IIT Kharagpur, 
+                                West Bengal <br>
                                 bikashsahoo779@gmail.com
                             </p>
                         </div>
