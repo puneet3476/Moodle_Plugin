@@ -37,7 +37,7 @@ $resulty = mysqli_query($link_users,$selectq);
             <li>
               <mark id='1'></mark>
               <small>
-              <div style="text-align: left; width:20px; display: inline;"><?php echo($rowy['user_roll_no']);?>-------------<?php echo($rowy['user_name']);?>-------------<?php echo($rowy['video_name']);?>-------------<?php echo($rowy['score']); ?></div>
+              <div style="text-align: left; width:20px; display: inline;"><?php echo($rowy['user_roll_no']);?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<?php echo($rowy['user_name']);?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<?php echo($rowy['video_name']);?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<?php echo($rowy['score']); ?></div>
             </small>
               
             </li>
