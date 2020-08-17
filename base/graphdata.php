@@ -1,9 +1,9 @@
 <?php
 
 $user = 'root';
-$password = 'root';
+$password = 'bottletopple202';
 $db = 'mydb';
-$host = 'localhost:8889';
+$host = 'localhost';
 
 $link = new mysqli(
    $host,

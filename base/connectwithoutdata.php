@@ -1,13 +1,13 @@
 <?php
 
 $user = 'root';
-$password = ''; //moodle@pluginv1'; //............This you may have to change
+$password = 'bottletopple202'; //moodle@pluginv1'; //............This you may have to change
 $host = 'localhost';
 $appache_localhost_port = '';
 $urlhost = "http://localhost"; //http://135.181.82.72'; //............This you may have to change
 $urla = "Location: " . $urlhost;
 $folder = "/Moodle_Plugin/base/";
-$homedir = "/opt/lampp/htdocs/Moodle_Plugin/";
+$homedir = "/var/www/html/Moodle_Plugin/";
 $class_link = $homedir . "otp-php-registration/class/";
 $urlb = "load.php";
 $font_link = $class_link . "avatar/PTSans.ttf";

@@ -3,12 +3,13 @@
 @import url('https://fonts.googleapis.com/css?family=Pirata+One|Rubik:900');
 
 
-.title {
+.text-white {
   margin-top: 0.5vh;
   font-family: 'Pirata One', cursive;
   font-size: 4rem;
-  color: #F7971E;
-  text-align: center;}
+  text-align: center;
+  font-weight: bold;
+}
   
  
 
