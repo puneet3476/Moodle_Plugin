@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
 <?php
 require 'connect.php';
-require '../../basic/header.php';
+// require '../../basic/header.php';
 ?>
 <link rel="stylesheet" href="../../basic/assets/css/index.css">
 <link rel="stylesheet" type="text/css" href="../../basic/assets/css/bootstrap.css">

@@ -23,6 +23,7 @@ require 'connect.php';
   <link href="//vjs.zencdn.net/7.8.2/video-js.min.css" rel="stylesheet">
   <link href="../../basic/assets/videojs.chapter-thumbnails.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../basic/assets/css/question.css">
+  <link rel="stylesheet" href="../../basic/assets/css/videocontrols.css">
 
 
 </head>
@@ -168,7 +169,7 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
               console.log(to_video_timestamp);
               var click_on_video_stamp = 1;
               var loginbool = document.getElementById('loginbool').innerHTML;
-              //console.log(loginbool);
+              console.log(loginbool);
               $.ajax({
                 url: "clickdata.php",
                 method: "POST",
@@ -470,8 +471,7 @@ echo ($_SESSION['loginemailid']);
 
 
 
-            <?php //<textarea class="topic"  type="text" align="center" name="topic" placeholder="ADD TOPIC"></textarea>
-?>
+
             <script src="../../basic/assets/js/jquery.js"></script>
 
             <script type="text/javascript">
@@ -1330,41 +1330,44 @@ echo ($_SESSION['loginemailid']);
     <script src="../../basic/assets/dist/plyr.js"></script>
 
     <?php
-$user_roll = $_SESSION['loginroll'];
-$anwsered_check = "SELECT * FROM `score` WHERE `user_roll_no`='$user_roll' and `video_name`='$db' ";
-$link_users = new mysqli(
-    $host,
-    $user,
-    $password, 'users'
-);
-$result = $link_users->query($anwsered_check);
-?>
+if (isset($_SESSION['loginroll'])) {
+    # code...
+
+    $user_roll = $_SESSION['loginroll'];
+    $anwsered_check = "SELECT * FROM `score` WHERE `user_roll_no`='$user_roll' and `video_name`='$db' ";
+    $link_users = new mysqli(
+        $host,
+        $user,
+        $password, 'users'
+    );
+    $result = $link_users->query($anwsered_check);
+    ?>
 <script type="text/javascript">
   console.log("<?php print_r($result);?>");
 </script>
 <?php
 if (!($result->num_rows > 0)) {
-    ?>
+        ?>
 <script>var answerMatrix = {};var questionTimeArray = [];</script>
       <?php
 $x = 1;
-    $questions = mysqli_query($link, "SELECT * FROM `question` ");
-    $qno = mysqli_num_rows($questions);
-    while ($question = mysqli_fetch_array($questions)) {
-        ?>
+        $questions = mysqli_query($link, "SELECT * FROM `question` ");
+        $qno = mysqli_num_rows($questions);
+        while ($question = mysqli_fetch_array($questions)) {
+            ?>
         <div class="questionbox_container" id="qc<?php echo $x ?>" style="display: none;">
           <div id="questionbox" class="questionbox">
             <div class="questionbox_header"><?php echo $question['question'] ?></div>
             <?php
 $opts = explode("**", $question['options']);
-        ?>
+            ?>
             <div class="questionbox_options_container">
               <div class="questionbox_option_container">
                 <input class="q<?php echo $x ?>" type="radio" id="<?php echo $x . $opts[0] ?>" name="answer" value="1">
                 <label for="<?php echo $x . $opts[0] ?>"><?php echo $opts[0] ?></label>
               </div>
               <div class="questionbox_option_container">
-                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $x . $opts[1] ?>" name="answer" value="2?>">
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $x . $opts[1] ?>" name="answer" value="2">
                 <label for="<?php echo $x . $opts[1] ?>"><?php echo $opts[1] ?></label>
               </div>
             </div>
@@ -1378,7 +1381,8 @@ $opts = explode("**", $question['options']);
                 <input class="q<?php echo $x ?>" type="radio" id="<?php echo $x . $opts[3]; ?>" name="answer" value="4">
                 <label for="<?php echo $x . $opts[3] ?>"><?php echo $opts[3]; ?></label>
               </div>
-              <?php }?>
+              <?php }
+            ?>
             </div>
             <button class="questionbox_submit_btn" id="sbtn<?php echo $x; ?>" type="submit">Submit</button>
           </div>
@@ -1423,11 +1427,12 @@ $opts = explode("**", $question['options']);
         </script>
         <?php
 $x++;
+        }
     }
-    ?>
+}
+?>
 
 
-<?php }?>
 
 
     <script>
@@ -1571,4 +1576,3 @@ $x++;
 </body>
 
 </html>
-

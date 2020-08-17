@@ -66,9 +66,7 @@
                                     <i class="flaticon-user"></i>
                                     <span>Log In/ Sign up</span>
                                 </a>
-                                <div class="live_chat_btn">
-                                   
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="col-12">
