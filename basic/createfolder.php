@@ -4,7 +4,7 @@
 require 'connectwithoutdata.php';
 require 'header.php';
 $folder_name = $_POST['folder_name'];
-$database_name = $_POST['folder_name'];
+$database_name = implode('', explode(' ',$folder_name));
 $course_name = $_POST['course_name'];
 session_start();
 if (empty($folder_name) or empty($database_name)) {
