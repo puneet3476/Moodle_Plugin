@@ -1,7 +1,19 @@
 	<link rel="stylesheet" href="assets/css/index.css">
+	<link rel="stylesheet" href="assets/landing_css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/landing_css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/landing_css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/landing_css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/landing_css/themify-icons.css">
+    <link rel="stylesheet" href="assets/landing_css/nice-select.css">
+    <link rel="stylesheet" href="assets/landing_css/flaticon.css">
+    <link rel="stylesheet" href="assets/landing_css/gijgo.css">
+    <link rel="stylesheet" href="assets/landing_css/animate.css">
+    <link rel="stylesheet" href="assets/landing_css/slicknav.css">
+    <link rel="stylesheet" href="assets/landing_css/style.css">
 
 <?php
-    // echo (getcwd());
+	// echo (getcwd());
+	require 'header.php';
 	require 'includes/PHPMailer.php';
 	require 'includes/SMTP.php';
 	require 'includes/Exception.php';
@@ -14,7 +26,6 @@
 
 //error_reporting(E_ALL);
 
-session_start();
 
 
 
@@ -236,7 +247,7 @@ header('location:teacher_login_page.php');
 		<link rel="stylesheet" href="assets/css/index.css">
 
 	</head>
-	<body class=" gradient">
+	<body class="">
 		<br />
 		<div class="container ">
 		<h1 align="center" class="">Teacher Registration Panel</h1>
@@ -269,7 +280,7 @@ header('location:teacher_login_page.php');
 							<?php echo $error_user_password; ?>
 						</div>
 												<div class="form-group">
-							<label>Enter Your Password Again</label>
+							<label>Re-Enter Password</label>
 							<input type="password" name="user_password_again" class="form-control" />
 							<?php echo $error_user_password_again; ?>
 						</div>

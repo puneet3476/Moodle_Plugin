@@ -38,7 +38,9 @@ require '../../basic/header.php';
     $copy=$x;
     for($x=$copy+1;$x<=$copy+5;$x++){ ?>
         <input type="text" name="seg<?php echo $x?>" placeholder="topic" id="seg<?php echo $x ?>" />
-        <input type="number" name="time<?php echo $x?>" placeholder="starting time in seconds" id="time<?php echo $x ?>"/><br>
+        <span><input type="number"  style="width:80px" name="time<?php echo $x ?>" id="time<?php echo $x ?>"/>minutes
+        <input type="number" style="width:80px" name="seconds<?php echo $x ?>"  id="time<?php echo $x ?>"/>seconds<br>
+        </span>
 <?php } ?>
 </div>
 <br>

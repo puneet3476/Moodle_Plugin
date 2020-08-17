@@ -8,16 +8,16 @@ require 'connectwithoutdata.php';
 
 
 
-	if(($_SESSION['my_role'])!='TEACHER'){
-		die("You are forbidden to visit this page");}
+	// if(($_SESSION['my_role'])!='TEACHER'){
+	// 	die("You are forbidden to visit this page");}
 	
-    $teacher_ID=$_SESSION['loginroll'];
-	echo ("Your Name".$_SESSION['loginname']);
-	echo("Your Teacher ID.".$_SESSION['loginroll']);
-	$user_roll=$_SESSION['loginroll'];
-	echo("Your Email ID.".$_SESSION['loginemailid']);
+    // $teacher_ID=$_SESSION['loginroll'];
+	// echo ("Your Name".$_SESSION['loginname']);
+	// echo("Your Teacher ID.".$_SESSION['loginroll']);
+	// $user_roll=$_SESSION['loginroll'];
+	// echo("Your Email ID.".$_SESSION['loginemailid']);
 
-
+ 
 ?>
 
 
@@ -130,22 +130,22 @@ echo($result->num_rows);
 require 'connectwithoutdata.php';
 require 'header.php';    
 ?>
-<body class="vertical-center">
-<div class="bg-light gradient "> 
-<div class=" h-100 container">
-    <div class="jumbotron bg-white">
+<body class>
+<div class=" gradient  "> 
+<div class=" h-100 container vertical-center d-table">
+    <div class="jumbotron  bg-transparent d-table-cell">
     <a href="admin_page.php" class="text-decoration-none text-dark">
-        <div class="jumbotron mt-3 p-4 w-100" style="background-color:#f7ca5e ;cursor:pointer ;">
+        <div class="jumbotron mt-3 p-4 w-100" style="background-color:  #d6f2fb ;cursor:pointer ;">
             <h3>Create A Course</h3>
-            <p>Add a course for your institution <i class="fas fa-arrow-right"></i></p>
+            <p class="text-black-50" >Add a course for your institution <i class="fas fa-arrow-right"></i></p>
         </div></a>
         <div class="row mx-auto">
-        <div class=" jumbotron p-3 col-md-5  mx-auto" style="background-color:#ade498"><a href=""  class="text-decoration-none text-dark">
+        <div class=" jumbotron p-3 col-md-5  mx-auto" style="background-color:#fff"><a href=""  class="text-decoration-none text-dark">
         <img  class="mx-auto d-block mb-3 " width="120px" src="./images/capacity.svg">
         <h3 class="mx-auto d-block " style="text-align:center   ">Analytics<h3>
         <p class=" form-control-sm " style="text-align:center   ">Get detailed insights into your course usage.</p>
         </a></div>
-        <div class="jumbotron p-3 col-md-5 mx-auto " style="background-color:#ade498"><a href="course_page.php" class="text-decoration-none text-dark">
+        <div class="jumbotron p-3 col-md-5 mx-auto " style="background-color:#fff"><a href="course_page.php" class="text-decoration-none text-dark">
         <img  class="mx-auto d-block mb-3 " width="120px" src="./images/survey.svg">
             <h3 class="mx-auto d-block " style="text-align:center   ">List of courses</h3>
             <p style="text-align:center   ">List of all the Courses. You can Add videos,segments to your videos here.

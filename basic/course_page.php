@@ -14,9 +14,9 @@ require 'header.php';
 ?>
 <link rel="stylesheet" href="assets/css/index.css">
 <div class="gradient">
-<div class="container bg-light">
-<div class="jumbotron bg-white">
-<h2 class="mx-auto d-block " style="text-align:center">Your Courses</h2>
+<div class="container bg-transparent">
+<div class="jumbotron bg-transparent">
+<h1 class="mx-auto d-block mt-3" style="text-align:center">Your Courses</h1>
 <h6 class="mx-auto d-block " style="text-align:center">Add Videos to your Courses by clicking on them</h6>
 <div class="row mx-auto mt-5">
 <?php

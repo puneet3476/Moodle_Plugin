@@ -42,7 +42,7 @@
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo-img">
                                 <a href="index.php">
-                                    <img src="assets/img/logo.png" alt="">
+                                <h2  class="text-white"> PILOT</h2>
                                 </a>
                             </div>
                         </div>
@@ -51,20 +51,10 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a class="active" href="index.php">home</a></li>
-                                        <li><a href="#">Courses</a></li>
-                                        <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="#">course details</a></li>
-                                                <li><a href="#">elements</a></li>
-                                            </ul>
+                                        
                                         </li>
                                         <li><a href="#">About</a></li>
-                                        <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="#">blog</a></li>
-                                                <li><a href="#">single-blog</a></li>
-                                            </ul>
-                                        </li>
+                                       
                                         <li><a href="#">Contact</a></li>
                                     </ul>
                                 </nav>
@@ -77,10 +67,7 @@
                                     <span>Log In/ Sign up</span>
                                 </a>
                                 <div class="live_chat_btn">
-                                    <a class="boxed_btn_orange" href="#">
-                                        <i class="fa fa-phone"></i>
-                                        <span>+10 378 467 3672</span>
-                                    </a>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -109,7 +96,7 @@
                             <h3>Learn your <br>
                                 Favorite Course <br>
                                 From Online</h3>
-                            <a href="#" class="boxed_btn">Browse Our Courses</a>
+                            <a href="#" class="boxed_btn">Explore How it Works</a>
                         </div>
                     </div>
                 </div>
@@ -1697,7 +1684,7 @@
 
 
     <!-- testimonial_area_start -->
-    <div class="testimonial_area testimonial_bg_1 overlay">
+    <!-- <div class="testimonial_area testimonial_bg_1 overlay">
         <div class="testmonial_active owl-carousel">
             <div class="single_testmoial">
                 <div class="container">
@@ -1742,7 +1729,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- testimonial_area_end -->
 
     <!-- our_courses_start -->
@@ -1916,7 +1903,7 @@
                         <div class="footer_widget">
                             <div class="footer_logo">
                                 <a href="#">
-                                    <img src="assets/img/logo.png" alt="">
+                                <h2  class="text-white"> PILOT</h2>
                                 </a>
                             </div>
                             <p>
@@ -1952,7 +1939,7 @@
                         </div>
                     </div>
                     <div class="col-xl-2 offset-xl-1 col-md-6 col-lg-3">
-                        <div class="footer_widget">
+                        <!-- <div class="footer_widget">
                             <h3 class="footer_title">
                                 Courses
                             </h3>
@@ -1964,11 +1951,11 @@
                                 <li><a href="#">UI/UX</a></li>
                             </ul>
 
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-xl-2 col-md-6 col-lg-2">
                         <div class="footer_widget">
-                            <h3 class="footer_title">
+                            <!-- <h3 class="footer_title">
                                 Resourches
                             </h3>
                             <ul>
@@ -1977,7 +1964,7 @@
                                 <li><a href="#">About</a></li>
                                 <li><a href="#"> About</a></li>
                                 <li><a href="#"> Contact</a></li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-6 col-lg-3">

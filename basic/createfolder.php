@@ -2,9 +2,11 @@
 <link rel="stylesheet" href="assets/css/index.css">
 <?php
 require 'connectwithoutdata.php';
+require 'header.php';
 $folder_name = $_POST['folder_name'];
 $database_name = $_POST['folder_name'];
 $course_name = $_POST['course_name'];
+session_start();
 if (empty($folder_name) or empty($database_name)) {
     echo "Error: Either Foldername  is empty";
     die();
@@ -99,8 +101,10 @@ fclose($createfile);
 <?php
 
 for ($x = 1; $x <= 5; $x++) {?>
-        <input type="text" name="seg<?php echo $x ?>" placeholder="topic" id="seg<?php echo $x ?>"  />
-        <input type="number" name="time<?php echo $x ?>" placeholder="starting time in seconds" id="time<?php echo $x ?>"/><br>
+        <input type="text" name="seg<?php echo $x ?>" placeholder="topic" id="seg<?php echo $x ?>"  /> :
+        <span><input type="number"  style="width:80px" name="time<?php echo $x ?>" id="time<?php echo $x ?>"/>minutes
+        <input type="number" style="width:80px" name="seconds<?php echo $x ?>"  id="time<?php echo $x ?>"/>seconds<br>
+        </span>
     <?php }?>
 </div>
 <input type="text" value="<?php echo ($dir_name) ?>" name="dir_name"  style="display: none;">

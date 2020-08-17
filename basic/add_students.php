@@ -111,13 +111,13 @@ require 'header.php';
 <html>
     <head>
       <title>Codingmantra</title>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-      <link rel="stylesheet" href="assets/css/index.css">
+      <!-- <link rel="stylesheet" href="assets/css/index.css"> -->
     </head>
-    <body class="gradient">
+    <body class="vertical-center">
         <div class="container">
           <div class="row" align="center" style="margin-top: 70px;">
               <div class="col-sm-3"></div>
@@ -146,9 +146,10 @@ require 'header.php';
                         <br>
                      </span>
                         <input type='file' name='file' class="form-control" /><br>
-                        <input type='submit' class="btn btn-dark mx-auto" value='Upload Data' name='import'>
+                        <input type='submit' class="btn btn-dark mx-auto mt-3" value='Upload Data' name='import'>
                     </form>
                     <br>
+                    <a  href="add_videos.php?course_name=<?php echo $course_name?>"><button class="btn btn-link">Skip</button></a>
 
               </div>
               <div class="col-sm-3"></div>

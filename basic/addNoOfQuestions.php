@@ -19,8 +19,8 @@ $video=$_POST['vids'];
   align-items: center;
 }
 </style>
-<link rel="stylesheet" href="assets/css/index.css">
-<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
+<!-- <link rel="stylesheet" href="assets/css/index.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css"> -->
 <body class="gradient vertical-center container">
 <div class="jumbotron mx-auto">
 <form action="addQuestion.php" method="POST">
