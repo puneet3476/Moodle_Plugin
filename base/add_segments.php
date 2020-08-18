@@ -2,8 +2,7 @@
 
 require 'connect.php';
 $segs=array();$times=array();
-
-echo $y;
+$y=0;
 for($x=$y;$x<=$y+4;$x++){
     if($_POST['seg' . $x]!=""){
         $segs[$x] =$_POST['seg' . $x];

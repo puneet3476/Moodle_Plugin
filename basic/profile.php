@@ -16,7 +16,22 @@ if(($_SESSION['my_role'])!='TEACHER'){
     // echo("Your Email ID.".$_SESSION['loginemailid']);
 ?>
 <!-- <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css"> -->
-<div class="container vertical-center   ">
+<style>
+			body { 
+         color:white;       
+	width: 100%;
+	height:100%;
+	font-family: 'Open Sans', sans-serif;
+	background: #092756;
+	background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
+	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+}
+		</style>    
+<div class="container jumbotron  bg-transparent" style="">
     <div class="row my-2">  
         <div class="col-lg-8 order-lg-2">
             <ul class="nav nav-tabs">
@@ -26,7 +41,7 @@ if(($_SESSION['my_role'])!='TEACHER'){
             </ul>
             <div class="tab-content py-4">
                 <div class="tab-pane active" id="profile">
-                    <h5 class="mb-3"><?php echo ("".$_SESSION['loginname']); ?></h5>
+                    <h4 class="mb-3 text-light"><?php echo ("".$_SESSION['loginname']); ?></h4>
                     <div class="row">
                         <div class="col-md-6">
                             <h6><?php echo ($_SESSION['my_role']); ?></h6>
@@ -34,9 +49,9 @@ if(($_SESSION['my_role'])!='TEACHER'){
                                 
                             </p>
                             <h6>Roll</h6>
-                            <p class=" " style="color:black;"><?php echo ($_SESSION['loginroll']); ?></p>
+                            <p class=" " style="color:white;"><?php echo ($_SESSION['loginroll']); ?></p>
                             <h6>E-mail</h6>
-                            <p class=" " style="color:black;"><?php echo ($_SESSION['loginemailid']); ?></p>
+                            <p class=" " style="color:white;"><?php echo ($_SESSION['loginemailid']); ?></p>
                         </div>
                         <div class="col-md-6">
                             <h6>Number of Courses Added</h6>
