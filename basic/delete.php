@@ -1,5 +1,38 @@
 <?php
+function delete_course($htdocs_path,$the_course_name)
+{require 'connectwithoutdata.php';
+ $link_course = new mysqli(
+    $host,
+    $user,
+    $password,$the_course_name);
+    $query = mysqli_query($link_course,"SELECT * FROM `total_videos`" );
+            while ($row=mysqli_fetch_array($query)) {
+              echo($row['folder_name']);
+              echo($row['database_name']);
+              delete_video($htdocs_path,$the_course_name,$row['folder_name'],$row['database_name']);
+            }
+    $sql = 'DROP DATABASE '.$the_course_name;
+   $retval = mysqli_query($link,$sql);
+   
+   if(!$retval) {
+      echo('Could not delete database: ' . mysqli_error());
+      die();
+   }
+   
+   echo "Database deleted successfully\n";
+   $del= mysqli_query($link_inst,"DELETE FROM courses WHERE `course_name` = '$the_course_name' " );
+ 
+      if ($link_inst->query($del) === TRUE) {
+  echo "Record deleted successfully";
 
+} else {
+  echo "Error deleting record: " . $link_inst->error;
+  
+}
+    rmdir($htdocs_path.'/'.$the_course_name);
+
+ header($urla.$appache_localhost_port.$folder."course_page.php");
+}
 
 function delete_video($htdocs_path,$course_name,$video_name,$database_name)
 {   $src=$htdocs_path.'/'.$course_name.'/'."$video_name";
