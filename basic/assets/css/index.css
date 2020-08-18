@@ -385,17 +385,32 @@
 	left: 0;
 	right: 0;
 	z-index: 2;
-	opacity: .9;
+	opacity: 1;
+
 	-webkit-backface-visibility: hidden;
-	background-color: #52d3aa;
+	/* background-color: #52d3aa; */
 	/* IE9, iOS 3.2+ */
-	background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiMzZjk1ZWEiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iIzUyZDNhYSIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjEiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjdnNnZykiIC8+PC9zdmc+);
+	/* background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiMzZjk1ZWEiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iIzUyZDNhYSIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjEiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjdnNnZykiIC8+PC9zdmc+);
 	background-image: -webkit-gradient(linear, 0% 0%, 100% 100%, color-stop(0, #3f95ea), color-stop(1, #52d3aa));
 	/* Android 2.3 */
-	background-image: -webkit-repeating-linear-gradient(top left, #3f95ea 0%, #52d3aa 100%);
+	/* background-image: -webkit-repeating-linear-gradient(top left, #3f95ea 0%, #52d3aa 100%); */
 	/* IE10+ */
-	background-image: repeating-linear-gradient(to bottom right, #3f95ea 0%, #52d3aa 100%);
-	background-image: -ms-repeating-linear-gradient(top left, #3f95ea 0%, #52d3aa 100%);
+	/* background-image: repeating-linear-gradient(to bottom right, #3f95ea 0%, #52d3aa 100%); */
+	/* background-image: -ms-repeating-linear-gradient(top left, #3f95ea 0%, #52d3aa 100%); */ 
+	background-image:url("../img/4685.jpg") ;
+	/* Background image is centered vertically and horizontally at all times */
+	background-position: center center;
+	
+	/* Background image doesn't tile */
+	background-repeat: no-repeat;
+	
+	/* Background image is fixed in the viewport so that it doesn't move when 
+	   the content's height is greater than the image's height */
+	background-attachment: fixed;
+	
+	/* This is what makes the background image rescale based
+	   on the container's size */
+	background-size: cover;
   }
   #fh5co-home, #fh5co-home .text-wrap {
 	height: 600px;

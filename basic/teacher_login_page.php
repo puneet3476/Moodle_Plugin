@@ -1,7 +1,8 @@
 <?php
 
 session_start();
-
+require 'connectwithoutdata.php';
+    require 'header.php';  
 
 
 ?>
@@ -33,7 +34,7 @@ session_start();
 			}
 			?>
 
-			<div class="row">
+			<div class="row" style="padding-top:240px;">
 				<div class="col-md-3">&nbsp;</div>
 				<div class="col-md-6">
 					<div class="panel panel-default">

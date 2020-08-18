@@ -23,7 +23,7 @@ $resulty = mysqli_query($link_users,$selectq);
 <link rel="stylesheet" type="text/css" href="./assets/css/leaderboards.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body >
-          <div class="leaderboard">
+          <div class="leaderboard" >
           <h1>
             <svg class="ico-cup">
               <use xlink:href="#cup"></use>
@@ -31,6 +31,7 @@ $resulty = mysqli_query($link_users,$selectq);
             SCOREBOARD
           </h1>
           <ol style="list-style-type:none;padding:0;">
+          
             <?php
             while ($rowy=mysqli_fetch_array($resulty)) {
             ?>

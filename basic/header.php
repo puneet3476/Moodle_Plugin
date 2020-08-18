@@ -24,10 +24,11 @@ session_start();
   align-items: center;
 }
 .header-area  {
-	background: #a64eee;
-	background: -moz-linear-gradient(left, #a64eee 0%, #3c35ce 100%);
-	background: -webkit-linear-gradient(left, #a64eee 0%, #3c35ce 100%);
-	background: linear-gradient(to right, #a64eee 0%, #3c35ce 100%);
+    background: rgba(166, 78, 238,0.9);
+
+	background: -moz-linear-gradient(left, #a64eee 0%, #3c35ce 100%,0.9);
+	background: -webkit-linear-gradient(left, #a64eee 0%, #3c35ce 100%,0.9);
+	background: linear-gradient(to right, #a64eee 0%, #3c35ce 100%,0.9);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a64eee', endColorstr='#3c35ce',GradientType=1 );
 }</style>
 

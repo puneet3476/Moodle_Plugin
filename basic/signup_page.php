@@ -13,6 +13,8 @@
 //error_reporting(E_ALL);
 
 session_start();
+require 'connectwithoutdata.php';
+    require 'header.php';  
 
 if(isset($_SESSION['loginuser']))
 {
@@ -240,7 +242,7 @@ if ($link_users->query($query) === TRUE) {
 	</head>
 	<body class="gradient">
 		<br />
-		<div class="container">
+		<div class="container" style="padding-top:100px">
 			<h3 align="center">PHP Registration with Email Verification using OTP</h3>
 			<br />
 			<div class="panel panel-default">

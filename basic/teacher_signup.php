@@ -249,7 +249,7 @@ header('location:teacher_login_page.php');
 	</head>
 	<body class="">
 		<br />
-		<div class="container ">
+		<div class="container " style="padding-top:100px;">
 		<h1 align="center" class="">Teacher Registration Panel</h1>
 			<br />
 			<div class="panel panel-default">

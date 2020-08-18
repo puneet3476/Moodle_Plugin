@@ -1,22 +1,28 @@
+
+
 <?php
+
+
+
+
+
 session_start();
-require 'connectwithoutdata.php';
-require 'header.php';
-
-
-
 
 if(($_SESSION['my_role'])!='TEACHER'){
 		die("You are forbidden to visit this page");}
-	
+       
+
     $teacher_ID=$_SESSION['loginroll'];
-	
+    require 'connectwithoutdata.php';
+    require 'header.php';  
 	// echo("Your Teacher ID.".$_SESSION['loginroll']);
 	$user_roll=$_SESSION['loginroll'];
     // echo("Your Email ID.".$_SESSION['loginemailid']);
 ?>
 <!-- <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css"> -->
-<div class="container vertical-center   ">
+<link rel="stylesheet" href="assets/css/index.css">
+<div class="gradient">
+<div class="container vertical-center ">
     <div class="row my-2">  
         <div class="col-lg-8 order-lg-2">
             <ul class="nav nav-tabs">
@@ -218,4 +224,5 @@ if(($_SESSION['my_role'])!='TEACHER'){
             </label>
         </div>
     </div>
+</div>
 </div>

@@ -10,12 +10,14 @@ Body
 /*--------------------
 Leaderboard
 --------------------*/
+
 .leaderboard {
+
   float: left;
 	position: relative;
-	left: 20%;
-	top: 12vh;
-	width: 60%;
+	left: 22%;
+  top: 20vh;
+	width: 56%;
 	max-height: auto;
   min-height: 62vh;
   background: linear-gradient(to bottom, rgba(173, 83, 137, 0.7), rgb(60, 16, 83,0.9));
@@ -67,6 +69,7 @@ Leaderboard
 .leaderboard ol li::before {
   content: counter(leaderboard);
   position: absolute;
+ 
   z-index: 2;
   top: 5px;
   left: 12px;
@@ -117,6 +120,7 @@ Leaderboard
   z-index: 2;
   display: block;
   text-align: right;
+  color:white;
 }
 .leaderboard ol li::after {
   content: '';

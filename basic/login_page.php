@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+require 'connectwithoutdata.php';
+    require 'header.php';  
 
 if(isset($_SESSION["user_id"]))
 {
@@ -18,7 +20,7 @@ if(isset($_SESSION["user_id"]))
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="assets/css/index.css">
 	</head>
-	<body class="gradient">
+	<body class="gradient" >
 		<br />
 		<div class="container">
 			<br />
@@ -36,7 +38,7 @@ if(isset($_SESSION["user_id"]))
 			}
 			?>
 
-			<div class="row">
+			<div class="row" style="padding-top:240px;">
 				<div class="col-md-3">&nbsp;</div>
 				<div class="col-md-6">
 					<div class="panel panel-default">
