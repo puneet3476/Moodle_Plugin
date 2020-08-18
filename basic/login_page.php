@@ -1,12 +1,11 @@
 <?php
 
-session_start();
+//session_start();
 require 'connectwithoutdata.php';
-    require 'header.php';  
+require 'header.php';
 
-if(isset($_SESSION["user_id"]))
-{
-	header("location:home.php");
+if (isset($_SESSION["user_id"])) {
+    header("location:home.php");
 }
 
 ?>
@@ -26,17 +25,15 @@ if(isset($_SESSION["user_id"]))
 			<br />
 
 			<?php
-			if(isset($_GET["register"]))
-			{
-				if($_GET["register"] == 'success')
-				{
-					echo '
+if (isset($_GET["register"])) {
+    if ($_GET["register"] == 'success') {
+        echo '
 					<h1 class="text-success">roll Successfully verified, Registration Process Completed...</h1>
 					';
-					echo '<h3 align="center">You can login now</h3>';
-				}
-			}
-			?>
+        echo '<h3 align="center">You can login now</h3>';
+    }
+}
+?>
 
 			<div class="row" style="padding-top:240px;">
 				<div class="col-md-3">&nbsp;</div>

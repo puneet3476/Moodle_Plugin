@@ -48,15 +48,18 @@ session_start();
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="">
-                                    <?php if(isset($_SESSION['loginname'])) {?>
-                                        <li><a class="" href="<?php echo(strtolower($_SESSION['my_role'])."_panel.php"); ?>">home</a></li>
+                                    <?php if (isset($_SESSION['loginname'])) {?>
+                                        <li><a class="" href="<?php echo (strtolower($_SESSION['my_role']) . "_panel.php"); ?>">home</a></li>
                                         <li><a class="" href="profile.php">Profile</a></li>
-                                    <?php }else { ?>
+                                    <?php } else {?>
                                             <li><a class="active" href="index.php">home</a></li>
-                                        <?php } ?>
-                                        <?php if(($_SESSION['my_role'])=="TEACHER") {?>
+                                        <?php }?>
+                                        <?php
+if (isset($_SESSION['my_roll'])) {
+    if (($_SESSION['my_role']) == "TEACHER") {
+        ?>
                                     <li class="nav-item px-lg-2"> <a class="nav-link" href="course_page.php"><span class="d-inline-block d-lg-none icon-width"><i class="fas fa-spa"></i></span>Courses</a> </li>
-                                    <?php } ?>
+                                    <?php }}?>
                                         <!-- <li><a href="#">pages <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="#">course details</a></li>
@@ -78,12 +81,12 @@ session_start();
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="log_chat_area d-flex align-items-center">
                                 <a href="#test-form" class="login popup-with-form">
-                                    
-                                    <?php if(isset($_SESSION['loginname'])) {?>
+
+                                    <?php if (isset($_SESSION['loginname'])) {?>
                                     <span><a href="logout.php" style="color:white;position:relative;font-family: 'Poppins', sans-serif;font-size:15px;"><i class="flaticon-user"></i> Log Out</a></span>
-                                    <?php }else{ ?>
+                                    <?php } else {?>
                                         <span>Sign Up/ Login</span>
-                                    <?php } ?>
+                                    <?php }?>
                                 </a>
                                 <!-- <div class="live_chat_btn">
                                     <a class="boxed_btn_orange" href="#">

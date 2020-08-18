@@ -4,8 +4,8 @@ require 'header.php';
 if (($_SESSION['my_role']) != 'TEACHER') {
     die("You are forbidden to visit this page");
 }
-$course = 'test' /* $_POST['course'] */;
-$video = 'test' /* $_POST['vids'] */;
+$course = $_POST['course']/* $_POST['course'] */;
+$video = $_POST['vids']/* $_POST['vids'] */;
 
 ?>
 <style type="text/css">
@@ -116,7 +116,9 @@ addButton.onclick = (e) => {
         option2: option2.value,
         option3: option3.value,
         option4: option4.value,
-        answer: selectedValue
+        answer: selectedValue,
+        video_name: '<?php echo $video; ?>',
+        course_name: '<?php echo $course; ?>'
     }
     console.log($.ajax);
     $.ajax({

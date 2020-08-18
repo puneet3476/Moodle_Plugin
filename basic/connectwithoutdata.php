@@ -4,19 +4,19 @@ $password = ''; //moodle@pluginv1'; //............This you may have to change
 $host = 'localhost';
 $appache_localhost_port = '';
 $urlhost = "localhost"; //135.181.82.72 ..............This you may need to change
-$urla = "Location: " ;
+$urla = "Location: ";
 $folder = "/Moodle_Plugin/basic/";
-$homedir = "/var/www/html/Moodle_Plugin/";
+$htdocs_path = $homedir = "/opt/lampp/htdocs/Moodle_Plugin/";
 $class_link = $homedir . "otp-php-registration/class/";
 $urlb = "load.php";
 $font_link = $class_link . "avatar/PTSans.ttf";
 $users_db = 'central';
 $inst = 'institution';
 $users_database = 'users';
-$url_login_check = $urla.$appache_localhost_port . $folder . "login_page.php";
-$url_teacher_login_check =  $urla.$appache_localhost_port . $folder . "teacher_login_page.php";
-$student_panel =   $urla.$appache_localhost_port . $folder . "student_panel.php";
-$teacher_panel =  $urla. $appache_localhost_port . $folder . "teacher_panel.php";
+$url_login_check = $urla . $appache_localhost_port . $folder . "login_page.php";
+$url_teacher_login_check = $urla . $appache_localhost_port . $folder . "teacher_login_page.php";
+$student_panel = $urla . $appache_localhost_port . $folder . "student_panel.php";
+$teacher_panel = $urla . $appache_localhost_port . $folder . "teacher_panel.php";
 $link = new mysqli(
     $host,
     $user,

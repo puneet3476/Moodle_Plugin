@@ -7,25 +7,24 @@
 }
 </style>
 <?php
-session_start();
+//session_start();
+require 'header.php';
 
-  if(($_SESSION['my_role'])!='TEACHER'){
+if (($_SESSION['my_role']) != 'TEACHER') {
     die("You are forbidden to visit this page");
-  }
+}
 if (isset($_GET['course_name'])) {
-	$course_name=$_GET['course_name'];
+    $course_name = $_GET['course_name'];
     require 'connectwithoutdata.php';
-    require 'header.php';
-    if (array_key_exists('delete_video',$_POST)) {
-    require 'delete.php';
-    delete_video($htdocs_path,$course_name,$_POST['video_name'],$_POST['database_name']);
-    header($urla.$appache_localhost_port.$folder."add_videos.php?course_name=".$course_name);        
+    if (array_key_exists('delete_video', $_POST)) {
+        require 'delete.php';
+        delete_video($htdocs_path, $course_name, $_POST['video_name'], $_POST['database_name']);
+        header($urla . $appache_localhost_port . $folder . "add_videos.php?course_name=" . $course_name);
     }
 
-
-?>
+    ?>
 <style>
-			body { 
+			body {
 	width: 100%;
 	height:100%;
 	font-family: 'Open Sans', sans-serif;
@@ -52,7 +51,7 @@ if (isset($_GET['course_name'])) {
                         <form class="form1 mx-auto " action="createfolder.php" method="POST" >
 
                             <input class="username d-block mb-2 mx-auto " type="text" align="center"  name="folder_name" placeholder="Lecture Name">
-                            <input type="text" value="<?php echo($course_name)?>" name="course_name" style="display: none">
+                            <input type="text" value="<?php echo ($course_name) ?>" name="course_name" style="display: none">
                             <button class="submit btn btn-success btn-sm  d-block mx-auto " align="center" type="submit" name="create video">Create Video</button>
 
                         </form>
@@ -65,35 +64,35 @@ if (isset($_GET['course_name'])) {
         <h4 class="text-center">Your Videos for this Course</h4>
             <div class="overflow-auto " style="height:90%;">
             <?php
-            $link_course = new mysqli(
-                $host,
-                $user,
-                $password,$course_name
-             );
-            $result = mysqli_query($link_course,"SELECT * FROM `total_videos` " );
-            while ($row=mysqli_fetch_array($result)) {
-            ?>
-            <div class="p-2 hovers rounded" style="cursor:pointer;"><a href="<?php echo ('../'.$course_name.'/'.$row['folder_name'].'/'.'load.php') ?>" class="text-decoration-none text-dark">
-                <div style="text-align:left" class="d-flex  "><span class=" mr-5"><?php echo($row['folder_name']) ?></span>
+$link_course = new mysqli(
+        $host,
+        $user,
+        $password, $course_name
+    );
+    $result = mysqli_query($link_course, "SELECT * FROM `total_videos` ");
+    while ($row = mysqli_fetch_array($result)) {
+        ?>
+            <div class="p-2 hovers rounded" style="cursor:pointer;"><a href="<?php echo ('../' . $course_name . '/' . $row['folder_name'] . '/' . 'load.php') ?>" class="text-decoration-none text-dark">
+                <div style="text-align:left" class="d-flex  "><span class=" mr-5"><?php echo ($row['folder_name']) ?></span>
                 <span class="position-absolute d-flex" style="right:10px;">
                 <form method="POST">
-                <input type="text" name="video_name" value="<?php echo($row['folder_name']) ?>"style="display: none;">
-                <input type="text" name="database_name" value="<?php echo($row['database_name']) ?>"style="display: none;">
+                <input type="text" name="video_name" value="<?php echo ($row['folder_name']) ?>"style="display: none;">
+                <input type="text" name="database_name" value="<?php echo ($row['database_name']) ?>"style="display: none;">
             <button type="submit" name="delete_video"
-                class="btn btn-danger ml-5 mr-2" value="" ><i class="far fa-trash-alt"></i></button>   
+                class="btn btn-danger ml-5 mr-2" value="" ><i class="far fa-trash-alt"></i></button>
             </form>
 
             <form method="POST" action="rename.php">
-                <input type="text" name="video_name" value="<?php echo($row['folder_name']) ?>"style="display: none;">
-                <input type="text" name="database_name" value="<?php echo($row['database_name']) ?>"style="display: none;">
-                <input type="text" name="course_name" value="<?php echo($course_name) ?>"style="display: none;">
+                <input type="text" name="video_name" value="<?php echo ($row['folder_name']) ?>"style="display: none;">
+                <input type="text" name="database_name" value="<?php echo ($row['database_name']) ?>"style="display: none;">
+                <input type="text" name="course_name" value="<?php echo ($course_name) ?>"style="display: none;">
             <button type="submit" name="rename_video"
-                class="button btn btn-primary mr-2" value="Rename video" ><i class="fas fa-pen"></i></button> 
+                class="button btn btn-primary mr-2" value="Rename video" ><i class="fas fa-pen"></i></button>
             </form>
              <i class="fa fa-arrow-circle-right float-right" aria-hidden="true"></i></div>
             </a></div>
             </span>
-            <?php } ?>
+            <?php }?>
             </div>
         </div>
         <div class="  col-md-5  mx-auto" >
@@ -102,40 +101,40 @@ if (isset($_GET['course_name'])) {
             <input value="<?php echo $course_name ?>" style="display:none;" name="course" type="text">
             <label for="videos">Choose a Video:</label>
             <select id="videos" name="vids">
-                <?php 
-                $result = mysqli_query($link_course,"SELECT * FROM `total_videos` " );
-                while ($row=mysqli_fetch_array($result)) {
-                ?>
-                <option value="<?php echo($row['folder_name']) ?>"><?php echo($row['folder_name']) ?> </option>
-                <?php } ?>
+                <?php
+$result = mysqli_query($link_course, "SELECT * FROM `total_videos` ");
+    while ($row = mysqli_fetch_array($result)) {
+        ?>
+                <option value="<?php echo ($row['folder_name']) ?>"><?php echo ($row['folder_name']) ?> </option>
+                <?php }?>
             </select>
             <button type="submit" class="btn btn-sm btn-success d-block mx-auto mt-2">Submit</button>
             </form>
-            
+
             </div>
 
             <div class=" jumbotron  p-3" style="background-color:;cursor:pointer;"><h5>Add Questions</h5>
-            <form action="addNoOfQuestions.php" class="pt-1" method="POST">
+            <form action="addQuestions.php" class="pt-1" method="POST">
             <input value="<?php echo $course_name ?>" style="display:none;" name="course" type="text">
             <label for="videos">Choose a Video:</label>
             <select id="videos" name="vids">
-                <?php 
-                $result = mysqli_query($link_course,"SELECT * FROM `total_videos` " );
-                while ($row=mysqli_fetch_array($result)) {
-                ?>
-                <option value="<?php echo($row['folder_name']) ?>"><?php echo($row['folder_name']) ?> </option>
-                <?php } ?>
+                <?php
+$result = mysqli_query($link_course, "SELECT * FROM `total_videos` ");
+    while ($row = mysqli_fetch_array($result)) {
+        ?>
+                <option value="<?php echo ($row['folder_name']) ?>"><?php echo ($row['folder_name']) ?> </option>
+                <?php }?>
             </select>
             <button type="submit" class="btn btn-sm btn-success d-block mx-auto mt-2">Submit</button>
             </form>
-            
+
             </div>
-        
-            <a href="<?php echo 'add_students.php?course_name='.$course_name ?>" class="text-decoration-none text-dark"><div class="jumbotron hovers p-3" style="background-color:;cursor:pointer;">
+
+            <a href="<?php echo 'add_students.php?course_name=' . $course_name ?>" class="text-decoration-none text-dark"><div class="jumbotron hovers p-3" style="background-color:;cursor:pointer;">
 
             Re-Upload List of enrolled students</div></a>
         </div>
-</div>        
+</div>
 
 
 <div class="jumbotron  w-100" style="background-color:#ade498;">
@@ -146,21 +145,20 @@ if (isset($_GET['course_name'])) {
 <option selected value="none">SELECT Database</option>
 <?php
 $link_central = new mysqli(
-   $host,
-   $user,
-   $password,
-   $course_name
-);
-$result = mysqli_query($link_central,"SELECT * FROM `total_videos` " );
-while ($row=mysqli_fetch_array($result)) {
-?>
+        $host,
+        $user,
+        $password,
+        $course_name
+    );
+    $result = mysqli_query($link_central, "SELECT * FROM `total_videos` ");
+    while ($row = mysqli_fetch_array($result)) {
+        ?>
 <option value="<?php echo $row['database_name']; ?>"><?php echo $row['folder_name']; ?></option>
 
 <?php
 }
-}
-else{echo "You are restricted to view this page!";
-	die();
+} else {echo "You are restricted to view this page!";
+    die();
 }
 
 ?>

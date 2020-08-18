@@ -1,23 +1,21 @@
 <?php
-session_start();
+//session_start();
 require 'connectwithoutdata.php';
+require 'header.php';
 ?>
 <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
 
 <?php
 
+// if(($_SESSION['my_role'])!='TEACHER'){
+//     die("You are forbidden to visit this page");}
 
+// $teacher_ID=$_SESSION['loginroll'];
+// echo ("Your Name".$_SESSION['loginname']);
+// echo("Your Teacher ID.".$_SESSION['loginroll']);
+// $user_roll=$_SESSION['loginroll'];
+// echo("Your Email ID.".$_SESSION['loginemailid']);
 
-	// if(($_SESSION['my_role'])!='TEACHER'){
-	// 	die("You are forbidden to visit this page");}
-	
-    // $teacher_ID=$_SESSION['loginroll'];
-	// echo ("Your Name".$_SESSION['loginname']);
-	// echo("Your Teacher ID.".$_SESSION['loginroll']);
-	// $user_roll=$_SESSION['loginroll'];
-	// echo("Your Email ID.".$_SESSION['loginemailid']);
-
- 
 ?>
 
 
@@ -27,12 +25,12 @@ require 'connectwithoutdata.php';
     padding: 16px 0;">
 <div class="container"> <a class="navbar-brand d-flex align-items-center" href="#">
 	<?php
-      $image_url="otp-php-registration/class/".$_SESSION['user_avatar'];
-     ?>
-    <img src="../../<?php echo($image_url);?>"  class="avatar" style="align-content: left;vertical-align: middle;width:80px;height: 80px;border-radius: 50%;">
+$image_url = "otp-php-registration/class/" . $_SESSION['user_avatar'];
+?>
+    <img src="../../<?php echo ($image_url); ?>"  class="avatar" style="align-content: left;vertical-align: middle;width:80px;height: 80px;border-radius: 50%;">
 
 
-<div class="ml-3 font-weight-bold" style="color: white; font-size: 40px;"><?php echo($_SESSION['loginname'])?></div>
+<div class="ml-3 font-weight-bold" style="color: white; font-size: 40px;"><?php echo ($_SESSION['loginname']) ?></div>
 <div class="col-xs-12 col-sm-4 dc-u-mb-16" style='color: #4d5356;
 font-family: "Lato", sans-serif;
 font-size: 100%;
@@ -75,9 +73,11 @@ color: #3d4251;
 font-weight: 700;
 line-height: 1.25;
 font-size: 2rem;'><?php
-$result = mysqli_query($link_inst,"SELECT * FROM `courses` WHERE `teacher_ID`='$teacher_ID'" );
-if($result)
-echo($result->num_rows);
+$result = mysqli_query($link_inst, "SELECT * FROM `courses` WHERE `teacher_ID`='$teacher_ID'");
+if ($result) {
+    echo ($result->num_rows);
+}
+
 ?></strong>
           <span>Courses Added</span>
         </div>
@@ -117,7 +117,7 @@ echo($result->num_rows);
 <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
 <!-- <link rel="stylesheet" href="assets/css/index.css"> -->
 <style>
-			body { 
+			body {
 	width: 100%;
 	height:100%;
 	font-family: 'Open Sans', sans-serif;
@@ -141,11 +141,10 @@ echo($result->num_rows);
 }
 </style>
 <?php
-require 'connectwithoutdata.php';
-require 'header.php';    
+//require 'connectwithoutdata.php';
 ?>
 <body class>
-<div class=" gradient  "> 
+<div class=" gradient  ">
 <div class=" h-100 container vertical-center d-table">
     <div class="jumbotron  bg-transparent d-table-cell">
     <a href="admin_page.php" class="text-decoration-none text-dark">

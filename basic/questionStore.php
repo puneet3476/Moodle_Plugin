@@ -5,9 +5,9 @@ session_start();
 if (($_SESSION['my_role']) != 'TEACHER') {
     die("You are forbidden to visit this page");
 }
-if (isset($_POST['video_name'])) {
-    $video = $_POST['video_name'];
-    $course = $_POST['course_name'];
+if (isset($_REQUEST['video_name'])) {
+    echo $video = $_REQUEST['video_name'];
+    echo $course = $_REQUEST['course_name'];
 
     $link_video = new mysqli(
         $host,
@@ -19,17 +19,17 @@ if (isset($_POST['video_name'])) {
     }
     echo "Connected successfully";
 
-    $timestamp = $_POST["timestamp"];
-    $question = $_POST["question"];
-    $opt_1 = $_POST["option1"];
-    $opt_2 = $_POST["option2"];
-    $opt_3 = $_POST["option3"];
-    if (isset($_POST["option4"])) {
-        $opt_4 = $_POST["option4"];
+    $timestamp = $_REQUEST["timestamp"];
+    $question = $_REQUEST["question"];
+    $opt_1 = $_REQUEST["option1"];
+    $opt_2 = $_REQUEST["option2"];
+    $opt_3 = $_REQUEST["option3"];
+    if (isset($_REQUEST["option4"])) {
+        $opt_4 = $_REQUEST["option4"];
     } else {
         $opt_4 = "null";
     }
-    $ans = $_POST["answer"];
+    $ans = $_REQUEST["answer"];
     $opts = implode('**', [$opt_1, $opt_2, $opt_3, $opt_4]);
     echo $opts;
     echo "<br>";

@@ -1,9 +1,7 @@
 <?php
 
-session_start();
 require 'connectwithoutdata.php';
-    require 'header.php';  
-
+require 'header.php';
 
 ?>
 
@@ -22,17 +20,15 @@ require 'connectwithoutdata.php';
 			<br />
 
 			<?php
-			if(isset($_GET["register"]))
-			{
-				if($_GET["register"] == 'success')
-				{
-					echo '
+if (isset($_GET["register"])) {
+    if ($_GET["register"] == 'success') {
+        echo '
 					<h1 class="text-success">Teacher ID Successfully verified, Registration Process Completed...</h1>
 					';
-					echo '<h3 align="center">You can login now</h3>';
-				}
-			}
-			?>
+        echo '<h3 align="center">You can login now</h3>';
+    }
+}
+?>
 
 			<div class="row" style="padding-top:240px;">
 				<div class="col-md-3">&nbsp;</div>
