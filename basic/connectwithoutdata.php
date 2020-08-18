@@ -1,6 +1,6 @@
 <?php
 $user = 'root';
-$password = 'bottletopple202'; //moodle@pluginv1'; //............This you may have to change
+$password = ''; //moodle@pluginv1'; //............This you may have to change
 $host = 'localhost';
 $appache_localhost_port = '';
 $urlhost = "localhost"; //135.181.82.72 ..............This you may need to change

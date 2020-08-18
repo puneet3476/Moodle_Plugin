@@ -32,7 +32,7 @@ if(($_SESSION['my_role'])!='TEACHER'){
             </ul>
             <div class="tab-content py-4">
                 <div class="tab-pane active" id="profile">
-                    <h5 class="mb-3"><?php echo ("".$_SESSION['loginname']); ?></h5>
+                    <h4 class="mb-3 text-light"><?php echo ("".$_SESSION['loginname']); ?></h4>
                     <div class="row">
                         <div class="col-md-6">
                             <h6><?php echo ($_SESSION['my_role']); ?></h6>
@@ -40,9 +40,9 @@ if(($_SESSION['my_role'])!='TEACHER'){
                                 
                             </p>
                             <h6>Roll</h6>
-                            <p class=" " style="color:black;"><?php echo ($_SESSION['loginroll']); ?></p>
+                            <p class=" " style="color:white;"><?php echo ($_SESSION['loginroll']); ?></p>
                             <h6>E-mail</h6>
-                            <p class=" " style="color:black;"><?php echo ($_SESSION['loginemailid']); ?></p>
+                            <p class=" " style="color:white;"><?php echo ($_SESSION['loginemailid']); ?></p>
                         </div>
                         <div class="col-md-6">
                             <h6>Number of Courses Added</h6>
