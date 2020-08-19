@@ -9,9 +9,9 @@ require 'connectwithoutdata.php';
 
 //error_reporting(E_ALL);
 
-//session_start();
+session_start();
 require 'connectwithoutdata.php';
-require 'header.php';
+//require 'header.php';
 
 if (isset($_SESSION['loginuser'])) {
     header($student_panel);
