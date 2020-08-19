@@ -3,8 +3,8 @@ require 'connectwithoutdata.php';
 require 'includes/PHPMailer.php';
 require 'includes/SMTP.php';
 require 'includes/Exception.php';
-require 'header.php';
-
+//require 'header.php';
+session_start();
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 // require 'connectwithoutdata.php';
 //Define name spaces
