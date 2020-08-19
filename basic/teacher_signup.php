@@ -13,7 +13,7 @@
 
 <?php
 	// echo (getcwd());
-	require 'header.php';
+	//require 'header.php';
 	require 'includes/PHPMailer.php';
 	require 'includes/SMTP.php';
 	require 'includes/Exception.php';
