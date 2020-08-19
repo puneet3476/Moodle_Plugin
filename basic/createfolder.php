@@ -82,8 +82,7 @@ fclose($createfile);
 
 ?>
 <style>
-			body {
-                color:white;
+			body { 
 	width: 100%;
 	height:100%;
 	font-family: 'Open Sans', sans-serif;
@@ -97,8 +96,10 @@ fclose($createfile);
 }
 		</style>
 <body class="gradient">
-<div class="container jumbotron bg-transparent p-0">
-<form action="uploadvideo.php" enctype="multipart/form-data" method ="POST" class="jumbotron bg-transparent mx-auto">
+<div class="container jumbotron">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<div class="dropzone">
+<form action="uploadvideo.php" enctype="multipart/form-data" method ="POST" class="jumbotron mx-auto">
   <h2 class=" text-center text-success">Select Video</h2>
 
 
@@ -108,20 +109,11 @@ fclose($createfile);
 </form> -->
 
 <input type="file" name="video"  class=" d-block mx-auto mt-4"/><br>
-
 <h6 align="center">(Video size should be less than 200MB.)<br>
   </h6>
-<h6 align="center" >No. Segments to your Lecture(Optional):<br></h6>
 <div class="col-md-3"></div>
-<div class="mx-auto container col-md-10">
-<?php
+<div class="mx-auto container col-md-8">
 
-for ($x = 1; $x <= 5; $x++) {?>
-        <input type="text" name="seg<?php echo $x ?>" placeholder="topic" id="seg<?php echo $x ?>"  /> :
-        <span><input type="number"  style="width:80px" name="time<?php echo $x ?>" id="time<?php echo $x ?>"/>minutes
-        <input type="number" style="width:80px" name="seconds<?php echo $x ?>"  id="time<?php echo $x ?>"/>seconds<br>
-        </span>
-    <?php }?>
 </div>
 <input type="text" value="<?php echo ($dir_name) ?>" name="dir_name"  style="display: none;">
 <input type="text" value="<?php echo ($course_name) ?>" name="course_name"  style="display: none;">
@@ -135,12 +127,22 @@ for ($x = 1; $x <= 5; $x++) {?>
 <input type="text" value="<?php echo ($database_name) ?>" name="database_name"  style="display: none;">
 <br>
 <button class="submit btn btn-success btn-lg d-block mx-auto" align="center" type="submit" name="create video" id="createvid" onclick="submitForms()">Upload Video</button>
-</form>
+</form></div>
+  <h2 class=" text-center text-success">Or Upload Via Youtube</h2>
+<h6 align="center">In order to upload a youtube video please follow the below instructions:<br>
+1.Enter the youtube link of the video and hit download button.<br>
+2.Then soon downloading will start in your browser.<br>
+3.After the video is downloaded you have to drag the video to the choose file button and then hit upload button. </h6>
+<form action="youtubevideo.php" enctype="multipart/form-data" method ="POST" class="jumbotron mx-auto" align="center">
+<input type="text"  name="youtube_link" placeholder="Enter youtube video link here">
+<br>
+<button class="submit btn btn-success btn-lg d-block mx-auto" align="center" type="submit" name="download_video" id="downvid" onclick="submitForms()">Download Video</button>
 
+</form>
 </script>
 </div>
     </div>
-
+ 
 
 
 <?php
