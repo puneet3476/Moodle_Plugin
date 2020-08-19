@@ -16,7 +16,7 @@ function delete_course($htdocs_path,$the_course_name)
    
    if(!$retval) {
       echo('Could not delete database: ' . mysqli_error());
-      die();
+      
    }
    
    echo "Database deleted successfully\n";
@@ -56,7 +56,7 @@ function delete_video($htdocs_path,$course_name,$video_name,$database_name)
    $retval = mysqli_query($link,$sql);
    
    if(!$retval) {
-      die('Could not delete database: ' . mysqli_error());
+      echo('Could not delete database: ' . mysqli_error());
    }
    
    echo "Database deleted successfully\n";
