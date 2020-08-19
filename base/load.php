@@ -1033,7 +1033,7 @@ echo ($_SESSION['loginemailid']);
       if (loginuser != "empty1" && loginbool == "1") {
 
               document.getElementById('login_but').innerHTML="Logout";
-              document.getElementById('login_but').href="<?php echo ($url_h . $appache_localhost_port . "/Moodle_Plugin/basic/logout.php") ?>";
+              document.getElementById('login_but').href="<?php echo "/Moodle_Plugin/basic/logout.php"; ?>";
 
 
       }
