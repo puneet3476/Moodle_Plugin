@@ -6,15 +6,15 @@
 
 
 
-session_start();
-
+//session_start();
+require 'header.php'; 
 if(($_SESSION['my_role'])!='TEACHER'){
 		die("You are forbidden to visit this page");}
        
 
     $teacher_ID=$_SESSION['loginroll'];
     require 'connectwithoutdata.php';
-    require 'header.php';  
+     
 	// echo("Your Teacher ID.".$_SESSION['loginroll']);
 	$user_roll=$_SESSION['loginroll'];
     // echo("Your Email ID.".$_SESSION['loginemailid']);
