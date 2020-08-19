@@ -17,13 +17,13 @@
 <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
 <?php
 
-session_start();
+require 'header.php';
 if (isset($_SESSION['loginroll'])) {
 	if(($_SESSION['my_role'])!='TEACHER'){
 		die("You are forbidden to visit this page");
 	}
 require 'connectwithoutdata.php';
-require 'header.php';
+
 	$teacher_ID=$_SESSION['loginroll'];
 	if (array_key_exists('delete_course',$_POST)) {
     require 'delete.php';
