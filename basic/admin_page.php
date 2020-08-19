@@ -2,13 +2,13 @@
 <!-- <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css"> -->
 
 <?php
-session_start();
+require 'header.php';//session_start();
 if (isset($_SESSION['loginroll'])) {
 	if(($_SESSION['my_role'])!='TEACHER'){
 		die("You are forbidden to visit this page");
 	}
 require 'connectwithoutdata.php';
-require 'header.php';
+
 ?>
 <style>
 			body { 
