@@ -105,7 +105,7 @@ $link_course = new mysqli(
 $result = mysqli_query($link_course, "SELECT * FROM `total_videos` ");
     while ($row = mysqli_fetch_array($result)) {
         ?>
-                <option value="<?php echo ($row['database_name']) ?>"><?php echo ($row['folder_name']) ?> </option>
+                <option value="<?php echo ($row['folder_name']) ?>"><?php echo ($row['folder_name']) ?> </option>
                 <?php }?>
             </select>
             <button type="submit" class="btn btn-sm btn-success d-block mx-auto mt-2">Submit</button>
