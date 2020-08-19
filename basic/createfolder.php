@@ -4,7 +4,7 @@
 require 'connectwithoutdata.php';
 require 'header.php';
 $folder_name = $_POST['folder_name'];
-$database_name = implode('', explode(' ',$folder_name));
+$database_name = implode('', explode(' ', $folder_name));
 $course_name = $_POST['course_name'];
 session_start();
 if (empty($folder_name) or empty($database_name)) {
@@ -82,7 +82,7 @@ fclose($createfile);
 
 ?>
 <style>
-			body { 
+			body {
 	width: 100%;
 	height:100%;
 	font-family: 'Open Sans', sans-serif;
@@ -107,6 +107,7 @@ fclose($createfile);
 </form> -->
 
 <input type="file" name="video"  class=" d-block mx-auto mt-4"/><br>
+
 <h6 align="center">(Video size should be less than 200MB.)<br>
   </h6>
 <h6 align="center" >No. Segments to your Lecture(Optional):<br></h6>
@@ -138,7 +139,7 @@ for ($x = 1; $x <= 5; $x++) {?>
 </script>
 </div>
     </div>
- 
+
 
 
 <?php

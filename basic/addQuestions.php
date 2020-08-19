@@ -7,6 +7,13 @@ if (($_SESSION['my_role']) != 'TEACHER') {
 $course = $_POST['course']/* $_POST['course'] */;
 $video = $_POST['vids']/* $_POST['vids'] */;
 
+$conn = new mysqli(
+    $host,
+    $user,
+    $password,
+    $course);
+$result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM total_videos WHERE database_name='" . $video . "'"));
+$duration = $result['videolength'];
 ?>
 <style type="text/css">
     .vertical-center {
@@ -26,8 +33,8 @@ $video = $_POST['vids']/* $_POST['vids'] */;
 <input type="text" name="course_name" id="course_name" value="<?echo ($course); ?>" style="display: none">
 <label for="question">Question</label>
 <input style="width:100%;" type="text" name="question" id="question">
-<label for="timestamp">Timestamp max: <span id="videolength">03:00</span> current:<span id="currentTime"></span></label>
-<input style="width:100%;margin-bottom: 1rem;" type="range" name="video" id="timestamp" max="180" min="0" step="1" value="25">
+<label for="timestamp">Timestamp max: <span id="videolength"></span> current:<span id="currentTime"></span></label>
+<input style="width:100%;margin-bottom: 1rem;" type="range" name="video" id="timestamp" max="<?php echo $duration; ?>" min="0" step="1" value="25">
 <div style="display: flex;align-items: center;margin-bottom: 1rem;justify-content: space-between;">
     <input type="radio" name="ans" value="1">
     <input style="width: 90%;" type="text" name="option1" placeholder="option 1">
@@ -59,6 +66,8 @@ var option3 = document.querySelector('input[name="option3"]')
 var option4 = document.querySelector('input[name="option4"]')
 var addButton = document.querySelectorAll('button[type="submit"]')[0]
 var currentTime = document.querySelector('#currentTime');
+var videolength = document.querySelector('#videolength');
+videolength.innerHTML = timeConvert(parseInt(timestamp.max));
 function timeConvert(time) {
     var currenttime = parseInt(time);
     var totalsecsy = Math.floor(currenttime);
