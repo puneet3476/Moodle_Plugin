@@ -59,14 +59,7 @@ session_start();
                                             if (($_SESSION['my_role']) == "TEACHER") {
                                                 ?>
                                     <li class="nav-item px-lg-2"> <a class="nav-link" href="course_page.php"><span class="d-inline-block d-lg-none icon-width"><i class="fas fa-spa"></i></span>Courses</a> </li>
-                                    <?php }}?>
-                                        <!-- <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="#">course details</a></li>
-                                                <li><a href="#">elements</a></li>
-                                            </ul>
-                                        </li> -->
-                                        <li><a href="#">About</a></li>
+                                    <?php }}?><li><a href="#">About</a></li>
                                         <!-- <li><a href="#">blog <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="#">blog</a></li>
