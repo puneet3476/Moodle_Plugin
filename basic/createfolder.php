@@ -36,13 +36,13 @@ $mysqli->multi_query($sql);
 
 // Store the path of destination file
 $destination = $dir_name;
-custom_copy($source, $destination);
+@custom_copy($source, $destination);
 ?><br><?php
 // echo ("Base file copied to ".$destination);
 
-chdir("../");
-chdir($course_name);
-chdir($folder_name);
+@chdir("../");
+@chdir($course_name);
+@chdir($folder_name);
 $createfile = fopen('connect.php', "w") or die("Can't create Connect.php file");
 
 $connect = "<?php
@@ -83,6 +83,7 @@ fclose($createfile);
 ?>
 <style>
 			body {
+                color:white;
 	width: 100%;
 	height:100%;
 	font-family: 'Open Sans', sans-serif;
@@ -96,8 +97,8 @@ fclose($createfile);
 }
 		</style>
 <body class="gradient">
-<div class="container jumbotron">
-<form action="uploadvideo.php" enctype="multipart/form-data" method ="POST" class="jumbotron mx-auto">
+<div class="container jumbotron bg-transparent p-0">
+<form action="uploadvideo.php" enctype="multipart/form-data" method ="POST" class="jumbotron bg-transparent mx-auto">
   <h2 class=" text-center text-success">Select Video</h2>
 
 
@@ -112,7 +113,7 @@ fclose($createfile);
   </h6>
 <h6 align="center" >No. Segments to your Lecture(Optional):<br></h6>
 <div class="col-md-3"></div>
-<div class="mx-auto container col-md-8">
+<div class="mx-auto container col-md-10">
 <?php
 
 for ($x = 1; $x <= 5; $x++) {?>

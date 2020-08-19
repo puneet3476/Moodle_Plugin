@@ -148,16 +148,16 @@ echo "\n";
 
 
                     <form method="post" action="" enctype='multipart/form-data' class="row d-inline-flex">
-                    <span class="col-sm">
-                    <h4>Select the Column No. that contains Name</h4>
+                    <span class="col-sm text-light">
+                    <h4 class="text-light">Select the Column No. that contains Name</h4>
                         <input type="number" name="column_1"  min="0" />
                     </span><br>
                     <span class="col">
-                        <h4>Select the Column No. that contains Roll No.</h4>
+                        <h4 class="text-light">Select the Column No. that contains Roll No.</h4>
                         <input type="number" name="column_2"  min="0"  /><br>
                     </span>
                     <span class="col">
-                        <h4>Select the Column No. that contains Email</h4>
+                        <h4 class="text-light">Select the Column No. that contains Email</h4>
                         <input type="number" name="column_3"  min="0" /><br>
                         <br>
                      </span>

@@ -40,7 +40,7 @@ session_start();
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo-img">
                                 <a href="index.php" class="text-decoration-none">
-                                   <h2  class="text-white"> PILOT</h2>
+                                   <h2 style='font-family: "Poppins", sans-serif; color:white;'> PILOT</h2>
                                 </a>
                             </div>
                         </div>
@@ -55,9 +55,9 @@ session_start();
                                             <li><a class="active" href="index.php">home</a></li>
                                         <?php }?>
                                         <?php
-if (isset($_SESSION['my_roll'])) {
-    if (($_SESSION['my_role']) == "TEACHER") {
-        ?>
+                                        if (isset($_SESSION['my_roll'])) {
+                                            if (($_SESSION['my_role']) == "TEACHER") {
+                                                ?>
                                     <li class="nav-item px-lg-2"> <a class="nav-link" href="course_page.php"><span class="d-inline-block d-lg-none icon-width"><i class="fas fa-spa"></i></span>Courses</a> </li>
                                     <?php }}?>
                                         <!-- <li><a href="#">pages <i class="ti-angle-down"></i></a>

@@ -3,7 +3,7 @@
 require 'connectwithoutdata.php';
 require 'header.php';
 ?>
-<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
+<!-- <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css"> -->
 
 <?php
 
@@ -114,7 +114,7 @@ if ($result) {
 
 </nav> -->
 
-<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
+<!-- <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css"> -->
 <!-- <link rel="stylesheet" href="assets/css/index.css"> -->
 <style>
 			body {
