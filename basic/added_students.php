@@ -1,8 +1,15 @@
-
-
+<?php 
+require 'connectwithoutdata.php';
+require 'header.php';
+    $course = $_GET['course_name'];
+    if (($_SESSION['my_role']) != 'TEACHER') {
+        die("You are forbidden to visit this page");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+</head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -45,6 +52,7 @@
                     <input type="email" name="Email" class="form-control" placeholder="Enter Email">
                 </div>
             </div>
+            <input type="text" name="course_name" value="<?echo($course)?>" style="display: none;">
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" name="insertdata" class="btn btn-primary">Save Data</button>
@@ -93,6 +101,7 @@
                     <input type="email" name="Email" class="form-control" placeholder="Enter Email">
                 </div>
             </div>
+            <input type="text" name="course_name" value="<?echo($course)?>" style="display: none;">
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" name="updatedata" class="btn btn-primary">Update Data</button>
@@ -129,11 +138,12 @@
 
                 <input type="hidden" name="delete_id" id="delete_id">
 
-                <h4> Do you want to Delete this Data ??</h4>
+                <h4> Do you want to De-register this Student ?</h4>
             </div>
             <div class="modal-footer">
+            <input type="text" name="course_name" value="<?echo($course)?>" style="display: none;">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">  NO </button>
-                <button type="submit" name="deletedata" class="btn btn-primary"> Yes !! Delete it. </button>
+                <button type="submit" name="deletedata" class="btn btn-primary"> Yes !! De-register!. </button>
             </div>
         </form>
 
@@ -162,11 +172,13 @@
             <div class="card-body">
 
             <?php
-                $connection = mysqli_connect("localhost","root","bottletopple202");
-                $db = mysqli_select_db($connection, 'Corona');
-
+                $link_course = new mysqli(
+    $host,
+    $user,
+    $password, $course
+);
                 $query = "SELECT * FROM tbl_info";
-                $query_run = mysqli_query($connection, $query);
+                $query_run = mysqli_query($link_course, $query);
             ?>
                 <table id="datatableid" class="table table-bordered table-dark">
                     <thead>
@@ -305,4 +317,3 @@ $(document).ready(function () {
 
 </body>
 </html>
-
