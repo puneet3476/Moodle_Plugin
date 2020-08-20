@@ -133,6 +133,9 @@ $result = mysqli_query($link_course, "SELECT * FROM `total_videos` ");
             <a href="<?php echo 'add_students.php?course_name=' . $course_name ?>" class="text-decoration-none text-dark"><div class="jumbotron hovers p-3" style="background-color:;cursor:pointer;">
 
             Re-Upload List of enrolled students</div></a>
+	   <a href="<?php echo 'added_students.php?course_name='.$course_name ?>" class="text-decoration-none text-dark"><div class="jumbotron hovers p-3" style="background-color:;cursor:pointer;">
+
+            List of all enrolled students</div></a>
         </div>
 </div>
 
