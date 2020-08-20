@@ -5,9 +5,9 @@ require 'header.php';
 require 'connectwithoutdata.php';
 $course_name=$_GET['course_name'];
 echo($course_name);
-$DB_host = "localhost:8889";
+$DB_host = "localhost";
 $DB_user = "root";
-$DB_pass = "root";
+$DB_pass = "bottletopple202";
 $DB_name = "users";
 
 $selectq="SELECT user_roll_no,`user_name`,score,course_name,video_name FROM score WHERE `course_name`='$course_name' ORDER BY score DESC";

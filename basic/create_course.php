@@ -36,12 +36,25 @@ $link_inst = new mysqli(
    $user,
    $password,$inst
 );
-$course="INSERT INTO courses (course_name,description,teacher_ID)
+$course="INSERT INTO courses (course_name,`description`,teacher_ID)
     VALUES ('$course_name','$course_desc','$teacher_id')" ;
 echo $link_inst->query($course);
 
 /* execute multi query */
 $mysqli->multi_query($sql);
+
+
+if ($link_inst -> connect_errno) {
+  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+  exit();
+  die();
+}
+
+// Perform a query, check for error
+if (!$link_inst -> $course) {
+  echo("Error description: " . $link_inst -> error);
+  die();
+}
 
 //new folder for the course
 @mkdir($dir_name);

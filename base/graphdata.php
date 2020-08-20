@@ -45,7 +45,7 @@ while($row=mysqli_fetch_array($q)){
 		$r1_arr[(int)$row[<?php
 
 $user = 'root';
-$password = 'root';
+$password = '';
 $db = 'mydb';
 $host = 'localhost:8889';
 
