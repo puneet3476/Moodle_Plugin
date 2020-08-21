@@ -434,9 +434,10 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
           var chatuser="<?php echo $rowchat['chatuser']; ?>";
            var time="<?php echo $rowchat['second']; ?>";
            var clickpost=1;
-           document.getElementById('myVideo').currentTime=time;
+
            var oldposttimey=timeConvert(document.getElementById('myVideo').currentTime);
-                     var newposttimey="<?php echo $rowchat['time_mark']; ?>";
+           document.getElementById('myVideo').currentTime=time;
+           var newposttimey="<?php echo $rowchat['time_mark']; ?>";
                      var postidy="<?php echo $rowchat['id']; ?>";
                      document.getElementById('myVideo').currentTime=time;
                        $.ajax({
