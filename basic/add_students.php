@@ -113,20 +113,27 @@ echo "\n";
     <head>
       <title>PILOT</title>
       <style>
-			body { 
+			
+            body {
+                position: absolute;
+                top: 0; bottom: 0; left: 0; right: 0;
+                height: 100%;
                 color:white;
-	width: 100%;
-	height:100%;
-	font-family: 'Open Sans', sans-serif;
-	background: #092756;
-	background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
-	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
-	background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
-	background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
-	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
-}
-		</style>
+            }
+            body:before {
+                content: "";
+                position: fixed;
+                background: url(images/38085.jpg);
+                background-size: cover;
+                z-index: -1; /* Keep the background behind the content */
+                height: 20%; width: 20%; /* Using Glen Maddern's trick /via @mente */
+            
+                /* don't forget to use the prefixes you need */
+                transform: scale(5);
+                transform-origin: top left;
+                filter: blur(1px);
+            }
+                    </style>
       <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -134,7 +141,7 @@ echo "\n";
       <!-- <link rel="stylesheet" href="assets/css/index.css"> -->
     </head>
     <body class="vertical-center text-light">
-        <div class="container">
+        <div class="container" style="padding-top:8%">
           <div class="row" align="center" style="margin-top: 70px;">
               <div class="col-sm-3"></div>
               <div class="col-sm-6">

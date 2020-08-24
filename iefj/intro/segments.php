@@ -27,15 +27,8 @@ require 'connect.php';
                 filter: blur(1px);
             }
                     </style>
-<style type="text/css">
-    .vertical-center {
-  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 100vh; /* These two lines are counted as one :-)       */
 
-  display: flex;
-  align-items: center;
-}
-</style>
+
 <body class="gradient vertical-center   ">
 
  <div class="container jumbotron " style="padding:4rem 2rem;margin-top:6%;">

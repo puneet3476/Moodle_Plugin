@@ -82,24 +82,32 @@ fclose($createfile);
 
 ?>
 <style>
-			body { 
-	width: 100%;
-	height:100%;
-	font-family: 'Open Sans', sans-serif;
-	background: #092756;
-	background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
-	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
-	background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
-	background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
-	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
-}
-		</style>
+			
+            body {
+                position: absolute;
+                top: 0; bottom: 0; left: 0; right: 0;
+                height: 100%;
+                
+            }
+            body:before {
+                content: "";
+                position: fixed;
+                background: url(images/38085.jpg);
+                background-size: cover;
+                z-index: -1; /* Keep the background behind the content */
+                height: 20%; width: 20%; /* Using Glen Maddern's trick /via @mente */
+            
+                /* don't forget to use the prefixes you need */
+                transform: scale(5);
+                transform-origin: top left;
+                filter: blur(1px);
+            }
+                    </style>
 <body class="gradient">
-<div class="container jumbotron">
+<div class="container jumbotron" style="padding:2px 2px;margin-top:80px;">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <div class="dropzone">
-<form action="uploadvideo.php" enctype="multipart/form-data" method ="POST" class="jumbotron mx-auto">
+<form action="uploadvideo.php" enctype="multipart/form-data" method ="POST" class="jumbotron mx-auto" style="padding:2rem 2rem;margin-bottom:0;">
   <h2 class=" text-center text-success">Select Video</h2>
 
 
@@ -119,10 +127,9 @@ fclose($createfile);
 <input type="text" value="<?php echo ($course_name) ?>" name="course_name"  style="display: none;">
 
 <input type="text" value="<?php echo ($hyperlink) ?>" name="hyperlink" style="display: none;">
-<br>
 
 <input type="text" value="<?php echo ($folder_name) ?>" name="folder_name" style="display: none;">
-<br>
+
 
 <input type="text" value="<?php echo ($database_name) ?>" name="database_name"  style="display: none;">
 <br>
@@ -133,7 +140,7 @@ fclose($createfile);
 1.Enter the youtube link of the video and hit download button.<br>
 2.Then soon downloading will start in your browser.<br>
 3.After the video is downloaded you have to drag the video to the choose file button and then hit upload button. </h6>
-<form action="youtubevideo.php" enctype="multipart/form-data" method ="POST" class="jumbotron mx-auto" align="center">
+<form action="youtubevideo.php" enctype="multipart/form-data" method ="POST" class="jumbotron mx-auto" align="center" style="padding:2rem 2rem;margin-bottom:0;">
 <input type="text"  name="youtube_link" placeholder="Enter youtube video link here">
 <br>
 <button class="submit btn btn-success btn-lg d-block mx-auto" align="center" type="submit" name="download_video" id="downvid" onclick="submitForms()">Download Video</button>

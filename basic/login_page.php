@@ -18,6 +18,28 @@ if (isset($_SESSION["user_id"])) {
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="assets/css/index.css">
+		<style>
+			body { 
+	width: 100%;
+	height:100%;
+	font-family: 'Open Sans', sans-serif;
+    background-image: linear-gradient(-225deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%);
+    background-position: center center;
+  
+  /* Background image doesn't tile */
+  background-repeat: no-repeat;
+  
+  /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+  background-attachment: fixed;
+  
+  /* This is what makes the background image rescale based
+     on the container's size */
+  background-size: cover;
+
+  
+}
+		</style>
 	</head>
 	<body class="gradient" >
 		<br />

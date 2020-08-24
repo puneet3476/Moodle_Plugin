@@ -15,19 +15,32 @@ $conn = new mysqli(
 $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM total_videos WHERE database_name='" . $video . "'"));
 $duration = $result['videolength'];
 ?>
-<style type="text/css">
-    .vertical-center {
-  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 100vh; /* These two lines are counted as one :-)       */
+<style>
+			
+            body {
+                position: absolute;
+                top: 0; bottom: 0; left: 0; right: 0;
+                height: 100%;
+            }
+            body:before {
+                content: "";
+                position: fixed;
+                background: url(images/38085.jpg);
+                background-size: cover;
+                z-index: -1; /* Keep the background behind the content */
+                height: 20%; width: 20%; /* Using Glen Maddern's trick /via @mente */
+            
+                /* don't forget to use the prefixes you need */
+                transform: scale(5);
+                transform-origin: top left;
+                filter: blur(1px);
+            }
+                    </style>
+                    
 
-  display: flex;
-  align-items: center;
-}
-</style>
-<link rel="stylesheet" href="assets/css/index.css">
-<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
-<body class="gradient vertical-center container">
-<div class="jumbotron mx-auto">
+<script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
+<body >
+<div class="jumbotron mx-auto container" style="padding:3rem 2rem;margin-top:8%;">
 <form name="questionform">
 <input type="text" name="video_name" id="video_name" value="<?echo ($video); ?>" style="display: none">
 <input type="text" name="course_name" id="course_name" value="<?echo ($course); ?>" style="display: none">

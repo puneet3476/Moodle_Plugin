@@ -532,6 +532,7 @@ h3 {
   -moz-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+  margin-left:25%;
 }
 
 /* line 123, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_btn.scss */
@@ -1302,8 +1303,9 @@ h3 {
 /* line 33, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_slider.scss */
 .slider_area .single_slider .slider_info h3 {
   color: #ffffff;
-  font-size: 60px;
+  font-size: 40px;
   text-transform: capitalize;
+  text-align: center;
   font-weight: 400;
   line-height: 70px;
   margin-bottom: 50px;
@@ -1663,8 +1665,8 @@ h3 {
 
 /* line 9, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_footer.scss */
 .footer .footer_top {
-  padding-top: 45px;
-  padding-bottom: 29px;
+  padding-top: 20px;
+  padding-bottom: 15px;
 }
 
 @media (max-width: 767px) {
@@ -1695,7 +1697,7 @@ h3 {
   font-weight: 400;
   color: #fff;
   text-transform: capitalize;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 767px) {
@@ -1711,7 +1713,7 @@ h3 {
   font-weight: 400;
   color: #fff;
   text-transform: capitalize;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 767px) {

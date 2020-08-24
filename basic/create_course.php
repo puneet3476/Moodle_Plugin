@@ -44,17 +44,6 @@ echo $link_inst->query($course);
 $mysqli->multi_query($sql);
 
 
-if ($link_inst -> connect_errno) {
-  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
-  exit();
-  die();
-}
-
-// Perform a query, check for error
-if (!$link_inst -> $course) {
-  echo("Error description: " . $link_inst -> error);
-  die();
-}
 
 //new folder for the course
 @mkdir($dir_name);

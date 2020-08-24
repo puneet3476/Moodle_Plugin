@@ -14,10 +14,27 @@ $selectq="SELECT user_roll_no,`user_name`,score,course_name,video_name FROM scor
 $resulty = mysqli_query($link_users,$selectq);
 ?>
 <style>
-    .hovers:hover{
-    background-color:#999999;
-}
-    </style>
+			
+      body {
+          position: absolute;
+          top: 0; bottom: 0; left: 0; right: 0;
+          height: 100%;
+         
+      }
+      body:before {
+          content: "";
+          position:fixed;
+          background: url(images/38085.jpg);
+          background-size: cover;
+          z-index: -1; /* Keep the background behind the content */
+          height: 20%; width: 20%; /* Using Glen Maddern's trick /via @mente */
+      
+          /* don't forget to use the prefixes you need */
+          transform: scale(5);
+          transform-origin: top left;
+          filter: blur(1px);
+      }
+              </style>
 <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
 
 <link rel="stylesheet" type="text/css" href="./assets/css/leaderboards.css" />

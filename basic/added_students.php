@@ -17,14 +17,35 @@ require 'header.php';
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
-    
+    <style>
+			
+            body {
+                position: absolute;
+                top: 0; bottom: 0; left: 0; right: 0;
+                height: 100%;
+               
+            }
+            body:before {
+                content: "";
+                position:fixed;
+                background: url(images/38085.jpg);
+                background-size: cover;
+                z-index: -1; /* Keep the background behind the content */
+                height: 20%; width: 20%; /* Using Glen Maddern's trick /via @mente */
+            
+                /* don't forget to use the prefixes you need */
+                transform: scale(5);
+                transform-origin: top left;
+                filter: blur(1px);
+            }
+                    </style>
 </head>
 <body>
     
 
 <!-- Modal -->
-<div class="modal fade" id="studentaddmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade" id="studentaddmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:6%;">
+  <div class="modal-dialog" role="document" >
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Add Student Data </h5>
@@ -70,7 +91,7 @@ require 'header.php';
 
 <!-- EDIT POP UP FORM (Bootstrap MODAL) -->
 
-<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:6%;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -141,7 +162,7 @@ require 'header.php';
                 <h4> Do you want to De-register this Student ?</h4>
             </div>
             <div class="modal-footer">
-            <input type="text" name="course_name" value="<?echo($course)?>" style="display: none;">
+            <input type="text" name="course_name" value="<?echo($course)?>" style="display: none;margin-top:6%;" >
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">  NO </button>
                 <button type="submit" name="deletedata" class="btn btn-primary"> Yes !! De-register!. </button>
             </div>
@@ -155,9 +176,9 @@ require 'header.php';
 
 
 
-<div class="container">
-    <div class="jumbotron">
-        <div class="card">
+<div class="container"  style="margin-top:8%;">
+    <div class="jumbotron" style="padding:0.5rem 0.5rem;">
+        <div class="card" style="padding:1rem 1rem;">
             <h2>List Of Added Students </h2>
         </div>    
         <div class="card">

@@ -47,7 +47,7 @@ session_start();
                         <div class="col-xl-7 col-lg-7">
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
-                                    <ul id="">
+                                    <ul id="" style="margin-bottom:0;">
                                     <?php if (isset($_SESSION['loginname'])) {?>
                                         <li><a class="" href="<?php echo (strtolower($_SESSION['my_role']) . "_panel.php"); ?>">home</a></li>
                                         <li><a class="" href="profile.php">Profile</a></li>

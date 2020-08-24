@@ -91,9 +91,9 @@
                     </div>
                     <div class="col-xl-6 col-md-6">
                         <div class="slider_info">
-                            <h3>Learn your <br>
-                                Favorite Course <br>
-                                From Online</h3>
+                            <h3>Platform for   <br>
+                            Interactive Learning <br>
+                            through Online Teaching</h3>
                             <a href="#" class="boxed_btn">Explore How it Works</a>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
     <!-- slider_area_end -->
 
     <!-- about_area_start -->
-    <div class="about_area">
+    <div class="about_area" style="opacity:0;"> 
         <div class="container">
             <div class="row">
                 <div class="col-xl-5 col-lg-6">
@@ -1731,7 +1731,7 @@
     <!-- testimonial_area_end -->
 
     <!-- our_courses_start -->
-    <div class="our_courses">
+    <div class="our_courses" style="opacity:0;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -1980,20 +1980,7 @@
                 </div>
             </div>
         </div>
-        <div class="copy-right_text">
-            <div class="container">
-                <div class="footer_border"></div>
-                <div class="row">
-                    <div class="col-xl-12">
-                        <p class="copy_right text-center">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
     </footer>
     <!-- footer -->
 

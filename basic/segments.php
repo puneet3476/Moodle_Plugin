@@ -7,6 +7,7 @@ $course=$_GET['course'];
 ?>
 
 
+
 <style type="text/css">
     .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
