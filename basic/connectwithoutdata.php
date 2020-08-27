@@ -1,9 +1,9 @@
 <?php
 $user = 'root';
-$password = 'bottletopple202'; //............This you may have to change
+$password = 'moodle@pluginv1'; //............This you may have to change
 $host = 'localhost';
 $appache_localhost_port = '';
-$urlhost = ""; //135.181.82.72 ..............This you may need to change
+$urlhost = "http://135.181.82.72"; //135.181.82.72 ..............This you may need to change
 $urla = "Location: ";
 $folder = "/Moodle_Plugin/basic/";
 $htdocs_path = $homedir = "/var/www/html/Moodle_Plugin/";
