@@ -160,7 +160,7 @@ body:before {
             <p class="text-black-50" >Add a course for your institution <i class="fas fa-arrow-right"></i></p>
         </div></a>
         <div class="row mx-auto">
-        <div class=" jumbotron p-3 col-md-5  mx-auto" style="background-color:#fff"><a href=""  class="text-decoration-none text-dark">
+        <div class=" jumbotron p-3 col-md-5  mx-auto" style="background-color:#fff"><a href="analytics_page.php"  class="text-decoration-none text-dark">
         <img  class="mx-auto d-block mb-3 " width="120px" src="./images/capacity.svg">
         <h3 class="mx-auto d-block " style="text-align:center   ">Analytics<h3>
         <p class=" form-control-sm " style="text-align:center   ">Get detailed insights into your course usage.</p>
