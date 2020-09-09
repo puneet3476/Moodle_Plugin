@@ -127,7 +127,12 @@ while ($rowy=mysqli_fetch_array($resulty)) {
 //Time Chat starts from here................
 
 if (isset($_GET['displaytimechat'])) {
-$resultchat = mysqli_query($link,"SELECT * FROM `chat` ORDER BY  `time_mark` DESC " );
+$link_video = new mysqli(
+                            $host,
+                            $user,
+                            $password, $_GET['database_name']);
+
+$resultchat = mysqli_query($link_video,"SELECT * FROM `chat` ORDER BY  `time_mark` DESC " );
 while ($rowchat=mysqli_fetch_array($resultchat)) {
 ?>
 
@@ -156,9 +161,10 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
     <span class="timestamp"><?php echo $rowchat['time_mark']; ?></span>
 
     <p class="comment_content"><?php echo $rowchat['chat']; ?></p>
+
     <div class="reply_btn r<?php echo $rowchat['id']; ?>">Reply (<?php echo($rowchat['Replies']); ?>)</div>
     <img class="comment_react" src="../../basic/../../basic/images/<?php echo $rowchat['reaction']; ?>.png">
-
+<div>Added By:<?php  echo($rowchat['student_ID']) ?></div>
   </div>
  </div>
   <div class="reply_column reply_column<?php echo $rowchat['id']; ?>">
@@ -255,7 +261,7 @@ newposttime:newposttime
             var reply_post=1;
 
     load_reply();
-
+            var database_name="<?php echo $_GET['database_name']; ?>";
  function load_reply()
  {
   $.ajax({
@@ -265,7 +271,8 @@ newposttime:newposttime
     reply_post:reply_post,
     reply_id:reply_id,
 user_reply:user_reply,
-reply_content:reply_content
+reply_content:reply_content,
+database_name:database_name
 
    },
    success:function(data)
@@ -281,11 +288,13 @@ reply_content:reply_content
 
 
   var display_reply=1;
+  var database_name="<?php echo $_GET['database_name']; ?>";
     $.ajax({
    url:"ajaxy1.php",
    method:"POST",
    data:{display_reply:1,
-    reply_id:reply_id
+    reply_id:reply_id,
+    database_name:database_name
     },
    success:function(d)
    {
@@ -390,10 +399,220 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
 
 
     <div class="timestamp"><?php echo $rowchat['time_mark']; ?></div>
+    <button class="delete d<?php echo $rowchat['id']; ?>">Delete</button>
     <p class="comment_content" style="margin-top: 5px;"><img class="comment_react" src="../../basic/images/<?php echo $rowchat['reaction']; ?>.png">
     <?php echo $rowchat['chat']; ?></p>
     <div class="reply_btn r<?php echo $rowchat['id']; ?>">Reply (<?php echo($rowchat['Replies']); ?>)</div>
+<div>Added By:<?php  echo($rowchat['student_ID']) ?></div>
+    </div>
+      </div>
+  </div>
+  <div class="reply_column reply_column<?php echo $rowchat['id']; ?>">
+    <div class=" reply_c<?php echo $rowchat['id']; ?>"></div>
+    <input type="text" class="reply reply<?php echo $rowchat['id']; ?>">
+    <button type="submit" class="submitreply" id="<?php echo $rowchat['id']; ?>"><img src="../../basic/images/tick.png" class="tick"></button>
+  </div>
+  <script type="text/javascript">
+    var blank="<?php echo $rowchat['reaction']; ?>";
+    if (blank=="0") {
+          document.getElementsByClassName("comment_react")[0].style.display="none";
+    }
+    document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].onclick = function(){
+      if(document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML == "Reply (<?php echo($rowchat['Replies']); ?>)"){
+        var current_id="<?php echo $rowchat['id']; ?>";
+        displayreply(current_id);
+        document.getElementsByClassName("reply_column<?php echo $rowchat['id']; ?>")[0].style.display = "block";
+        document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Hide Reply";
+      } else {
+        document.getElementsByClassName("reply_column<?php echo $rowchat['id']; ?>")[0].style.display = "none";
+        document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Reply (<?php echo($rowchat['Replies']); ?>)";
+      }
+    }
+    document.getElementsByClassName("d<?php echo $rowchat['id']; ?>")[0].onclick = function(){
+      alert("Delete chat <?php echo($rowchat['chat'])?>")
+    }
+  </script>
+  <script type="text/javascript">
+        $("#<?php echo $rowchat['id']; ?>h").click(function (argument) {
+          var chatuser="<?php echo $rowchat['chatuser']; ?>";
+           var time="<?php echo $rowchat['second']; ?>";
+           var clickpost=1;
 
+           var oldposttimey="00:00:04";
+          
+           var newposttimey="<?php echo $rowchat['time_mark']; ?>";
+                     var postidy="<?php echo $rowchat['id']; ?>";
+                    var database_name="<?php echo $_GET['database_name']; ?>";
+                       $.ajax({
+   url:"ajaxy1.php",
+   method:"POST",
+   data:{
+    clickpost:clickpost,
+    postidy:postidy,
+oldposttimey:oldposttimey,
+newposttimey:newposttimey,
+chatuser:chatuser,
+database_name:database_name
+
+   },
+   success:function(data)
+   {
+       }
+  })
+
+
+
+        });
+          function timeConvert(time){
+        var currenttime= parseInt(time);
+        var totalsecsy=Math.floor(currenttime);
+        var secs = Math.round(currenttime);
+        var hours = Math.floor(secs / (60 * 60));
+        var divisor_for_minutes = secs % (60 * 60);
+        var minutes = Math.floor(divisor_for_minutes / 60);
+        var divisor_for_seconds = divisor_for_minutes % 60;
+        var seconds = Math.ceil(divisor_for_seconds);
+        var zero="0";
+        if (hours<10) {
+        var hour=hours.toString();
+        hour=zero.concat(hour);
+        }
+        else{
+          var hour=hours.toString();
+        }
+        if (minutes<10) {
+        var minute=minutes.toString();
+        minute=zero.concat(minute);
+        }
+        else{
+          var minute=minutes.toString();
+        }
+        if (seconds<10) {
+        var second=seconds.toString();
+        second=zero.concat(second);
+        }
+        else{
+          var second=seconds.toString();
+        }
+        var colon=":";
+        var timemin=hour.concat(colon,minute,colon,second);
+        return timemin;
+      }
+
+
+    $("#<?php echo $rowchat['id']; ?>").click(function (argument) {
+      var oldposttimereply="00:00:00";
+      var reply_id="<?php echo $rowchat['id']; ?>";
+      var user_reply=document.querySelector('#phplogin').innerText;
+            var reply_content=$(".reply<?php echo $rowchat['id']; ?>").val();
+            var reply_post=1;
+            var database_name="<?php echo $_GET['database_name']; ?>";
+
+    load_reply(oldposttimereply);
+
+ function load_reply(oldposttimereply)
+ {console.log(oldposttimereply);
+  $.ajax({
+   url:"ajaxy1.php",
+   method:"POST",
+   data:{
+    reply_post:reply_post,
+    reply_id:reply_id,
+user_reply:user_reply,
+reply_content:reply_content,
+database_name:database_name
+
+   },
+   success:function(data)
+   {
+   displayreply(reply_id,oldposttimereply);
+    $(".reply<?php echo $rowchat['id']; ?>").val('');
+       }
+  })
+ }
+        });
+
+ function displayreply(reply_id,oldposttimereply) {
+  console.log(oldposttimereply);
+  var database_name="<?php echo $_GET['database_name']; ?>";
+  var display_reply=1;
+
+    $.ajax({
+   url:"ajaxy1.php",
+   method:"POST",
+   data:{display_reply:1,
+    reply_id:reply_id,
+    database_name:database_name
+    },
+   success:function(d)
+   {
+   $(".reply_c"+reply_id).html(d);
+   }
+  })
+
+}
+
+
+  </script>
+
+  <?php
+}
+
+
+die();
+}
+if (isset($_GET['displayreplychat'])) {
+  $link_video = new mysqli(
+                            $host,
+                            $user,
+                            $password, $_GET['database_name']);
+
+$resultchat = mysqli_query($link_video,"SELECT * FROM `chat` ORDER BY `Replies`" );
+while ($rowchat=mysqli_fetch_array($resultchat)) {
+?>
+
+  <div id="<?php echo $rowchat['id']; ?>h">
+  <div class="comment_display" id="<?php echo $rowchat['second']; ?>">
+    <?php
+    $this_chatuser=$rowchat['student_ID'];
+    $q="SELECT * FROM `register_user` WHERE `user_Roll_no`='$this_chatuser';";
+    $avatar = mysqli_query($link_users,$q);
+
+
+     while ($chatavatar=mysqli_fetch_array($avatar)) {
+
+      $image_url="otp-php-registration/class/".$chatavatar['user_avatar'];
+     ?>
+    <img src="../../<?php echo($image_url);?>"  class="avatar" style="position:relative;align-content: left;vertical-align: middle;width:50px;height: 50px;border-radius: 50%;">
+    <?php
+    }
+    $this_chat_teacher=$rowchat['student_ID'];
+    $q="SELECT * FROM `register_teacher` WHERE `teacher_ID`='$this_chatuser';";
+    $avatar = mysqli_query($link_users,$q);
+    while ($chatavatar=mysqli_fetch_array($avatar)) {
+
+      $image_url="otp-php-registration/class/".$chatavatar['teacher_avatar'];
+     ?>
+
+    <img src="../../otp-php-registration/class/avatar/scholar.png"  class="avatar" style="position:relative;align-content: left;vertical-align: middle;width:50px;height: 50px;border-radius: 50%;">
+
+    <?php
+    }
+
+
+
+
+
+    ?>
+    <span class="comment_u"><?php echo $rowchat['chatuser']; ?></span>
+    <br>
+
+
+    <div class="timestamp"><?php echo $rowchat['time_mark']; ?></div>
+    <p class="comment_content" style="margin-top: 5px;"><img class="comment_react" src="../../basic/images/<?php echo $rowchat['reaction']; ?>.png">
+    <?php echo $rowchat['chat']; ?></p>
+    <div class="reply_btn r<?php echo $rowchat['id']; ?>">Reply (<?php echo($rowchat['Replies']); ?>)</div>
+<div>Added By:<?php  echo($rowchat['student_ID']) ?></div>
     </div>
       </div>
   </div>
@@ -544,5 +763,9 @@ database_name:database_name
 
   <?php
 }
+
+
+
+
 die();
 }
