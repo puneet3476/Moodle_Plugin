@@ -429,7 +429,7 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
           
            var newposttimey="<?php echo $rowchat['time_mark']; ?>";
                      var postidy="<?php echo $rowchat['id']; ?>";
-              
+                    var database_name="<?php echo $_GET['database_name']; ?>";
                        $.ajax({
    url:"ajaxy1.php",
    method:"POST",
@@ -438,7 +438,8 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
     postidy:postidy,
 oldposttimey:oldposttimey,
 newposttimey:newposttimey,
-chatuser:chatuser
+chatuser:chatuser,
+database_name:database_name
 
    },
    success:function(data)
@@ -492,6 +493,7 @@ chatuser:chatuser
       var user_reply=document.querySelector('#phplogin').innerText;
             var reply_content=$(".reply<?php echo $rowchat['id']; ?>").val();
             var reply_post=1;
+            var database_name="<?php echo $_GET['database_name']; ?>";
 
     load_reply(oldposttimereply);
 
@@ -504,7 +506,8 @@ chatuser:chatuser
     reply_post:reply_post,
     reply_id:reply_id,
 user_reply:user_reply,
-reply_content:reply_content
+reply_content:reply_content,
+database_name:database_name
 
    },
    success:function(data)
@@ -518,12 +521,15 @@ reply_content:reply_content
 
  function displayreply(reply_id,oldposttimereply) {
   console.log(oldposttimereply);
+  var database_name="<?php echo $_GET['database_name']; ?>";
   var display_reply=1;
+
     $.ajax({
    url:"ajaxy1.php",
    method:"POST",
    data:{display_reply:1,
-    reply_id:reply_id
+    reply_id:reply_id,
+    database_name:database_name
     },
    success:function(d)
    {
