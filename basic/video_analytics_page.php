@@ -81,7 +81,7 @@ require 'header.php';
 
                             <td><a href="detailed_video_analytics.php?video_name=<?php echo($row['database_name']); ?>"><?php echo $row['folder_name']; ?> </a></td>                         
                             <td> <?php echo $course; ?> </td>
-                            <td> </td>
+                            <td> <?php echo((mysqli_num_rows($video_chats))-($row['prof_last_visit_chat']));?> </td>
                             <td> <?php echo($video_activity['Start_Time']); ?> </td>  
                             <td><?php echo $row['creation_date']; ?>  </td>  
                             <td><?php echo(mysqli_num_rows($video_users));?></td>  

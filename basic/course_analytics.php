@@ -1,16 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+session_start();
+require 'connectwithoutdata.php';
 
+//require 'header.php';
+    if (($_SESSION['my_role']) != 'TEACHER') {
+        die("You are forbidden to visit this page");
+    }
+    $teacher_ID=$_SESSION['loginroll'];
+    $course=$_GET['course_name'];
+    $link_course = new mysqli(
+    $host,
+    $user,
+    $password, $course
+);
+                $query = "SELECT * FROM total_videos";
+                $query_run = mysqli_query($link_course, $query);
+                $video_users=mysqli_query($link_course,"SELECT * FROM tbl_info");
+                                if($query_run)
+                {$notes=array();
+                    foreach($query_run as $row)
+                    {
+                        $link_video = new mysqli(
+                            $host,
+                            $user,
+                            $password, $row['database_name']
+                        );
+                $video_notes=mysqli_query($link_video,"SELECT COUNT(DISTINCT(loginuser)) FROM note");
+                $this_notes=mysqli_fetch_array($video_notes);
+                array_push($notes,$this_notes['COUNT(DISTINCT(loginuser))']);
+                
+
+            }
+        }
+        $firstvideo = mysqli_query($link_course,"SELECT * FROM total_videos LIMIT 1");
+        $first_video_name=mysqli_fetch_array($firstvideo);
+        $link_firstvideo = new mysqli(
+                            $host,
+                            $user,
+                            $password, $first_video_name['database_name']
+                        );
+        $first_video_users=mysqli_query($link_firstvideo,"SELECT COUNT(DISTINCT(user_id)) FROM clickdata");
+        $this_users=mysqli_fetch_array($first_video_users);
+        $first_video_users=$this_users['COUNT(DISTINCT(user_id))'];
+
+
+
+
+        $GLOBALS['totalnotes']=0;
+        function myfunction($value,$key){
+$GLOBALS['totalnotes']=$GLOBALS['totalnotes']+$value;
+}
+array_walk_recursive($notes,"myfunction");
+
+$total_notes=$GLOBALS['totalnotes'];
+$percent_notes=round(($total_notes/(mysqli_num_rows($video_users)*mysqli_num_rows($query_run)))*100);
+$percent_first_video_users=round(($first_video_users/mysqli_num_rows($video_users))*100);  
+
+?>
 <!-- Mirrored from educhamp.themetrades.com/demo/admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:08:15 GMT -->
-<head>
+<br>
+<br><br><br><br>
 
 	<!-- META ============================================= -->
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="keywords" content="" />
-	<meta name="author" content="" />
-	<meta name="robots" content="" />
-	
+
 	<!-- DESCRIPTION -->
 	<meta name="description" content="EduChamp : Education HTML Template" />
 	
@@ -49,7 +101,7 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
 	<link class="skin" rel="stylesheet" type="text/css" href="assets/css/color/color-1.css">
 	
-</head>
+
 <body class="ttr-opened-sidebar ttr-pinned-sidebar">
 
 	<!--Main container start -->
@@ -70,11 +122,8 @@
 							<h4 class="wc-title">
 								Total Students enrolled in the course
 							</h4>
-							<span class="wc-des">
-								.
-							</span>
 							<span class="wc-stats">
-								<span class="counter">18</span>M 
+								<span class="counter"><?php echo(mysqli_num_rows($video_users));?></span> 
 							</span>		
 							
 						</div>				      
@@ -129,6 +178,7 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
 			<div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
 					<div class="widget-card widget-bg5">					 
 						<div class="wc-item">
@@ -139,12 +189,45 @@
 								.
 							</span>
 							<span class="wc-stats">
-								<span class="counter">30</span>% 
+								<span class="counter"><?php echo($percent_notes);?></span>% 
 							</span>		
 							
 						</div>				      
 					</div>
 				</div>
+							<div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+					<div class="widget-card widget-bg6">					 
+						<div class="wc-item">
+							<h4 class="wc-title">
+								Students who have started the course
+							</h4>
+							<span class="wc-des">
+								.
+							</span>
+							<span class="wc-stats">
+								<span class="counter"><?php echo($percent_first_video_users);?></span>% 
+							</span>		
+							
+						</div>				      
+					</div>
+				</div>
+											<div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+					<div class="widget-card widget-bg7">					 
+						<div class="wc-item">
+							<h4 class="wc-title">
+								Total Videos in the course
+							</h4>
+							<span class="wc-des">
+								.
+							</span>
+							<span class="wc-stats">
+								<span class="counter"><?php echo(mysqli_num_rows($query_run));?></span>
+							</span>		
+							
+						</div>				      
+					</div>
+				</div>
+			</div>
 			</div>
 			<!-- Card END -->
 			<div class="row">
@@ -185,4 +268,3 @@
 </body>
 
 <!-- Mirrored from educhamp.themetrades.com/demo/admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:09:05 GMT -->
-</html>

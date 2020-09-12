@@ -429,7 +429,20 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
       }
     }
     document.getElementsByClassName("d<?php echo $rowchat['id']; ?>")[0].onclick = function(){
-      alert("Delete chat <?php echo($rowchat['chat'])?>")
+      alert("Delete chat <?php echo($rowchat['chat'])?>");
+      var database_name="<?php echo $_GET['database_name']; ?>";
+      $.ajax({
+   url:"ajaxy1.php",
+   method:"POST",
+   data:{delete_post:1,
+    delete_id:"<?php echo $rowchat['id'];?>",
+    database_name:database_name
+   },
+   success:function(dat)
+   {location.reload();
+  
+   }
+  }) 
     }
   </script>
   <script type="text/javascript">

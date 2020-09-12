@@ -1,21 +1,23 @@
 <?php
-//session_start();
+session_start();
 require 'connectwithoutdata.php';
-require 'header.php';
 ?>
-<!-- <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css"> -->
+<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
 
 <?php
 
-// if(($_SESSION['my_role'])!='TEACHER'){
-//     die("You are forbidden to visit this page");}
 
-// $teacher_ID=$_SESSION['loginroll'];
-// echo ("Your Name".$_SESSION['loginname']);
-// echo("Your Teacher ID.".$_SESSION['loginroll']);
-// $user_roll=$_SESSION['loginroll'];
-// echo("Your Email ID.".$_SESSION['loginemailid']);
 
+	// if(($_SESSION['my_role'])!='TEACHER'){
+	// 	die("You are forbidden to visit this page");}
+	
+    // $teacher_ID=$_SESSION['loginroll'];
+	// echo ("Your Name".$_SESSION['loginname']);
+	// echo("Your Teacher ID.".$_SESSION['loginroll']);
+	// $user_roll=$_SESSION['loginroll'];
+	// echo("Your Email ID.".$_SESSION['loginemailid']);
+
+ 
 ?>
 
 
@@ -25,12 +27,12 @@ require 'header.php';
     padding: 16px 0;">
 <div class="container"> <a class="navbar-brand d-flex align-items-center" href="#">
 	<?php
-$image_url = "otp-php-registration/class/" . $_SESSION['user_avatar'];
-?>
-    <img src="../../<?php echo ($image_url); ?>"  class="avatar" style="align-content: left;vertical-align: middle;width:80px;height: 80px;border-radius: 50%;">
+      $image_url="otp-php-registration/class/".$_SESSION['user_avatar'];
+     ?>
+    <img src="../../<?php echo($image_url);?>"  class="avatar" style="align-content: left;vertical-align: middle;width:80px;height: 80px;border-radius: 50%;">
 
 
-<div class="ml-3 font-weight-bold" style="color: white; font-size: 40px;"><?php echo ($_SESSION['loginname']) ?></div>
+<div class="ml-3 font-weight-bold" style="color: white; font-size: 40px;"><?php echo($_SESSION['loginname'])?></div>
 <div class="col-xs-12 col-sm-4 dc-u-mb-16" style='color: #4d5356;
 font-family: "Lato", sans-serif;
 font-size: 100%;
@@ -73,11 +75,9 @@ color: #3d4251;
 font-weight: 700;
 line-height: 1.25;
 font-size: 2rem;'><?php
-$result = mysqli_query($link_inst, "SELECT * FROM `courses` WHERE `teacher_ID`='$teacher_ID'");
-if ($result) {
-    echo ($result->num_rows);
-}
-
+$result = mysqli_query($link_inst,"SELECT * FROM `courses` WHERE `teacher_ID`='$teacher_ID'" );
+if($result)
+echo($result->num_rows);
 ?></strong>
           <span>Courses Added</span>
         </div>
@@ -114,27 +114,20 @@ if ($result) {
 
 </nav> -->
 
-<!-- <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css"> -->
+<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
 <!-- <link rel="stylesheet" href="assets/css/index.css"> -->
 <style>
-			
-body {
-    position: absolute;
-    top: 0; bottom: 0; left: 0; right: 0;
-    height: 100%;
-}
-body:before {
-    content: "";
-    position: fixed;
-    background: url(images/38085.jpg);
-    background-size: cover;
-    z-index: -1; /* Keep the background behind the content */
-    height: 20%; width: 20%; /* Using Glen Maddern's trick /via @mente */
-
-    /* don't forget to use the prefixes you need */
-    transform: scale(5);
-    transform-origin: top left;
-    filter: blur(1px);
+			body { 
+	width: 100%;
+	height:100%;
+	font-family: 'Open Sans', sans-serif;
+	background: #092756;
+	background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
+	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
 }
 		</style>
 <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
@@ -148,10 +141,11 @@ body:before {
 }
 </style>
 <?php
-//require 'connectwithoutdata.php';
+require 'connectwithoutdata.php';
+require 'header.php';    
 ?>
 <body class>
-<div class=" gradient  ">
+<div class=" gradient  "> 
 <div class=" h-100 container vertical-center d-table">
     <div class="jumbotron  bg-transparent d-table-cell">
     <a href="admin_page.php" class="text-decoration-none text-dark">
@@ -162,8 +156,8 @@ body:before {
         <div class="row mx-auto">
         <div class=" jumbotron p-3 col-md-5  mx-auto" style="background-color:#fff"><a href="analytics_page.php"  class="text-decoration-none text-dark">
         <img  class="mx-auto d-block mb-3 " width="120px" src="./images/capacity.svg">
-        <h3 class="mx-auto d-block " style="text-align:center   ">Analytics<h3>
-        <p class=" form-control-sm " style="text-align:center   ">Get detailed insights into your course usage.</p>
+        <h3 class="mx-auto d-block " style="text-align:center">Analytics<h3>
+        <p class=" form-control-sm " style="text-align:center">Get detailed insights into your course usage.</p>
         </a></div>
         <div class="jumbotron p-3 col-md-5 mx-auto " style="background-color:#fff"><a href="course_page.php" class="text-decoration-none text-dark">
         <img  class="mx-auto d-block mb-3 " width="120px" src="./images/survey.svg">

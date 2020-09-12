@@ -25,6 +25,22 @@ if ($link->query($clickdata) === TRUE) {
     echo "Error: " . $clickdata . "<br>" . $link->error;
 }
 }
+if (isset($_GET['delete_post'])) {
+  $link_video = new mysqli(
+                            $host,
+                            $user,
+                            $password, $_GET['database_name']);
+$c= $_GET['delete_id'];
+$sqly = "DELETE FROM chat WHERE id='$c'";
+//$deletey = mysqli_query($lins,"DELETE FROM `mytopic` WHERE `id` = '$c'" );
+
+if ($link_video->query($sqly) === TRUE) {
+    echo "Record deleted successfully";
+}
+else{
+  echo ($link_video->error);
+} 
+}
 if (isset($_GET['clickpost'])) {
 $link_video = new mysqli(
                             $host,

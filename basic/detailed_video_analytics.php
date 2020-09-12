@@ -10,7 +10,21 @@ $link_video = new mysqli(
                             $host,
                             $user,
                             $password, $database_name);
+$link_course = new mysqli(
+                            $host,
+                            $user,
+                            $password, $course_name);
+$video_chats=mysqli_query($link_video,"SELECT * FROM chat");
+$total_chat=mysqli_num_rows($video_chats);
+$update= "UPDATE `total_videos` SET `prof_last_visit_chat`='$total_chat'  WHERE `database_name`='$database_name'";
+if ($link_course->query($update) === TRUE) {
+  echo "Record updated successfully";
+} else {
+  echo "Error updating record: " . $link_course->error;
+}
+
 ?>
+
 <br><br><br><br>
   <link rel="stylesheet" href="../../basic/assets/css/main.css" />
   <link rel="stylesheet" href="../../basic/assets/css/chatbox.css" />
@@ -22,20 +36,21 @@ $link_video = new mysqli(
   <link href="../../basic/assets/videojs.chapter-thumbnails.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../basic/assets/css/question.css">
 
-  <div id="php" class="load"><?php echo isset(($_SESSION['signuser'])); ?></div>
-  <div id="phpname" class="load"><?php echo ($_SESSION['signuser']); ?></div>
   <div id="phplogin" class="load"><?php echo ($_SESSION['loginuser']); ?></div>
   <div id="loginbool" class="load"><?php echo isset(($_SESSION['loginuser'])); ?></div>
   <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 
-<?php
-echo($video_name);
 
-$resultchat = mysqli_query($link_video,"SELECT * FROM `chat` " );
-while ($rowchat=mysqli_fetch_array($resultchat)) {
-?> 
   <link rel="stylesheet" href="./assets/css/chatbox.css" />
-
+  <h2>Sort By</h2>
+  <div class="switch-field">
+    <input type="radio" id="radio-three" name="switch-two" value="yes" onclick="displaychat()" checked/>
+    <label for="radio-three">Date Added</label>
+    <input type="radio" id="radio-four" name="switch-two" value="maybe" onclick="displayreplychat()"/>
+    <label for="radio-four">Most Replied</label>
+    <input type="radio" id="radio-five" name="switch-two" value="no" onclick="displaytimechat()" />
+    <label for="radio-five">Video Time</label>
+  </div>
 <div class="chatbox" id="mydiv">
       <div class="chatbox_upbar">
         <div class="dragarea" id="mydivheader">DragArea</div>
@@ -65,46 +80,18 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
     <script src='../../basic/assets/js/javascript.js'></script>
             <script type="text/javascript">
               $(document).ready(function() {
-                var myvid = document.getElementById("myVideo");
 
-
-
-                var usery = document.querySelector('#phplogin').innerText;
+                var usery = "<?php echo ($_SESSION['loginuser']); ?>";
                 displaychat(usery);
 
-                //setInterval(function(){displaytopic();}, 1000);
-                var displaytimechat = 0;
-                //setInterval(function(){displaytopic();}, 1000);
-                function show() {
-                  // get selected value and store it in val
-  
-                    displaychat();
-                    var newest_time ="00:00:00";
-                    $.ajax({
-                      url: 'clickdata.php',
-                      method: "POST",
-                      data: {
-                        newest_time: newest_time,
-                        Newest: 1,
-                        loginbool: loginbool
-                      },
-                      success: function(d) {
-
-                      }
-                    });
-                  
-                }
                 //now, you can invoke show() method as per your requirement.
-                document.getElementsByTagName('select')[0].addEventListener('change', function() {
-                  show();
-                });
 
-
-                $("#submitposty").click(function(argument) {
-                  alert("sdfsdf");
+              });
+            function submitpost() {
+                  console.log("sdfsdf");
 
                   var current_react = document.getElementById("reactionhide").innerHTML;
-                  var usery = document.querySelector('#phplogin').innerText;
+                  var usery = "<?php echo ($_SESSION['loginuser']); ?>";
                   var topicy = $(".topicy").val();
                   var id = 0;
                   
@@ -118,12 +105,12 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
                       url: "ajaxy.php",
                       method: "POST",
                       data: {
-                        doney: doney,
+                        doney: 1,
                         id: id,
                         usery: usery,
-                        timeminy: timeminy,
+                        timeminy: "00:00:04",
                         topicy: topicy,
-                        totalsecs: totalsecs,
+                        totalsecs: 4,
                         current_react: current_react,
                         login_ID:login_ID,
                         database_name:database_name
@@ -142,12 +129,12 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
                       url: "clickdata.php",
                       method: "POST",
                       data: {
-                        doney: doney,
+                        doney: 1,
                         id: id,
                         usery: usery,
-                        timeminy: timeminy,
+                        timeminy: "00:00:04",
                         topicy: topicy,
-                        totalsecs: totalsecs,
+                        totalsecs: 4,
                         current_react: current_react
 
                       },
@@ -162,9 +149,8 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
 
 
 
-                });
+                };
 
-              });
 
               function displaychat() {
                 var displaychat = 1;
@@ -190,6 +176,47 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
                 })
 
               }
+                            function displayreplychat() {
+                var displayreplychat = 1;
+                var database_name="<?php echo($database_name)?>";
+                $.ajax({
+                  url: "ajaxy.php",
+                  method: "POST",
+                  data: {
+                    displayreplychat: 1,
+                    database_name:database_name
+                  },
+                  success: function(d) {
+                    $(".displayb").html(d);
+                    var com = document.getElementsByClassName("reply_btn");
+                    var comlength = com.length - 1;
+                    var lastelementy = document.getElementsByClassName("reply_btn")[comlength];
+                    lastelementy.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'nearest',
+                      inline: 'nearest'
+                    });
+                  }
+                })
+
+              }
+              function displaytimechat() {
+                      var displaytimechat = 1;
+                      var database_name="<?php echo($database_name)?>";
+                      $.ajax({
+                        url: "ajaxy.php",
+                        method: "POST",
+                        data: {
+                          displaytimechat: 1,
+                          database_name:database_name
+
+                        },
+                        success: function(d) {
+                          $(".displayb").html(d);
+                        }
+                      })
+
+                    }
             </script>
 
 
@@ -206,19 +233,19 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
         </div>
         <div class="chatbox_downbar" id="log">
           <button class="login3" style="display: none;" onclick="logClick()">Login</button>
+          
+                      <div class="reactionhide" id="reactionhide">0</div>
           <ul class="insight_list" id="il">
-            <li class="reaction"><img src="../../basic/images/1.png" class="react"></li>
-            <li class="reaction"><img src="../../basic/images/2.png" class="react"></li>
-            <li class="reaction"><img src="../../basic/images/3.png" class="react"></li>
-            <li class="reaction"><img src="../../basic/images/4.png" class="react"></li>
-            <li class="reaction"><img src="../../basic/images/5.png" class="react"></li>
+            <li class="reaction"><img src="./images/1.png" class="react"></li>
+            <li class="reaction"><img src="./images/2.png" class="react"></li>
+            <li class="reaction"><img src="./images/3.png" class="react"></li>
+            <li class="reaction"><img src="./images/4.png" class="react"></li>
+            <li class="reaction"><img src="./images/5.png" class="react"></li>
           </ul>
           <span style="display:block">
             <div class="comment_insight" id="ilb">+</div>
             <input class="commentarea topicy" type="text" required="required" name="comment" placeholder="Comment here" style="display:block">
-            <button class="post_btn submitposty" id="submitposty" type="submit"><i class="fas fa-location-arrow" aria-hidden="true"></i></button>
-            <input class="commentarea topic" type="text" required="required" name="comment" placeholder="Comment here" style="display:none">
-            <button class="post_btn submitpost" id="submitpost" type="submit" style="display:none"><i class="fas fa-location-arrow" aria-hidden="true"></i></button>
+            <button class="post_btn submitposty" id="submitposty" type="submit" onclick="submitpost()"><i class="fas fa-location-arrow" aria-hidden="true"></i></button>
         </span></div>
         
       </div>
@@ -358,7 +385,7 @@ reply_content:reply_content
 
 </script>
   <?php
-}
+
 
 
 

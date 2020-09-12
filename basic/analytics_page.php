@@ -81,7 +81,7 @@ require 'header.php';
 
                     <td><?php echo $row['folder_name']; ?> </td>                      
                             <td> <?php echo $course; ?> </td>
-                            <td> </td>
+                            <td style="color: red;font-weight: bold;"><?php echo((mysqli_num_rows($video_chats))-($row['prof_last_visit_chat']));?> </td>
                             <td> <?php echo($video_activity['Start_Time']); ?> </td>  
                             <td><?php echo $row['creation_date']; ?>  </td>  
                             <td><?php echo(mysqli_num_rows($video_users));?></td>  
