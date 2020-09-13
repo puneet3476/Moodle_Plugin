@@ -16,7 +16,8 @@ require 'connectwithoutdata.php';
                 $query = "SELECT * FROM total_videos";
                 $query_run = mysqli_query($link_course, $query);
 				$video_users=mysqli_query($link_course,"SELECT * FROM tbl_info");
-				$complete_users = mysqli_query ($link_course,"SELECT COUNT(DISTINCT(id)) FROM tbl_info WHERE Complete=1");
+				
+				
                                 if($query_run)
                 {$notes=array();
                     foreach($query_run as $row)
@@ -34,12 +35,15 @@ require 'connectwithoutdata.php';
             }
         }
         $firstvideo = mysqli_query($link_course,"SELECT * FROM total_videos LIMIT 1");
-        $first_video_name=mysqli_fetch_array($firstvideo);
+		$first_video_name=mysqli_fetch_array($firstvideo);
+		
         $link_firstvideo = new mysqli(
                             $host,
                             $user,
                             $password, $first_video_name['database_name']
-                        );
+						);
+		$video_name = $first_video_name['database_name'];
+		$complete_users = mysqli_query ($link_course,"SELECT COUNT(DISTINCT(id)) FROM tbl_info WHERE  $video_name=1000");
         $first_video_users=mysqli_query($link_firstvideo,"SELECT COUNT(DISTINCT(user_id)) FROM clickdata");
         $this_users=mysqli_fetch_array($first_video_users);
         $first_video_users=$this_users['COUNT(DISTINCT(user_id))'];

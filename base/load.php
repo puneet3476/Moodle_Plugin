@@ -1596,6 +1596,7 @@ $x++;
           var timeStarted = -1;
           var timePlayed = 0;
           var duration = 0;
+          var percent = 0;
           // If video_test metadata is laoded get duration
           if(video_test.readyState > 0)
             getDuration.call(video_test);
@@ -1617,22 +1618,36 @@ $x++;
               timePlayed+=playedFor;
             }
             document.getElementById("played").innerHTML = Math.floor(timePlayed)+"";
-            // Count as complete only if end of video_test was reached
-            if(timePlayed>=duration && event.type=="ended") {
-              document.getElementById("status").className="complete";
-              var usery = document.querySelector('#phplogin').innerText;
+
+            if (timePlayed < duration) {
+                percent = (timePlayed/duration)*100;
+                console.log("Percent: ", percent);
+            }
+            else {
+                percent = 100;
+                console.log("Percent: ", percent);
+            }
+
+            var usery = document.querySelector('#phplogin').innerText;
+            var video_name = "<?php echo $db; ?>";
+            console.log(video_name);
               $.ajax({
               url: "setDuration.php",
               method: "POST",
               data: {
-                complete:1
+                complete:percent
                 usery:usery
+                video_name:video_name
               },
               success: function(data) {
                 console.log(complete)
 
               }
             })
+            // Count as complete only if end of video_test was reached
+            if(timePlayed>=duration && event.type=="ended") {
+              document.getElementById("status").className="complete";
+              
             }
           }
 

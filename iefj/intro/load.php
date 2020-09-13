@@ -1574,6 +1574,7 @@ $x++;
     </script>
 <script>
     const video = document.querySelector('video');
+    
     video.onloadedmetadata = () => {
       $.ajax({
         url: "setDuration.php",
