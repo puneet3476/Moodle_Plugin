@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 13, 2020 at 04:15 PM
+-- Generation Time: Sep 13, 2020 at 06:09 PM
 -- Server version: 5.7.31-0ubuntu0.16.04.1
 -- PHP Version: 7.2.24-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -66,7 +66,7 @@ CREATE TABLE `tbl_info` (
   `Name` varchar(30) NOT NULL,
   `Roll_no` varchar(30) NOT NULL,
   `Email` varchar(50) DEFAULT NULL,
-  `Complete` int(10) NOT NULL DEFAULT '0'
+  `intro` int(100) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
