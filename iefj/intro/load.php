@@ -66,6 +66,7 @@ require 'connect.php';
       <source src="videos/video1.mp4" type="video/mp4">
     </video>
 
+    
 
     <!--  <video
     id="myVideo"
@@ -1329,7 +1330,7 @@ echo ($_SESSION['loginemailid']);
     <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
     <script src="../../basic/assets/js/vidcha.js"></script>
     <script src="../../basic/assets/dist/plyr.js"></script>
-
+    
     <?php
 if (isset($_SESSION['loginroll'])) {
     # code...

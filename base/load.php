@@ -1329,7 +1329,8 @@ echo ($_SESSION['loginemailid']);
     <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
     <script src="../../basic/assets/js/vidcha.js"></script>
     <script src="../../basic/assets/dist/plyr.js"></script>
-
+    <script src="../../basic/assets/js/video_analyt.js"></script>
+    
     <?php
 if (isset($_SESSION['loginroll'])) {
     # code...
@@ -1587,6 +1588,68 @@ $x++;
       })
     }
 </script>
+
+<script>
+    
+          var video_test = document.getElementById("myVideo");
+
+          var timeStarted = -1;
+          var timePlayed = 0;
+          var duration = 0;
+          // If video_test metadata is laoded get duration
+          if(video_test.readyState > 0)
+            getDuration.call(video_test);
+          //If metadata not loaded, use event to get it
+          else
+          {
+            video_test.addEventListener('loadedmetadata', getDuration);
+          }
+          // remember time user started the video_test
+          function videoStartedPlaying() {
+            timeStarted = new Date().getTime()/1000;
+          }
+          function videoStoppedPlaying(event) {
+            // Start time less then zero means stop event was fired vidout start event
+            if(timeStarted>0) {
+              var playedFor = new Date().getTime()/1000 - timeStarted;
+              timeStarted = -1;
+              // add the new ammount of seconds played
+              timePlayed+=playedFor;
+            }
+            document.getElementById("played").innerHTML = Math.floor(timePlayed)+"";
+            // Count as complete only if end of video_test was reached
+            if(timePlayed>=duration && event.type=="ended") {
+              document.getElementById("status").className="complete";
+              var usery = document.querySelector('#phplogin').innerText;
+              $.ajax({
+              url: "setDuration.php",
+              method: "POST",
+              data: {
+                complete:1
+                usery:usery
+              },
+              success: function(data) {
+                console.log(complete)
+
+              }
+            })
+            }
+          }
+
+          function getDuration() {
+            duration = video_test.duration;
+            document.getElementById("duration").appendChild(new Text(Math.floor(duration)+""));
+            console.log("Duration: ", duration);
+          }
+
+          video_test.addEventListener("play", videoStartedPlaying);
+          video_test.addEventListener("playing", videoStartedPlaying);
+
+          video_test.addEventListener("ended", videoStoppedPlaying);
+          video_test.addEventListener("pause", videoStoppedPlaying);
+
+
+    </script>
 
 </body>
 

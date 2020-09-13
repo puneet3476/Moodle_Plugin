@@ -15,7 +15,8 @@ require 'connectwithoutdata.php';
 );
                 $query = "SELECT * FROM total_videos";
                 $query_run = mysqli_query($link_course, $query);
-                $video_users=mysqli_query($link_course,"SELECT * FROM tbl_info");
+				$video_users=mysqli_query($link_course,"SELECT * FROM tbl_info");
+				$complete_users = mysqli_query ($link_course,"SELECT COUNT(DISTINCT(id)) FROM tbl_info WHERE Complete=1");
                                 if($query_run)
                 {$notes=array();
                     foreach($query_run as $row)
@@ -64,11 +65,7 @@ $percent_first_video_users=round(($first_video_users/mysqli_num_rows($video_user
 	<!-- META ============================================= -->
 
 	<!-- DESCRIPTION -->
-	<meta name="description" content="EduChamp : Education HTML Template" />
-	
-	<!-- OG -->
-	<meta property="og:title" content="EduChamp : Education HTML Template" />
-	<meta property="og:description" content="EduChamp : Education HTML Template" />
+
 	<meta property="og:image" content="" />
 	<meta name="format-detection" content="telephone=no">
 	
@@ -122,6 +119,9 @@ $percent_first_video_users=round(($first_video_users/mysqli_num_rows($video_user
 							<h4 class="wc-title">
 								Total Students enrolled in the course
 							</h4>
+							<span class="wc-des">
+								.
+							</span>
 							<span class="wc-stats">
 								<span class="counter"><?php echo(mysqli_num_rows($video_users));?></span> 
 							</span>		
@@ -139,39 +139,7 @@ $percent_first_video_users=round(($first_video_users/mysqli_num_rows($video_user
 								.
 							</span>
 							<span class="wc-stats">
-								<span class="counter">70</span>% 
-							</span>		
-							
-						</div>				      
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
-					<div class="widget-card widget-bg3">					 
-						<div class="wc-item">
-							<h4 class="wc-title">
-								Students who have collaborated  
-							</h4>
-							<span class="wc-des">
-								.
-							</span>
-							<span class="wc-stats">
-								<span class="counter">40</span>% 
-							</span>		
-							
-						</div>				      
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
-					<div class="widget-card widget-bg4">					 
-						<div class="wc-item">
-							<h4 class="wc-title">
-								Students who have engaged 
-							</h4>
-							<span class="wc-des">
-								.
-							</span>
-							<span class="wc-stats">
-								<span class="counter">30</span>% 
+								<span class="counter"><?php echo(mysqli_num_rows($complete_users));?></span> 
 							</span>		
 							
 						</div>				      
@@ -180,7 +148,7 @@ $percent_first_video_users=round(($first_video_users/mysqli_num_rows($video_user
 			</div>
 			<div class="row">
 			<div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
-					<div class="widget-card widget-bg5">					 
+					<div class="widget-card widget-bg3">					 
 						<div class="wc-item">
 							<h4 class="wc-title">
 								Students who have written notes
@@ -196,7 +164,7 @@ $percent_first_video_users=round(($first_video_users/mysqli_num_rows($video_user
 					</div>
 				</div>
 							<div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
-					<div class="widget-card widget-bg6">					 
+					<div class="widget-card widget-bg4">					 
 						<div class="wc-item">
 							<h4 class="wc-title">
 								Students who have started the course
@@ -212,7 +180,7 @@ $percent_first_video_users=round(($first_video_users/mysqli_num_rows($video_user
 					</div>
 				</div>
 											<div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
-					<div class="widget-card widget-bg7">					 
+					<div class="widget-card widget-bg5">					 
 						<div class="wc-item">
 							<h4 class="wc-title">
 								Total Videos in the course
@@ -263,7 +231,6 @@ $percent_first_video_users=round(($first_video_users/mysqli_num_rows($video_user
 <script src="assets/js/admin.js"></script>
 <script src='assets/vendors/calendar/moment.min.js'></script>
 <script src='assets/vendors/calendar/fullcalendar.js'></script>
-<script src='assets/vendors/switcher/switcher.js'></script>
 
 </body>
 
