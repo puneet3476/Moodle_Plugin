@@ -1,15 +1,15 @@
 <?php
 $user = 'root';//............This you may have to change
 $password = '';//............This you may have to change
-$db = 'yuoo';//............This you may have to change\
-$users_db = 'efwrgetr';//............This you may have to change
+$db = 'chap1';//............This you may have to change\
+$users_db = 'Dey_Course';//............This you may have to change
 $host = 'localhost';//............This you may have to change
 $appache_localhost_port='';//............This you may have to change
 $url_h="";//............This you may have to change
 $urla="Location: " . $url_h;//............This you may have to change
-$folder="yuoo/";
-$course="/Moodle_Plugin/efwrgetr/";
-$class_link='/opt/lampp/htdocs/Moodle_Plugin/otp-php-registration/class/';
+$folder="chap1/";
+$course="/Moodle_Plugin/Dey_Course/";
+$class_link='/var/www/html/Moodle_Plugin/otp-php-registration/class/';
 $urlb="load.php";
 $users_database='users';
 $url_load=$urla.$appache_localhost_port.$course.$folder.$urlb;

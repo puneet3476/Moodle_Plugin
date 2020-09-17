@@ -54,6 +54,7 @@ CREATE TABLE `total_videos` (
   `database_name` varchar(30) NOT NULL,
   `page_url` varchar(200) NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `videolength` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

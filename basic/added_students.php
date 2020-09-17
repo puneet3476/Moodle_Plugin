@@ -1,10 +1,10 @@
-<?php 
+<?php
 require 'connectwithoutdata.php';
 require 'header.php';
-    $course = $_GET['course_name'];
-    if (($_SESSION['my_role']) != 'TEACHER') {
-        die("You are forbidden to visit this page");
-    }
+$course = $_GET['course_name'];
+if (($_SESSION['my_role']) != 'TEACHER') {
+    die("You are forbidden to visit this page");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,12 +18,12 @@ require 'header.php';
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
     <style>
-			
+
             body {
                 position: absolute;
                 top: 0; bottom: 0; left: 0; right: 0;
                 height: 100%;
-               
+
             }
             body:before {
                 content: "";
@@ -32,7 +32,7 @@ require 'header.php';
                 background-size: cover;
                 z-index: -1; /* Keep the background behind the content */
                 height: 20%; width: 20%; /* Using Glen Maddern's trick /via @mente */
-            
+
                 /* don't forget to use the prefixes you need */
                 transform: scale(5);
                 transform-origin: top left;
@@ -41,7 +41,7 @@ require 'header.php';
                     </style>
 </head>
 <body>
-    
+
 
 <!-- Modal -->
 <div class="modal fade" id="studentaddmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:6%;">
@@ -57,7 +57,7 @@ require 'header.php';
         <form action="insertcode.php" method="POST">
 
             <div class="modal-body">
-                
+
                 <div class="form-group">
                     <label> Name </label>
                     <input type="text" name="Name" class="form-control" placeholder="Enter Name">
@@ -73,7 +73,7 @@ require 'header.php';
                     <input type="email" name="Email" class="form-control" placeholder="Enter Email">
                 </div>
             </div>
-            <input type="text" name="course_name" value="<?echo($course)?>" style="display: none;">
+            <input type="text" name="course_name" value="<?echo ($course) ?>" style="display: none;">
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" name="insertdata" class="btn btn-primary">Save Data</button>
@@ -122,7 +122,7 @@ require 'header.php';
                     <input type="email" name="Email" class="form-control" placeholder="Enter Email">
                 </div>
             </div>
-            <input type="text" name="course_name" value="<?echo($course)?>" style="display: none;">
+            <input type="text" name="course_name" value="<?echo ($course) ?>" style="display: none;">
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" name="updatedata" class="btn btn-primary">Update Data</button>
@@ -162,7 +162,7 @@ require 'header.php';
                 <h4> Do you want to De-register this Student ?</h4>
             </div>
             <div class="modal-footer">
-            <input type="text" name="course_name" value="<?echo($course)?>" style="display: none;margin-top:6%;" >
+            <input type="text" name="course_name" value="<?echo ($course) ?>" style="display: none;margin-top:6%;" >
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">  NO </button>
                 <button type="submit" name="deletedata" class="btn btn-primary"> Yes !! De-register!. </button>
             </div>
@@ -180,7 +180,7 @@ require 'header.php';
     <div class="jumbotron" style="padding:0.5rem 0.5rem;">
         <div class="card" style="padding:1rem 1rem;">
             <h2>List Of Added Students </h2>
-        </div>    
+        </div>
         <div class="card">
             <div class="card-body">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentaddmodal">
@@ -193,14 +193,14 @@ require 'header.php';
             <div class="card-body">
 
             <?php
-                $link_course = new mysqli(
+$link_course = new mysqli(
     $host,
     $user,
     $password, $course
 );
-                $query = "SELECT * FROM tbl_info";
-                $query_run = mysqli_query($link_course, $query);
-            ?>
+$query = "SELECT * FROM tbl_info";
+$query_run = mysqli_query($link_course, $query);
+?>
                 <table id="datatableid" class="table table-bordered table-dark">
                     <thead>
                         <tr>
@@ -213,33 +213,29 @@ require 'header.php';
                         </tr>
                     </thead>
             <?php
-                if($query_run)
-                {
-                    foreach($query_run as $row)
-                    {
-            ?>
+if ($query_run) {
+    foreach ($query_run as $row) {
+        ?>
                     <tbody>
                         <tr>
-                            <td> <?php echo $row['id']; ?> </td>                            
-                            <td> <?php echo $row['Name']; ?> </td>                            
-                            <td> <?php echo $row['Roll_no']; ?> </td>                            
-                            <td> <?php echo $row['Email']; ?> </td>                                                       
-                            <td> 
+                            <td> <?php echo $row['id']; ?> </td>
+                            <td> <?php echo $row['Name']; ?> </td>
+                            <td> <?php echo $row['Roll_no']; ?> </td>
+                            <td> <?php echo $row['Email']; ?> </td>
+                            <td>
                                 <button type="button" class="btn btn-success editbtn"> EDIT </button>
-                            </td> 
+                            </td>
                             <td>
                                 <button type="button" class="btn btn-danger deletebtn"> Deregister </button>
                             </td>
                         </tr>
                     </tbody>
-            <?php           
-                    }
-                }
-                else 
-                {
-                    echo "No Record Found";
-                }
-            ?>
+            <?php
+}
+} else {
+    echo "No Record Found";
+}
+?>
                 </table>
             </div>
         </div>
@@ -249,7 +245,17 @@ require 'header.php';
 </div>
 
 
-
+<script>
+document.querySelectorAll('tbody > tr').forEach(row => {
+    row.onclick = () => {
+        var currentPath = window.location.href;
+        var locationPath_1 = currentPath.substr(0,currentPath.lastIndexOf('/'))
+        var student_id = row.children[2].innerText;
+        var locationPath_2 = '/students_analytics.php' + window.location.search + '&student_id=' + student_id;
+        window.location.replace(locationPath_1 + locationPath_2);
+    }
+})
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
@@ -289,7 +295,7 @@ $(document).ready(function() {
 $(document).ready(function () {
 
     $('.deletebtn').on('click', function() {
-        
+
         $('#deletemodal').modal('show');
 
             $tr = $(this).closest('tr');
@@ -301,7 +307,7 @@ $(document).ready(function () {
             console.log(data);
 
             $('#delete_id').val(data[0]);
-      
+
     });
 });
 
@@ -313,10 +319,10 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('.editbtn').on('click', function() {
-        
+
         $('#editmodal').modal('show');
 
-        
+
             $tr = $(this).closest('tr');
 
             var data = $tr.children("td").map(function() {

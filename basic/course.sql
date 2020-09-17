@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2.1
--- http://www.phpmyadmin.net
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 13, 2020 at 06:09 PM
--- Server version: 5.7.31-0ubuntu0.16.04.1
--- PHP Version: 7.2.24-1+ubuntu16.04.1+deb.sury.org+1
+-- Generation Time: Sep 17, 2020 at 05:26 AM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `course`
+-- Database: `Course1`
 --
 
 -- --------------------------------------------------------
@@ -35,25 +36,10 @@ CREATE TABLE `register_user` (
   `user_Roll_no` varchar(60) DEFAULT NULL,
   `user_email_status` varchar(20) DEFAULT NULL,
   `user_otp` int(20) DEFAULT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `reg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `user_avatar` varchar(250) DEFAULT NULL,
   `user_role` varchar(30) NOT NULL DEFAULT 'Student'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `requests`
---
-
-CREATE TABLE `requests` (
-  `id` int(11) NOT NULL,
-  `Name` varchar(50) NOT NULL,
-  `Roll_no` varchar(20) NOT NULL,
-  `Email` varchar(50) NOT NULL,
-  `message` text NOT NULL,
-  `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -66,8 +52,18 @@ CREATE TABLE `tbl_info` (
   `Name` varchar(30) NOT NULL,
   `Roll_no` varchar(30) NOT NULL,
   `Email` varchar(50) DEFAULT NULL,
-  `intro` int(100) NOT NULL DEFAULT '0'
+  `intro` int(100) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_info`
+--
+
+INSERT INTO `tbl_info` (`id`, `Name`, `Roll_no`, `Email`, `intro`) VALUES
+(1, 'DEY SHUVOMOY', '18MF3IM04', 'shuvo151dey@gmail.com', 0),
+(2, 'DEEPAM BANERJEE', '18NA10008', 'deepambanerjee07@gmail.com', 0),
+(3, 'BIKASH SAHOO', '18CS30012', 'bbsahoo49@gmail.com', 0),
+(4, 'PUNEET KHANDELWAL', '18MI33016', 'puneet3476@gmail.com', 0);
 
 -- --------------------------------------------------------
 
@@ -80,8 +76,16 @@ CREATE TABLE `total_videos` (
   `folder_name` varchar(30) NOT NULL,
   `database_name` varchar(30) NOT NULL,
   `page_url` varchar(200) NOT NULL,
-  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `videolength` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `total_videos`
+--
+
+INSERT INTO `total_videos` (`id`, `folder_name`, `database_name`, `page_url`, `creation_date`, `videolength`) VALUES
+(1, 'chap1', 'chap1', 'Location: /Moodle_Plugin/Course1/chap1/load.php', '2020-09-14 13:26:19', 0);
 
 --
 -- Indexes for dumped tables
@@ -92,12 +96,6 @@ CREATE TABLE `total_videos` (
 --
 ALTER TABLE `register_user`
   ADD PRIMARY KEY (`Student_ID`);
-
---
--- Indexes for table `requests`
---
-ALTER TABLE `requests`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tbl_info`
@@ -123,21 +121,20 @@ ALTER TABLE `total_videos`
 --
 ALTER TABLE `register_user`
   MODIFY `Student_ID` int(12) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `requests`
---
-ALTER TABLE `requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `tbl_info`
 --
 ALTER TABLE `tbl_info`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `total_videos`
 --
 ALTER TABLE `total_videos`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

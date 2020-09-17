@@ -1,7 +1,10 @@
 <?php
 
 require 'connectwithoutdata.php';
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 ?>
 
 <link rel="stylesheet" href="assets/landing_css/bootstrap.min.css">
@@ -55,9 +58,9 @@ session_start();
                                             <li><a class="active" href="index.php">home</a></li>
                                         <?php }?>
                                         <?php
-                                        if (isset($_SESSION['my_roll'])) {
-                                            if (($_SESSION['my_role']) == "TEACHER") {
-                                                ?>
+if (isset($_SESSION['my_roll'])) {
+    if (($_SESSION['my_role']) == "TEACHER") {
+        ?>
                                     <li class="nav-item px-lg-2"> <a class="nav-link" href="course_page.php"><span class="d-inline-block d-lg-none icon-width"><i class="fas fa-spa"></i></span>Courses</a> </li>
                                     <?php }}?><li><a href="#">About</a></li>
                                         <!-- <li><a href="#">blog <i class="ti-angle-down"></i></a>
