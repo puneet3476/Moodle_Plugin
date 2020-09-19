@@ -3,6 +3,10 @@
 $user = 'root';
 $password = 'moodle@pluginv1'; //............This you may have to change
 $host = 'localhost';
+if ($_SERVER['HTTP_HOST'] == $host) {
+    $password = '';
+}
+
 $appache_localhost_port = '';
 $urlhost = ""; //http://135.181.82.72'; //............This you may have to change
 $urla = "Location: " . $urlhost;

@@ -1,40 +1,40 @@
-<?php 
+<?php
 require 'header.php';
 require 'connectwithoutdata.php';
 if (isset($_GET['video_name'])) {
-$database_name=$_GET['database_name'];
-$course_name=$_GET['course_name'];
-$video_name=$_GET['video_name'];
+    $database_name = $_GET['database_name'];
+    $course_name = $_GET['course_name'];
+    $video_name = $_GET['video_name'];
 
-$link_video = new mysqli(
-                            $host,
-                            $user,
-                            $password, $database_name);
-$link_course = new mysqli(
-                            $host,
-                            $user,
-                            $password, $course_name);
-$video_chats=mysqli_query($link_video,"SELECT * FROM chat");
-$total_chat=mysqli_num_rows($video_chats);
-$update= "UPDATE `total_videos` SET `prof_last_visit_chat`='$total_chat'  WHERE `database_name`='$database_name'";
-if ($link_course->query($update) === TRUE) {
-  echo "Record updated successfully";
-} else {
-  echo "Error updating record: " . $link_course->error;
-}
+    $link_video = new mysqli(
+        $host,
+        $user,
+        $password, $database_name);
+    $link_course = new mysqli(
+        $host,
+        $user,
+        $password, $course_name);
+    $video_chats = mysqli_query($link_video, "SELECT * FROM chat");
+    $total_chat = mysqli_num_rows($video_chats);
+    $update = "UPDATE `total_videos` SET `prof_last_visit_chat`='$total_chat'  WHERE `database_name`='$database_name'";
+    if ($link_course->query($update) === true) {
+        echo "Record updated successfully";
+    } else {
+        echo "Error updating record: " . $link_course->error;
+    }
 
-?>
+    ?>
 
 <br><br><br><br>
-  <link rel="stylesheet" href="../../basic/assets/css/main.css" />
-  <link rel="stylesheet" href="../../basic/assets/css/chatbox.css" />
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <link rel="stylesheet" href="./assets/css/chatbox.css" />
 
   <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="../../basic/assets/dist/plyr.css" />
+  <link rel="stylesheet" href="./assets/dist/plyr.css" />
   <link href="https://vjs.zencdn.net/7.8.3/video-js.css" rel="stylesheet" />
   <link href="//vjs.zencdn.net/7.8.2/video-js.min.css" rel="stylesheet">
-  <link href="../../basic/assets/videojs.chapter-thumbnails.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../basic/assets/css/question.css">
+  <link href="./assets/videojs.chapter-thumbnails.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/question.css">
 
   <div id="phplogin" class="load"><?php echo ($_SESSION['loginuser']); ?></div>
   <div id="loginbool" class="load"><?php echo isset(($_SESSION['loginuser'])); ?></div>
@@ -75,9 +75,9 @@ if ($link_course->query($update) === TRUE) {
 
           <div class="main7" id="main7">
             <div class="displayb" id="displayb"></div>
-    <script src="../../basic/assets/js/drag.js"></script>
-    <script src="../../basic/assets/js/jquery.js"></script>
-    <script src='../../basic/assets/js/javascript.js'></script>
+    <script src="./assets/js/drag.js"></script>
+    <script src="./assets/js/jquery.js"></script>
+    <script src='./assets/js/javascript.js'></script>
             <script type="text/javascript">
               $(document).ready(function() {
 
@@ -94,7 +94,7 @@ if ($link_course->query($update) === TRUE) {
                   var usery = "<?php echo ($_SESSION['loginuser']); ?>";
                   var topicy = $(".topicy").val();
                   var id = 0;
-                  
+
                   var login_ID="<?php echo ($_SESSION['loginid']); ?>";
                   var database_name="<?php echo ($database_name); ?>";
                   load_chat();
@@ -154,7 +154,7 @@ if ($link_course->query($update) === TRUE) {
 
               function displaychat() {
                 var displaychat = 1;
-                var database_name="<?php echo($database_name)?>";
+                var database_name="<?php echo ($database_name) ?>";
                 $.ajax({
                   url: "ajaxy.php",
                   method: "POST",
@@ -178,7 +178,7 @@ if ($link_course->query($update) === TRUE) {
               }
                             function displayreplychat() {
                 var displayreplychat = 1;
-                var database_name="<?php echo($database_name)?>";
+                var database_name="<?php echo ($database_name) ?>";
                 $.ajax({
                   url: "ajaxy.php",
                   method: "POST",
@@ -202,7 +202,7 @@ if ($link_course->query($update) === TRUE) {
               }
               function displaytimechat() {
                       var displaytimechat = 1;
-                      var database_name="<?php echo($database_name)?>";
+                      var database_name="<?php echo ($database_name) ?>";
                       $.ajax({
                         url: "ajaxy.php",
                         method: "POST",
@@ -233,7 +233,7 @@ if ($link_course->query($update) === TRUE) {
         </div>
         <div class="chatbox_downbar" id="log">
           <button class="login3" style="display: none;" onclick="logClick()">Login</button>
-          
+
                       <div class="reactionhide" id="reactionhide">0</div>
           <ul class="insight_list" id="il">
             <li class="reaction"><img src="./images/1.png" class="react"></li>
@@ -247,7 +247,7 @@ if ($link_course->query($update) === TRUE) {
             <input class="commentarea topicy" type="text" required="required" name="comment" placeholder="Comment here" style="display:block">
             <button class="post_btn submitposty" id="submitposty" type="submit" onclick="submitpost()"><i class="fas fa-location-arrow" aria-hidden="true"></i></button>
         </span></div>
-        
+
       </div>
     </div>
 
@@ -258,14 +258,14 @@ if ($link_course->query($update) === TRUE) {
           document.getElementsByClassName("comment_react")[0].style.display="none";
     }
     document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].onclick = function(){
-      if(document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML == "Reply (<?php echo($rowchat['Replies']); ?>)"){
+      if(document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML == "Reply (<?php echo ($rowchat['Replies']); ?>)"){
         var current_id="<?php echo $rowchat['id']; ?>";
         displayreply(current_id);
         document.getElementsByClassName("reply_column<?php echo $rowchat['id']; ?>")[0].style.display = "block";
         document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Hide Reply";
       } else {
         document.getElementsByClassName("reply_column<?php echo $rowchat['id']; ?>")[0].style.display = "none";
-        document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Reply (<?php echo($rowchat['Replies']); ?>)";
+        document.getElementsByClassName("r<?php echo $rowchat['id']; ?>")[0].innerHTML = "Reply (<?php echo ($rowchat['Replies']); ?>)";
       }
     }
   </script>
@@ -276,10 +276,10 @@ if ($link_course->query($update) === TRUE) {
            var clickpost=1;
 
            var oldposttimey="00:00:00";
-        
+
            var newposttimey="00:00:00";
                      var postidy="<?php echo $rowchat['id']; ?>";
-                     
+
                        $.ajax({
    url:"ajaxy1.php",
    method:"POST",
@@ -386,9 +386,5 @@ reply_content:reply_content
 </script>
   <?php
 
-
-
-
-
-die();
+    die();
 }
