@@ -80,16 +80,8 @@ CREATE TABLE `total_videos` (
   `videolength` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `total_videos`
---
 
-INSERT INTO `total_videos` (`id`, `folder_name`, `database_name`, `page_url`, `creation_date`, `videolength`) VALUES
-(1, 'chap1', 'chap1', 'Location: /Moodle_Plugin/Course1/chap1/load.php', '2020-09-14 13:26:19', 0);
 
---
--- Indexes for dumped tables
---
 
 --
 -- Indexes for table `register_user`
