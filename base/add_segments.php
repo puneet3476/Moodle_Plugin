@@ -2,15 +2,17 @@
 
 require 'connect.php';
 $segs=array();$times=array();
-$y=$_POST['x']+1;
-echo $y;
+$y=0;
 for($x=$y;$x<=$y+4;$x++){
-    $segs[$x]=$_POST['seg'.$x];
-    $times[$x]=$_POST['time'.$x];
-}
+    if($_POST['seg' . $x]!=""){
+        $segs[$x] =$_POST['seg' . $x];
+        $times[$x] = ($_POST['time' . $x]*60)+$_POST['seconds' . $x];
+            echo $times[$x];
+        }
+} 
 
 for($x=$y;$x<=$y+4;$x++){
-    $e=$_POST['seg'.$x];$ss=$_POST['time'.$x];
+    $e=$segs[$x];$ss=$times[$x];
     $total_segments="INSERT INTO segments (segments_name,segment_time)
     VALUES ('$e','$ss')" ;
     $link->query($total_segments);

@@ -1,8 +1,7 @@
 <?php
 
-session_start();
-
-
+require 'connectwithoutdata.php';
+require 'header.php';
 
 ?>
 
@@ -12,8 +11,30 @@ session_start();
 		<title>Login with OTP Authentication</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="http://code.jquery.com/jquery.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel="stylesheet" href="assets/css/index.css">
+		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+		<!-- <link rel="stylesheet" href="assets/css/index.css"> -->
+		<style>
+			body { 
+	width: 100%;
+	height:100%;
+	font-family: 'Open Sans', sans-serif;
+    background-image: linear-gradient(-225deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%);
+    background-position: center center;
+  
+  /* Background image doesn't tile */
+  background-repeat: no-repeat;
+  
+  /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+  background-attachment: fixed;
+  
+  /* This is what makes the background image rescale based
+     on the container's size */
+  background-size: cover;
+
+  
+}
+		</style>
 	</head>
 	<body class=" gradient">
 		<br />
@@ -21,19 +42,17 @@ session_start();
 			<br />
 
 			<?php
-			if(isset($_GET["register"]))
-			{
-				if($_GET["register"] == 'success')
-				{
-					echo '
+if (isset($_GET["register"])) {
+    if ($_GET["register"] == 'success') {
+        echo '
 					<h1 class="text-success">Teacher ID Successfully verified, Registration Process Completed...</h1>
 					';
-					echo '<h3 align="center">You can login now</h3>';
-				}
-			}
-			?>
+        echo '<h3 align="center">You can login now</h3>';
+    }
+}
+?>
 
-			<div class="row">
+			<div class="row" style="padding-top:240px;">
 				<div class="col-md-3">&nbsp;</div>
 				<div class="col-md-6">
 					<div class="panel panel-default">

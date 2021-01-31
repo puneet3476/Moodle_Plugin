@@ -1,70 +1,90 @@
 <?php
-session_start();
+
 require 'connectwithoutdata.php';
 require 'header.php';
 ?>
 <style>
-    .hovers:hover{
-    background-color:#999999;
-}
-    </style>
+			
+            body {
+                position: absolute;
+                top: 0; bottom: 0; left: 0; right: 0;
+                height: 100%;
+               
+            }
+            body:before {
+                content: "";
+                position:fixed;
+                background: url(images/38085.jpg);
+                background-size: cover;
+                z-index: -1; /* Keep the background behind the content */
+                height: 20%; width: 20%; /* Using Glen Maddern's trick /via @mente */
+            
+                /* don't forget to use the prefixes you need */
+                transform: scale(5);
+                transform-origin: top left;
+                filter: blur(1px);
+            }
+                    </style>
 <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
 <body class="gradient">
-    <div class="container"> 
+    <div class="container">
     <div class="row">
 <?php
 
 if (isset($_SESSION['loginroll'])) {
-	if(($_SESSION['my_role'])!='Student'){
-		die("You are forbidden to visit this page");
-	}
+    if (($_SESSION['my_role']) != 'Student') {
+        die("You are forbidden to visit this page");
+    }
 
-	// echo ("Your Name".$_SESSION['loginname']);
-	// echo("Your Roll No.".$_SESSION['loginroll']);
-	$user_roll=$_SESSION['loginroll'];
-	// echo("Your Email ID.".$_SESSION['loginemailid']);
-	$query = "SELECT * FROM `courses`;";
-    $result = mysqli_query($link_inst,$query);
+    // echo ("Your Name".$_SESSION['loginname']);
+    // echo("Your Roll No.".$_SESSION['loginroll']);
+    $user_roll = $_SESSION['loginroll'];
+    // echo("Your Email ID.".$_SESSION['loginemailid']);
+    $query = "SELECT * FROM `courses`;";
+    $result = mysqli_query($link_inst, $query);
 
-$matched_course=0;
-while ($row=mysqli_fetch_array($result)) {
-	$course_database=(($row['course_name']));
+    $matched_course = 0;
+    while ($row = mysqli_fetch_array($result)) {
+        $course_database = (($row['course_name']));
 
-	$link_every_course=new mysqli(
-    $host,
-    $user,
-    $password,$course_database
-);
-	if ($link_every_course->connect_error) {
-		die('Connection failed');
-	}
+        $link_every_course = new mysqli(
+            $host,
+            $user,
+            $password, $course_database
+        );
+        if ($link_every_course->connect_error) {
+            die('Connection failed');
+        }
 
-	$found="SELECT * FROM `tbl_info` WHERE `Roll_no`='$user_roll';";
-	$result_found=mysqli_query($link_every_course,$found);
+        $found = "SELECT * FROM `tbl_info` WHERE `Roll_no`='$user_roll';";
+        $result_found = mysqli_query($link_every_course, $found);
 
-
-	if (($result_found)->num_rows >0)
-	{	$matched_course=$matched_course+1;
-?>
+        if (($result_found)->num_rows > 0) {$matched_course = $matched_course + 1;
+            ?>
 <link rel="stylesheet" href="assets/css/index.css">
 
         <div class="col-4">
             <div class=" jumbotron mx-auto overflow-auto" style="background-color:;height:50%; margin-top: 200px;">
-        <h4 class="text-center">Your Videos for <?php  echo($course_database)?> Course</h4>
+        <h4 class="text-center">Your Videos for <?php echo ($course_database) ?> Course</h4>
             <div class="overflow-auto " style="height:50%;">
             <?php
 
-            $resulty = mysqli_query($link_every_course,"SELECT * FROM `total_videos` " );
-            while ($rowy=mysqli_fetch_array($resulty)) {
-            ?>
-            <div class="p-2 hovers rounded " style="cursor:pointer;"><a href="<?php echo ('../'.$course_database.'/'.$rowy['folder_name'].'/'.'load.php') ?>" class="text-decoration-none text-dark">
-                <div style="text-align:left" class=""><?php echo($rowy['folder_name']) ?> <i class="fa fa-arrow-circle-right float-right" aria-hidden="true"></i></div>
-            </a></div>
-            <?php } ?>
+            $resulty = mysqli_query($link_every_course, "SELECT * FROM `total_videos` ");
+            while ($rowy = mysqli_fetch_array($resulty)) {
+                ?>
+            <div class="p-2 hovers rounded " style="cursor:pointer;"><a href="<?php echo ('../' . $course_database . '/' . $rowy['folder_name'] . '/' . 'load.php') ?>" class="text-decoration-none text-dark">
+                <div style="text-align:left" class=""><?php echo ($rowy['folder_name']) ?> <i class="fa fa-arrow-circle-right float-right" aria-hidden="true"></i></div>
+
+            </a>
+
+        </div>
+        <a href="student_scorecard.php?course_name=<?php echo ($course_database) ?>">
+         <div style="text-align:left" class="">Scoreboard<i class="fa fa-arrow-circle-right float-right" aria-hidden="true"></i></div></a>
+            <?php }?>
             </div>
         </div>
             </div>
-            
+
 <!--
 
 BootStrap NavBar Example Three - Social Media Icons
@@ -82,26 +102,25 @@ BootStrap NavBar Example Three - Social Media Icons
 
 <?php
 
+        }
 
-}
+    }
 
-}
-
-?>
-</div>      
+    ?>
+</div>
     </div>
 </body>
-<!-- 
+<!--
 <nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light fixed-top" style="    background-image: linear-gradient(268deg, #405f8f, #1c3050);
     padding: 16px 0;">
 <div class="container"> <a class="navbar-brand d-flex align-items-center" href="#">
 	<?php
-      $image_url="otp-php-registration/class/".$_SESSION['user_avatar'];
-     ?>
-    <img src="../../<?php echo($image_url);?>"  class="avatar" style="align-content: left;vertical-align: middle;width:80px;height: 80px;border-radius: 50%;">
+$image_url = "otp-php-registration/class/" . $_SESSION['user_avatar'];
+    ?>
+    <img src="../../<?php echo ($image_url); ?>"  class="avatar" style="align-content: left;vertical-align: middle;width:80px;height: 80px;border-radius: 50%;">
 
 
-<div class="ml-3 font-weight-bold" style="color: white; font-size: 40px;"><?php echo($_SESSION['loginname'])?></div>
+<div class="ml-3 font-weight-bold" style="color: white; font-size: 40px;"><?php echo ($_SESSION['loginname']) ?></div>
 <div class="col-xs-12 col-sm-4 dc-u-mb-16" style='color: #4d5356;
 font-family: "Lato", sans-serif;
 font-size: 100%;
@@ -143,7 +162,7 @@ margin: 0 !important;
 color: #3d4251;
 font-weight: 700;
 line-height: 1.25;
-font-size: 2rem;'><?php echo($matched_course) ?></strong>
+font-size: 2rem;'><?php echo ($matched_course) ?></strong>
           <span>Courses</span>
         </div>
       </div>
@@ -179,12 +198,8 @@ font-size: 2rem;'><?php echo($matched_course) ?></strong>
 </nav> -->
 
 <?
-}
-
-
-
-else {
-echo "You are not logged as a user.Please Login First";
+} else {
+    echo "You are not logged as a user.Please Login First";
 
 //header($url_login_check);
 }

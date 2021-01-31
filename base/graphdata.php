@@ -1,9 +1,9 @@
 <?php
 
 $user = 'root';
-$password = 'root';
+$password = 'bottletopple202';
 $db = 'mydb';
-$host = 'localhost:8889';
+$host = 'localhost';
 
 $link = new mysqli(
    $host,
@@ -45,7 +45,7 @@ while($row=mysqli_fetch_array($q)){
 		$r1_arr[(int)$row[<?php
 
 $user = 'root';
-$password = 'root';
+$password = '';
 $db = 'mydb';
 $host = 'localhost:8889';
 

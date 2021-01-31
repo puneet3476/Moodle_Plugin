@@ -3301,7 +3301,7 @@ body {
 }
 
 	#header {
-	background: #f98012;
+	background: linear-gradient(to right, #a64eee 0%, #3c35ce 100%);
 	color: #000000;
 	cursor: default;
 	height: 5em;

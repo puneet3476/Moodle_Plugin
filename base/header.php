@@ -53,7 +53,7 @@ L239.77,215.555L347.383,49.998l144.717,72.359l-26.387,45.446c-2.299,3.961-0.952,
 </div>
 </li>
 
-<li class="nav-item px-lg-2"> <a class="nav-link" href="logout.php"><span class="d-inline-block d-lg-none icon-width"><i class="far fa-envelope"></i></span>Logout</a> </li>
+<li class="nav-item px-lg-2"> <a class="nav-link" href="../../basic/logout.php"><span class="d-inline-block d-lg-none icon-width"><i class="far fa-envelope"></i></span>Logout</a> </li>
 </ul>
 <ul class="navbar-nav ml-auto mt-3 mt-lg-0">
 <!-- <li class="nav-item"> <a class="nav-link" href="#">

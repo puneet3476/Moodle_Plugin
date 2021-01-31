@@ -1,25 +1,46 @@
 <?php
-session_start();
-require_once 'req_database.php';
+
+
 require 'header.php';
 require 'connectwithoutdata.php';
+$course_name=$_GET['course_name'];
+echo($course_name);
+$DB_host = "localhost";
+$DB_user = "root";
+$DB_pass = "bottletopple202";
+$DB_name = "users";
 
+$selectq="SELECT user_roll_no,`user_name`,score,course_name,video_name FROM score WHERE `course_name`='$course_name' ORDER BY score DESC";
+$resulty = mysqli_query($link_users,$selectq);
 ?>
 <style>
-    .hovers:hover{
-    background-color:#999999;
-}
-    </style>
+			
+      body {
+          position: absolute;
+          top: 0; bottom: 0; left: 0; right: 0;
+          height: 100%;
+         
+      }
+      body:before {
+          content: "";
+          position:fixed;
+          background: url(images/38085.jpg);
+          background-size: cover;
+          z-index: -1; /* Keep the background behind the content */
+          height: 20%; width: 20%; /* Using Glen Maddern's trick /via @mente */
+      
+          /* don't forget to use the prefixes you need */
+          transform: scale(5);
+          transform-origin: top left;
+          filter: blur(1px);
+      }
+              </style>
 <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
 
-<link rel="stylesheet" type="text/css" href="./assets/css/leaderboard.css" />
+<link rel="stylesheet" type="text/css" href="./assets/css/leaderboards.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body >
-   
-
-
-  
-          <div class="leaderboard">
+          <div class="leaderboard" >
           <h1>
             <svg class="ico-cup">
               <use xlink:href="#cup"></use>
@@ -27,56 +48,18 @@ require 'connectwithoutdata.php';
             SCOREBOARD
           </h1>
           <ol style="list-style-type:none;padding:0;">
+          
+            <?php
+            while ($rowy=mysqli_fetch_array($resulty)) {
+            ?>
             <li>
               <mark id='1'></mark>
-              <small></small>
+              <small>
+              <div style="text-align: left; width:20px; display: inline;"><?php echo($rowy['user_roll_no']);?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<?php echo($rowy['user_name']);?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<?php echo($rowy['video_name']);?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<?php echo($rowy['score']); ?></div>
+            </small>
               
             </li>
-            <li>
-              <mark id='2'></mark>
-              <small></small>
-              
-            </li>
-            <li>
-              <mark id='3'></mark>
-              
-            </li>
-            <li>
-              <mark id='4'></mark>
-              
-            </li>
-            <li>
-              <mark id='5'></mark>
-              
-            </li>
-            <li>
-              <mark id='6'></mark>
-              
-            </li>
-            <li>
-              <mark id='7'></mark>
-              
-            </li>
-            <li>
-              <mark id='8'></mark>
-              
-            </li>
-            <li>
-              <mark id='9'></mark>
-              
-            </li>
-            <li>
-              <mark id='10'></mark>
-              
-            </li>
-            <li>
-              <mark id='11'></mark>
-              
-            </li>
-            <li>
-              <mark id='12'></mark>
-              
-            </li>
+<?php }?>
             
           </ol>
         </div>

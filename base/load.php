@@ -1,8 +1,6 @@
 <?php
 session_start();
 require 'connect.php';
-// require '../../basic/header.php';
-
 
 ?>
 
@@ -18,60 +16,39 @@ require 'connect.php';
   <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../../basic/assets/css/main.css" />
   <link rel="stylesheet" href="../../basic/assets/css/chatbox.css" />
-  <link rel="stylesheet" href="../../basic/assets/css/landing.css" />
 
-  <link
-      href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat:400,700|Dancing+Script:400,700"
-      rel="stylesheet"
-      type="text/css"
-    />
-  <link rel="stylesheet" type="text/css" href="../../basic/assets/css/index.css'">
-  <link rel='stylesheet' type='text/css' href='../../basic/assets/css/player.css' />
   <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../../basic/assets/dist/plyr.css" />
   <link href="https://vjs.zencdn.net/7.8.3/video-js.css" rel="stylesheet" />
   <link href="//vjs.zencdn.net/7.8.2/video-js.min.css" rel="stylesheet">
   <link href="../../basic/assets/videojs.chapter-thumbnails.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../basic/assets/css/question.css">
+  <link rel="stylesheet" href="../../basic/assets/css/videocontrols.css">
+
+
 </head>
 
 <body style="overflow-y: scroll;">
 
 
-
-  <section class="hero gradient">
-      <h1>
-        <span class="land_header">EdEl</span>
-        Educate to Elevate
-      </h1>
-      <br>
-      <a href="#" class="logo"  style="float: left;
-position: relative;
-right: 510px;
-top: 35px;
-font-size: 40px;"> <?php if (isset(($_SESSION['loginuser'])) && $_SESSION['loginuser'] != 'empty1') {
-
+  <header id="header">
+    <div class="inner">
+      <a href="#" class="logo"><?php if (isset(($_SESSION['loginuser'])) && $_SESSION['loginuser'] != 'empty1') {
+    echo ("Welcome " . $_SESSION['loginuser']);
 }?>
       </a>
-      <h2>
+      <nav id="nav">
 
-      <nav id="nav" style="font-size:20px;">
+        <a id="login_but" href="<?php echo ($url_h . $appache_localhost_port . "/Moodle_Plugin/basic/login_page.php") ?>">Login </a>
 
-
-   <div style="display:flex;flex-direction:row;justify-content: space-between; right: 10px;"><a class="horizontal" id="login_but" style="font-size:20px;padding:0 20px;" href="<?php echo ($url_h . $appache_localhost_port . $folder . "login.php") ?>">
-    <span class="text"  >Login</span></a>
-    <!--  <a class="vertical"  href="<?php echo ($url_h . $appache_localhost_port . $folder . 'index.php') ?>">
-   <span class="text"  style="font-size:20px;">Sign Up</span></a> -->
-   <a class="vertical"  href="<?php echo ($url_h . $appache_localhost_port . $folder . 'index.php') ?>">
-   <span class="text"  style="font-size:20px;">How to Use</span></a>
-   <a class="horizontal"  href="<?php echo ($url_h . $appache_localhost_port . $folder . 'index.php') ?>">
-   <span class="text"  style="font-size:20px;">Freeze</span></a></div>
-
+        <a href="<?php echo ("../../basic/" . strtolower($_SESSION['my_role']) . "_panel.php"); ?>">Home</a>
+        <button id="myBtn" class="button alt">How to Use</button>
+        <button id="freeze" class="button">Freeze</button>
 
 
       </nav>
-      </h2>
-    </section>
+    </div>
+  </header>
   <div id="php" class="load"><?php echo isset(($_SESSION['signuser'])); ?></div>
   <div id="phpname" class="load"><?php echo ($_SESSION['signuser']); ?></div>
   <div id="phplogin" class="load"><?php echo ($_SESSION['loginuser']); ?></div>
@@ -148,8 +125,8 @@ if (mysqli_num_rows($segments) > 0) {
           <li><button id="stop" type="button"><img src="../../basic/images/stop.png" height="25" width="25"></button></li>
           <li><button id="mute" type="button"><img src="../../basic/images/mute.svg" height="25" width="25"></button></li>
           <li class="positioner"></li>
-          <script language="javascript" type="text/javascript">
 
+          <script language="javascript" type="text/javascript">
           document.getElementsByClassName('plyr__progress').onclick=function(){
         console.log('ASD');
        }
@@ -465,19 +442,19 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
           </div>
 
 
-          <div class="main8" id="main8">Your profile<br>
+           <div class="main8" id="main8">Your profile<br>
             Name:<?php echo ($_SESSION['loginname']); ?><br>
               <?php
-    $this_chatuser=$_SESSION['loginid'];
+$this_chatuser = $_SESSION['loginid'];
 
-    $image_url="otp-php-registration/class/".$_SESSION['user_avatar'];
-     ?>
-    <img src="../../<?php echo($image_url);?>"  class="avatar" style="align-content: left;vertical-align: middle;width:50px;height: 50px;border-radius: 50%;">
+$image_url = "otp-php-registration/class/" . $_SESSION['user_avatar'];
+?>
+    <img src="../../<?php echo ($image_url); ?>"  class="avatar" style="align-content: left;vertical-align: middle;width:50px;height: 50px;border-radius: 50%;">
     <br>
     Email:
     <?php
-    echo ($_SESSION['loginemailid']);
-    ?>
+echo ($_SESSION['loginemailid']);
+?>
      <br>
 
 
@@ -1051,12 +1028,12 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
       if (loginuser == "empty1") {
         alert("Wrong Email ID Or Password");
         document.getElementById('login_but').innerHTML="Login";
-        document.getElementById('login_but').href="<?php echo ($url_h . $appache_localhost_port . $folder . "login.php") ?>";
+        document.getElementById('login_but').href="<?php echo ($url_h . $appache_localhost_port . "/Moodle_Plugin/basic/login_page.php") ?>";
       }
       if (loginuser != "empty1" && loginbool == "1") {
 
               document.getElementById('login_but').innerHTML="Logout";
-              document.getElementById('login_but').href="<?php echo ($url_h . $appache_localhost_port . $course . $folder . "logout.php") ?>";
+              document.getElementById('login_but').href="<?php echo "/Moodle_Plugin/basic/logout.php"; ?>";
 
 
       }
@@ -1352,65 +1329,69 @@ while ($rowchat = mysqli_fetch_array($resultchat)) {
     <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
     <script src="../../basic/assets/js/vidcha.js"></script>
     <script src="../../basic/assets/dist/plyr.js"></script>
+    <script src="../../basic/assets/js/video_analyt.js"></script>
+    
+    <?php
+if (isset($_SESSION['loginroll'])) {
+    # code...
 
-
-<?php
-$user_roll=$_SESSION['loginroll'];
-$anwsered_check="SELECT * FROM `score` WHERE `user_roll_no`='$user_roll' and `video_name`='$db' ";
-$link_users=new mysqli(
-   $host,
-   $user,
-   $password,'users'
-);
-$result = $link_users->query($anwsered_check);
-?>
+    $user_roll = $_SESSION['loginroll'];
+    $anwsered_check = "SELECT * FROM `score` WHERE `user_roll_no`='$user_roll' and `video_name`='$db' ";
+    $link_users = new mysqli(
+        $host,
+        $user,
+        $password, 'users'
+    );
+    $result = $link_users->query($anwsered_check);
+    ?>
 <script type="text/javascript">
   console.log("<?php print_r($result);?>");
 </script>
 <?php
 if (!($result->num_rows > 0)) {
-?>
+        ?>
 <script>var answerMatrix = {};var questionTimeArray = [];</script>
       <?php
 $x = 1;
-$questions = mysqli_query($link, "SELECT * FROM `question` ");
-$qno = mysqli_num_rows($questions);
-while ($question = mysqli_fetch_array($questions)) {
-    ?>
+        $questions = mysqli_query($link, "SELECT * FROM `question` ");
+        $qno = mysqli_num_rows($questions);
+        while ($question = mysqli_fetch_array($questions)) {
+            ?>
         <div class="questionbox_container" id="qc<?php echo $x ?>" style="display: none;">
           <div id="questionbox" class="questionbox">
             <div class="questionbox_header"><?php echo $question['question'] ?></div>
             <?php
 $opts = explode("**", $question['options']);
-    ?>
+            ?>
             <div class="questionbox_options_container">
               <div class="questionbox_option_container">
-                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[0] ?>" name="answer" value="1">
-                <label for="<?php echo $opts[0] ?>"><?php echo $opts[0] ?></label>
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $x . $opts[0] ?>" name="answer" value="1">
+                <label for="<?php echo $x . $opts[0] ?>"><?php echo $opts[0] ?></label>
               </div>
               <div class="questionbox_option_container">
-                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[1] ?>" name="answer" value="2?>">
-                <label for="<?php echo $opts[1] ?>"><?php echo $opts[1] ?></label>
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $x . $opts[1] ?>" name="answer" value="2?>">
+                <label for="<?php echo $x . $opts[1] ?>"><?php echo $opts[1] ?></label>
               </div>
             </div>
             <div class="questionbox_options_container">
               <div class="questionbox_option_container">
-                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[2] ?>" name="answer" value="3">
-                <label for="<?php echo $opts[2] ?>"><?php echo $opts[2] ?></label>
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $x . $opts[2] ?>" name="answer" value="3">
+                <label for="<?php echo $x . $opts[2] ?>"><?php echo $opts[2] ?></label>
               </div>
               <?php if ($opts[3] != "null") {?>
               <div class="questionbox_option_container">
-                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $opts[3]; ?>" name="answer" value="4">
-                <label for="<?php echo $opts[3] ?>"><?php echo $opts[3]; ?></label>
+                <input class="q<?php echo $x ?>" type="radio" id="<?php echo $x . $opts[3]; ?>" name="answer" value="4">
+                <label for="<?php echo $x . $opts[3] ?>"><?php echo $opts[3]; ?></label>
               </div>
-              <?php }?>
+              <?php }
+            ?>
             </div>
             <button class="questionbox_submit_btn" id="sbtn<?php echo $x; ?>" type="submit">Submit</button>
           </div>
         </div>
         <script>
           questionTimeArray.push({timestamp:<?php echo $question['timestamp']; ?>, isanswered: false})
-          var abc<?php echo $x ?> = setInterval(() => {console.log(Math.floor(vid.currentTime));
+          var abc<?php echo $x ?> = setInterval(() => {//console.log(Math.floor(vid.currentTime));
             if ("<?php echo $question['timestamp']; ?>" == Math.floor(vid.currentTime)){
               vid.pause();
             document.getElementById('qc<?php echo $x ?>').style.display = "block";
@@ -1448,20 +1429,9 @@ $opts = explode("**", $question['options']);
         </script>
         <?php
 $x++;
-}
+        }
+    }}
 ?>
-<script>vid.ontimeupdate = function(){
-  var currentUpdateTime = vid.currentTime;
-  for(var i = 0; i < answerMatrix['qno']; i++ ){
-    if(currentUpdateTime > questionTimeArray[i].timestamp && !questionTimeArray[i].isanswered){
-      vid.currentTime = questionTimeArray[i].timestamp;
-      vid.pause()
-      document.getElementById('qc'+(i+1)).style.display = "block";
-    }
-  }
-}</script>
-
-<?php } ?>
 
 
 
@@ -1563,40 +1533,139 @@ $x++;
 
 });
       player.on('pause', pause => {
-        console.log('pause');
-        console.log(player.currentTime);
+        //console.log('pause');
+        //console.log(player.currentTime);
         MyObject.play(false);
 });
       player.on('play', play => {
-        console.log('play');
-        console.log(player.currentTime);
+        //console.log('play');
+        //console.log(player.currentTime);
         MyObject.play(true);
          });
 
       player.on('volumechange', volumechange => {
-        console.log('volumechange');
-        console.log(player.currentTime);
+        //console.log('volumechange');
+        //console.log(player.currentTime);
         MyObject.onvolumechange();
          });
       player.on('seeking', seeking => {
-        console.log('seeking');
-        console.log(MyObject.timeConvert(player.currentTime));
+        //console.log('seeking');
+        //console.log(MyObject.timeConvert(player.currentTime));
 
          });
       player.on('seeked', seeked => {
-        console.log('seeked');
-        console.log(MyObject.timeConvert(player.currentTime));
-
-         });
+        //console.log('seeked');
+        //console.log(MyObject.timeConvert(player.currentTime));
+        var currentUpdateTime = player.currentTime;
+        if(answerMatrix){
+        for(var i = 0; i < answerMatrix['qno']; i++ ){
+          if(currentUpdateTime > questionTimeArray[i].timestamp && !questionTimeArray[i].isanswered){
+            player.currentTime = questionTimeArray[i].timestamp;
+            player.pause()
+            document.getElementById('qc'+(i+1)).style.display = "block";
+          }
+        }
+         }});
 
 
       // const player = videojs('myVideo');
       // videojs('myVideo').chapter_thumbnails({
       //   src: 'chapters/video1.webvtt'});
     </script>
+<script>
+    const video = document.querySelector('video');
+    video.onloadedmetadata = () => {
+      $.ajax({
+        url: "setDuration.php",
+        method: "POST",
+        data: {
+          duration: parseInt(video.duration)
+        },
+        success: function(data) {
+          console.log(parseInt(video.duration))
 
+        }
+      })
+    }
+</script>
+
+<script>
+    
+          var video_test = document.getElementById("myVideo");
+
+          var timeStarted = -1;
+          var timePlayed = 0;
+          var duration = 0;
+          var percent = 0;
+          // If video_test metadata is laoded get duration
+          if(video_test.readyState > 0)
+            getDuration.call(video_test);
+          //If metadata not loaded, use event to get it
+          else
+          {
+            video_test.addEventListener('loadedmetadata', getDuration);
+          }
+          // remember time user started the video_test
+          function videoStartedPlaying() {
+            timeStarted = new Date().getTime()/1000;
+          }
+          function videoStoppedPlaying(event) {
+            // Start time less then zero means stop event was fired vidout start event
+            if(timeStarted>0) {
+              var playedFor = new Date().getTime()/1000 - timeStarted;
+              timeStarted = -1;
+              // add the new ammount of seconds played
+              timePlayed+=playedFor;
+            }
+            document.getElementById("played").innerHTML = Math.floor(timePlayed)+"";
+
+            if (timePlayed < duration) {
+                percent = (timePlayed/duration)*100;
+                console.log("Percent: ", percent);
+            }
+            else {
+                percent = 100;
+                console.log("Percent: ", percent);
+            }
+
+            var usery = document.querySelector('#phplogin').innerText;
+            var video_name = "<?php echo $db; ?>";
+            console.log(video_name);
+              $.ajax({
+              url: "setDuration.php",
+              method: "POST",
+              data: {
+                complete:percent
+                usery:usery
+                video_name:video_name
+              },
+              success: function(data) {
+                console.log(complete)
+
+              }
+            })
+            // Count as complete only if end of video_test was reached
+            if(timePlayed>=duration && event.type=="ended") {
+              document.getElementById("status").className="complete";
+              
+            }
+          }
+
+          function getDuration() {
+            duration = video_test.duration;
+            document.getElementById("duration").appendChild(new Text(Math.floor(duration)+""));
+            console.log("Duration: ", duration);
+          }
+
+          video_test.addEventListener("play", videoStartedPlaying);
+          video_test.addEventListener("playing", videoStartedPlaying);
+
+          video_test.addEventListener("ended", videoStoppedPlaying);
+          video_test.addEventListener("pause", videoStoppedPlaying);
+
+
+    </script>
 
 </body>
-<script src="../../basic/assets/js/feature.js"></script>
 
 </html>

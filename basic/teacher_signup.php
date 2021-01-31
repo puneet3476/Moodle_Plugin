@@ -1,7 +1,19 @@
 	<link rel="stylesheet" href="assets/css/index.css">
+	<link rel="stylesheet" href="assets/landing_css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/landing_css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/landing_css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/landing_css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/landing_css/themify-icons.css">
+    <link rel="stylesheet" href="assets/landing_css/nice-select.css">
+    <link rel="stylesheet" href="assets/landing_css/flaticon.css">
+    <link rel="stylesheet" href="assets/landing_css/gijgo.css">
+    <link rel="stylesheet" href="assets/landing_css/animate.css">
+    <link rel="stylesheet" href="assets/landing_css/slicknav.css">
+    <link rel="stylesheet" href="assets/landing_css/style.css">
 
 <?php
-    // echo (getcwd());
+	// echo (getcwd());
+	//require 'header.php';
 	require 'includes/PHPMailer.php';
 	require 'includes/SMTP.php';
 	require 'includes/Exception.php';
@@ -14,7 +26,6 @@
 
 //error_reporting(E_ALL);
 
-session_start();
 
 
 
@@ -150,7 +161,7 @@ if(isset($_POST["register"]))
 		(teacher_name,teacher_email, teacher_ID,teacher_password, teacher_activation_code, teacher_email_status, teacher_otp,teacher_avatar,teacher_department) values('$user_name','$user_email','$student_ID','$user_password','$user_activation_code','$user_email_status','$user_otp','$user_avatar','$user_dep');";
 
 if ($link_users->query($query) === TRUE) {
-
+header('location:teacher_login_page.php');
 // echo (getcwd());
 /*
 
@@ -174,13 +185,13 @@ if ($link_users->query($query) === TRUE) {
 			//Include required PHPMailer files
 
 	chdir($class_link);
-
+/*
 //Create instance of PHPMailer
 	$mail = new PHPMailer();
 //Set mailer to use smtp
 	$mail->isSMTP();
 //Define smtp host
-           $mail->SMTPDebug = 4;
+           $mail->SMTPDebug = SMTP::DEBUG_CONNECTION;
            $mail->Mailer = "smtp";
            $mail->Host = "smtp.gmail.com";
 
@@ -189,7 +200,7 @@ if ($link_users->query($query) === TRUE) {
 //Set smtp encryption type (ssl/tls)
 	$mail->SMTPSecure = "tls";
 //Port to connect smtp
-	$mail->Port = "587";
+	$mail->Port = "25";
 //Set gmail username
 	$mail->Username = 'moodlepluginonline@gmail.com';
 	$mail->Password = 'qwerty!@1';
@@ -215,7 +226,7 @@ if ($link_users->query($query) === TRUE) {
 			else
 			{
 				$message = $mail->ErrorInfo;
-			}
+			}*/
 
 	}
 	  else{
@@ -234,12 +245,33 @@ if ($link_users->query($query) === TRUE) {
 		<script src="http://code.jquery.com/jquery.js"></script>
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="assets/css/index.css">
+		<style>
+			body { 
+	width: 100%;
+	height:100%;
+	font-family: 'Open Sans', sans-serif;
+    background-image: linear-gradient(-225deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%);
+    background-position: center center;
+  
+  /* Background image doesn't tile */
+  background-repeat: no-repeat;
+  
+  /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+  background-attachment: fixed;
+  
+  /* This is what makes the background image rescale based
+     on the container's size */
+  background-size: cover;
 
+  
+}
+		</style>
 	</head>
-	<body class=" gradient">
+	<body class="">
 		<br />
-		<div class="container ">
-		<h1 align="center" class="">Teacher Registration Panel</h1>
+		<div class="container " style="padding-top:100px;">
+		<h1 align="center" class="" style="font-weight:bold;">Teacher Registration Panel</h1>
 			<br />
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -269,7 +301,7 @@ if ($link_users->query($query) === TRUE) {
 							<?php echo $error_user_password; ?>
 						</div>
 												<div class="form-group">
-							<label>Enter Your Password Again</label>
+							<label>Re-Enter Password</label>
 							<input type="password" name="user_password_again" class="form-control" />
 							<?php echo $error_user_password_again; ?>
 						</div>

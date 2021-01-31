@@ -1,4 +1,4 @@
-/*.controls{
+.controls{
   background-color:grey;
   list-style: none;
   width: 600px;
@@ -16,11 +16,9 @@
 .controls li{
   display: contents;
   padding: 0;
-
   height: fit-content;
   box-shadow: none;
 }
-
 .controls button{
   padding: 0;
   height: fit-content;
@@ -33,13 +31,10 @@
   height: 10px;
 }
 .positioner{
-
   padding: 0 256px!important;
-
 }
 li .fas{
 font-size: 2em;
 color: black;
 }
 
-*/

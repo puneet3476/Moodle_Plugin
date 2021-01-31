@@ -36,7 +36,7 @@ $real_password=$row["teacher_password"];
 
 if(password_verify($pass,$real_password)){
 $_SESSION['loginuser']=$row["teacher_name"];
-$_SESSION['loginid']=1;
+$_SESSION['loginid']=$row["teacher_ID"];
 $_SESSION['loginname']=$row["teacher_name"];
 $_SESSION['loginroll']=$row["teacher_ID"];
 $_SESSION['loginemailid']=$row["teacher_email"];

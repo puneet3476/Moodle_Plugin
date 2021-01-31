@@ -377,6 +377,20 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
     <img src="../../<?php echo($image_url);?>"  class="avatar" style="position:relative;align-content: left;vertical-align: middle;width:50px;height: 50px;border-radius: 50%;">
     <?php
     }
+    $this_chat_teacher=$rowchat['student_ID'];
+    $q="SELECT * FROM `register_teacher` WHERE `teacher_ID`='$this_chatuser';";
+    $avatar = mysqli_query($link_users,$q);
+    while ($chatavatar=mysqli_fetch_array($avatar)) {
+
+      $image_url="otp-php-registration/class/".$chatavatar['teacher_avatar'];
+     ?>
+
+    <img src="../../otp-php-registration/class/avatar/scholar.png"  class="avatar" style="position:relative;align-content: left;vertical-align: middle;width:50px;height: 50px;border-radius: 50%;">
+
+    <?php
+    }
+
+
 
 
 
@@ -420,9 +434,10 @@ while ($rowchat=mysqli_fetch_array($resultchat)) {
           var chatuser="<?php echo $rowchat['chatuser']; ?>";
            var time="<?php echo $rowchat['second']; ?>";
            var clickpost=1;
-           document.getElementById('myVideo').currentTime=time;
+
            var oldposttimey=timeConvert(document.getElementById('myVideo').currentTime);
-                     var newposttimey="<?php echo $rowchat['time_mark']; ?>";
+           document.getElementById('myVideo').currentTime=time;
+           var newposttimey="<?php echo $rowchat['time_mark']; ?>";
                      var postidy="<?php echo $rowchat['id']; ?>";
                      document.getElementById('myVideo').currentTime=time;
                        $.ajax({

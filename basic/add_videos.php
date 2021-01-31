@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
+<!-- <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css"> -->
 <script src="https://kit.fontawesome.com/361990fe0a.js" crossorigin="anonymous"></script>
 <style>
 .hovers:hover{
@@ -16,14 +16,35 @@ if (isset($_GET['course_name'])) {
 	$course_name=$_GET['course_name'];
     require 'connectwithoutdata.php';
     require 'header.php';
+    if (array_key_exists('delete_video',$_POST)) {
+    require 'delete.php';
+    delete_video($htdocs_path,$course_name,$_POST['video_name'],$_POST['database_name']);
+    header($urla.$appache_localhost_port.$folder."add_videos.php?course_name=".$course_name);        
+    }
+
+
 ?>
-<link rel="stylesheet" href="assets/css/index.css">
+<style>
+			body { 
+	width: 100%;
+	height:100%;
+	font-family: 'Open Sans', sans-serif;
+	background: #092756;
+	background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%),-moz-linear-gradient(top,  rgba(57,173,219,.25) 0%, rgba(42,60,87,.4) 100%), -moz-linear-gradient(-45deg,  #670d10 0%, #092756 100%);
+	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -webkit-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -webkit-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -o-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -o-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), -ms-linear-gradient(top,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), -ms-linear-gradient(-45deg,  #670d10 0%,#092756 100%);
+	background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1);
+}
+		</style>
+<!-- <link rel="stylesheet" href="assets/css/index.css"> -->
 <body class="gradient">
 <div class=" ">
 <div class="container mt-5">
-<h1 class="text-center font-bold mb-5" ><?php echo $course_name ?> Admin panel</h1>
+<h1 class="text-center font-bold mb-5 text-light" ><?php echo $course_name ?> Admin panel</h1>
 
-<div class=" jumbotron p-3 w-100 row-cols-2 d-table" style="background-color:#5ebdf7 ;">
+<div class=" jumbotron p-3 w-100 row-cols-2 d-table " style="background-color:#5ebdf7 ;">
  <img src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNTEyIDUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im0zNDEuMTU5IDM0Mi43NjdjMC00Ny4wNTkgMzguMDk1LTg1LjM0NCA4NC45MTktODUuMzQ0IDIxLjg0OCAwIDQxLjc4OSA4LjMzOSA1Ni44NTQgMjIuMDA5di0xOTAuMzY5YzAtMy4zOTUtMi43NjYtNi4xNzUtNi4xNDUtNi4xNzVoLTQ3MC42NDNjLTMuMzggMC02LjE0NCAyLjc4LTYuMTQ0IDYuMTc1djMwOS45NTRjMCAzLjM5NiAyLjc2NSA2LjE3NSA2LjE0NCA2LjE3NWgzNjIuMTEzYy0xNi42NTQtMTUuNTkxLTI3LjA5OC0zNy44LTI3LjA5OC02Mi40MjV6IiBmaWxsPSIjM2Q1OTU5Ii8+PHBhdGggZD0ibTMyLjQ1MSAzOTkuMDE4di0zMDkuOTU1YzAtMy4zOTUgMi43NjQtNi4xNzUgNi4xNDUtNi4xNzVoLTMyLjQ1MmMtMy4zOCAwLTYuMTQ0IDIuNzgtNi4xNDQgNi4xNzV2MzA5Ljk1NGMwIDMuMzk2IDIuNzY1IDYuMTc1IDYuMTQ0IDYuMTc1aDMyLjQ1MWMtMy4zOCAwLTYuMTQ0LTIuNzc4LTYuMTQ0LTYuMTc0eiIgZmlsbD0iIzM3NDk0OSIvPjxwYXRoIGQ9Im0zNDEuMTU5IDM0Mi43NjdjMC0yOS44MTMgMTUuMy01Ni4wODggMzguNDEyLTcxLjM1NHYtMTg4LjUyNGgtMjc2LjIxMXYzMjIuMzA0aDI2NC44OTdjLTE2LjY1NC0xNS41OTItMjcuMDk4LTM3LjgwMS0yNy4wOTgtNjIuNDI2eiIgZmlsbD0iIzhjOWJhNyIvPjxwYXRoIGQ9Im0xMDMuMzYgODIuODg5aDMxLjk4NXYzMjIuMzA0aC0zMS45ODV6IiBmaWxsPSIjNzk4Yjk3Ii8+PHBhdGggZD0ibTE4Ni45MjUgMTc5LjQ1OWMwLTIuODM1IDEuOTg3LTMuOTYxIDQuNDE3LTIuNTAzbDExNS44NzEgNjkuNTU3YzIuNDI5IDEuNDU5IDIuNDI5IDMuODQ1IDAgNS4zMDRsLTExNS44NzEgNjkuNTUzYy0yLjQzIDEuNDU4LTQuNDE3LjMzMi00LjQxNy0yLjUwM3oiIGZpbGw9IiNmZDY0NmYiLz48cGF0aCBkPSJtMjE4LjkxMyAxOTMuNTA4LTI3LjU3MS0xNi41NTJjLTIuNDMtMS40NTgtNC40MTctLjMzMi00LjQxNyAyLjUwM3YxMzkuNDA3YzAgMi44MzUgMS45ODcgMy45NjEgNC40MTcgMi41MDNsMjcuNTcxLTE2LjU1MXoiIGZpbGw9IiNmYzQ3NTUiLz48ZyBmaWxsPSIjZmZmIj48cGF0aCBkPSJtNjkuNTM3IDE1Mi42NTZjMCAxLjcwMi0xLjM5MSAzLjA5My0zLjA5MSAzLjA5M2gtMjcuODE0Yy0xLjcgMC0zLjA5MS0xLjM5MS0zLjA5MS0zLjA5M3YtMjcuODMyYzAtMS43MDIgMS4zOTEtMy4wOTMgMy4wOTEtMy4wOTNoMjcuODE0YzEuNyAwIDMuMDkxIDEuMzkxIDMuMDkxIDMuMDkzeiIvPjxwYXRoIGQ9Im02OS41MzcgMjIyLjc1NWMwIDEuNzAxLTEuMzkxIDMuMDkzLTMuMDkxIDMuMDkzaC0yNy44MTRjLTEuNyAwLTMuMDkxLTEuMzkyLTMuMDkxLTMuMDkzdi0yNy44MzNjMC0xLjcwMSAxLjM5MS0zLjA5MyAzLjA5MS0zLjA5M2gyNy44MTRjMS43IDAgMy4wOTEgMS4zOTIgMy4wOTEgMy4wOTN6Ii8+PHBhdGggZD0ibTY5LjUzNyAyOTIuODUzYzAgMS43MDEtMS4zOTEgMy4wOTItMy4wOTEgMy4wOTJoLTI3LjgxNGMtMS43IDAtMy4wOTEtMS4zOTEtMy4wOTEtMy4wOTJ2LTI3LjgzM2MwLTEuNzAxIDEuMzkxLTMuMDkyIDMuMDkxLTMuMDkyaDI3LjgxNGMxLjcgMCAzLjA5MSAxLjM5MSAzLjA5MSAzLjA5MnoiLz48cGF0aCBkPSJtNjkuNTM3IDM2Mi45NTFjMCAxLjcwMS0xLjM5MSAzLjA5My0zLjA5MSAzLjA5M2gtMjcuODE0Yy0xLjcgMC0zLjA5MS0xLjM5Mi0zLjA5MS0zLjA5M3YtMjcuODMzYzAtMS43MDEgMS4zOTEtMy4wOTMgMy4wOTEtMy4wOTNoMjcuODE0YzEuNyAwIDMuMDkxIDEuMzkyIDMuMDkxIDMuMDkzeiIvPjxwYXRoIGQ9Im00NDguNjQ0IDE1Mi42NTZjMCAxLjcwMi0xLjM5IDMuMDkzLTMuMDkxIDMuMDkzaC0yNy44MTRjLTEuNyAwLTMuMDktMS4zOTEtMy4wOS0zLjA5M3YtMjcuODMyYzAtMS43MDIgMS4zOS0zLjA5MyAzLjA5LTMuMDkzaDI3LjgxNGMxLjcwMSAwIDMuMDkxIDEuMzkxIDMuMDkxIDMuMDkzeiIvPjxwYXRoIGQ9Im00NDguNjQ0IDIyMi43NTVjMCAxLjcwMS0xLjM5IDMuMDkzLTMuMDkxIDMuMDkzaC0yNy44MTRjLTEuNyAwLTMuMDktMS4zOTItMy4wOS0zLjA5M3YtMjcuODMzYzAtMS43MDEgMS4zOS0zLjA5MyAzLjA5LTMuMDkzaDI3LjgxNGMxLjcwMSAwIDMuMDkxIDEuMzkyIDMuMDkxIDMuMDkzeiIvPjwvZz48ZWxsaXBzZSBjeD0iNDI2LjA4IiBjeT0iMzQyLjc2NyIgZmlsbD0iIzAwYzE4NCIgcng9Ijg1LjkyIiByeT0iODYuMzQ1Ii8+PHBhdGggZD0ibTM3Mi40MSAzNDIuNzY3YzAtNDIuMTQ0IDMwLjA1NS03Ny4yMTYgNjkuNzk1LTg0LjgwNC01LjIyNy0uOTk2LTEwLjYxMS0xLjU0LTE2LjEyNy0xLjU0LTQ3LjQ1IDAtODUuOTE5IDM4LjY1OS04NS45MTkgODYuMzQ0IDAgNDcuNjg4IDM4LjQ2OSA4Ni4zNDUgODUuOTE5IDg2LjM0NSA1LjUxNiAwIDEwLjktLjU0MyAxNi4xMjctMS41NDEtMzkuNzQtNy41ODgtNjkuNzk1LTQyLjY1OS02OS43OTUtODQuODA0eiIgZmlsbD0iIzA3YjE3YiIvPjxwYXRoIGQ9Im00MTYuMjkyIDM5Ni4zNzFjLTIuMjc2IDAtNC4xMjEtMS44NDYtNC4xMjEtNC4xMjN2LTU1LjQ3NmgtMTkuMzgzYy0xLjYyNSAwLTMuMDk4LS45NTctMy43NjItMi40NC0uNjYzLTEuNDgyLS4zOTUtMy4yMTguNjg4LTQuNDMybDMzLjI5LTM3LjI5NGMuNzgyLS44NzYgMS44OTktMS4zNzcgMy4wNzMtMS4zNzdzMi4yOTIuNTAxIDMuMDc0IDEuMzc3bDMzLjI5IDM3LjI5NGMxLjA4MyAxLjIxNCAxLjM1MiAyLjk0OS42ODggNC40MzJzLTIuMTM3IDIuNDQtMy43NjIgMi40NGgtMTkuMzgzdjU1LjQ3NmMwIDIuMjc3LTEuODQ2IDQuMTIzLTQuMTIxIDQuMTIzeiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg=="  class="float-right col-3" style="font-size:150px;" />
 
 <span class="w-100  col-8" >
@@ -39,11 +60,10 @@ if (isset($_GET['course_name'])) {
 
 </div>
 
-<div class="row mx-auto mb-4 container">
-        
-        <div class=" jumbotron p-3 col-md-5  mx-auto" style="background-color:;height:100%;">
-        <div class="jumbotron mb-3" style="height:70%;">
-        <h4 class="text-center h-100">Your Videos for this Course</h4>
+<div class="row mx-auto mb-4 h-75 container">
+
+        <div class=" jumbotron p-3 col-md-5  mx-auto " style="background-color:;height:100%;overflow:scroll;">
+        <h4 class="text-center">Your Videos for this Course</h4>
             <div class="overflow-auto " style="height:90%;">
             <?php
             $link_course = new mysqli(
@@ -55,17 +75,38 @@ if (isset($_GET['course_name'])) {
             while ($row=mysqli_fetch_array($result)) {
             ?>
             <div class="p-2 hovers rounded" style="cursor:pointer;"><a href="<?php echo ('../'.$course_name.'/'.$row['folder_name'].'/'.'load.php') ?>" class="text-decoration-none text-dark">
-                <div style="text-align:left" class=""><?php echo($row['folder_name']) ?> <i class="fa fa-arrow-circle-right float-right" aria-hidden="true"></i></div>
+                <div style="text-align:left" class="d-flex  "><span class=" mr-5"><?php echo($row['folder_name']) ?></span>
+                <span class="position-absolute d-flex" style="right:10px;">
+                <form method="POST">
+                <input type="text" name="video_name" value="<?php echo($row['folder_name']) ?>"style="display: none;">
+                <input type="text" name="database_name" value="<?php echo($row['database_name']) ?>"style="display: none;">
+            <button type="submit" name="delete_video"
+                class="btn btn-danger ml-5 mr-2" value="" ><i class="far fa-trash-alt"></i></button>   
+            </form>
+
+            <form method="POST" action="rename.php">
+                <input type="text" name="video_name" value="<?php echo($row['folder_name']) ?>"style="display: none;">
+                <input type="text" name="database_name" value="<?php echo($row['database_name']) ?>"style="display: none;">
+                <input type="text" name="course_name" value="<?php echo($course_name) ?>"style="display: none;">
+            <button type="submit" name="rename_video"
+                class="button btn btn-primary mr-2" value="Rename video" ><i class="fas fa-pen"></i></button> 
+            </form>
+             <i class="fa fa-arrow-circle-right float-right" aria-hidden="true"></i></div>
             </a></div>
+            </span>
             <?php } ?>
             </div>
-        </div><br>
-           
+
         </div>
         
-        <div class="  col-md-5  mx-auto " >
-            <div class=" jumbotron  p-3" style="background-color:;cursor:pointer;">
-            <h5>Add/Delete Segments to videos</h5>
+        <div class="col-md-5  mx-auto" >
+        <div class=" jumbotron p-3" style="background-color:#fff">
+            <a href="<?php echo 'course_analytics.php?course_name='.$course_name ?>"  class="text-decoration-none text-dark">
+        <img  class="mx-auto d-block mb-3 " width="120px" src="./images/capacity.svg">
+        <h3 class="mx-auto d-block " style="text-align:center">Analytics<h3>
+        <p class=" form-control-sm " style="text-align:center">Get detailed insights into your course usage.</p>
+        </a></div>
+            <div class=" jumbotron  p-3" style="background-color:;cursor:pointer;"><h5>Add/Delete Segments to videos</h5>
             <form action="handle_segments.php" class="pt-1" method="POST">
             <input value="<?php echo $course_name ?>" style="display:none;" name="course" type="text">
             <label for="videos">Choose a Video:</label>
@@ -98,12 +139,13 @@ if (isset($_GET['course_name'])) {
             </form>
             
             </div>
-            <a href="<?php echo 'add_students.php?course_name='.$course_name ?>" class="text-decoration-none text-dark ">
-            <div class="jumbotron hovers p-3" style="background-color:;cursor:pointer;">
-            Re-Upload List of enrolled students
-            </div>
-            </a> 
-            
+        
+            <a href="<?php echo 'add_students.php?course_name='.$course_name ?>" class="text-decoration-none text-dark"><div class="jumbotron hovers p-3" style="background-color:;cursor:pointer;">
+
+            Re-Upload List of enrolled students</div></a>
+        <a href="<?php echo 'added_students.php?course_name='.$course_name ?>" class="text-decoration-none text-dark"><div class="jumbotron hovers p-3" style="background-color:;cursor:pointer;">
+
+            List of all enrolled students</div></a>
         </div>
 </div>        
 

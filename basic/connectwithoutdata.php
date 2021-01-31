@@ -1,61 +1,44 @@
 <?php
-$user = 'root';//............This you may have to change
-$password = 'bottletopple202';//............This you may have to change
-$host = 'localhost';//............This you may have to change
-$appache_localhost_port='';//............This you may have to change
-$urla="Location: http://localhost";
-$DB_name = "users";
-
-$users_db='central';
-$inst='institution';
-$folder="/basic/";
-$class_link="/var/www/html/Moodle_Plugin/otp-php-registration/class";
-$urlb="load.php";
-$font_link="/var/www/html/Moodle_Plugin/otp-php-registration/class/avatar/PTSans.ttf";
-$url_load=$urla.$appache_localhost_port.$folder.$urlb;
-$homedir="/var/www/html/Moodle_Plugin/";
-
-// $user = 'root';//............This you may have to change
-// $password = 'root';//............This you may have to change
-// $host = 'localhost:8889';//............This you may have to change
-// $appache_localhost_port='8888';
-// $urla="Location: http://localhost:";
-
-
-// $class_link="C:\MAMP\htdocs\otp-php-registration\class";
-// $urlb="load.php";
-// $font_link="C:\MAMP\htdocs\otp-php-registration\class\avatar\PTSans.ttf";
-// $url_load=$urla.$appache_localhost_port.$folder.$urlb;
-// $homedir="C:\MAMP\htdocs"."\\";
-$admin_panel=$urla.$appache_localhost_port.$folder."beijing_admin.php";
-$users_database='users';
-$url_login_check=$urla.$appache_localhost_port.$folder."login_page.php";
-$url_teacher_login_check=$urla.$appache_localhost_port.$folder."teacher_login_page.php";
-$student_panel=$urla.$appache_localhost_port.$folder."student_panel.php";
-$teacher_panel=$urla.$appache_localhost_port.$folder."teacher_panel.php";
+$user = 'root';
+$password = 'moodle@pluginv1'; //bottletopple202'; //............This you may have to change
+$host = 'localhost';
+if ($_SERVER['HTTP_HOST'] == $host) {
+    $password = '';
+}
+// var_dump($_SERVER);
+$appache_localhost_port = '';
+$urlhost = ""; //135.181.82.72 ..............This you may need to change
+$urla = "Location: ";
+$folder = "/Moodle_Plugin/basic/";
+$htdocs_path = $homedir = "/opt/lampp/htdocs/Moodle_Plugin/";
+$class_link = $homedir . "otp-php-registration/class/";
+$urlb = "load.php";
+$font_link = $class_link . "avatar/PTSans.ttf";
+$users_db = 'central';
+$inst = 'institution';
+$users_database = 'users';
+$url_login_check = $urla . $appache_localhost_port . $folder . "login_page.php";
+$url_teacher_login_check = $urla . $appache_localhost_port . $folder . "teacher_login_page.php";
+$student_panel = $urla . $appache_localhost_port . $folder . "student_panel.php";
+$teacher_panel = $urla . $appache_localhost_port . $folder . "teacher_panel.php";
 $link = new mysqli(
-   $host,
-   $user,
-   $password
+    $host,
+    $user,
+    $password
 );
 
 $link_central = new mysqli(
-   $host,
-   $user,
-   $password,$users_db
+    $host,
+    $user,
+    $password, $users_db
 );
 $link_inst = new mysqli(
-   $host,
-   $user,
-   $password,$inst
+    $host,
+    $user,
+    $password, $inst
 );
-$link_users=new mysqli(
-   $host,
-   $user,
-   $password,$users_database
+$link_users = new mysqli(
+    $host,
+    $user,
+    $password, $users_database
 );
-
-?>
-?>
-
-

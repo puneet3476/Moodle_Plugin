@@ -36,12 +36,14 @@ $link_inst = new mysqli(
    $user,
    $password,$inst
 );
-$course="INSERT INTO courses (course_name,course_id,description,teacher_ID)
-    VALUES ('$course_name','1','$course_desc','$teacher_id')" ;
+$course="INSERT INTO courses (course_name,`description`,teacher_ID)
+    VALUES ('$course_name','$course_desc','$teacher_id')" ;
 echo $link_inst->query($course);
 
 /* execute multi query */
 $mysqli->multi_query($sql);
+
+
 
 //new folder for the course
 @mkdir($dir_name);
